@@ -1,14 +1,14 @@
 import React from "react";
-import { LinkContainer } from "react-router-bootstrap";
+import {Link} from "react-router-dom";
 import { NavItem } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
 
 function RoutedLinkContainer(props) {
   return (
-    <LinkContainer to={props.link}>
-      <NavItem>{props.displayText}</NavItem>
-    </LinkContainer>
+
+      <Link to={`${props.link}`}>
+        <NavItem>{props.displayText}</NavItem>
+      </Link>
   );
 }
 
-export default withRouter(RoutedLinkContainer);
+export default RoutedLinkContainer;
