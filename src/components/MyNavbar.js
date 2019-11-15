@@ -24,9 +24,9 @@ class MyNavbar extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Sign Up</Nav.Link>
+                            <RoutedLinkContainer link="/" displayText="Home" />  
+                            <RoutedLinkContainer link="/login" displayText="Log in" />
+                            <RoutedLinkContainer link="/register" displayText="Sign Up" />
                     </Nav>
                     </Navbar.Collapse>
                 </Navbar>   
@@ -44,8 +44,9 @@ class MyNavbar extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/exams">Exams</Nav.Link>
+                    <RoutedLinkContainer link="/" displayText="Home" />  
+                        <RoutedLinkContainer link="/" displayText="Home" />
+                        <RoutedLinkContainer link="/exams" displayText="Exams" />
                     </Nav>
                     </Navbar.Collapse>
                 </Navbar>   
