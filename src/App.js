@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Router1 from "./components/Router";
 import Home from "./components/Home";
+
 export default class App extends React.Component {
 
   constructor(props) {
