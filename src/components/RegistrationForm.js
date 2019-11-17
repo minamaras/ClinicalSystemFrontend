@@ -10,7 +10,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 
 class RegistrationForm extends React.Component {
-  constructor(props){
+  constructor(props){ 
     super(props);
 
     this.state={
