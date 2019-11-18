@@ -133,7 +133,7 @@ class MyNavbar extends React.Component {
                     </div>
 
                 );
-            } else if(this.props.role === 'cliniccentreadmin') {
+            } else if(this.props.role === 'clinicalcentreadmin') {
                 return (
                     <div className = "Mynavbar container">
                         <Navbar bg="light" variant="light" expand="lg">
@@ -147,7 +147,7 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/codebook" displayText="Code Book" />
                         </Nav>
                         <Nav className="ml-auto"> 
-                            <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                            <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>
