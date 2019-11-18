@@ -5,6 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 //import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import axios from 'axios'
 
 const DoctorCreatedAlert = withReactContent(Swal)
 
@@ -15,10 +16,74 @@ class AddDoctor extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
+        this.addDoctor = this.addDoctor.bind(this);
 
         this.state = {
-            show: false
+            show: false,
+            name: '',
+            lastname: '',
+            email: '',
+            password: '',
+            specialization: '',
+            rating: ''
         };
+    }
+
+    addDoctor(event) {
+        event.preventDefault();
+
+        // var name = document.getElementById("name");
+        // var lastname = document.getElementById("lastname");
+        // var email = document.getElementById("email");
+        // var password = document.getElementById("password");
+        // var specialization = document.getElementById("specialization");
+        // var rating = document.getElementById("rating");
+
+        // var formData = new FormData();
+
+        // formData.append('Name', name);
+        // formData.append('Lastname', lastname);
+        // formData.append('Email', email);
+        // formData.append('Password', password);
+        // formData.append('Specialization', specialization);
+        // formData.append('Rating', rating);
+        // const obj = {'name': this.state.name}
+
+         axios.post("http://localhost:8081/api/clinicadmin/saveDoctor", this.state).then(
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
+         );
+        /*try {
+            const response = await axios.post("http://localhost:8081/api/clinicadmin/saveDoctor", this.state);
+            const doktor = response.data;
+        } catch(err) {
+            this.onErrorHandler(err);
+        }*/
+    }
+
+    onErrorHandler(resp) {
+        DoctorCreatedAlert.fire({
+            title: "Error occured",
+            text: '',
+            type: "error",
+            button: true
+          });
+
+    }
+
+    onSuccessHandler(resp) {
+
+        DoctorCreatedAlert.fire({
+            title: "Doctor added successfully",
+            text: "URL: http://localhost:8081/api/clinicadmin/saveDoctor",
+            type: "success",
+          });
+
+        this.setState({ redirect: this.state.redirect === false });
+        window.location.reload();
+        this.handleClose();
     }
 
     handleClose() {
@@ -27,6 +92,10 @@ class AddDoctor extends React.Component {
 
     handleShow() {
         this.setState({ show: true });
+    }
+
+    handleChange(e) {
+        this.setState({...this.state, [e.target.name]: e.target.value});
     }
 
     render() {
@@ -48,13 +117,15 @@ class AddDoctor extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form id="addDoctorForm">
+                        <form onSubmit={this.addDoctor} id="addDoctorForm">
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
                                     id="name"
-                                    name="newDoctor"
+                                    name="name"
+                                    // name="newDoctor"
+                                    onChange={this.handleChange}
                                     placeholder="Enter name"
                                     required
                                 />
@@ -63,7 +134,8 @@ class AddDoctor extends React.Component {
                                 <input type="text"
                                     className="form-control form-control-sm"
                                     id="lastname"
-                                    name="newDoctor"
+                                    name="lastname"
+                                    onChange={this.handleChange}
                                     placeholder="Enter lastname"
                                     required
                                 />
@@ -72,8 +144,19 @@ class AddDoctor extends React.Component {
                                 <input type="email"
                                     className="form-control form-control-sm"
                                     id="email"
-                                    name="newDoctor"
+                                    name="email"
+                                    onChange={this.handleChange}
                                     placeholder="Enter email"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="password">Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    id="password"
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter password"
                                     required
                                 />
                                 <br/>
@@ -81,14 +164,25 @@ class AddDoctor extends React.Component {
                                 <input type="text"
                                     className="form-control form-control-sm"
                                     id="specialization"
-                                    name="newDoctor"
+                                    name="specialization"
+                                    onChange={this.handleChange}
                                     placeholder="Enter specialization"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="rating">Rating</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="rating"
+                                    name="rating"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter rating"
                                     required
                                 />
                                 <br/>
                             </div>
                             <hr/>
-                            <Button className="dugmad">Create</Button>
+                            <Button type="submit" className="dugmad">Create</Button>
                             <Button className="dugmad" onClick={this.handleClose}>Close</Button>
                         </form>
                     </Modal.Body>

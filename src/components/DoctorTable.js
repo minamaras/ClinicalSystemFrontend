@@ -10,7 +10,7 @@ class DoctorTable extends React.Component {
 
     renderTableData() {
     return this.props.content.map((doctor, index) => {
-        const { name, lastname, email, specialization } = doctor
+        const { name, lastname, email, specialization, rating } = doctor
 
         return (
             <tr>
@@ -18,6 +18,7 @@ class DoctorTable extends React.Component {
                 <td>{lastname}</td>
                 <td>{email}</td>
                 <td>{specialization}</td>
+                <td>{rating}</td>
             </tr>
         )
     })
@@ -26,12 +27,12 @@ class DoctorTable extends React.Component {
     render() {
         return (
             
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-9">
-                        <div class="table-responsive-vertical shadow-z-1">
+            <div className="container">
+                <div className="row">
+                    <div className="col-xs-9">
+                        <div className="table-responsive-vertical shadow-z-1">
                             <h2 id="tablename">Clinic's Doctors</h2>
-                            <table id='doctors' class="table table-hover table-mc-light-blue">
+                            <table id='doctors' className="table table-hover table-mc-light-blue">
                                 
                                 <thead>
                                     <tr>
@@ -39,6 +40,8 @@ class DoctorTable extends React.Component {
                                         <th>Lastname</th>
                                         <th>Email</th>
                                         <th>Specialization</th>
+                                        <th>Rating</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
