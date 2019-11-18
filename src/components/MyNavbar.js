@@ -133,7 +133,7 @@ class MyNavbar extends React.Component {
                     </div>
 
                 );
-            } else if(this.props.role === 'cliniccentreadmin') {
+            } else if(this.props.role === 'clinicalcentreadmin') {
                 return (
                     <div className = "Mynavbar container">
                         <Navbar bg="light" variant="light" expand="lg">

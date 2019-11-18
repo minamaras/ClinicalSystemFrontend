@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Router1 from "./components/Router";
 import Home from "./components/Home";
+import ClinicPage from "./components/ClinicPage";
 
 export default class App extends React.Component {
 
@@ -31,14 +32,15 @@ export default class App extends React.Component {
 
       <div className="App container">
         <MyNavbar
-          role = {role}
-          isLoggedIn = {isLoggedIn}
+          role = {role = "clinicalcentreadmin"}
+          isLoggedIn = {isLoggedIn = true}
         />
 
         <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/register" component={RegistrationForm} />
+            <Route exact path="/clinics" component={ClinicPage} />
         </Switch>
       </div>
 
