@@ -77,7 +77,7 @@ class AddDoctor extends React.Component {
 
         DoctorCreatedAlert.fire({
             title: "Doctor added successfully",
-            text: "URL: http://localhost:8081/api/clinicadmin/saveDoctor",
+            text: "",
             type: "success",
           });
 
