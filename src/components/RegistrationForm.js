@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import RoutedLinkContainer from './RoutedLinkContainer';
 import { LinkContainer } from "react-router-bootstrap";
 import LoginForm from './LoginForm'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-
+const PatientRegisteredAlert = withReactContent(Swal)
 
 class RegistrationForm extends React.Component {
   constructor(props){
@@ -34,14 +36,32 @@ SendRegisterRequest(event){
    event.preventDefault();
 
     axios.post("http://localhost:8081/api/patients/register",this.state).then(
-        (response) => {
-            alert("Registerd!");
-        },
-        (response) => {
-            this.handleError(response);
-        }
+      (resp) => this.onSuccessHandler(resp),
+      (resp) => this.onErrorHandler(resp)
     );
 
+}
+
+onErrorHandler(resp) {
+  PatientRegisteredAlert.fire({
+      title: "Error occured",
+      text: '',
+      type: "error",
+      button: true
+    });
+
+}
+
+onSuccessHandler(resp) {
+
+  PatientRegisteredAlert.fire({
+      title: "Patient registered successfully",
+      text: "",
+      type: "success",
+    });
+
+  this.setState({ redirect: this.state.redirect === false });
+  window.location.href = "http://localhost:3000/login";
 }
 
 handleChange(e) {
@@ -53,51 +73,51 @@ handleChange(e) {
   render() {
     return (
 
-      <Form onSubmit={this.SendRegisterRequest}>
-          <Form.Group controlId="name">
-            <Form.Label>First name</Form.Label>
-            <Form.Control type="text" placeholder="Enter your first name"
-            onChange={this.handleChange}
-            required
-            />
-            <Form.Text className="text-muted">
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="lastname">
-            <Form.Label>Last name</Form.Label>
-            <Form.Control type="text" placeholder="Enter your last name"
-            onChange={this.handleChange}
-            required
-            />
-            <Form.Text className="text-muted">
-            </Form.Text>
-          </Form.Group>
-
-          <FormGroup controlId="email">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email"
-            onChange={this.handleChange}
-            required
-             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-
-          </FormGroup>
-
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" required
-            onChange={this.handleChange}
-             />
-          </Form.Group>
-
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-          </Form>
+      <form onSubmit={this.SendRegisterRequest}>
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="name"
+                                    name="name"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter name"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="lastname">Lastname</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="lastname"
+                                    name="lastname"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter lastname"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="email">Email</label>
+                                <input type="email"
+                                    className="form-control form-control-sm"
+                                    id="email"
+                                    name="email"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter email"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="password">Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    id="password"
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter password"
+                                    required
+                                />
+                            </div>
+                            <hr/>
+                            <Button type="submit">Create</Button>
+                        </form>
 
 
 
