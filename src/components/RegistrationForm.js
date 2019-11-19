@@ -18,9 +18,66 @@ class RegistrationForm extends React.Component {
       lastname:'',
       email:'',
       password:'',
+      repeatedPassword:'',
       role:'patient'
     }
   }
+
+
+handelNameChange(event){
+
+  this.setState({name: event.target.value});
+
+}
+
+handelLastnameChange(event){
+
+  this.setState({lastname: event.target.value});
+
+}
+
+
+handelEmailChange(event){
+
+  this.setState({email: event.target.value});
+
+}
+
+handelPasswordChange(event){
+
+  this.setState({password: event.target.value});
+
+}
+
+handelRepeatedpasswordChange(event){
+
+  this.setState({repeatedPassword: event.target.value});
+
+}
+
+SendRegisterRequest(){
+    let firstame         = this.state.firstame;
+    let lastname            = this.state.lastname;
+    let email               = this.state.email;
+    let password            = this.state.password;
+    let repeatedPassword    = this.state.repeatedPassword;
+
+
+    axios.post("http://localhost:8081/api/patients/register", { firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword, phoneNumber: phoneNumber }).then(
+        (response) => {
+            alert("You must confirm your mail. The confirmation link is in inbox.");
+            self.props.history.push("/login");
+        },
+        (response) => {
+            self.handleError(response);
+        }
+    );
+
+}
+
+
+
+
   render() {
     return (
 
@@ -62,9 +119,6 @@ class RegistrationForm extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-
-
-
           </Form>
 
 
