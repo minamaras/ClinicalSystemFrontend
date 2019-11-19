@@ -5,6 +5,7 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RoutedLinkContainer from './RoutedLinkContainer';
 import { LinkContainer } from "react-router-bootstrap";
+import '../css/MyNavbar.css';
 
 class MyNavbar extends React.Component {
 
