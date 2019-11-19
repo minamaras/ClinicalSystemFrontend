@@ -30,15 +30,24 @@ class RegistrationForm extends React.Component {
 
 
 
-SendRegisterRequest(event){
+SendRegisterRequest = event => {
    event.preventDefault();
 
-    axios.post("http://localhost:8081/api/patients/register",this.state).then(
+   const user = {
+     name: this.state.name,
+     lastname: this.state.lastname,
+     email : this.state.email,
+     password : this.state.password
+   }
+
+    axios.post('http://localhost:8081/api/patients/register',{user}).then(
         (response) => {
             alert("Registerd!");
+            console.log(response);
+
         },
         (response) => {
-            this.handleError(response);
+            this.onErrorHandler(response);
         }
     );
 
@@ -48,6 +57,11 @@ handleChange(e) {
       this.setState({...this.state, [e.target.name]: e.target.value});
   }
 
+
+  onErrorHandler(resp) {
+        alert("Error!")
+
+     }
 
 
   render() {
