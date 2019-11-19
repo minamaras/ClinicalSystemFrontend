@@ -63,13 +63,13 @@ SendRegisterRequest(){
     let repeatedPassword    = this.state.repeatedPassword;
 
 
-    axios.post("http://localhost:8081/api/patients/register", { firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword, phoneNumber: phoneNumber }).then(
+    axios.post("http://localhost:8081/api/patients/register", { firstName: firstame , lastName: lastname, email: email, password: password, repeatedPassword: repeatedPassword}).then(
         (response) => {
             alert("You must confirm your mail. The confirmation link is in inbox.");
-            self.props.history.push("/login");
+            this.props.history.push("/login");
         },
         (response) => {
-            self.handleError(response);
+            this.handleError(response);
         }
     );
 
