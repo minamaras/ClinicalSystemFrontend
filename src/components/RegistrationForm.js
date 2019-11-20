@@ -62,6 +62,7 @@ onSuccessHandler(resp) {
 
   this.setState({ redirect: this.state.redirect === false });
   window.location.href = "http://localhost:3000/login";
+  
 
 }
 

@@ -6,12 +6,14 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RoutedLinkContainer from './RoutedLinkContainer';
 import { LinkContainer } from "react-router-bootstrap";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const UserLoggedInAlert = withReactContent(Swal)
 
 class  LoginForm  extends React.Component{
   constructor(props) {
       super(props);
-
 
       this.handleChange = this.handleChange.bind(this);
       this.SendLoginRequest = this.SendLoginRequest.bind(this);
@@ -36,15 +38,36 @@ class  LoginForm  extends React.Component{
 
 
         axios.post("http://localhost:8081/api/users/login",this.state).then(
-            (response) => {
-                alert("Successful login!")
-            },
-            (response) => {
-                alert("Not successful")
-            }
+            (resp) =>  this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
         );
 
     }
+
+    onErrorHandler(resp) {
+      UserLoggedInAlert.fire({
+            title: "Error occured",
+            text: '',
+            type: "error",
+            button: true
+          });
+      
+      }
+      
+      onSuccessHandler(resp) {
+      
+        UserLoggedInAlert.fire({
+            title: "You logged in successfully",
+            text: "",
+            type: "success"
+          });
+      
+        this.setState({ redirect: this.state.redirect === false });
+        window.location.href = "http://localhost:3000/";
+        //window.location.reload();
+
+      
+      }
 
 
 render(){
