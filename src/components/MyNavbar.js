@@ -27,7 +27,7 @@ class MyNavbar extends React.Component {
                         <RoutedLinkContainer link="/" displayText="Home" />
                     </Nav>
                     <Nav className="ml-auto">
-                            
+
                             <RoutedLinkContainer link="/login" displayText="Log in" />
                             <RoutedLinkContainer link="/register" displayText="Sign Up" />
                     </Nav>
@@ -39,7 +39,7 @@ class MyNavbar extends React.Component {
         } else {
             if(this.props.role === 'patient') {
                 return (
-    
+
                     <div className = "Mynavbar container">
                         <Navbar bg="light" variant="light" expand="lg">
                             <Navbar.Brand>Clinical System</Navbar.Brand>
@@ -49,18 +49,19 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/" displayText="Home" />
                             <RoutedLinkContainer link="/exams" displayText="Exams" />
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                            
+
                         </Nav>
-                        <Nav className="ml-auto"> 
+                  <Nav className="ml-auto"> 
+
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>
                     </Navbar>
                     </div>
-    
-    
+
+
                 );
-    
+
             } else if(this.props.role === 'doctor') {
                 return (
                     <div className = "Mynavbar container">
@@ -75,7 +76,7 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/patients" displayText="My Patients" />
                             <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                         </Nav>
-                        <Nav className="ml-auto"> 
+                        <Nav className="ml-auto">
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
@@ -98,7 +99,7 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
                             <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                         </Nav>
-                        <Nav className="ml-auto"> 
+                        <Nav className="ml-auto">
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
@@ -121,7 +122,7 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/patients" displayText="Patients" />
                             <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                         </Nav>
-                        <Nav className="ml-auto"> 
+                        <Nav className="ml-auto">
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
@@ -143,8 +144,10 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/clinics" displayText="Clinics" />
                             <RoutedLinkContainer link="/codebook" displayText="Code Book" />
                         </Nav>
-                        <Nav className="ml-auto"> 
+
+             <Nav className="ml-auto">
                             <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
+                            <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>
