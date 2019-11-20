@@ -13,10 +13,11 @@ class Home extends React.Component {
                     We're here to help you!
                 </p>
                 <p>
-                    <Button bsStyle="primary">Learn more</Button>
+                    <Button bsstyle="primary">Learn more</Button>
                 </p>
             </Jumbotron>
         );
     }
 }
+
 export default Home;

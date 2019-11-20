@@ -66,6 +66,7 @@ onSuccessHandler(resp) {
 
 }
 
+
 handleChange(e) {
       this.setState({...this.state, [e.target.name]: e.target.value});
   }
@@ -132,4 +133,5 @@ handleChange(e) {
     );
   }
 }
+
 export default RegistrationForm;
