@@ -35,12 +35,12 @@ class  LoginForm  extends React.Component{
        event.preventDefault();
 
 
-        axios.get("http://localhost:8081/api/users/login",this.state).then(
+        axios.post("http://localhost:8081/api/users/login",this.state).then(
             (response) => {
                 alert("Successful login!")
             },
             (response) => {
-                this.handleError(response);
+                alert("Not successful")
             }
         );
 
@@ -50,20 +50,31 @@ class  LoginForm  extends React.Component{
 render(){
   return(
 
-  <Form onSubmit={this.SendRegisterRequest}>
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
-
-    <Form.Group controlId="formBasicPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
-    </Form.Group>
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-</Form>
+    <form onSubmit={this.SendLoginRequest}>
+    <div className="form-group">
+        <label htmlFor="email">Email</label>
+        <input type="email"
+            className="form-control form-control-sm"
+            id="email"
+            name="email"
+            onChange={this.handleChange}
+            placeholder="Enter email"
+            required
+        />
+        <br/>
+        <label htmlFor="password">Password</label>
+        <input type="password"
+            className="form-control form-control-sm"
+            id="password"
+            name="password"
+            onChange={this.handleChange}
+            placeholder="Enter password"
+            required
+        />
+    </div>
+    <hr/>
+    <Button type="submit">Create</Button>
+</form>
 
 
 
