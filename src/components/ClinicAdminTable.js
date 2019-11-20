@@ -1,7 +1,7 @@
 import React from 'react'
-import ClinicForm from './ClinicAdminForm'
+import ClinicAdminForm from './ClinicAdminForm'
 
-class ClinicTable extends React.Component{
+class ClinicAdminTable extends React.Component{
     constructor(props) {
         super(props);
         
@@ -10,14 +10,14 @@ class ClinicTable extends React.Component{
     
 
     renderTableData() {
-    return this.props.content.map((clinic, index) => {
-        const { name, adress, description} = clinic
+    return this.props.content.map((clinicadmin, index) => {
+        const { name, lastname, email, password} = clinicadmin
 
         return (
-            <tr key={name}>
+            <tr key={email.toString()}>
                 <td>{name}</td>
-                <td>{adress}</td>
-                <td>{description}</td>
+                <td>{lastname}</td>
+                <td>{email}</td>
                 
             </tr>
         )
@@ -31,15 +31,15 @@ class ClinicTable extends React.Component{
                 <div className="row">
                     <div className="col-xs-9">
                         <div className="table-responsive-vertical shadow-z-1">
-                            <h2 id="tablenameclinic">Clinics</h2>
-                            <table id='clinics' className="table table-hover table-mc-light-blue">
+                            <h2 id="tablenameclinicadmin">Clinic admins</h2>
+                            <table id='clinicadmins' className="table table-hover table-mc-light-blue">
                                 
                                 <thead>
                                     <tr>
-                                        <th>Clinic name</th>
-                                        <th>Adress</th>
-                                        <th>Description</th>
-                                        <th>Clinic Admin</th>
+                                        <th>Name</th>
+                                        <th>Lastname</th>
+                                        <th>Email</th>
+                                        <th>Clinic</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,4 +58,4 @@ class ClinicTable extends React.Component{
 
 }
 
-export default ClinicTable
+export default ClinicAdminTable

@@ -1,3 +1,11 @@
+#clinicadding {
+    margin-left: 40px;
+    margin-top: -32px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    padding: 10px 20px;
+}
+
 .dugme1{
     float: left;
 }

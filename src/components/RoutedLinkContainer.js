@@ -5,7 +5,7 @@ import '../css/Links.css';
 
 function RoutedLinkContainer(props) {
   return (
-    <Link to={`${props.link}`} class="spacing">
+    <Link to={`${props.link}`} className="spacing">
         <NavItem>{props.displayText}</NavItem>
       </Link>
   );

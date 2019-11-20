@@ -1,6 +1,9 @@
-.addClinicAdmin{
-    margin: 50px 20px;
-
+#clinicadminadding {
+    margin-left: 30px;
+    margin-top: 30px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    padding: 5px;
 }
 
 .dugme1{
