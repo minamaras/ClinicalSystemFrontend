@@ -9,9 +9,6 @@ import RegistrationForm from './components/RegistrationForm';
 import Router1 from "./components/Router";
 import Home from "./components/Home";
 
-import ClinicPage from "./components/ClinicPage";
-import DoctorPage from "./components/DoctorPage";
-
 import ClinicalCentreAdminPage from "./components/ClinicalCentreAdminPage";
 import RegistrationRequestsPage from './components/RegistrationRequestsPage';
 
@@ -41,8 +38,8 @@ export default class App extends React.Component {
 
       <div className="App container">
         <MyNavbar
-          role = {role = "clinicalcentreadmin"}
-          isLoggedIn = {isLoggedIn = true}
+          role = {role}
+          isLoggedIn = {isLoggedIn}
         />
 
         <Switch>
