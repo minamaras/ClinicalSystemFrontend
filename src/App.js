@@ -9,6 +9,7 @@ import RegistrationForm from './components/RegistrationForm';
 import Router1 from "./components/Router";
 import Home from "./components/Home";
 import ClinicPage from "./components/ClinicPage";
+import DoctorPage from "./components/DoctorPage";
 
 export default class App extends React.Component {
 
@@ -41,6 +42,7 @@ export default class App extends React.Component {
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/register" component={RegistrationForm} />
             <Route exact path="/clinics" component={ClinicPage} />
+            <Route exact path="/doctors" component={DoctorPage} />
         </Switch>
       </div>
 

@@ -51,10 +51,8 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
                         </Nav>
-                        <Navbar.Text className="ml-auto">
-                        Signed in as: Mina Maras
-                        </Navbar.Text>
-                        <Nav className="ml-auto">
+                  <Nav className="ml-auto"> 
+
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>

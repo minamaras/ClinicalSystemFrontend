@@ -16,7 +16,6 @@ class Home extends React.Component {
                     <Button bsstyle="primary">Learn more</Button>
                 </p>
             </Jumbotron>
-
         );
     }
 }
