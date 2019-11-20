@@ -4,8 +4,7 @@ import { NavItem } from "react-bootstrap";
 
 function RoutedLinkContainer(props) {
   return (
-
-      <Link to={`${props.link}`}>
+    <Link to={`${props.link}`} className="spacing">
         <NavItem>{props.displayText}</NavItem>
       </Link>
   );
