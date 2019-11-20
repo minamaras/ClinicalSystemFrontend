@@ -18,6 +18,7 @@ class ClinicTable extends React.Component{
                 <td>{name}</td>
                 <td>{adress}</td>
                 <td>{description}</td>
+                <td><Button>Add Admin</Button></td>
                 
             </tr>
         )
@@ -44,6 +45,7 @@ class ClinicTable extends React.Component{
                                 </thead>
                                 <tbody>
                                     {this.renderTableData()}
+                                   
                                 </tbody>
                             </table>
                         </div>
