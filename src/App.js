@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
   }
 
-  render() { 
+  render() {
 
     let role = this.state.role;
     let isLoggedIn = this.state.isLoggedIn;
@@ -32,8 +32,8 @@ export default class App extends React.Component {
 
       <div className="App container">
         <MyNavbar
-          role = {role = "clinicadmin"}
-          isLoggedIn = {isLoggedIn=true}
+          role = {role}
+          isLoggedIn = {isLoggedIn}
         />
 
         <Switch>
@@ -48,4 +48,4 @@ export default class App extends React.Component {
     );
   }
 
-}  
+}

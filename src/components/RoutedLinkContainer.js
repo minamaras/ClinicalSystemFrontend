@@ -1,7 +1,6 @@
 import React from "react";
-import { NavItem } from "react-bootstrap";
 import {Link} from "react-router-dom";
-import '../css/Links.css';
+import { NavItem } from "react-bootstrap";
 
 function RoutedLinkContainer(props) {
   return (
