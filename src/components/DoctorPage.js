@@ -3,6 +3,8 @@ import AddDoctor from './AddDoctor';
 import '../css/AddDoctor.css';
 import DoctorTable from './DoctorTable';
 import axios from 'axios';
+import '../css/DoctorPage.css';
+
 
 class DoctorPage extends React.Component {
 
@@ -41,7 +43,7 @@ class DoctorPage extends React.Component {
         alert("Error response: Uncovered case");
     }
 
-    
+
     render() {
         return (
             <div className="container">

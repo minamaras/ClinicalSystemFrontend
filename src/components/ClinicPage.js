@@ -5,6 +5,7 @@ import '../css/ClinicPage.css';
 import axios from 'axios';
 import ClinicAdminForm from './ClinicAdminForm';
 import ClinicAdminTable from './ClinicAdminTable';
+import '../css/ClinicPage.css'
 
 class ClinicPage extends React.Component {
 
@@ -24,7 +25,7 @@ class ClinicPage extends React.Component {
             (resp) => this.onErrorHandler(resp)
         );
 
-        
+
         axios.get("http://localhost:8081/api/clinicalcentreadmins/allclinicadmins").then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
@@ -35,7 +36,7 @@ class ClinicPage extends React.Component {
         this.setState(prevState => ({
             clinics: [...prevState.clinics, clinic]
         }));
-        
+
     }
 
     addClinicAdmin(clinicadmin) {
@@ -112,4 +113,3 @@ class ClinicPage extends React.Component {
 }
 
 export default ClinicPage
-

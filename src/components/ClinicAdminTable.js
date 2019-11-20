@@ -4,10 +4,10 @@ import ClinicAdminForm from './ClinicAdminForm'
 class ClinicAdminTable extends React.Component{
     constructor(props) {
         super(props);
-        
+
         this.renderTableData = this.renderTableData.bind(this);
     }
-    
+
 
     renderTableData() {
     return this.props.content.map((clinicadmin, index) => {
@@ -18,7 +18,7 @@ class ClinicAdminTable extends React.Component{
                 <td>{name}</td>
                 <td>{lastname}</td>
                 <td>{email}</td>
-                
+
             </tr>
         )
     })
@@ -26,14 +26,14 @@ class ClinicAdminTable extends React.Component{
 
     render() {
         return (
-            
+
             <div className="container">
                 <div className="row">
                     <div className="col-xs-9">
                         <div className="table-responsive-vertical shadow-z-1">
                             <h2 id="tablenameclinicadmin">Clinic admins</h2>
                             <table id='clinicadmins' className="table table-hover table-mc-light-blue">
-                                
+
                                 <thead>
                                     <tr>
                                         <th>Name</th>

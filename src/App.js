@@ -38,8 +38,8 @@ export default class App extends React.Component {
 
       <div className="App container">
         <MyNavbar
-          role = {role}
-          isLoggedIn = {isLoggedIn}
+          role = {role="clinicadmin"}
+          isLoggedIn = {isLoggedIn = true}
         />
 
         <Switch>

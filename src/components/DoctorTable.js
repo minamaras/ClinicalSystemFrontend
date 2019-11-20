@@ -3,10 +3,10 @@ import React from 'react';
 class DoctorTable extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.renderTableData = this.renderTableData.bind(this);
     }
-    
+
 
     renderTableData() {
     return this.props.content.map((doctor, index) => {
@@ -26,14 +26,14 @@ class DoctorTable extends React.Component {
 
     render() {
         return (
-            
+
             <div className="container">
                 <div className="row">
                     <div className="col-xs-9">
                         <div className="table-responsive-vertical shadow-z-1">
                             <h2 id="tablename">Clinic's Doctors</h2>
                             <table id='doctors' className="table table-hover table-mc-light-blue">
-                                
+
                                 <thead>
                                     <tr>
                                         <th>Name</th>
