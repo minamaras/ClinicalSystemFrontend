@@ -1,4 +1,8 @@
 import React from 'react'
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 
 class ClinicalCentreAdminTable extends React.Component{
 
@@ -10,11 +14,11 @@ class ClinicalCentreAdminTable extends React.Component{
     
 
     renderTableData() {
-    return this.props.content.map((admin, index) => {
-        const { name, lastname, email } = admin
+    return this.props.content.map((ccadmin, index) => {
+        const { name, lastname, email, password } = ccadmin
 
         return (
-            <tr>
+            <tr key={email.toString()}>
                 <td>{name}</td>
                 <td>{lastname}</td>
                 <td>{email}</td>
@@ -26,12 +30,12 @@ class ClinicalCentreAdminTable extends React.Component{
     render() {
         return (
             
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-9">
-                        <div class="table-responsive-vertical shadow-z-1">
+            <div className="container">
+                <div className="row">
+                    <div className="col-xs-9">
+                        <div className="table-responsive-vertical shadow-z-1">
                             <h2 id="tablename">Clinical Centre Admins</h2>
-                            <table id='ccadmins' class="table table-hover table-mc-light-blue">
+                            <table id='ccadmins' className="table table-hover table-mc-light-blue">
                                 
                                 <thead>
                                     <tr>

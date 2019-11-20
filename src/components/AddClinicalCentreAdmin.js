@@ -2,6 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { Modal, Button } from "react-bootstrap";
 import '../css/AddClinicalCentreAdmin.css'
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const CCAdminCreatedAlert = withReactContent(Swal)
 
 
 class AddClinicalCentreAdmin extends React.Component{
@@ -10,10 +15,51 @@ class AddClinicalCentreAdmin extends React.Component{
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.addClinicalCentreAdmin = this.addClinicalCentreAdmin.bind(this);
+
 
         this.state = {
-            show: false
+            show: false,
+            name: '',
+            lasname: '',
+            email: '',
+            password: ''
         };
+    }
+
+    addClinicalCentreAdmin(event) {
+        event.preventDefault();
+
+
+         axios.post("http://localhost:8081/api/clinicalcentreadmins/addccadmin", this.state).then(
+             (resp) => this.onSuccessHandlerccAdmin(resp),
+             (resp) => this.onErrorHandlerccAdmin(resp)
+         );
+
+    }
+
+    onErrorHandlerccAdmin(resp) {
+        CCAdminCreatedAlert.fire({
+            title: "Error occured",
+            text: '',
+            type: "error",
+            button: true
+          });
+
+    }
+
+    onSuccessHandlerccAdmin(resp) {
+
+        CCAdminCreatedAlert.fire({
+            title: "Clinical centre admin added successfully",
+            text: "",
+            type: "success",
+          });
+
+        this.setState({ redirect: this.state.redirect === false });
+        window.location.reload();
+        this.handleClose();
     }
 
     handleClose() {
@@ -24,11 +70,15 @@ class AddClinicalCentreAdmin extends React.Component{
         this.setState({ show: true });
     }
 
+    handleChange(e) {
+        this.setState({...this.state, [e.target.name]: e.target.value});
+    }
+
     render() {
         return (
             <div>
                 <Button id="ccadminadding" onClick={this.handleShow}>
-                    Add a Clinical Centre Admin
+                    Add Clinical Centre Admin
                 </Button>
                 <Modal
                     show={this.state.show}
@@ -39,17 +89,18 @@ class AddClinicalCentreAdmin extends React.Component{
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                        Add a Clinical Centre Admin
+                        Add Clinical Centre Admin
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form id="addClinicalCentreAdminForm">
+                        <form onSubmit={this.addClinicalCentreAdmin} id="addClinicalCentreAdminForm">
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
                                     id="name"
-                                    name="newClinicalCentreAdmin"
+                                    name="name"
+                                    onChange={this.handleChange}
                                     placeholder="Enter name"
                                     required
                                 />
@@ -58,7 +109,8 @@ class AddClinicalCentreAdmin extends React.Component{
                                 <input type="text"
                                     className="form-control form-control-sm"
                                     id="lastname"
-                                    name="newClinicalCentreAdmin"
+                                    name="lastname"
+                                    onChange={this.handleChange}
                                     placeholder="Enter lastname"
                                     required
                                 />
@@ -67,7 +119,8 @@ class AddClinicalCentreAdmin extends React.Component{
                                 <input type="email"
                                     className="form-control form-control-sm"
                                     id="email"
-                                    name="newClinicalCentreAdmin"
+                                    name="email"
+                                    onChange={this.handleChange}
                                     placeholder="Enter email"
                                     required
                                 />
@@ -76,14 +129,15 @@ class AddClinicalCentreAdmin extends React.Component{
                                 <input type="password"
                                     className="form-control form-control-sm"
                                     id="password"
-                                    name="newClinicalCentreAdmin"
+                                    name="password"
+                                    onChange={this.handleChange}
                                     placeholder="Enter password"
                                     required
                                 />
                                 <br/>
                             </div>
                             <hr/>
-                            <Button className="dugme1">Create</Button>
+                            <Button type="submit" className="dugme1">Create</Button>
                             <Button className="dugme2" onClick={this.handleClose}>Close</Button>
                         </form>
                     </Modal.Body>
