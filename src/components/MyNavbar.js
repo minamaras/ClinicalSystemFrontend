@@ -51,7 +51,8 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
                         </Nav>
-                        <Nav className="ml-auto">
+                  <Nav className="ml-auto">
+
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>
@@ -139,11 +140,13 @@ class MyNavbar extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <RoutedLinkContainer link="/" displayText="Home" />
-                            <RoutedLinkContainer link="/registrationrequests" displayText="Requests" />
+                            <RoutedLinkContainer link="/requests" displayText="Requests" />
                             <RoutedLinkContainer link="/clinics" displayText="Clinics" />
                             <RoutedLinkContainer link="/codebook" displayText="Code Book" />
                         </Nav>
-                        <Nav className="ml-auto">
+
+             <Nav className="ml-auto">
+                            <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
