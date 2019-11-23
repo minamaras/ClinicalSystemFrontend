@@ -32,7 +32,7 @@ class ClinicForm extends React.Component {
         event.preventDefault();
 
 
-         axios.post("http://localhost:8081/api/clinicalcentreadmins/addclinic", this.state).then(
+         axios.post("http://localhost:8081/api/clinics/addclinic", this.state).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
