@@ -7,6 +7,7 @@ import ClinicAdminForm from './ClinicAdminForm';
 import ClinicAdminTable from './ClinicAdminTable';
 import '../css/ClinicPage.css'
 
+
 class ClinicPage extends React.Component {
 
     constructor(props) {
@@ -20,13 +21,13 @@ class ClinicPage extends React.Component {
         this.addClinic = this.addClinic.bind(this);
         this.addClinicAdmin = this.addClinicAdmin.bind(this);
 
-        axios.get("http://localhost:8081/api/clinicalcentreadmins/allclinics").then(
+        axios.get("http://localhost:8081/api/clinics/allclinics").then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
 
 
-        axios.get("http://localhost:8081/api/clinicalcentreadmins/allclinicadmins").then(
+        axios.get("http://localhost:8081/api/clinicadmin//allclinicadmins").then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
@@ -86,16 +87,10 @@ class ClinicPage extends React.Component {
                     </div>
                     <div className="col-md-10">
                         <br />
-                        <ClinicTable content={this.state.clinics} />
+                        <ClinicTable content={this.state.clinics}/>
                         <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <ClinicAdminTable content={this.state.clinicadmins} />
+                        <ClinicAdminTable content={this.state.clinicadmins}/>
+
                     </div>
                 </div>
             </div>
