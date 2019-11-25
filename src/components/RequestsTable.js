@@ -1,13 +1,16 @@
 import React from 'react'
+import { Form, Button, FormGroup, Card, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import usericon from '../icons/user.svg';
+import '../css/RegistrationTable.css';
 
 class RequestsTable extends React.Component{
 
     constructor(props) {
         super(props);
+        
         
         this.renderTableData = this.renderTableData.bind(this);
     }
@@ -16,46 +19,55 @@ class RequestsTable extends React.Component{
     renderTableData() {
     return this.props.content.map((request, index) => {
         const { name, lastname, email, password } = request
+        console.log(request)
 
         return (
-            <tr key={email.toString()}>
-                <td>{name}</td>
-                <td>{lastname}</td>
-                <td>{email}</td>
-                <td>{password}</td>
-            </tr>
+            <Card key={email.toString()} className="cardContainer" >
+            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={usericon} />
+                <Card.Body className = "cardBody">
+                    <Card.Title className="cardTitle" >{email}</Card.Title>
+                    <Card.Text className='cardText'>
+                        
+                           name: {name}
+                           <br/>
+                            lastname: {lastname}
+                        
+                    </Card.Text>
+                    <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, email)} variant="success">Accept</Button>
+                    <Button className="declineBtn" variant="danger">Decline</Button>
+                </Card.Body>
+            </Card>
         )
+        
     })
 }
 
     render() {
         return (
-            
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-9">
-                        <div className="table-responsive-vertical shadow-z-1">
-                            <h2 id="tablename"></h2>
-                            <table id='requests' className="table table-hover table-mc-light-blue">
-                                
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Lastname</th>
-                                        <th>Email</th>
-                                        <th>Password</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.renderTableData()}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <div className="containerRenderCards">
+                {this.renderTableData()}
             </div>
         )
     }
+
+    acceptRequest(email){
+        axios.post("http://localhost:8081/api/requests/confirmrequest",this.email).then(
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+          );
+    }
+
+    onErrorHandler(response) {
+        alert("Error response: Uncovered case");
+    }
+
+    onSuccessHandler(response){
+        window.location.reload();
+    }
+
+
+
+
 }
 
 export default RequestsTable
