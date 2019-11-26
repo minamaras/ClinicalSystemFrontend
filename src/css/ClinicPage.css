@@ -1,22 +1,8 @@
-#manage {
-    color: cornflowerblue;
-    margin-left: -7px;
-    margin-bottom: 80px;
-    padding: 40px;
-}
+.col-md-2clinic{
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
 
-table {
-    margin-left: 220px;
-    margin-top: 0px;
 }
 
 
-#tablenameclinic {
-    margin-left: 220px;
-    margin-top: -230px;
-}
-
-#tablenameclinicadmin {
-    margin-left: 220px;
-    margin-top: -230px;
-}
