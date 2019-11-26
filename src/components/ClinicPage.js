@@ -27,7 +27,7 @@ class ClinicPage extends React.Component {
         );
 
 
-        axios.get("http://localhost:8081/api/clinicadmin//allclinicadmins").then(
+        axios.get("http://localhost:8081/api/clinicadmin/allclinicadmins").then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
@@ -81,15 +81,15 @@ class ClinicPage extends React.Component {
             <div>
                 <h1 id="manage">Manage clinics</h1>
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="col-md-2clinic">
                     <ClinicForm />
                     <ClinicAdminForm />
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-10clinic">
                         <br />
                         <ClinicTable content={this.state.clinics}/>
                         <br />
-                        <ClinicAdminTable content={this.state.clinicadmins}/>
+                        
 
                     </div>
                 </div>
