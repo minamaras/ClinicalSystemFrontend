@@ -10,8 +10,7 @@ class RequestsTable extends React.Component{
 
     constructor(props) {
         super(props);
-        
-        
+            
         this.renderTableData = this.renderTableData.bind(this);
     }
     
@@ -19,7 +18,6 @@ class RequestsTable extends React.Component{
     renderTableData() {
     return this.props.content.map((request, index) => {
         const { name, lastname, email, password } = request
-        console.log(request)
 
         return (
             <Card key={email.toString()} className="cardContainer" >
@@ -34,7 +32,7 @@ class RequestsTable extends React.Component{
                         
                     </Card.Text>
                     <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, email)} variant="success">Accept</Button>
-                    <Button className="declineBtn" variant="danger">Decline</Button>
+                    <Button className="declineBtn" onClick={this.declineRequest.bind(this, email)} variant="danger">Decline</Button>
                 </Card.Body>
             </Card>
         )
@@ -51,7 +49,16 @@ class RequestsTable extends React.Component{
     }
 
     acceptRequest(email){
-        axios.post("http://localhost:8081/api/requests/confirmrequest",this.email).then(
+        axios.post("http://localhost:8081/api/requests/confirmrequest", email).then(
+            console.log(email),
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+          );
+    }
+
+    declineRequest(email){
+        axios.post("http://localhost:8081/api/requests/declinerequest", email).then(
+            console.log(email),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
           );
@@ -62,7 +69,7 @@ class RequestsTable extends React.Component{
     }
 
     onSuccessHandler(response){
-        window.location.reload();
+        //window.location.reload();
     }
 
 
