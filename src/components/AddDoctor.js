@@ -51,7 +51,7 @@ class AddDoctor extends React.Component {
         // formData.append('Rating', rating);
         // const obj = {'name': this.state.name}
 
-         axios.post("http://localhost:8081/api/clinicadmin/saveDoctor", this.state).then(
+         axios.post("http://localhost:8081/api/doctors/saveDoctor", this.state).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
