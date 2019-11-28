@@ -16,7 +16,7 @@ class DoctorPage extends React.Component {
 
         this.addDoctor = this.addDoctor.bind(this);
 
-        axios.get("http://localhost:8081/api/doctors/all").then(
+        axios.get("http://localhost:8081/api/doctors/allDoctors").then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
