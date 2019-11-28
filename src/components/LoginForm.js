@@ -37,7 +37,7 @@ class  LoginForm  extends React.Component{
        event.preventDefault();
 
 
-        axios.post("http://localhost:8081/api/users/login",this.state).then(
+        axios.post("http://localhost:8081/auth/login",this.state).then(
             (resp) =>  this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
@@ -51,22 +51,22 @@ class  LoginForm  extends React.Component{
             type: "error",
             button: true
           });
-      
+
       }
-      
+
       onSuccessHandler(resp) {
-      
+
         UserLoggedInAlert.fire({
             title: "You logged in successfully",
             text: "",
             type: "success"
           });
-      
+
         this.setState({ redirect: this.state.redirect === false });
         window.location.href = "http://localhost:3000/";
         //window.location.reload();
 
-      
+
       }
 
 
