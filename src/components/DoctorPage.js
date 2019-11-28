@@ -1,9 +1,9 @@
 import React from 'react';
 import AddDoctor from './AddDoctor';
-import '../css/AddDoctor.css';
+//import '../css/AddDoctor.css';
 import DoctorTable from './DoctorTable';
 import axios from 'axios';
-import '../css/DoctorPage.css';
+//import '../css/DoctorPage.css';
 
 
 class DoctorPage extends React.Component {
@@ -16,7 +16,7 @@ class DoctorPage extends React.Component {
 
         this.addDoctor = this.addDoctor.bind(this);
 
-        axios.get("http://localhost:8081/api/doctors/allDoctors").then(
+        axios.get("http://localhost:8081/api/doctors/alldoctors").then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
