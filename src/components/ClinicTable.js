@@ -2,7 +2,9 @@ import React from 'react'
 import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Card } from "react-bootstrap";
+import hospitalicon from '../icons/hospital.svg';
+import '../css/ClinicTable.css';
 
 class ClinicTable extends React.Component{
     constructor(props) {
@@ -17,45 +19,32 @@ class ClinicTable extends React.Component{
         const { name, adress, description} = clinic
 
         return (
-            <tr key={name}>
-                <td>{name}</td>
-                <td>{adress}</td>
-                <td>{description}</td>
-                <td><Button>Add Admin</Button></td>
+            <Card key={name} className="cardContainer" >
+            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} />
+                <Card.Body className = "cardBody">
+                    <Card.Title className="cardTitle" >{name}</Card.Title>
+                    <Card.Text className='cardText'>
+                        
+                           Adress: {adress}
+                           <br/>
+                            Description: {description}
+                        
+                    </Card.Text>
+                    <Button className="addAdmin" variant="success">Add Clinic Admin</Button>
 
-            </tr>
-        )
-    })
-}
+                </Card.Body>
+            </Card>
+            )
+        })
+    }
 
     render() {
         return (
-
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-9">
-                        <div className="table-responsive-vertical shadow-z-1">
-                            <h2 id="tablenameclinic">Clinics</h2>
-                            <table id='clinics' className="table table-hover table-mc-light-blue">
-
-                                <thead>
-                                    <tr>
-                                        <th>Clinic name</th>
-                                        <th>Adress</th>
-                                        <th>Description</th>
-                                        <th>Clinic Admin</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.renderTableData()}
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <div className="containerRenderCardsClinic">
+                {this.renderTableData()}
             </div>
         )
+
     }
 
 

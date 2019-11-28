@@ -7,11 +7,11 @@
     box-shadow: 3px 4px 5px #d8d8d8;
 }
 
-.containerRenderCards{
+.containerRenderCardsClinic{
     display: flex;
     flex-direction:  row;
     flex-wrap: wrap;
-    margin: -10px -370px 10px 100px;
+    margin: -170px 0px 10px 280px;
     
 }
 
@@ -29,13 +29,10 @@
     font-size: 20px;
 }
 
-.acceptBtn{
-    margin-left: 40px;
+.addAdmin{
     float: left;
+    margin-left: 55px;
 }
 
-.declineBtn{
-    margin-right: 40px;
-    float: right;
-}
+
 
