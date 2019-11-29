@@ -58,7 +58,14 @@ class  LoginForm  extends React.Component{
             type: "success"
           });
 
-        this.setState({ redirect: this.state.redirect === false });
+          let self = this;
+          localStorage.setItem('token', resp.data.accessToken)
+
+          const options = {
+              headers: { 'token': resp.data.accessToken}
+          };
+
+        this.setState({ redirect: this.state.redirect === true });
         window.location.href = "http://localhost:3000/";
         //window.location.reload();
 
