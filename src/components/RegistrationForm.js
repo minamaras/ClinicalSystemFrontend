@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import Routes from './Router';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import RoutedLinkContainer from './RoutedLinkContainer';
-import { LinkContainer } from "react-router-bootstrap";
-import LoginForm from './LoginForm'
+import { withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -134,4 +129,4 @@ handleChange(e) {
   }
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);

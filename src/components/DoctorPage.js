@@ -4,6 +4,7 @@ import AddDoctor from './AddDoctor';
 import DoctorTable from './DoctorTable';
 import axios from 'axios';
 //import '../css/DoctorPage.css';
+import { withRouter } from "react-router-dom";
 
 
 class DoctorPage extends React.Component {
@@ -62,4 +63,4 @@ class DoctorPage extends React.Component {
     }
 }
 
-export default DoctorPage;
+export default withRouter(DoctorPage);

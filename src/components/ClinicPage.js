@@ -6,6 +6,7 @@ import axios from 'axios';
 import ClinicAdminForm from './ClinicAdminForm';
 import ClinicAdminTable from './ClinicAdminTable';
 import '../css/ClinicPage.css'
+import { withRouter } from "react-router-dom";
 
 
 class ClinicPage extends React.Component {
@@ -107,4 +108,4 @@ class ClinicPage extends React.Component {
 
 }
 
-export default ClinicPage
+export default withRouter(ClinicPage);

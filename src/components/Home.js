@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Jumbotron } from 'react-bootstrap';
 import '../css/Home.css';
+import { withRouter } from "react-router-dom";
 
 class Home extends React.Component {
 
@@ -20,4 +21,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);

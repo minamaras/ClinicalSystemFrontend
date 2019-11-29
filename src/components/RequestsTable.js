@@ -3,7 +3,7 @@ import { Form, Button, FormGroup, Card, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import usericon from '../icons/user.svg';
+//import usericon from '../icons/user.svg';
 import '../css/RegistrationTable.css';
 
 class RequestsTable extends React.Component{
@@ -21,7 +21,7 @@ class RequestsTable extends React.Component{
 
         return (
             <Card key={email.toString()} className="cardContainer" >
-            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={usericon} />
+            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top"  />
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{email}</Card.Title>
                     <Card.Text className='cardText'>

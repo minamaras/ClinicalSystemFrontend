@@ -4,6 +4,7 @@ import withReactContent from 'sweetalert2-react-content';
 import RequestsTable from './RequestsTable';
 import '../css/RegistrationRequestsPage.css';
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 class RegistrationRequestsPage extends React.Component{
 
@@ -57,4 +58,4 @@ class RegistrationRequestsPage extends React.Component{
 
 }
 
-export default RegistrationRequestsPage
+export default withRouter(RegistrationRequestsPage);
