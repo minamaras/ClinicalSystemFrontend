@@ -20,7 +20,8 @@ export default class App extends React.Component {
         lastname: '',
         email: '',
         password: '',
-        id: ''
+        id: '',
+
       }
     } else {
 
@@ -30,12 +31,12 @@ export default class App extends React.Component {
       this.state = {
         isLoggedIn: false
       }
-     
+
       const options = {
         headers: {'token' : token}
       }
 
-      axios.get('http://localhost:8081/api/user', options).then(
+      axios.get('http://localhost:8081/auth/user', options).then(
                 (response) => { self.changeState(response) },
                 (response) => { console.log(response)}
             );
@@ -57,13 +58,13 @@ export default class App extends React.Component {
     });
 
     localStorage.setItem('token', this.state.password);
-} 
+}
 
   render() {
 
     let role = this.state.role;
     let isLoggedIn = this.state.isLoggedIn;
-    
+
       if(!this.state.isLoggedIn) {
         return (
           <Router>
@@ -82,14 +83,14 @@ export default class App extends React.Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Routes/>
+            <Routes user = {this.state} changeState = {this.changeState}/>
             </div>
           </Router>
-           
+
 
         );
     } else {
-      if(this.state.role === 'patient') {
+      if(this.state.role === 'PATIENT') {
           return (
             <Router>
               <div className = "Mynavbar container">
@@ -109,15 +110,15 @@ export default class App extends React.Component {
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
-              <Routes/>
+              <Routes user = {this.state} changeState = {this.changeState}/>
               </div>
             </Router>
-              
+
 
 
           );
 
-      } else if(this.state.role === 'doctor') {
+      } else if(this.state.role === 'DOCTOR') {
           return (
             <Router>
                <div className = "Mynavbar container">
@@ -138,13 +139,13 @@ export default class App extends React.Component {
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
-              <Routes/>
+              <Routes user = {this.state} changeState = {this.changeState}/>
               </div>
             </Router>
-             
+
 
           );
-      } else if(this.state.role === 'clinicadmin') {
+      } else if(this.state.role === 'CLINICADMIN') {
           return (
             <Router>
               <div className = "Mynavbar container">
@@ -165,14 +166,14 @@ export default class App extends React.Component {
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
-              <Routes/>
+              <Routes user = {this.state} changeState = {this.changeState}/>
               </div>
             </Router>
 
-              
+
 
           );
-      } else if(this.state.role === 'nurse') {
+      } else if(this.state.role === 'NURSE') {
           return (
             <Router>
               <div className = "Mynavbar container">
@@ -193,39 +194,40 @@ export default class App extends React.Component {
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
-              <Routes/>
+              <Routes user = {this.state} changeState = {this.changeState}/>
               </div>
             </Router>
-              
+
 
           );
-      } else if(this.state.role === 'clinicalcentreadmin') {
-          return (
-            <Router>
+      } else if(this.state.role === 'CLINICALCENTERADMIN') {
+
+        return (
+          <Router>
             <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
-                      <Navbar.Brand>Clinical System</Navbar.Brand>
-                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                  <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="mr-auto">
-                      <RoutedLinkContainer link="/" displayText="Home" />
-                      <RoutedLinkContainer link="/requests" displayText="Requests" />
-                      <RoutedLinkContainer link="/clinics" displayText="Clinics" />
-                      <RoutedLinkContainer link="/codebook" displayText="Code Book" />
-                  </Nav>
+                <Navbar bg="light" variant="light" expand="lg">
+                    <Navbar.Brand>Clinical System</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <RoutedLinkContainer link="/" displayText="Home" />
+                    <RoutedLinkContainer link="/clinics" displayText="Clinics" />
+                    <RoutedLinkContainer link="/requests" displayText=" Request" />
+                    <RoutedLinkContainer link="/codebook" displayText="Codebook" />
+                </Nav>
+                <Nav className="ml-auto">
+                    <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                    <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+            <Routes user = {this.state} changeState = {this.changeState}/>
+            </div>
+          </Router>
 
-       <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
-                  </Nav>
-                  </Navbar.Collapse>
-              </Navbar>
-              <Routes/>
-              </div>
-            </Router>
-              
 
-          );
+        );
+
       }
 
   }

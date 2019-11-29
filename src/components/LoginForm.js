@@ -4,6 +4,7 @@ import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootst
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { withRouter } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 const UserLoggedInAlert = withReactContent(Swal)
 
@@ -13,6 +14,7 @@ class  LoginForm  extends React.Component{
 
       this.handleChange = this.handleChange.bind(this);
       this.SendLoginRequest = this.SendLoginRequest.bind(this);
+
 
       this.state = {
 
@@ -52,12 +54,6 @@ class  LoginForm  extends React.Component{
 
       onSuccessHandler(resp) {
 
-        UserLoggedInAlert.fire({
-            title: "You logged in successfully",
-            text: "",
-            type: "success"
-          });
-
           let self = this;
           localStorage.setItem('token', resp.data.accessToken)
 
@@ -65,8 +61,28 @@ class  LoginForm  extends React.Component{
               headers: { 'token': resp.data.accessToken}
           };
 
-        this.setState({ redirect: this.state.redirect === true });
-        window.location.href = "http://localhost:3000/";
+          window.location.href = "http://localhost:3000/"
+
+          //axios.get('http://localhost:8081/auth/user', options).then(
+            //(response) => {
+                //self.props.changeState(response);
+            //},
+            //(response) => {console.log("greska");}
+        //);
+
+        UserLoggedInAlert.fire({
+            title: "You logged in successfully",
+            text: "",
+            type: "success"
+          });
+
+          console.log(this.state);
+
+        //this.props.history.push("/");
+        //window.location.href = "http://localhost:3000/";
+        //this.props.history.push('/posts/');
+
+        //window.location.href = "http://localhost:3000/";
         //window.location.reload();
 
 

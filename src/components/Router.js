@@ -8,8 +8,9 @@ import DoctorPage from './DoctorPage'
 import ClinicalCentreAdminPage from './ClinicalCentreAdminPage'
 import RegistrationRequestsPage from './RegistrationRequestsPage'
 
+
 class Routes extends React.Component {
-    
+
     constructor(props){
         super(props);
     }
@@ -17,9 +18,10 @@ class Routes extends React.Component {
     render(){
         return (
         <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/" render={(props) => <Home user={this.props.user}/>}/>
+        <Route exact path="/login" render={(props) => <LoginForm changeState={this.props.changeState} />}/>
         <Route exact path="/register" component={RegistrationForm} />
+        
 
         <Route exact path="/clinics" component={ClinicPage} />
         <Route exact path="/doctors" component={DoctorPage} />
@@ -30,7 +32,7 @@ class Routes extends React.Component {
 
       </Switch>
         );
-        
+
         }
   }
 
