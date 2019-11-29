@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import MyNavbar from './components/MyNavbar';
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import Routes from './components/Router'
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import RoutedLinkContainer from './components/RoutedLinkContainer'
 
 export default class App extends React.Component {
 
@@ -62,20 +63,172 @@ export default class App extends React.Component {
 
     let role = this.state.role;
     let isLoggedIn = this.state.isLoggedIn;
-    return (
-      <Router>
+    
+      if(!this.state.isLoggedIn) {
+        return (
+          <Router>
+             <div id="mynav">
+                <Navbar bg="light" variant="light" expand="lg" >
+                    <Navbar.Brand>Clinical System</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <RoutedLinkContainer link="/" displayText="Home" />
+                </Nav>
+                <Nav className="ml-auto">
 
-        <div className="App container">
-          <MyNavbar
-            role={role = "clinicadmin"}
-            isLoggedIn={isLoggedIn=true}
-          />
-          <Routes/>
+                        <RoutedLinkContainer link="/login" displayText="Log in" />
+                        <RoutedLinkContainer link="/register" displayText="Sign Up" />
+                </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+            <Routes/>
+            </div>
+          </Router>
+           
 
-        </div>
+        );
+    } else {
+      if(this.state.role === 'patient') {
+          return (
+            <Router>
+              <div className = "Mynavbar container">
+                  <Navbar bg="light" variant="light" expand="lg">
+                      <Navbar.Brand>Clinical System</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                      <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/exams" displayText="Exams" />
+                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-      </Router>
-    );
+                  </Nav>
+            <Nav className="ml-auto">
+
+                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                  </Nav>
+                  </Navbar.Collapse>
+              </Navbar>
+              <Routes/>
+              </div>
+            </Router>
+              
+
+
+          );
+
+      } else if(this.state.role === 'doctor') {
+          return (
+            <Router>
+               <div className = "Mynavbar container">
+                  <Navbar bg="light" variant="light" expand="lg">
+                      <Navbar.Brand>Clinical System</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                      <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/exams" displayText="Exams" />
+                      <RoutedLinkContainer link="/calendar" displayText="Calendar" />
+                      <RoutedLinkContainer link="/patients" displayText="My Patients" />
+                      <RoutedLinkContainer link="/holiday" displayText="Holiday" />
+                  </Nav>
+                  <Nav className="ml-auto">
+                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                  </Nav>
+                  </Navbar.Collapse>
+              </Navbar>
+              <Routes/>
+              </div>
+            </Router>
+             
+
+          );
+      } else if(this.state.role === 'clinicadmin') {
+          return (
+            <Router>
+              <div className = "Mynavbar container">
+                  <Navbar bg="light" variant="light" expand="lg">
+                      <Navbar.Brand>Clinical System</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                      <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/doctors" displayText="Doctors" />
+                      <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
+                      <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
+                      <RoutedLinkContainer link="/holiday" displayText="Holiday" />
+                  </Nav>
+                  <Nav className="ml-auto">
+                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                  </Nav>
+                  </Navbar.Collapse>
+              </Navbar>
+              <Routes/>
+              </div>
+            </Router>
+
+              
+
+          );
+      } else if(this.state.role === 'nurse') {
+          return (
+            <Router>
+              <div className = "Mynavbar container">
+                  <Navbar bg="light" variant="light" expand="lg">
+                      <Navbar.Brand>Clinical System</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                      <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/perceptions" displayText="Perceptions" />
+                      <RoutedLinkContainer link="/calendar" displayText=" My Calendar" />
+                      <RoutedLinkContainer link="/patients" displayText="Patients" />
+                      <RoutedLinkContainer link="/holiday" displayText="Holiday" />
+                  </Nav>
+                  <Nav className="ml-auto">
+                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                  </Nav>
+                  </Navbar.Collapse>
+              </Navbar>
+              <Routes/>
+              </div>
+            </Router>
+              
+
+          );
+      } else if(this.state.role === 'clinicalcentreadmin') {
+          return (
+            <Router>
+            <div className = "Mynavbar container">
+                  <Navbar bg="light" variant="light" expand="lg">
+                      <Navbar.Brand>Clinical System</Navbar.Brand>
+                      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                  <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                      <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/requests" displayText="Requests" />
+                      <RoutedLinkContainer link="/clinics" displayText="Clinics" />
+                      <RoutedLinkContainer link="/codebook" displayText="Code Book" />
+                  </Nav>
+
+       <Nav className="ml-auto">
+                      <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+                  </Nav>
+                  </Navbar.Collapse>
+              </Navbar>
+              <Routes/>
+              </div>
+            </Router>
+              
+
+          );
+      }
+
   }
 
+}
 }
