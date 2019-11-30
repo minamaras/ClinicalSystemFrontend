@@ -50,13 +50,12 @@ class ClinicalCentreAdminPage extends React.Component{
     
     render() {
         return (
-            <div className="container">
-                <h1 id="manage">Manage doctors</h1>
-                <div className="row">
-                    <div className="col-md-2">
+            <div className="container-cca">
+                <div className="row-cca">
+                    <div className="col-md-2-cca">
                     <AddClinicalCentreAdmin />
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-10-cca">
                         <br />
                         <ClinicalCentreAdminTable content={this.state.ccadmins} />
                     </div>
