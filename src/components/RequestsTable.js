@@ -31,8 +31,8 @@ class RequestsTable extends React.Component{
                             lastname: {lastname}
                         
                     </Card.Text>
-                    <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, email)} variant="success">Accept</Button>
-                    <Button className="declineBtn" onClick={this.declineRequest.bind(this, email)} variant="danger">Decline</Button>
+                    <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
+                    <Button className="declineBtn" onClick={this.declineRequest.bind(this, request)} variant="danger">Decline</Button>
                 </Card.Body>
             </Card>
         )
@@ -48,28 +48,29 @@ class RequestsTable extends React.Component{
         )
     }
 
-    acceptRequest(email){
-        axios.post("http://localhost:8081/api/requests/confirmrequest", email).then(
-            console.log(email),
+    acceptRequest(request){
+        axios.post("http://localhost:8081/api/requests/confirmrequest", request).then(
+            console.log(request),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
           );
     }
 
-    declineRequest(email){
-        axios.post("http://localhost:8081/api/requests/declinerequest", email).then(
-            console.log(email),
+    declineRequest(request){
+        axios.post("http://localhost:8081/api/requests/declinerequest", request).then(
+            console.log(request),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
+            
           );
     }
 
-    onErrorHandler(response) {
+    onErrorHandler(resp) {
         alert("Error response: Uncovered case");
     }
 
-    onSuccessHandler(response){
-        //window.location.reload();
+    onSuccessHandler(resp){
+        window.location.reload();
     }
 
 
