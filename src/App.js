@@ -38,7 +38,7 @@ export default class App extends React.Component {
 
       <div className="App container">
         <MyNavbar
-          role = {role="clinicadmin"}
+          role = {role= "clinicalcentreadmin" }
           isLoggedIn = {isLoggedIn = true}
         />
 
