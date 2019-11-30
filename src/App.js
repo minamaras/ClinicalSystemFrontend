@@ -216,7 +216,7 @@ export default class App extends React.Component {
                     <RoutedLinkContainer link="/codebook" displayText="Codebook" />
                 </Nav>
                 <Nav className="ml-auto">
-                    <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                    <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
                     <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                 </Nav>
                 </Navbar.Collapse>
