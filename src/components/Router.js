@@ -1,8 +1,13 @@
-
-/*import React from 'react'
+import React from 'react'
 import {Route, withRouter, Switch } from "react-router-dom";
 import LoginForm from './LoginForm'
 import RegistrationForm from './RegistrationForm'
+import Home from './Home'
+import ClinicPage from './ClinicPage'
+import DoctorPage from './DoctorPage'
+import ClinicalCentreAdminPage from './ClinicalCentreAdminPage'
+import RegistrationRequestsPage from './RegistrationRequestsPage'
+
 
 class Routes extends React.Component {
 
@@ -11,32 +16,24 @@ class Routes extends React.Component {
     }
 
     render(){
-            return (<Switch>
-                <Route path="/login"                render={(props) => <LoginForm />} />
-                <Route path="/register"             render={() => <RegistrationForm />} />
-            </Switch>
-            );
+        return (
+        <Switch>
+        <Route exact path="/" render={(props) => <Home user={this.props.user}/>}/>
+        <Route exact path="/login" render={(props) => <LoginForm changeState={this.props.changeState} />}/>
+        <Route exact path="/register" component={RegistrationForm} />
+        
+
+        <Route exact path="/clinics" component={ClinicPage} />
+        <Route exact path="/doctors" component={DoctorPage} />
+
+        <Route exact path="/ccadminpage" component={ClinicalCentreAdminPage} />
+        <Route exact path="/requests" component={RegistrationRequestsPage} />
+
+
+      </Switch>
+        );
+
         }
   }
 
-  export default withRouter(Routes);*/
-
-// import React from 'react'
-// import {Route, Switch } from "react-router-dom";
-// import LoginForm from './LoginForm'
-// import RegistrationForm from './RegistrationForm'
-// import MyNavbar from './MyNavbar'
-//
-// class Routes extends React.Component {
-//
-//     constructor(props){
-//         super(props);
-//     }
-//
-//     render(){
-//             return (
-//             );
-//         }
-//   }
-//
-//   export default Routes;
+  export default withRouter(Routes);

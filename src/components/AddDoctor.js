@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/DoctorPage.css';
+//import '../css/DoctorPage.css';
 import { Modal, Button } from "react-bootstrap";
 //import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -34,33 +34,10 @@ class AddDoctor extends React.Component {
     addDoctor(event) {
         event.preventDefault();
 
-        // var name = document.getElementById("name");
-        // var lastname = document.getElementById("lastname");
-        // var email = document.getElementById("email");
-        // var password = document.getElementById("password");
-        // var specialization = document.getElementById("specialization");
-        // var rating = document.getElementById("rating");
-
-        // var formData = new FormData();
-
-        // formData.append('Name', name);
-        // formData.append('Lastname', lastname);
-        // formData.append('Email', email);
-        // formData.append('Password', password);
-        // formData.append('Specialization', specialization);
-        // formData.append('Rating', rating);
-        // const obj = {'name': this.state.name}
-
-         axios.post("http://localhost:8081/api/clinicadmin/saveDoctor", this.state).then(
+         axios.post("http://localhost:8081/api/doctors/savedoctor", this.state).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
-        /*try {
-            const response = await axios.post("http://localhost:8081/api/clinicadmin/saveDoctor", this.state);
-            const doktor = response.data;
-        } catch(err) {
-            this.onErrorHandler(err);
-        }*/
     }
 
     onErrorHandler(resp) {

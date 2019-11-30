@@ -5,6 +5,7 @@ import '../css/ClinicalCentreAdminPage.css'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { withRouter } from "react-router-dom";
 
 
 class ClinicalCentreAdminPage extends React.Component{
@@ -66,4 +67,4 @@ class ClinicalCentreAdminPage extends React.Component{
 
 }
 
-export default ClinicalCentreAdminPage
+export default withRouter(ClinicalCentreAdminPage);

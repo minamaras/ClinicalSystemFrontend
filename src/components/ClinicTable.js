@@ -3,7 +3,6 @@ import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import hospitalicon from '../icons/hospital.svg';
 import '../css/ClinicTable.css';
 
 class ClinicTable extends React.Component{
@@ -20,7 +19,7 @@ class ClinicTable extends React.Component{
 
         return (
             <Card key={name} className="cardContainer" >
-            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} />
+            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" />
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{name}</Card.Title>
                     <Card.Text className='cardText'>

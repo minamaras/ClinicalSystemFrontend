@@ -6,6 +6,7 @@ import axios from 'axios';
 import ClinicAdminForm from './ClinicAdminForm';
 import ClinicAdminTable from './ClinicAdminTable';
 import '../css/ClinicPage.css'
+import { withRouter } from "react-router-dom";
 
 
 class ClinicPage extends React.Component {
@@ -27,7 +28,7 @@ class ClinicPage extends React.Component {
         );
 
 
-        axios.get("http://localhost:8081/api/clinicadmin/allclinicadmins").then(
+        axios.get("http://localhost:8081/api/clinicadmin/all").then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
@@ -107,4 +108,4 @@ class ClinicPage extends React.Component {
 
 }
 
-export default ClinicPage
+export default withRouter(ClinicPage);
