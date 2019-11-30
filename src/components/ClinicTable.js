@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import '../css/ClinicTable.css';
+import hospitalicon from '../icons/hospital.svg'
 
 class ClinicTable extends React.Component{
     constructor(props) {
@@ -19,7 +20,7 @@ class ClinicTable extends React.Component{
 
         return (
             <Card key={name} className="cardContainer" >
-            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" />
+            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{name}</Card.Title>
                     <Card.Text className='cardText'>
@@ -29,7 +30,7 @@ class ClinicTable extends React.Component{
                             Description: {description}
                         
                     </Card.Text>
-                    <Button className="addAdmin" variant="success">Add Clinic Admin</Button>
+                    <Button className="addAdmin" variant="success" >Add Clinic Admin</Button>
 
                 </Card.Body>
             </Card>
