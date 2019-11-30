@@ -6,18 +6,27 @@
 }
 
 table {
-    margin-left: 250px;
+    margin-left: 280px;
 }
 
 #tablename {
-    margin-left: 250px;
-    margin-top: -150px;
+    margin-left: 280px;
+    margin-top: -170px;
 }
 
-.col-md-2{
-    margin-left: 30px;
+.col-md-20-cca{
+    margin-left: 100px;
 }
 
-.col-md-10{
-    margin-left: 140px;
+.col-md-10-cca{
+    margin-left: 40px;
+}
+
+#ccadminadding {
+    margin-left: 10px;
+    margin-top: 170px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    padding: 10px;
+
 }
