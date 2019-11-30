@@ -200,7 +200,7 @@ export default class App extends React.Component {
 
 
           );
-      } else if(this.state.role === 'CLINICALCENTERADMIN') {
+      } else if(this.state.role === 'CLINICALCENTREADMIN') {
 
         return (
           <Router>

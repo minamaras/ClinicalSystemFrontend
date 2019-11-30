@@ -28,7 +28,7 @@ class ClinicPage extends React.Component {
         );
 
 
-        axios.get("http://localhost:8081/api/clinicadmin/allclinicadmins").then(
+        axios.get("http://localhost:8081/api/clinicadmin/all").then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
