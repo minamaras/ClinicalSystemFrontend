@@ -115,7 +115,7 @@ render(){
         />
     </div>
     <hr/>
-    <Button type="submit">Create</Button>
+    <Button type="submit">Login</Button>
 </form>
 
 
