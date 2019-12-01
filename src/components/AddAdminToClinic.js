@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Modal, Button, ListGroup } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import '../css/AddAdminToClinic.css';
 
 const AdminConnectedAlert = withReactContent(Swal)
 
@@ -17,7 +18,6 @@ class ClinicAdminTable extends React.Component{
         this.state = {
             show: false,
             clinicadmins: [],
-            clinicid: props.id
         }
 
         //this.renderData = this.renderData.bind(this);
@@ -56,8 +56,8 @@ class ClinicAdminTable extends React.Component{
             const { name, lastname, email, password} = clinicadmin
 
             return(
-                <ListGroup key="email.toString()">
-                    <ListGroup.Item onClick={this.adminClicked.bind(this, clinicadmin)}>{name}, {email}</ListGroup.Item>
+                <ListGroup>
+                    <ListGroup.Item key="email.toString()" className="listButton" onClick={this.adminClicked.bind(this, clinicadmin)}>{name} (email:  {email})</ListGroup.Item>
                 </ListGroup>
 
             )
@@ -88,7 +88,7 @@ class ClinicAdminTable extends React.Component{
                     
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="success">Add</Button>
+                    
                     <Button variant="secondary" onClick={this.handleClose}>Close</Button>
                 </Modal.Footer>
                 </Modal>
@@ -97,9 +97,10 @@ class ClinicAdminTable extends React.Component{
     }
 
     adminClicked(clinicadmin){
-        axios.post("http://localhost:8081/api/clinics/connectadmin",this.state.clinicid, clinicadmin).then(
+        axios.post(`http://localhost:8081/api/clinics/connectadmin/${this.props.id}`,clinicadmin).then(
             console.log(clinicadmin),
-            console.log(this.state.clinicid),
+            console.log(this.props.id),
+            this.handleClose(),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
           );
