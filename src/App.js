@@ -101,7 +101,7 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/exams" displayText="Exams" />
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/patientprofile" displayText="My Profile" />
 
                   </Nav>
             <Nav className="ml-auto">
