@@ -19,7 +19,8 @@ class ClinicTable extends React.Component{
    
     renderTableData() {
     return this.props.content.map((clinic, index) => {
-        const { name, adress, description} = clinic
+        const { name, adress, description, clinicAdmin} = clinic
+        console.log(clinic)
 
         return (
             <Card key={name} className="cardContainer" >
@@ -31,6 +32,7 @@ class ClinicTable extends React.Component{
                            Adress: {adress}
                            <br/>
                             Description: {description}
+                            <br/>
                         
                     </Card.Text>
                     <div className="addAdmin">
