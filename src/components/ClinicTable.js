@@ -5,15 +5,18 @@ import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import '../css/ClinicTable.css';
 import hospitalicon from '../icons/hospital.svg'
+import AddAdminToClinic from './AddAdminToClinic'
+import axios from 'axios';
 
 class ClinicTable extends React.Component{
     constructor(props) {
         super(props);
 
+
         this.renderTableData = this.renderTableData.bind(this);
     }
 
-
+   
     renderTableData() {
     return this.props.content.map((clinic, index) => {
         const { name, adress, description} = clinic
@@ -30,7 +33,10 @@ class ClinicTable extends React.Component{
                             Description: {description}
                         
                     </Card.Text>
-                    <Button className="addAdmin" variant="success" >Add Clinic Admin</Button>
+                    <div className="addAdmin">
+                      <AddAdminToClinic id={name} />
+                    </div>
+                   
 
                 </Card.Body>
             </Card>
@@ -46,6 +52,7 @@ class ClinicTable extends React.Component{
         )
 
     }
+
 
 
 
