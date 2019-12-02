@@ -4,13 +4,17 @@ import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import Routes from './components/Router'
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
+import PhotoSlider from './components/PhotoSlider'
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+      this.SignOut = this.SignOut.bind(this);
+
     if (localStorage.getItem('token') === null || localStorage.getItem('token') === undefined) {
 
       this.state = {
@@ -60,6 +64,18 @@ export default class App extends React.Component {
     localStorage.setItem('token', this.state.password);
 }
 
+    SignOut() {
+
+      this.setState({
+          isLoggedIn:false
+      });
+
+      localStorage.clear();
+      window.location.href =  "http://localhost:3000/";
+
+    }
+
+
   render() {
 
     let role = this.state.role;
@@ -69,7 +85,7 @@ export default class App extends React.Component {
         return (
           <Router>
              <div id="mynav">
-                <Navbar bg="light" variant="light" expand="lg" >
+                <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}} >
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -84,6 +100,7 @@ export default class App extends React.Component {
                 </Navbar.Collapse>
             </Navbar>
             <Routes user = {this.state} changeState = {this.changeState}/>
+
             </div>
           </Router>
 
@@ -94,7 +111,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -106,7 +123,8 @@ export default class App extends React.Component {
                   </Nav>
             <Nav className="ml-auto">
 
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -122,7 +140,7 @@ export default class App extends React.Component {
           return (
             <Router>
                <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -135,7 +153,8 @@ export default class App extends React.Component {
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -149,7 +168,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -162,7 +181,8 @@ export default class App extends React.Component {
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -177,7 +197,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -190,7 +210,8 @@ export default class App extends React.Component {
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -205,7 +226,7 @@ export default class App extends React.Component {
         return (
           <Router>
             <div className = "Mynavbar container">
-                <Navbar bg="light" variant="light" expand="lg">
+                <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}} >
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -217,7 +238,8 @@ export default class App extends React.Component {
                 </Nav>
                 <Nav className="ml-auto">
                     <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
-                    <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                    <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
