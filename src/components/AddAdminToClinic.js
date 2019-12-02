@@ -56,8 +56,8 @@ class ClinicAdminTable extends React.Component{
             const { name, lastname, email, password} = clinicadmin
 
             return(
-                <ListGroup>
-                    <ListGroup.Item key="email.toString()" className="listButton" onClick={this.adminClicked.bind(this, clinicadmin)}>{name} (email:  {email})</ListGroup.Item>
+                <ListGroup key={email.toString()} >
+                    <ListGroup.Item className="listButton" onClick={this.adminClicked.bind(this, clinicadmin)}>{name} (email:  {email})</ListGroup.Item>
                 </ListGroup>
 
             )
@@ -102,7 +102,8 @@ class ClinicAdminTable extends React.Component{
             console.log(this.props.id),
             this.handleClose(),
             (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp)
+            (resp) => this.onErrorHandler(resp),
+            window.location.reload()
           );
 
     }
