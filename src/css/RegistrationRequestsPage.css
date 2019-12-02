@@ -1,13 +1,12 @@
 #manage {
     color: cornflowerblue;
-    margin-left: -7px;
+    margin-left: 17px;
     margin-bottom: 80px;
     padding: 40px;
 }
 
-table {
-    margin-left: 0px;
-    margin-top: 70px;
+
+.col-md-10{
+    margin-top: -60px;
+    margin-left: -100px;
 }
-
-

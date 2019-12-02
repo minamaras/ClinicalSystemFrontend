@@ -51,7 +51,7 @@ class MyNavbar extends React.Component {
                             <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
                         </Nav>
-                  <Nav className="ml-auto"> 
+                  <Nav className="ml-auto">
 
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
@@ -147,7 +147,6 @@ class MyNavbar extends React.Component {
 
              <Nav className="ml-auto">
                             <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
-                            <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
                             <RoutedLinkContainer link="/signout" displayText="Sign Out" />
                         </Nav>
                         </Navbar.Collapse>

@@ -1,13 +1,10 @@
 import React from "react";
 import axios from 'axios';
 import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import Routes from './Router';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import RoutedLinkContainer from './RoutedLinkContainer';
-import { LinkContainer } from "react-router-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { withRouter } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 const UserLoggedInAlert = withReactContent(Swal)
 
@@ -17,6 +14,7 @@ class  LoginForm  extends React.Component{
 
       this.handleChange = this.handleChange.bind(this);
       this.SendLoginRequest = this.SendLoginRequest.bind(this);
+
 
       this.state = {
 
@@ -37,7 +35,7 @@ class  LoginForm  extends React.Component{
        event.preventDefault();
 
 
-        axios.post("http://localhost:8081/api/users/login",this.state).then(
+        axios.post("http://localhost:8081/auth/login",this.state).then(
             (resp) =>  this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
@@ -51,22 +49,43 @@ class  LoginForm  extends React.Component{
             type: "error",
             button: true
           });
-      
+
       }
-      
+
       onSuccessHandler(resp) {
-      
+
+          let self = this;
+          localStorage.setItem('token', resp.data.accessToken)
+
+          const options = {
+              headers: { 'token': resp.data.accessToken}
+          };
+
+          window.location.href = "http://localhost:3000/"
+
+          //axios.get('http://localhost:8081/auth/user', options).then(
+            //(response) => {
+                //self.props.changeState(response);
+            //},
+            //(response) => {console.log("greska");}
+        //);
+
         UserLoggedInAlert.fire({
             title: "You logged in successfully",
             text: "",
             type: "success"
           });
-      
-        this.setState({ redirect: this.state.redirect === false });
-        window.location.href = "http://localhost:3000/";
+
+          console.log(this.state);
+
+        //this.props.history.push("/");
+        //window.location.href = "http://localhost:3000/";
+        //this.props.history.push('/posts/');
+
+        //window.location.href = "http://localhost:3000/";
         //window.location.reload();
 
-      
+
       }
 
 
@@ -106,4 +125,4 @@ render(){
 
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

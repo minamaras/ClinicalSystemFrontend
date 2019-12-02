@@ -11,5 +11,20 @@ table {
 
 #tablename {
     margin-left: 250px;
-    margin-top: -50px;
+    margin-top: -150px;
+}
+
+#doctoradding {
+    margin-left: 30px;
+    margin-top: 32px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+
+}
+
+.dugmad {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
 }

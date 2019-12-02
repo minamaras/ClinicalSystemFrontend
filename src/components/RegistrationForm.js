@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import Routes from './Router';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import RoutedLinkContainer from './RoutedLinkContainer';
-import { LinkContainer } from "react-router-bootstrap";
-import LoginForm from './LoginForm'
+import { withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -35,7 +30,7 @@ class RegistrationForm extends React.Component {
 SendRegisterRequest = event => {
    event.preventDefault();
 
-    axios.post("http://localhost:8081/api/patients/register",this.state).then(
+    axios.post("http://localhost:8081/auth/register",this.state).then(
       (resp) => this.onSuccessHandler(resp),
       (resp) => this.onErrorHandler(resp)
     );
@@ -62,7 +57,7 @@ onSuccessHandler(resp) {
 
   this.setState({ redirect: this.state.redirect === false });
   window.location.href = "http://localhost:3000/login";
-  
+
 
 }
 
@@ -134,4 +129,4 @@ handleChange(e) {
   }
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);
