@@ -4,6 +4,7 @@ import { Modal, Button, Card, ListGroup } from "react-bootstrap";
 import usericon from '../icons/man.png'
 
 
+
 class PatientProfile extends React.Component{
 
   constructor(props) {
@@ -13,8 +14,8 @@ class PatientProfile extends React.Component{
 render() {
     return (
 
-        <Card style={{ height:'70x', width: '400px', left: '200px', top: '30px' }}>
-        <Card.Img align="middle" variant="top" src={usericon} style= {{ height:'200px', width: '200px',align:'center'}} />
+        <Card style={{ height:'70x', width: '400px', left: '35%', top: '30px' }} className="car">
+        <Card.Img align="middle" variant="top" src={usericon} style= {{ height:'200px', width: '200px',left:'30%'}} />
         <Card.Body>
         <Card.Title><b>User info</b></Card.Title>
         <Card.Text>
