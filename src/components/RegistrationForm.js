@@ -33,16 +33,30 @@ class RegistrationForm extends React.Component {
   }
 
 
-
-
 SendRegisterRequest = event => {
    event.preventDefault();
+
+   if(this.state.password != this.state.repeatedPassword){
+
+     PatientRegisteredAlert.fire({
+         title: "Passwords don't match!Please try again.",
+         text: '',
+         type: "error",
+         button: true
+       });
+
+       return;
+
+   }else {
+
+
 
     axios.post("http://localhost:8081/auth/register",this.state).then(
       (resp) => this.onSuccessHandler(resp),
       (resp) => this.onErrorHandler(resp)
     );
 
+  }
 }
 
 onErrorHandler(resp) {
@@ -88,16 +102,17 @@ handleChange(e) {
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" id="email" />
+          <Form.Control type="email" placeholder="Enter email" id="email" name="email" onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" id="password" />
+          <Form.Control type="password" placeholder="Password" id="password" name="password" onChange={this.handleChange} />
           </Form.Group>
+
           <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Repeat password</Form.Label>
-          <Form.Control type="password" placeholder="Repeatedpassword" id="repeatedPassword"/>
+          <Form.Control type="password" placeholder="Repeat your password" id="repeatedPassword" name="repeatedPassword" onChange={this.handleChange} />
           </Form.Group>
 
           </Form.Row>
@@ -105,39 +120,45 @@ handleChange(e) {
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>First name</Form.Label>
-          <Form.Control type="text" placeholder="Enter your firstname" id="name"/>
+          <Form.Control type="text" placeholder="Enter your firstname" id="name" name="name" onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Lastname</Form.Label>
-          <Form.Control type="text" placeholder="Enter your lastname" id="lastname" />
+          <Form.Control type="text" placeholder="Enter your lastname" id="lastname" name="lastname" onChange={this.handleChange}  />
           </Form.Group>
           </Form.Row>
 
 
           <Form.Group controlId="formGridAddress1">
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="Enter your adress" id="adress" />
+          <Form.Control placeholder="Enter your adress" id="adress" name="adress" onChange={this.handleChange}  />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
           <Form.Label>Country</Form.Label>
-          <Form.Control placeholder="Apartment, studio, or floor" id="country" />
+          <Form.Control placeholder="Enter country name" id="country" name="country" onChange={this.handleChange}  />
           </Form.Group>
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" id="city"/>
+          <Form.Control type="text" id="city" placeholder="Enter your city." name="city" onChange={this.handleChange} />
           </Form.Group>
 
 
           <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Social security number</Form.Label>
-          <Form.Control type="text" id="socialSecurityNumber" />
+          <Form.Control type="text" id="socialSecurityNumber" placeholder="Enter your social security number." name="socialSecurityNumber" onChange={this.handleChange}/>
           </Form.Group>
           </Form.Row>
 
+          <Form.Row>
+          <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Phone number</Form.Label>
+          <Form.Control type="text" id="phone" placeholder="Enter your phone number." name="phone" onChange={this.handleChange}/>
+          </Form.Group>
+          </Form.Row>
 
 
           <Button variant="primary" type="submit">
