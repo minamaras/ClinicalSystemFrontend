@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl, ControlLabel,Col } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import '../css/Registration.css';
 
 const PatientRegisteredAlert = withReactContent(Swal)
 
@@ -20,7 +21,14 @@ class RegistrationForm extends React.Component {
       name:'',
       lastname:'',
       email:'',
-      password:''
+      password:'',
+      repeatedPassword:'',
+      adress :'',
+      city:'',
+      country:'',
+      phone:'',
+      socialSecurityNumber:''
+
     }
   }
 
@@ -76,52 +84,66 @@ handleChange(e) {
   render() {
     return (
 
-      <form onSubmit={this.SendRegisterRequest}>
-                            <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="name"
-                                    name="name"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter name"
-                                    required
-                                />
-                                <br/>
-                                <label htmlFor="lastname">Lastname</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="lastname"
-                                    name="lastname"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter lastname"
-                                    required
-                                />
-                                <br/>
-                                <label htmlFor="email">Email</label>
-                                <input type="email"
-                                    className="form-control form-control-sm"
-                                    id="email"
-                                    name="email"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter email"
-                                    required
-                                />
-                                <br/>
-                                <label htmlFor="password">Password</label>
-                                <input type="password"
-                                    className="form-control form-control-sm"
-                                    id="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter password"
-                                    required
-                                />
-                            </div>
-                            <hr/>
-                            <Button type="submit">Register</Button>
-                        </form>
+      <Form className="formReg" onSubmit={this.SendRegisterRequest}>
+          <Form.Row>
+          <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" id="email" />
+          </Form.Group>
 
+          <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" id="password" />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Repeat password</Form.Label>
+          <Form.Control type="password" placeholder="Repeatedpassword" id="repeatedPassword"/>
+          </Form.Group>
+
+          </Form.Row>
+
+          <Form.Row>
+          <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>First name</Form.Label>
+          <Form.Control type="text" placeholder="Enter your firstname" id="name"/>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Lastname</Form.Label>
+          <Form.Control type="text" placeholder="Enter your lastname" id="lastname" />
+          </Form.Group>
+          </Form.Row>
+
+
+          <Form.Group controlId="formGridAddress1">
+          <Form.Label>Address</Form.Label>
+          <Form.Control placeholder="Enter your adress" id="adress" />
+          </Form.Group>
+
+          <Form.Group controlId="formGridAddress2">
+          <Form.Label>Country</Form.Label>
+          <Form.Control placeholder="Apartment, studio, or floor" id="country" />
+          </Form.Group>
+
+          <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+          <Form.Label>City</Form.Label>
+          <Form.Control type="text" id="city"/>
+          </Form.Group>
+
+
+          <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Social security number</Form.Label>
+          <Form.Control type="text" id="socialSecurityNumber" />
+          </Form.Group>
+          </Form.Row>
+
+
+
+          <Button variant="primary" type="submit">
+          Register
+          </Button>
+</Form>
 
 
 

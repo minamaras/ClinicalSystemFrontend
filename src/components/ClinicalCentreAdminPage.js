@@ -18,13 +18,18 @@ class ClinicalCentreAdminPage extends React.Component{
 
         this.addClinicalCentreAdmin = this.addClinicalCentreAdmin.bind(this);
 
-        axios.get("http://localhost:8081/api/clinicalcentreadmins/all").then(
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.get("http://localhost:8081/api/clinicalcentreadmins/all",options).then(
             (resp) => this.onSuccessHandlerccAdmin(resp),
             (resp) => this.onErrorHandlerccAdmin(resp)
         );
     }
 
-    
+
     addClinicalCentreAdmin(ccadmin) {
         this.setState(prevState => ({
             ccadmins: [...prevState.ccadmins, ccadmin]
@@ -47,7 +52,7 @@ class ClinicalCentreAdminPage extends React.Component{
     }
 
 
-    
+
     render() {
         return (
             <div className="container-cca">

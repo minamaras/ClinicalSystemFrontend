@@ -37,8 +37,8 @@ export default class App extends React.Component {
       }
 
       const options = {
-        headers: {'token' : token}
-      }
+          headers: { 'Authorization': 'Bearer ' + token}
+      };
 
       axios.get('http://localhost:8081/auth/user', options).then(
                 (response) => { self.changeState(response) },
@@ -61,7 +61,8 @@ export default class App extends React.Component {
         role: resp.data.role
     });
 
-    localStorage.setItem('token', this.state.password);
+    //localStorage.setItem('token', this.state.password);
+    //console.log(token);
 }
 
     SignOut() {

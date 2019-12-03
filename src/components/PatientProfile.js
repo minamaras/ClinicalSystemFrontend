@@ -15,7 +15,6 @@ render() {
     return (
 
         <Card style={{ height:'70x', width: '400px', left: '35%', top: '30px' }} className="car">
-        <Card.Img align="middle" variant="top" src={usericon} style= {{ height:'200px', width: '200px',left:'30%'}} />
         <Card.Body>
         <Card.Title><b>User info</b></Card.Title>
         <Card.Text>

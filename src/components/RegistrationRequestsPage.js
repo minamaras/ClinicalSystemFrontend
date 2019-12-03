@@ -14,7 +14,12 @@ class RegistrationRequestsPage extends React.Component{
             requests: []
         }
 
-        axios.get("http://localhost:8081/api/requests/allrequests").then(
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.get("http://localhost:8081/api/requests/allrequests",options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );

@@ -17,7 +17,13 @@ class DoctorPage extends React.Component {
 
         this.addDoctor = this.addDoctor.bind(this);
 
-        axios.get("http://localhost:8081/api/doctors/alldoctors").then(
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.get("http://localhost:8081/api/doctors/alldoctors",options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
