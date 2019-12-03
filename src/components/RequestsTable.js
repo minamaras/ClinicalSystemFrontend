@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import usericon from '../icons/user.svg';
 import '../css/RegistrationTable.css';
+import EMailRejection from './EmailRejection';
 
 class RequestsTable extends React.Component{
 
@@ -32,7 +33,10 @@ class RequestsTable extends React.Component{
                         
                     </Card.Text>
                     <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
-                    <Button className="declineBtn" onClick={this.declineRequest.bind(this, request)} variant="danger">Decline</Button>
+                    <div className="declineBtn">
+                         <EMailRejection id={email} />
+                    </div>      
+
                 </Card.Body>
             </Card>
         )
@@ -52,7 +56,8 @@ class RequestsTable extends React.Component{
         axios.post("http://localhost:8081/api/requests/confirmrequest", request).then(
             console.log(request),
             (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp)
+            (resp) => this.onErrorHandler(resp),
+            window.location.reload()
           );
     }
 
@@ -60,7 +65,8 @@ class RequestsTable extends React.Component{
         axios.post("http://localhost:8081/api/requests/declinerequest", request).then(
             console.log(request),
             (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp)
+            (resp) => this.onErrorHandler(resp),
+            window.location.reload()
             
           );
     }
