@@ -4,13 +4,17 @@ import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
 import Routes from './components/Router'
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
+import PhotoSlider from './components/PhotoSlider'
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+      this.SignOut = this.SignOut.bind(this);
+
     if (localStorage.getItem('token') === null || localStorage.getItem('token') === undefined) {
 
       this.state = {
@@ -21,6 +25,13 @@ export default class App extends React.Component {
         email: '',
         password: '',
         id: '',
+        adress :'',
+        city:'',
+        country:'',
+        phone:'',
+        socialSecurityNumber:'',
+        specialization: '',
+        rating: ''
 
       }
     } else {
@@ -33,8 +44,8 @@ export default class App extends React.Component {
       }
 
       const options = {
-        headers: {'token' : token}
-      }
+          headers: { 'Authorization': 'Bearer ' + token}
+      };
 
       axios.get('http://localhost:8081/auth/user', options).then(
                 (response) => { self.changeState(response) },
@@ -47,18 +58,96 @@ export default class App extends React.Component {
   }
 
   changeState = (resp) => {
-    this.setState({
-        isLoggedIn: true,
-        name: resp.data.name,
-        lastname: resp.data.lastname,
-        email: resp.data.email,
-        id: resp.data.id,
-        password: resp.data.password,
-        role: resp.data.role
-    });
 
-    localStorage.setItem('token', this.state.password);
+    console.log(resp);
+
+    if(resp.data.role ===  'PATIENT'){
+            this.setState({
+                isLoggedIn: true,
+                name: resp.data.name,
+                lastname: resp.data.lastname,
+                email: resp.data.email,
+                id: resp.data.id,
+                password: resp.data.password,
+                role: resp.data.role,
+                adress :resp.data.adress,
+                city: resp.data.city,
+                country:resp.data.country,
+                phone:resp.data.phone,
+                socialSecurityNumber: resp.data.socialSecurityNumber
+
+    });
+  }else if (resp.data.role ===  'CLINICALCENTREADMIN'){
+
+              this.setState({
+                  isLoggedIn: true,
+                  name: resp.data.name,
+                  lastname: resp.data.lastname,
+                  email: resp.data.email,
+                  id: resp.data.id,
+                  password: resp.data.password,
+                  role: resp.data.role
+
+});
+
+}else if (resp.data.role ===  'DOCTOR'){
+
+              this.setState({
+                  isLoggedIn: true,
+                  name: resp.data.name,
+                  lastname: resp.data.lastname,
+                  email: resp.data.email,
+                  id: resp.data.id,
+                  password: resp.data.password,
+                  role: resp.data.role,
+                  specialization: '',
+                  rating: ''
+
+                });
+            }
+
+            else if (resp.data.role ===  'CLINICADMIN'){
+
+                          this.setState({
+                              isLoggedIn: true,
+                              name: resp.data.name,
+                              lastname: resp.data.lastname,
+                              email: resp.data.email,
+                              id: resp.data.id,
+                              password: resp.data.password,
+                              role: resp.data.role,
+
+                            });
+                        }
+
+            else if (resp.data.role ===  'NURSE'){
+
+                                      this.setState({
+                                          isLoggedIn: true,
+                                          name: resp.data.name,
+                                          lastname: resp.data.lastname,
+                                          email: resp.data.email,
+                                          id: resp.data.id,
+                                          password: resp.data.password,
+                                          role: resp.data.role,
+
+                                        });
+                                    }
+
+
 }
+
+    SignOut() {
+
+      this.setState({
+          isLoggedIn:false
+      });
+
+      localStorage.clear();
+      window.location.href =  "http://localhost:3000/";
+
+    }
+
 
   render() {
 
@@ -69,7 +158,7 @@ export default class App extends React.Component {
         return (
           <Router>
              <div id="mynav">
-                <Navbar bg="light" variant="light" expand="lg" >
+                <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}} >
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -84,6 +173,7 @@ export default class App extends React.Component {
                 </Navbar.Collapse>
             </Navbar>
             <Routes user = {this.state} changeState = {this.changeState}/>
+
             </div>
           </Router>
 
@@ -94,19 +184,20 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/exams" displayText="Exams" />
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/patientprofile" displayText="My Profile" />
 
                   </Nav>
             <Nav className="ml-auto">
 
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -122,7 +213,7 @@ export default class App extends React.Component {
           return (
             <Router>
                <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -135,7 +226,8 @@ export default class App extends React.Component {
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -149,20 +241,23 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/doctors" displayText="Doctors" />
+                      <RoutedLinkContainer link="/rooms" displayText="ORs" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
                       <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
+
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -177,7 +272,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg">
+                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -190,7 +285,8 @@ export default class App extends React.Component {
                   </Nav>
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
-                      <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -205,7 +301,7 @@ export default class App extends React.Component {
         return (
           <Router>
             <div className = "Mynavbar container">
-                <Navbar bg="light" variant="light" expand="lg">
+                <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}} >
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -217,7 +313,8 @@ export default class App extends React.Component {
                 </Nav>
                 <Nav className="ml-auto">
                     <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
-                    <RoutedLinkContainer link="/signout" displayText="Sign Out" />
+
+                    <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -31,8 +31,14 @@ class ClinicForm extends React.Component {
     addClinic(event) {
         event.preventDefault();
 
+          let token = localStorage.getItem('token');
 
-         axios.post("http://localhost:8081/api/clinics/addclinic", this.state).then(
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+
+         axios.post("http://localhost:8081/api/clinics/addclinic", this.state,options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -58,6 +64,7 @@ class ClinicForm extends React.Component {
           });
 
         this.setState({ redirect: this.state.redirect === false });
+        //window.location.href = "http://localhost:3000/clinics"
         window.location.reload();
         this.handleClose();
     }
@@ -137,7 +144,7 @@ class ClinicForm extends React.Component {
 
         );
     }
-        
+
 }
 
 export default ClinicForm;

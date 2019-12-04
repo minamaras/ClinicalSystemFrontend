@@ -7,14 +7,14 @@ import hospitalicon from '../icons/hospital.svg'
 
 
 const DoctorDeletedAlert = withReactContent(Swal)
-class DoctorTable extends React.Component {
+class OperationRoomTable extends React.Component {
     constructor(props) {
         super(props);
 
         this.renderTableData = this.renderTableData.bind(this);
     }
 
-    deleteDoctor(doctor) {
+    deleteRoom(room) {
 
         let token = localStorage.getItem('token');
         const options = {
@@ -23,8 +23,8 @@ class DoctorTable extends React.Component {
 
         //console.log(doctor.email);
 
-         axios.post("http://localhost:8081/api/doctors/deletedoctor", doctor, options).then(
-             console.log(doctor),
+         axios.post("http://localhost:8081/api/rooms/deleteroom", room, options).then(
+             console.log(room),
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -41,8 +41,8 @@ class DoctorTable extends React.Component {
     }
 
     renderTableData() {
-        return this.props.content.map((doctor, index) => {
-            const { name, lastname, email, specialization, rating} = doctor
+        return this.props.content.map((room, index) => {
+            const { name, number, isReserved} = room
     
             return (
                 <Card key={name} className="cardContainerDoctor" >
@@ -51,16 +51,13 @@ class DoctorTable extends React.Component {
                         <Card.Title className="cardTitle" >{name}</Card.Title>
                         <Card.Text className='cardText'>
                             
-                               Lastname: {lastname}
+                               Number: {number}
                                <br/>
-                               Email: {email}
+                               Reserved: {isReserved}
                                <br/>
-                               Specialization: {specialization}
-                               <br/>
-                               Rating: {rating}
                             
                         </Card.Text>
-                        <Button className="deleteDoctor" variant="success" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
+                        <Button className="deleteRoom" variant="success" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
     
                     </Card.Body>
                 </Card>
@@ -77,4 +74,4 @@ class DoctorTable extends React.Component {
     
         }
 }
-export default DoctorTable;
+export default OperationRoomTable;

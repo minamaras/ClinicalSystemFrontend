@@ -63,12 +63,7 @@ class  LoginForm  extends React.Component{
 
           window.location.href = "http://localhost:3000/"
 
-          //axios.get('http://localhost:8081/auth/user', options).then(
-            //(response) => {
-                //self.props.changeState(response);
-            //},
-            //(response) => {console.log("greska");}
-        //);
+    
 
         UserLoggedInAlert.fire({
             title: "You logged in successfully",
@@ -78,12 +73,6 @@ class  LoginForm  extends React.Component{
 
           console.log(this.state);
 
-        //this.props.history.push("/");
-        //window.location.href = "http://localhost:3000/";
-        //this.props.history.push('/posts/');
-
-        //window.location.href = "http://localhost:3000/";
-        //window.location.reload();
 
 
       }
@@ -115,7 +104,7 @@ render(){
         />
     </div>
     <hr/>
-    <Button type="submit">Create</Button>
+    <Button type="submit">Login</Button>
 </form>
 
 

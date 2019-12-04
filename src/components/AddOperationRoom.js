@@ -1,35 +1,32 @@
-import React, { Component } from 'react';
-import { Form, Button, FormGroup, FormControl, ControlLabel, Modal } from "react-bootstrap";
-import Routes from './Router';
-import RoutedLinkContainer from './RoutedLinkContainer';
-import { LinkContainer } from "react-router-bootstrap";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import '../css/ClinicAdminForm.css';
 import axios from 'axios'
 
-const ClinicAdminCreatedAlert = withReactContent(Swal)
+const RoomCreatedAlert = withReactContent(Swal)
 
-class ClinicAdminForm extends React.Component{
+class AddOperationRoom extends React.Component {
+
     constructor(props) {
         super(props);
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.addClinicAdmin = this.addClinicAdmin.bind(this);
 
+        this.addRoom = this.addRoom.bind(this);
 
         this.state = {
             show: false,
             name: '',
-            lasname: '',
-            email: '',
-            password: ''
+            number: '',
+            isReserved: ''
         };
     }
 
-    addClinicAdmin(event) {
+    addRoom(event) {
         event.preventDefault();
 
         let token = localStorage.getItem('token');
@@ -37,16 +34,14 @@ class ClinicAdminForm extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-
-         axios.post("http://localhost:8081/api/clinicadmin/addclinicadmin", this.state,options).then(
-             (resp) => this.onSuccessHandlerClinicAdmin(resp),
-             (resp) => this.onErrorHandlerClinicAdmin(resp)
+         axios.post("http://localhost:8081/api/rooms/add", this.state, options).then(
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
          );
-
     }
 
-    onErrorHandlerClinicAdmin(resp) {
-        ClinicAdminCreatedAlert.fire({
+    onErrorHandler(resp) {
+        RoomCreatedAlert.fire({
             title: "Error occured",
             text: '',
             type: "error",
@@ -55,10 +50,10 @@ class ClinicAdminForm extends React.Component{
 
     }
 
-    onSuccessHandlerClinicAdmin(resp) {
+    onSuccessHandler(resp) {
 
-        ClinicAdminCreatedAlert.fire({
-            title: "Clinic admin added successfully",
+        RoomCreatedAlert.fire({
+            title: "OR added successfully",
             text: "",
             type: "success",
           });
@@ -83,8 +78,8 @@ class ClinicAdminForm extends React.Component{
     render() {
         return (
             <div>
-                <Button id="clinicadminadding" onClick={this.handleShow}>
-                    Add Clinic Admin
+                <Button id="roomadding" onClick={this.handleShow}>
+                    Add a room
                 </Button>
                 <Modal
                     show={this.state.show}
@@ -95,11 +90,11 @@ class ClinicAdminForm extends React.Component{
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add Clinic Admin
+                            Add a room
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={this.addClinicAdmin} id="addClinicAdminForm">
+                        <form onSubmit={this.addRoom} id="addDoctorForm">
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input type="text"
@@ -111,41 +106,30 @@ class ClinicAdminForm extends React.Component{
                                     required
                                 />
                                 <br/>
-                                <label htmlFor="lastname">Lastname</label>
+                                <label htmlFor="lastname">Number</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
-                                    id="lastname"
-                                    name="lastname"
+                                    id="number"
+                                    name="number"
                                     onChange={this.handleChange}
-                                    placeholder="Enter lastname"
+                                    placeholder="Enter number"
                                     required
                                 />
                                 <br/>
-                                <label htmlFor="email">Email</label>
-                                <input type="email"
+                                <label htmlFor="isReserved">Reserve</label>
+                                <input type="text"
                                     className="form-control form-control-sm"
-                                    id="email"
-                                    name="email"
+                                    id="isReserved"
+                                    name="isReserved"
                                     onChange={this.handleChange}
-                                    placeholder="Enter email"
+                                    placeholder="Yes or No"
                                     required
                                 />
                                 <br/>
-                                <label htmlFor="password">Password</label>
-                                <input type="password"
-                                    className="form-control form-control-sm"
-                                    id="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter password"
-                                    required
-                                />
-                                <br/>
-
                             </div>
                             <hr/>
-                            <Button type="submit" className="dugme1">Create</Button>
-                            <Button className="dugme2" onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" className="roomDugme">Add</Button>
+                            <Button className="roomDugme" onClick={this.handleClose}>Close</Button>
                         </form>
                     </Modal.Body>
                 </Modal>
@@ -153,8 +137,6 @@ class ClinicAdminForm extends React.Component{
 
         );
     }
-
-
 }
 
-export default ClinicAdminForm;
+export default AddOperationRoom;
