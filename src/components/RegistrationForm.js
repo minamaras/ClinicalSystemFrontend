@@ -119,7 +119,7 @@ handleChange(e) {
                                 />
                             </div>
                             <hr/>
-                            <Button type="submit">Create</Button>
+                            <Button type="submit">Register</Button>
                         </form>
 
 

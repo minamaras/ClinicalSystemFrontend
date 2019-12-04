@@ -7,7 +7,10 @@ import ClinicPage from './ClinicPage'
 import DoctorPage from './DoctorPage'
 import ClinicalCentreAdminPage from './ClinicalCentreAdminPage'
 import RegistrationRequestsPage from './RegistrationRequestsPage'
+import PatientProfile from './PatientProfile'
+import PhotoSlider from './PhotoSlider'
 import Codebook from './Codebook'
+
 
 
 class Routes extends React.Component {
@@ -19,16 +22,18 @@ class Routes extends React.Component {
     render(){
         return (
         <Switch>
-        <Route exact path="/" render={(props) => <Home user={this.props.user}/>}/>
+        <Route exact path="/" render={(props) => <PhotoSlider user={this.props.user}/>}/>
         <Route exact path="/login" render={(props) => <LoginForm changeState={this.props.changeState} />}/>
         <Route exact path="/register" component={RegistrationForm} />
-        
 
-        <Route exact path="/clinics" component={ClinicPage} />
-        <Route exact path="/doctors" component={DoctorPage} />
 
-        <Route exact path="/ccadminpage" component={ClinicalCentreAdminPage} />
-        <Route exact path="/requests" component={RegistrationRequestsPage} />
+
+        <Route exact path="/clinics" render={(props) => <ClinicPage user={this.props.user}/>} />
+        <Route exact path="/doctors" render={(props) => <DoctorPage user={this.props.user}/>} />
+
+        <Route exact path="/ccadminpage" render={(props) => <ClinicalCentreAdminPage user={this.props.user}/>} />
+        <Route exact path="/requests" render={(props) => <RegistrationRequestsPage user={this.props.user}/>} />
+        <Route exact path="/patientprofile" render={(props) => <PatientProfile user={this.props.user}/>} />
 
         <Route exact path="/codebook" component={Codebook} />
 

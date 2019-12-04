@@ -7,7 +7,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <Jumbotron>
+            <Jumbotron style={{height:'250px'}}>
                 <h1>Welcome to the Clinical System!</h1>
                 <p>
                     This system is designed for doctors, nurses and patients.
