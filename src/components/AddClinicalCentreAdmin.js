@@ -31,8 +31,12 @@ class AddClinicalCentreAdmin extends React.Component{
     addClinicalCentreAdmin(event) {
         event.preventDefault();
 
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
 
-         axios.post("http://localhost:8081/api/clinicalcentreadmins/addccadmin", this.state).then(
+         axios.post("http://localhost:8081/api/clinicalcentreadmins/addccadmin", this.state, options).then(
              (resp) => this.onSuccessHandlerccAdmin(resp),
              (resp) => this.onErrorHandlerccAdmin(resp)
          );

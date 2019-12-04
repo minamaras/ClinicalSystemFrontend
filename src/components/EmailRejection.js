@@ -73,7 +73,7 @@ class EmailRejection extends React.Component{
                        
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className="dugme1" variant="success" onClick={this.sendEmail.bind(this)}>Send</Button>
+                        <Button className="dugme1" variant="success" onClick={this.sendEmail.bind(this, this.emailText)}>Send</Button>
                         <Button className="dugme2" variant="secondary" onClick={this.handleClose}>Close</Button>
                     </Modal.Footer>
                 </Modal>
@@ -85,9 +85,15 @@ class EmailRejection extends React.Component{
     sendEmail(){
         const {emailText} = this.state;
 
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
 
-        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, emailText, {headers: {"Content-Type": "text/plain"}}).then(
-            (resp) => this.onSuccessHandler(resp),
+        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, options, emailText).then(
+            console.log(this.props.id),
+            console.log(emailText),   
+        (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
             window.location.reload()
             

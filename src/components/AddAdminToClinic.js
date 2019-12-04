@@ -22,7 +22,12 @@ class ClinicAdminTable extends React.Component{
 
         //this.renderData = this.renderData.bind(this);
 
-        axios.get("http://localhost:8081/api/clinicadmin/available").then(
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.get("http://localhost:8081/api/clinicadmin/available", options).then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
@@ -97,7 +102,13 @@ class ClinicAdminTable extends React.Component{
     }
 
     adminClicked(clinicadmin){
-        axios.post(`http://localhost:8081/api/clinics/connectadmin/${this.props.id}`,clinicadmin).then(
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.post(`http://localhost:8081/api/clinics/connectadmin/${this.props.id}`,clinicadmin, options).then(
             console.log(clinicadmin),
             console.log(this.props.id),
             this.handleClose(),

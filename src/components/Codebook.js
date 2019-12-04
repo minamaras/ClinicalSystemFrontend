@@ -20,15 +20,19 @@ class Codebook extends React.Component{
 
         }
 
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
    
 
-    axios.get("http://localhost:8081/api/diagnosis/alldiagnosis").then(
+    axios.get("http://localhost:8081/api/diagnosis/alldiagnosis", options).then(
         (resp) => this.onSuccessHandler(resp),
         (resp) => this.onErrorHandler(resp)
     );
 
 
-    axios.get("http://localhost:8081/api/medication/allmedications").then(
+    axios.get("http://localhost:8081/api/medication/allmedications", options).then(
         (resp) => this.onSuccessHandlerM(resp),
         (resp) => this.onErrorHandler(resp)
     );

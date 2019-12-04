@@ -31,8 +31,12 @@ class AddDiagnosis extends React.Component{
     addDiagnosis(event) {
         event.preventDefault();
 
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
 
-         axios.post("http://localhost:8081/api/diagnosis/adddiagnosis", this.state).then(
+         axios.post("http://localhost:8081/api/diagnosis/adddiagnosis", this.state, options).then(
              (resp) => this.onSuccessHandlerccAdmin(resp),
              (resp) => this.onErrorHandlerccAdmin(resp)
          );

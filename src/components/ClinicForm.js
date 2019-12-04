@@ -31,14 +31,14 @@ class ClinicForm extends React.Component {
     addClinic(event) {
         event.preventDefault();
 
+
           let token = localStorage.getItem('token');
+          const options = {
+              headers: { 'Authorization': 'Bearer ' + token}
+          };
 
-        const options = {
-            headers: { 'Authorization': 'Bearer ' + token}
-        };
 
-
-         axios.post("http://localhost:8081/api/clinics/addclinic", this.state,options).then(
+         axios.post("http://localhost:8081/api/clinics/addclinic", this.state, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );

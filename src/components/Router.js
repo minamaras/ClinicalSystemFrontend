@@ -38,9 +38,7 @@ class Routes extends React.Component {
         <Route exact path="/patientprofile" render={(props) => <PatientProfile user={this.props.user}/>} />
         <Route exact path="/profilepage" render={(props) => <ClinicAdminProfile user={this.props.user}/>} />
         <Route exact path="/rooms" render={(props) => <OperationRoom user={this.props.user}/>} />
-
-        <Route exact path="/codebook" component={Codebook} />
-
+        <Route exact path="/codebook" render={(props) => <Codebook user={this.props.user}/>} />
 
       </Switch>
         );
