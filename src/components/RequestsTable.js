@@ -11,10 +11,10 @@ class RequestsTable extends React.Component{
 
     constructor(props) {
         super(props);
-            
+
         this.renderTableData = this.renderTableData.bind(this);
     }
-    
+
 
     renderTableData() {
     return this.props.content.map((request, index) => {
@@ -26,11 +26,11 @@ class RequestsTable extends React.Component{
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{email}</Card.Title>
                     <Card.Text className='cardText'>
-                        
+
                            name: {name}
                            <br/>
                             lastname: {lastname}
-                        
+
                     </Card.Text>
                     <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
                     <div className="declineBtn">
@@ -40,7 +40,7 @@ class RequestsTable extends React.Component{
                 </Card.Body>
             </Card>
         )
-        
+
     })
 }
 
@@ -53,7 +53,13 @@ class RequestsTable extends React.Component{
     }
 
     acceptRequest(request){
-        axios.post("http://localhost:8081/api/requests/confirmrequest", request).then(
+
+      let token = localStorage.getItem('token');
+      const options = {
+          headers: { 'Authorization': 'Bearer ' + token}
+      };
+
+        axios.post("http://localhost:8081/api/requests/confirmrequest", request,options).then(
             console.log(request),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
@@ -62,12 +68,18 @@ class RequestsTable extends React.Component{
     }
 
     declineRequest(request){
-        axios.post("http://localhost:8081/api/requests/declinerequest", request).then(
+
+      let token = localStorage.getItem('token');
+      const options = {
+          headers: { 'Authorization': 'Bearer ' + token}
+      };
+
+
+        axios.post("http://localhost:8081/api/requests/declinerequest", request,options).then(
             console.log(request),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
             window.location.reload()
-            
           );
     }
 

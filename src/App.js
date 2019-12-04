@@ -25,6 +25,13 @@ export default class App extends React.Component {
         email: '',
         password: '',
         id: '',
+        adress :'',
+        city:'',
+        country:'',
+        phone:'',
+        socialSecurityNumber:'',
+        specialization: '',
+        rating: ''
 
       }
     } else {
@@ -37,8 +44,8 @@ export default class App extends React.Component {
       }
 
       const options = {
-        headers: {'token' : token}
-      }
+          headers: { 'Authorization': 'Bearer ' + token}
+      };
 
       axios.get('http://localhost:8081/auth/user', options).then(
                 (response) => { self.changeState(response) },
@@ -51,17 +58,46 @@ export default class App extends React.Component {
   }
 
   changeState = (resp) => {
-    this.setState({
-        isLoggedIn: true,
-        name: resp.data.name,
-        lastname: resp.data.lastname,
-        email: resp.data.email,
-        id: resp.data.id,
-        password: resp.data.password,
-        role: resp.data.role
-    });
 
-    localStorage.setItem('token', this.state.password);
+    console.log(resp);
+
+    if(resp.data.role ===  'PATIENT'){
+            this.setState({
+                isLoggedIn: true,
+                name: resp.data.name,
+                lastname: resp.data.lastname,
+                email: resp.data.email,
+                id: resp.data.id,
+                password: resp.data.password,
+                role: resp.data.role,
+                adress :resp.data.adress,
+                city: resp.data.city,
+                country:resp.data.country,
+                phone:resp.data.phone,
+                socialSecurityNumber: resp.data.socialSecurityNumber
+
+    });
+  }else if (resp.data.role ===  'CLINICALCENTREADMIN'){
+
+              this.setState({
+                  isLoggedIn: true,
+                  name: resp.data.name,
+                  lastname: resp.data.lastname,
+                  email: resp.data.email,
+                  id: resp.data.id,
+                  password: resp.data.password,
+                  role: resp.data.role
+
+});
+
+
+
+
+
+  }
+
+    //localStorage.setItem('token', this.state.password);
+    //console.log(token);
 }
 
     SignOut() {

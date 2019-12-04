@@ -32,8 +32,13 @@ class ClinicAdminForm extends React.Component{
     addClinicAdmin(event) {
         event.preventDefault();
 
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
 
-         axios.post("http://localhost:8081/api/clinicadmin/addclinicadmin", this.state).then(
+
+         axios.post("http://localhost:8081/api/clinicadmin/addclinicadmin", this.state,options).then(
              (resp) => this.onSuccessHandlerClinicAdmin(resp),
              (resp) => this.onErrorHandlerClinicAdmin(resp)
          );
@@ -136,7 +141,7 @@ class ClinicAdminForm extends React.Component{
                                     required
                                 />
                                 <br/>
-   
+
                             </div>
                             <hr/>
                             <Button type="submit" className="dugme1">Create</Button>

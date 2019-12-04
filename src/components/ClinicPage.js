@@ -22,16 +22,27 @@ class ClinicPage extends React.Component {
         this.addClinic = this.addClinic.bind(this);
         this.addClinicAdmin = this.addClinicAdmin.bind(this);
 
-        axios.get("http://localhost:8081/api/clinics/allclinics").then(
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+
+        axios.get("http://localhost:8081/api/clinics/allclinics",options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
 
 
-        axios.get("http://localhost:8081/api/clinicadmin/all").then(
+        axios.get("http://localhost:8081/api/clinicadmin/all",options).then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
+
+        
+
+
     }
 
     addClinic(clinic) {
@@ -90,7 +101,7 @@ class ClinicPage extends React.Component {
                         <br />
                         <ClinicTable content={this.state.clinics}/>
                         <br />
-                        
+
 
                     </div>
                 </div>

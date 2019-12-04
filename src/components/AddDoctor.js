@@ -34,7 +34,12 @@ class AddDoctor extends React.Component {
     addDoctor(event) {
         event.preventDefault();
 
-         axios.post("http://localhost:8081/api/doctors/savedoctor", this.state).then(
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+         axios.post("http://localhost:8081/api/doctors/savedoctor", this.state,options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
