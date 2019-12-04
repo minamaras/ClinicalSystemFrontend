@@ -9,6 +9,7 @@ import ClinicalCentreAdminPage from './ClinicalCentreAdminPage'
 import RegistrationRequestsPage from './RegistrationRequestsPage'
 import PatientProfile from './PatientProfile'
 import PhotoSlider from './PhotoSlider'
+import Codebook from './Codebook'
 
 
 
@@ -33,6 +34,8 @@ class Routes extends React.Component {
         <Route exact path="/ccadminpage" render={(props) => <ClinicalCentreAdminPage user={this.props.user}/>} />
         <Route exact path="/requests" render={(props) => <RegistrationRequestsPage user={this.props.user}/>} />
         <Route exact path="/patientprofile" render={(props) => <PatientProfile user={this.props.user}/>} />
+
+        <Route exact path="/codebook" component={Codebook} />
 
 
       </Switch>
