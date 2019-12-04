@@ -11,6 +11,7 @@ import PatientProfile from './PatientProfile'
 import PhotoSlider from './PhotoSlider'
 import ClinicAdminProfile from './ClinicAdminProfile'
 import OperationRoom from './OperationRoom'
+import Codebook from './Codebook'
 
 
 
@@ -37,6 +38,8 @@ class Routes extends React.Component {
         <Route exact path="/patientprofile" render={(props) => <PatientProfile user={this.props.user}/>} />
         <Route exact path="/profilepage" render={(props) => <ClinicAdminProfile user={this.props.user}/>} />
         <Route exact path="/rooms" render={(props) => <OperationRoom user={this.props.user}/>} />
+
+        <Route exact path="/codebook" component={Codebook} />
 
 
       </Switch>
