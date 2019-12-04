@@ -72,13 +72,14 @@ onErrorHandler(resp) {
 onSuccessHandler(resp) {
 
   PatientRegisteredAlert.fire({
-      title: "Patient registered successfully",
+      title: "Patient registered successfully.After your request is approved you will get an email to activate your account.",
       text: "",
       type: "success",
+      button: true
     });
 
   this.setState({ redirect: this.state.redirect === false });
-  window.location.href = "http://localhost:3000/login";
+  window.location.href = "http://localhost:3000/";
 
 
 }
@@ -102,7 +103,7 @@ handleChange(e) {
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" id="email" name="email" onChange={this.handleChange} />
+          <Form.Control type="email" placeholder="Enter email" id="email" name="email" onChange={this.handleChange}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">

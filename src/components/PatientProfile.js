@@ -16,6 +16,22 @@ class PatientProfile extends React.Component{
 
       this.handleChange = this.handleChange.bind(this);
       this.SendUpdateRequest = this.SendUpdateRequest.bind(this);
+
+      this.state = {
+        role: '',
+        isLoggedIn: true,
+        name: '',
+        lastname: '',
+        email: '',
+        password: '',
+        id: '',
+        adress :'',
+        city:'',
+        country:'',
+        phone:'',
+        socialSecurityNumber:'',
+      }
+
 }
 
 
@@ -29,6 +45,8 @@ SendUpdateRequest = event => {
    };
 
    console.log(this.state);
+   //this.props.changeState(this.state);
+
 
     axios.post("http://localhost:8081/api/patients/updateprofile",this.state,options).then(
       (resp) => this.onSuccessHandler(resp),
@@ -36,6 +54,26 @@ SendUpdateRequest = event => {
     );
 
 
+}
+
+
+changeState = (user) => {
+
+        this.setState({
+              isLoggedIn: true,
+              name: user.name,
+              lastname: user.lastname,
+              email: user.email,
+              id: user.id,
+              password: user.password,
+              role: user.role,
+              adress : user.adress,
+              city: user.city,
+              country: user.country,
+              phone: user.phone,
+              socialSecurityNumber: user.socialSecurityNumber
+
+  });
 }
 
 
@@ -57,39 +95,14 @@ onSuccessHandler(resp) {
       type: "success",
     });
 
-  this.changeState(resp)
   window.location.reload();
 
 }
 
 
-changeState = (resp) => {
-
-          this.setState({
-              isLoggedIn: true,
-              name: resp.data.name,
-              lastname: resp.data.lastname,
-              email: resp.data.email,
-              id: resp.data.id,
-              password: resp.data.password,
-              role: resp.data.role,
-              adress :resp.data.adress,
-              city: resp.data.city,
-              country:resp.data.country,
-              phone:resp.data.phone,
-              socialSecurityNumber: resp.data.socialSecurityNumber
-
-  });
-
-}
-
-
-
 handleChange(e) {
       this.setState({...this.state, [e.target.name]: e.target.value});
   }
-
-
 
 render() {
     return (
@@ -103,7 +116,7 @@ render() {
        <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email"  id="email" name="email" defaultValue={this.props.user.email} readonly/>
+          <Form.Control type="email"  id="email" name="email" value={this.props.user.email}/>
           </Form.Group>
 
           </Form.Row>
@@ -111,7 +124,7 @@ render() {
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>First name</Form.Label>
-          <Form.Control type="text" placeholder="Enter your firstname" id="name" name="name" defaultValue={this.props.user.name} onChange={this.handleChange}/>
+          <Form.Control type="text" placeholder="Enter your firstname" id="name" name="name" value={name} onChange={this.handleChange}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridEmail">
@@ -123,24 +136,24 @@ render() {
 
           <Form.Group controlId="formGridAddress1">
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="Enter your adress" id="adress" name="adress" defaultValue={this.props.user.adress} onChange={this.handleChange} />
+          <Form.Control placeholder="Enter your adress" id="adress" name="adress" defaultValue={this.props.user.adress}onChange={this.handleChange}/>
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
           <Form.Label>Country</Form.Label>
-          <Form.Control placeholder="Enter country name" id="country" name="country" defaultValue={this.props.user.country} onChange={this.handleChange}/>
+          <Form.Control placeholder="Enter country name" id="country" name="country" defaultValue={this.props.user.country} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" id="city" placeholder="Enter your city." name="city" defaultValue={this.props.user.city} onChange={this.handleChange} />
+          <Form.Control type="text" id="city" placeholder="Enter your city." name="city" defaultValue={this.props.user.city}onChange={this.handleChange}  />
           </Form.Group>
 
 
           <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Social security number</Form.Label>
-          <Form.Control type="text" id="socialSecurityNumber" placeholder="Enter your social security number." name="socialSecurityNumber" defaultValue={this.props.user.socialSecurityNumber} readonly/>
+          <Form.Control type="text" id="socialSecurityNumber" placeholder="Enter your social security number." name="socialSecurityNumber" value={this.props.user.socialSecurityNumber} />
           </Form.Group>
           </Form.Row>
 
