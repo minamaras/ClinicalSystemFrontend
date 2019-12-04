@@ -72,13 +72,13 @@ onErrorHandler(resp) {
 onSuccessHandler(resp) {
 
   PatientRegisteredAlert.fire({
-      title: "Patient registered successfully",
+      title: "You will recieve email with activation link soon.",
       text: "",
       type: "success",
     });
 
   this.setState({ redirect: this.state.redirect === false });
-  window.location.href = "http://localhost:3000/login";
+  window.location.href = "http://localhost:3000/";
 
 
 }

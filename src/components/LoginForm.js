@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { withRouter } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
+import '../css/Login.css';
 
 const UserLoggedInAlert = withReactContent(Swal)
 
@@ -44,7 +45,7 @@ class  LoginForm  extends React.Component{
 
     onErrorHandler(resp) {
       UserLoggedInAlert.fire({
-            title: "Error occured",
+            title: "Error occured.Please check if activated your account.",
             text: '',
             type: "error",
             button: true
@@ -63,7 +64,7 @@ class  LoginForm  extends React.Component{
 
           window.location.href = "http://localhost:3000/"
 
-    
+
 
         UserLoggedInAlert.fire({
             title: "You logged in successfully",
@@ -81,9 +82,10 @@ class  LoginForm  extends React.Component{
 render(){
   return(
 
-    <form onSubmit={this.SendLoginRequest}>
+    <form onSubmit={this.SendLoginRequest} className="loginform">
     <div className="form-group">
         <label htmlFor="email">Email</label>
+
         <input type="email"
             className="form-control form-control-sm"
             id="email"
@@ -92,6 +94,7 @@ render(){
             placeholder="Enter email"
             required
         />
+
         <br/>
         <label htmlFor="password">Password</label>
         <input type="password"
@@ -103,7 +106,7 @@ render(){
             required
         />
     </div>
-    <hr/>
+    <br/>
     <Button type="submit">Login</Button>
 </form>
 
