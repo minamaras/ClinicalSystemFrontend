@@ -7,6 +7,7 @@ import ClinicPage from './ClinicPage'
 import DoctorPage from './DoctorPage'
 import ClinicalCentreAdminPage from './ClinicalCentreAdminPage'
 import RegistrationRequestsPage from './RegistrationRequestsPage'
+import Codebook from './Codebook'
 
 
 class Routes extends React.Component {
@@ -28,6 +29,8 @@ class Routes extends React.Component {
 
         <Route exact path="/ccadminpage" component={ClinicalCentreAdminPage} />
         <Route exact path="/requests" component={RegistrationRequestsPage} />
+
+        <Route exact path="/codebook" component={Codebook} />
 
 
       </Switch>
