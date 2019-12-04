@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
+<polygon style="fill:#92E0C0;" points="88,72 8,72 8,488 312,488 312,360 312,312 312,72 232,72 "/>
+<polygon style="fill:#ECECEC;" points="232,104 280,104 280,312 280,360 280,456 40,456 40,104 88,104 "/>
+<rect x="40" y="440" style="fill:#B6C1CE;" width="240" height="16"/>
+<path style="fill:#D3A06C;" d="M208,72V56c0-26.512-21.488-48-48-48l0,0c-26.512,0-48,21.488-48,48v16H88v64h144V72H208z"/>
+<path style="fill:#8C95A4;" d="M464,360H240l-40-24l40-24h224c13.256,0,24,10.744,24,24l0,0C488,349.256,477.256,360,464,360z"/>
+<rect x="72" y="184" style="fill:#AFB8C9;" width="176" height="96"/>
+<polygon style="fill:#8C95A4;" points="168,280 248,280 248,184 184,184 "/>
+<rect x="112" y="56" style="fill:#B27946;" width="96" height="16"/>
+<path d="M464,304c0-17.648-14.352-32-32-32h-56c-8.824,0-16-7.176-16-16h-16c0,17.648,14.352,32,32,32h56c8.824,0,16,7.176,16,16
+	H320V64h-80h-8h-16v-8c0-30.88-25.12-56-56-56s-56,25.12-56,56v8H88h-8H0v432h320V368h144c17.648,0,32-14.352,32-32
+	S481.648,304,464,304z M242.216,352l-26.664-16l26.664-16H392v32H242.216z M408,320h16v32h-16V320z M304,80v224h-16V96h-48V80H304z
+	 M120,56c0-22.056,17.944-40,40-40s40,17.944,40,40v8h-80V56z M96,128V80h128v48h-16v16h32v-32h32v192h-34.216l-53.336,32l53.336,32
+	H272v80H48V112h32v32h112v-16H96z M304,480H16V80h64v16H32v368h256v-96h16V480z M464,352h-24v-32h24c8.824,0,16,7.176,16,16
+	S472.824,352,464,352z"/>
+<path d="M64,288h192V176H64V288z M80,272v-48h11.72L112,254.424l16.384-24.576l24,32L172.28,232H240v40H80z M240,192v24h-76.28
+	l-12.104,18.152l-24-32L112,225.576L100.28,208H80v-16H240z"/>
+<rect x="80" y="304" width="96" height="16"/>
+<rect x="80" y="368" width="96" height="16"/>
+<rect x="80" y="336" width="40" height="16"/>
+<rect x="136" y="336" width="40" height="16"/>
+<rect x="80" y="400" width="16" height="16"/>
+<rect x="120" y="400" width="16" height="16"/>
+<rect x="160" y="400" width="16" height="16"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
