@@ -90,14 +90,51 @@ export default class App extends React.Component {
 
 });
 
+}else if (resp.data.role ===  'DOCTOR'){
+
+              this.setState({
+                  isLoggedIn: true,
+                  name: resp.data.name,
+                  lastname: resp.data.lastname,
+                  email: resp.data.email,
+                  id: resp.data.id,
+                  password: resp.data.password,
+                  role: resp.data.role,
+                  specialization: '',
+                  rating: ''
+
+                });
+            }
+
+            else if (resp.data.role ===  'CLINICADMIN'){
+
+                          this.setState({
+                              isLoggedIn: true,
+                              name: resp.data.name,
+                              lastname: resp.data.lastname,
+                              email: resp.data.email,
+                              id: resp.data.id,
+                              password: resp.data.password,
+                              role: resp.data.role,
+
+                            });
+                        }
+
+            else if (resp.data.role ===  'NURSE'){
+
+                                      this.setState({
+                                          isLoggedIn: true,
+                                          name: resp.data.name,
+                                          lastname: resp.data.lastname,
+                                          email: resp.data.email,
+                                          id: resp.data.id,
+                                          password: resp.data.password,
+                                          role: resp.data.role,
+
+                                        });
+                                    }
 
 
-
-
-  }
-
-    //localStorage.setItem('token', this.state.password);
-    //console.log(token);
 }
 
     SignOut() {
