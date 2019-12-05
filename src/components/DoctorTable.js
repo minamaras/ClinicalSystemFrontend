@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import hospitalicon from '../icons/hospital.svg'
+import '../css/DoctorTable.css'
 
 
 const DoctorDeletedAlert = withReactContent(Swal)
@@ -43,14 +44,14 @@ class DoctorTable extends React.Component {
     renderTableData() {
         return this.props.content.map((doctor, index) => {
             const { name, lastname, email, specialization, rating} = doctor
-    
+
             return (
                 <Card key={name} className="cardContainerDoctor" >
                 <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
                     <Card.Body className = "cardBody">
                         <Card.Title className="cardTitle" >{name}</Card.Title>
                         <Card.Text className='cardText'>
-                            
+
                                Lastname: {lastname}
                                <br/>
                                Email: {email}
@@ -58,23 +59,24 @@ class DoctorTable extends React.Component {
                                Specialization: {specialization}
                                <br/>
                                Rating: {rating}
-                            
+
                         </Card.Text>
+
                         <Button className="deleteDoctor" variant="success" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
-    
+
                     </Card.Body>
                 </Card>
                 )
             })
         }
-    
+
         render() {
             return (
-                <div className="rendercardsdoctor">
+                <div className="containerRenderCardsDoctor">
                     {this.renderTableData()}
                 </div>
             )
-    
+
         }
 }
 export default DoctorTable;

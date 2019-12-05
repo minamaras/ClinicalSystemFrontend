@@ -44,6 +44,7 @@ class DoctorPage extends React.Component {
         this.setState({
             doctors: tempDoctors
         });
+
     }
 
     onErrorHandler(response) {

@@ -1,0 +1,36 @@
+.cardContainerDoctor{
+
+    margin: 0px 30px 30px 60px;
+    width: 300px;
+    height: auto;
+    padding-top: 10px;
+    box-shadow: 3px 4px 5px #d8d8d8;
+}
+
+
+.cardBody{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cardTitle{
+    text-align: center;
+    color: rgb(34, 21, 21);
+
+}
+
+.cardText{
+    font-size: 20px;
+}
+
+.deleteDoctor{
+    float: left;
+    margin-left: 55px;
+}
+
+.containerRenderCardsDoctor{
+    display: flex;
+    flex-direction:  row;
+    flex-wrap: wrap;
+    margin: -170px 0px 10px 280px;
+
+}
