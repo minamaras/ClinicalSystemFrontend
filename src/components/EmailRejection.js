@@ -52,7 +52,7 @@ class EmailRejection extends React.Component{
                 <Modal
                     show={this.state.show}
                     onHide={this.handleClose}
-                    size="lg"
+                    
                     aria-labelledby="contained-modal-title-vcenter"
                     centered = "true"
                 >
@@ -87,13 +87,16 @@ class EmailRejection extends React.Component{
 
         let token = localStorage.getItem('token');
         const options = {
-            headers: { 'Authorization': 'Bearer ' + token}
+            headers: { 
+                'Authorization': 'Bearer ' + token,
+                'Content-type' : 'text/plain'
+            }
         };
 
-        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, options, emailText).then(
+        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, emailText, options).then(
             console.log(this.props.id),
             console.log(emailText),   
-        (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
             window.location.reload()
             
