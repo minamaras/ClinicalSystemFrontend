@@ -31,7 +31,8 @@ export default class App extends React.Component {
         phone:'',
         socialSecurityNumber:'',
         specialization: '',
-        rating: ''
+        rating: '',
+        clinic: ''
 
       }
     } else {
@@ -116,6 +117,7 @@ export default class App extends React.Component {
                               id: resp.data.id,
                               password: resp.data.password,
                               role: resp.data.role,
+                              clinic: resp.data.clinic
 
                             });
                         }
