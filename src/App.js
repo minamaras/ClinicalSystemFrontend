@@ -252,6 +252,7 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/doctors" displayText="Doctors" />
+                      <RoutedLinkContainer link="/nurses" displayText="Nurses" />
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
                       <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
