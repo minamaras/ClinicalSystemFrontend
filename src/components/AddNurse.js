@@ -38,7 +38,7 @@ class AddNurse extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-         axios.post("http://localhost:8081/api/nurses/addnurse", this.state,options).then(
+         axios.post("http://localhost:8081/api/nurses/addnurse", this.state, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -143,8 +143,8 @@ class AddNurse extends React.Component{
                                 
                             </div>
                             <hr/>
-                            <Button className="dugmad" variant="secondary" className="dugme2nurse" onClick={this.handleClose}>Close</Button>
-                            <Button type="submit" variant="success" className="dugme1nurse">Create</Button>
+                            <Button className="dugmad" variant="secondary" style={{float: "right"}} onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant="success" style={{float: "right", margin: "0px 10px 0px 0px" }} >Create</Button>
                             
                         </form>
                     </Modal.Body>
