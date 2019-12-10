@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Modal, Button, Card, Form,Col  } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import '../css/ClinicInfoPage.css'
 
 
 class ClinicPage extends React.Component {
@@ -71,34 +72,42 @@ class ClinicPage extends React.Component {
  render() {
     return (
 
-  <Card className="text-center" id="karta">
+  <Card className="text-center-clinic" id="karta">
   <Form className="clinicInfo" onSubmit={this.SendUpdateRequest}>
-  <Card.Header>Clinic's info</Card.Header>
-  <Card.Body>
-    <Card.Title>{this.props.user.clinic.name}</Card.Title>
 
+  <Card.Body>
+    <h1 className="clinicHeader">Clinic's info</h1>
+    <br/>
+
+    <h3 className="clinicTitle">{this.props.user.clinic.name}</h3>
+      <br/>
        <Form.Row>
 
           </Form.Row>
 
-          <Form.Row>
-          <Form.Group as={Col}>
-          <b>Description: </b>
-          <input value={+ " " + this.props.user.clinic.description}/>
-          </Form.Group>
+          <div className="clinicCol">
+          
+            <Form.Group className="firstColClinic" >
+            <p className="valueNameClinic">Description: </p>
+            <p className="valueNameClinic">Adress: </p>
+            </Form.Group>
+          
+            <Form.Group className="secondColClinic" >
+            <Form.Control className="inputDes" value={+ " " + this.props.user.clinic.description}/>
+            <Form.Control className="inputDes" value={+ " " + this.props.user.clinic.adress}/>
+            </Form.Group>
+          
+          </div>
+  
 
-          <Form.Group as={Col}>
-          <b>Adress: </b>
-          <input value={+ " " + this.props.user.clinic.adress}/>
-          </Form.Group>
-          </Form.Row>
-
-          <Button variant="primary" type="submit">
+      <Button className="btnEditClinic" variant="outline-primary" type="submit">
           Update
-          </Button>
+      </Button>
+</Card.Body>
 
+          
 
-    </Card.Body>
+    
     </Form>
     </Card>
 
