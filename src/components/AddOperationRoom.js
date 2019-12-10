@@ -128,8 +128,8 @@ class AddOperationRoom extends React.Component {
                                 <br/>
                             </div>
                             <hr/>
-                            <Button type="submit" className="roomDugme">Add</Button>
-                            <Button className="roomDugme" onClick={this.handleClose}>Close</Button>
+                            <Button className="roomDugme" variant = "secondary" style={{float: "right"}} onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant = "success" style={{float: "right", margin: "0px 10px 0px 0px" }} className="roomDugme">Add</Button>
                         </form>
                     </Modal.Body>
                 </Modal>
