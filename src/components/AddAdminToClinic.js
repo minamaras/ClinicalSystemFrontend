@@ -62,7 +62,12 @@ class ClinicAdminTable extends React.Component{
 
             return(
                 <ListGroup key={email.toString()} >
-                    <ListGroup.Item className="listButton" onClick={this.adminClicked.bind(this, clinicadmin)}>{name} (email:  {email})</ListGroup.Item>
+                    <div className="divAdmin">
+                        <ListGroup.Item className="listButton">{name} (email:  {email})
+                            <Button className="btnAddAdmin" variant="success" onClick={this.adminClicked.bind(this, clinicadmin)}>Add</Button>
+                        </ListGroup.Item>
+                        
+                    </div>
                 </ListGroup>
 
             )
@@ -73,13 +78,12 @@ class ClinicAdminTable extends React.Component{
     render() {
         return (
             <div>
-            <Button id="adminadding" onClick={this.handleShow}>
+            <Button variant="primary" id="adminadding" onClick={this.handleShow}>
                     Choose Admin
                 </Button>
                 <Modal
                     show={this.state.show}
                     onHide={this.handleClose}
-                    size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered = "true"
                 >
