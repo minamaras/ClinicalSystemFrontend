@@ -14,6 +14,7 @@ import OperationRoom from './OperationRoom'
 import Codebook from './Codebook'
 import ClinicInfoPage from './ClinicInfoPage'
 import DoctroProfile from './DoctroProfile'
+import NursePage from './NursePage'
 
 class Routes extends React.Component {
 
@@ -32,6 +33,7 @@ class Routes extends React.Component {
 
         <Route exact path="/clinics" render={(props) => <ClinicPage user={this.props.user}/>} />
         <Route exact path="/doctors" render={(props) => <DoctorPage user={this.props.user}/>} />
+        <Route exact path="/nurses" render={(props) => <NursePage user={this.props.user}/>} />
 
         <Route exact path="/ccadminpage" render={(props) => <ClinicalCentreAdminPage user={this.props.user}/>} />
         <Route exact path="/requests" render={(props) => <RegistrationRequestsPage user={this.props.user}/>} />
