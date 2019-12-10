@@ -160,7 +160,7 @@ export default class App extends React.Component {
         return (
           <Router>
              <div id="mynav">
-                <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}} >
+                <Navbar bg="light" variant="light"  style={{width:'auto'}} >
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -186,7 +186,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" expand="lg" style={{width:'auto'}}>
+                  <Navbar bg="light" variant="light" style={{width:'auto'}}>
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">

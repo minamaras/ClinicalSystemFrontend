@@ -13,7 +13,8 @@ import ClinicAdminProfile from './ClinicAdminProfile'
 import OperationRoom from './OperationRoom'
 import Codebook from './Codebook'
 import ClinicInfoPage from './ClinicInfoPage'
-
+import ClinicListPage from './ClinicListPage'
+import ClinicProfile from './ClinicProfile'
 
 
 class Routes extends React.Component {
@@ -41,6 +42,8 @@ class Routes extends React.Component {
         <Route exact path="/rooms" render={(props) => <OperationRoom user={this.props.user}/>} />
         <Route exact path="/codebook" render={(props) => <Codebook user={this.props.user}/>} />
         <Route exact path="/manageclinic" render={(props) => <ClinicInfoPage user={this.props.user}/>} />
+        <Route exact path="/cliniclist" render={(props) => <ClinicListPage user={this.props.user}/>} />
+        <Route exact path="/clinic/:name" render={(props) => <ClinicProfile user={this.props.user}/>} />
 
       </Switch>
         );
