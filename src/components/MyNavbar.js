@@ -18,7 +18,7 @@ class MyNavbar extends React.Component {
 
         if(!this.props.isLoggedIn) {
             return (
-                <div id="mynav">
+                <div id="mynav" className = "Mynavbar container">
                     <Navbar bg="light" variant="light" expand="lg" >
                         <Navbar.Brand>Clinical System</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -134,7 +134,7 @@ class MyNavbar extends React.Component {
             } else if(this.props.role === 'clinicalcentreadmin') {
                 return (
                     <div className = "Mynavbar container">
-                        <Navbar bg="light" variant="light" expand="lg">
+                        <Navbar bg="light" variant="light"  expand="lg">
                             <Navbar.Brand>Clinical System</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

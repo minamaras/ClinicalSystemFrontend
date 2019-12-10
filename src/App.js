@@ -8,6 +8,7 @@ import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
 import PhotoSlider from './components/PhotoSlider'
 
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -200,7 +201,7 @@ export default class App extends React.Component {
             <Nav className="ml-auto">
 
 
-                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -230,7 +231,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -260,7 +261,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -289,7 +290,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -317,7 +318,7 @@ export default class App extends React.Component {
                 <Nav className="ml-auto">
                     <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
 
-                    <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                    <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>

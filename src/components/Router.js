@@ -14,8 +14,6 @@ import OperationRoom from './OperationRoom'
 import Codebook from './Codebook'
 import ClinicInfoPage from './ClinicInfoPage'
 
-
-
 class Routes extends React.Component {
 
     constructor(props){
