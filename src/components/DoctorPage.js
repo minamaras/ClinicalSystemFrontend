@@ -1,9 +1,8 @@
 import React from 'react';
 import AddDoctor from './AddDoctor';
-//import '../css/AddDoctor.css';
+import '../css/DoctorPage.css';
 import DoctorTable from './DoctorTable';
 import axios from 'axios';
-//import '../css/DoctorPage.css';
 import { withRouter } from "react-router-dom";
 
 
@@ -60,7 +59,7 @@ class DoctorPage extends React.Component {
                     <div className="col-md-2">
                     <AddDoctor/>
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-10-drcards">
                         <br />
                         <DoctorTable content={this.state.doctors} />
                     </div>

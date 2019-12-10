@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import hospitalicon from '../icons/hospital.svg'
+import hospitalicon from '../icons/surgeon.svg'
 import '../css/DoctorTable.css'
 
 
@@ -62,7 +62,7 @@ class DoctorTable extends React.Component {
 
                         </Card.Text>
 
-                        <Button className="deleteDoctor" variant="success" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
+                        <Button className="deleteDoctor" variant="danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
 
                     </Card.Body>
                 </Card>
