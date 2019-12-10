@@ -101,8 +101,8 @@ export default class App extends React.Component {
                   id: resp.data.id,
                   password: resp.data.password,
                   role: resp.data.role,
-                  specialization: '',
-                  rating: ''
+                  specialization: resp.data.specialization,
+                  rating: resp.data.rating
 
                 });
             }
@@ -228,7 +228,7 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/doctorprofile" displayText="My Profile" />
 
                       <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
