@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
+import '../css/AddDoctor.css'
 
 const DoctorCreatedAlert = withReactContent(Swal)
 
@@ -106,7 +107,6 @@ class AddDoctor extends React.Component {
                                     className="form-control form-control-sm"
                                     id="name"
                                     name="name"
-                                    // name="newDoctor"
                                     onChange={this.handleChange}
                                     placeholder="Enter name"
                                     required
@@ -164,8 +164,9 @@ class AddDoctor extends React.Component {
                                 <br/>
                             </div>
                             <hr/>
-                            <Button type="submit" className="dugmad">Create</Button>
-                            <Button className="dugmad" onClick={this.handleClose}>Close</Button>
+                            <Button className="dugmad" variant="secondary" className="dugme2dr" onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant="success" className="dugme1dr">Create</Button>
+                            
                         </form>
                     </Modal.Body>
                 </Modal>

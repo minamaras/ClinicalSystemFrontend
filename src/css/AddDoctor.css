@@ -1,14 +1,14 @@
-#doctoradding {
-    margin-left: 30px;
-    margin-top: 32px;
-    background-color: palevioletred;
-    border-color: palevioletred;
 
+.dugme1dr{
+    float: right;
 }
 
-.dugmad {
+.dugme2dr{
+    float: right;
     margin-left: 10px;
     padding: 5px;
-    background-color: palevioletred;
-    border-color: palevioletred;
+
 }
+
+
+

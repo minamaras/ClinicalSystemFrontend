@@ -1,0 +1,52 @@
+.text-center-clinic{
+    margin-top: 20px;
+}
+
+.clinicHeader{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: rgb(13, 118, 189);
+    
+}
+
+.clinicTitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    text-align: center;
+}
+
+.valueNameClinic{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+
+.inputDes{
+    margin-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.firstColClinic{
+    display: flex;
+    flex-direction: column;
+}
+
+.secondColClinic{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px 5px 20px;
+    width: 80%;
+    
+}
+
+.clinicCol{
+    display: flex;
+    flex-direction: row;
+}
+
+.btnEditClinic{
+    margin: 4% 0% 0% 45%;
+}

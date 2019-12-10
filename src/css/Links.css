@@ -1,3 +1,15 @@
 .spacing {
-    padding:4px;
+    padding:5px 9px;
+    background-color:rgb(182, 218, 250);
+    color: rgb(12, 44, 87);
+    margin: 2px;
+    border-radius: 5px;
+
 }
+
+.spacing:hover{
+    background-color: rgb(44, 104, 160);
+    color: white;
+    text-decoration: none;
+}
+

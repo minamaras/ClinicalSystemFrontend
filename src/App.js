@@ -8,6 +8,7 @@ import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
 import PhotoSlider from './components/PhotoSlider'
 
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -101,8 +102,8 @@ export default class App extends React.Component {
                   id: resp.data.id,
                   password: resp.data.password,
                   role: resp.data.role,
-                  specialization: '',
-                  rating: ''
+                  specialization: resp.data.specialization,
+                  rating: resp.data.rating
 
                 });
             }
@@ -200,7 +201,7 @@ export default class App extends React.Component {
             <Nav className="ml-auto">
 
 
-                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -228,9 +229,9 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/doctorprofile" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -251,6 +252,7 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/doctors" displayText="Doctors" />
+                      <RoutedLinkContainer link="/nurses" displayText="Nurses" />
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
                       <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
@@ -260,7 +262,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }}  onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -289,7 +291,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
                       <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
 
-                      <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                      <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -317,7 +319,7 @@ export default class App extends React.Component {
                 <Nav className="ml-auto">
                     <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
 
-                    <Button variant="link" style={{margin:'-10px' }} onClick={this.SignOut}>Sign Out</Button>
+                    <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>

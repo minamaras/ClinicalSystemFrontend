@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import '../css/DoctorPage.css';
 import { Modal, Button } from "react-bootstrap";
+//import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
 
-const RoomCreatedAlert = withReactContent(Swal)
+const NurseCreatedAlert = withReactContent(Swal)
 
-class AddOperationRoom extends React.Component {
+class AddNurse extends React.Component{
 
     constructor(props) {
         super(props);
@@ -16,17 +18,19 @@ class AddOperationRoom extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
-        this.addRoom = this.addRoom.bind(this);
+        this.addNurse = this.addNurse.bind(this);
 
         this.state = {
             show: false,
             name: '',
-            number: '',
-            isReserved: ''
+            lastname: '',
+            email: '',
+            password: '',
+
         };
     }
 
-    addRoom(event) {
+    addNurse(event) {
         event.preventDefault();
 
         let token = localStorage.getItem('token');
@@ -34,14 +38,14 @@ class AddOperationRoom extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-         axios.post("http://localhost:8081/api/rooms/add", this.state, options).then(
+         axios.post("http://localhost:8081/api/nurses/addnurse", this.state, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
     }
 
     onErrorHandler(resp) {
-        RoomCreatedAlert.fire({
+        NurseCreatedAlert.fire({
             title: "Error occured",
             text: '',
             type: "error",
@@ -52,8 +56,8 @@ class AddOperationRoom extends React.Component {
 
     onSuccessHandler(resp) {
 
-        RoomCreatedAlert.fire({
-            title: "OR added successfully",
+        NurseCreatedAlert.fire({
+            title: "Nurse added successfully",
             text: "",
             type: "success",
           });
@@ -78,8 +82,8 @@ class AddOperationRoom extends React.Component {
     render() {
         return (
             <div>
-                <Button id="roomadding" onClick={this.handleShow}>
-                    Add a room
+                <Button id="nurseadding" onClick={this.handleShow}>
+                    Add Nurse
                 </Button>
                 <Modal
                     show={this.state.show}
@@ -90,11 +94,11 @@ class AddOperationRoom extends React.Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add a room
+                            Add Nurse
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={this.addRoom} id="addDoctorForm">
+                        <form onSubmit={this.addNurse} id="addNurseForm">
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
                                 <input type="text"
@@ -106,30 +110,42 @@ class AddOperationRoom extends React.Component {
                                     required
                                 />
                                 <br/>
-                                <label htmlFor="lastname">Number</label>
+                                <label htmlFor="lastname">Lastname</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
-                                    id="number"
-                                    name="number"
+                                    id="lastname"
+                                    name="lastname"
                                     onChange={this.handleChange}
-                                    placeholder="Enter number"
+                                    placeholder="Enter lastname"
                                     required
                                 />
                                 <br/>
-                                <label htmlFor="isReserved">Reserve</label>
-                                <input type="text"
+                                <label htmlFor="email">Email</label>
+                                <input type="email"
                                     className="form-control form-control-sm"
-                                    id="isReserved"
-                                    name="isReserved"
+                                    id="email"
+                                    name="email"
                                     onChange={this.handleChange}
-                                    placeholder="Yes or No"
+                                    placeholder="Enter email"
                                     required
                                 />
                                 <br/>
+                                <label htmlFor="password">Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    id="password"
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter password"
+                                    required
+                                />
+                                <br/>
+                                
                             </div>
                             <hr/>
-                            <Button className="roomDugme" variant = "secondary" style={{float: "right"}} onClick={this.handleClose}>Close</Button>
-                            <Button type="submit" variant = "success" style={{float: "right", margin: "0px 10px 0px 0px" }} className="roomDugme">Add</Button>
+                            <Button className="dugmad" variant="secondary" style={{float: "right"}} onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant="success" style={{float: "right", margin: "0px 10px 0px 0px" }} >Create</Button>
+                            
                         </form>
                     </Modal.Body>
                 </Modal>
@@ -137,6 +153,8 @@ class AddOperationRoom extends React.Component {
 
         );
     }
+
+
 }
 
-export default AddOperationRoom;
+export default AddNurse;
