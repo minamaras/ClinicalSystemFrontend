@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import AddNurse from './AddNurse'
+import NurseTable from './NurseTable'
+import '../css/NursePage.css'
 
 class NursePage extends React.Component{
     constructor(props) {
@@ -18,6 +20,11 @@ class NursePage extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
+        axios.get("http://localhost:8081/api/nurses/all",options).then(
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+        );
+
 
     }
 
@@ -27,6 +34,22 @@ class NursePage extends React.Component{
         }));
     }
 
+    onSuccessHandler(resp) {
+        var tempNurses = [];
+
+        for (var i = 0; i < resp.data.length; i++) {
+            tempNurses.push(resp.data[i]);
+        }
+        this.setState({
+            nurses: tempNurses
+        });
+
+    }
+
+    onErrorHandler(response) {
+        alert("Error response: Uncovered case");
+    }
+
     render(){
         return(
             <div className="containernurse">
@@ -34,6 +57,10 @@ class NursePage extends React.Component{
                 <div className="row">
                     <div className="col-md-2">
                         <AddNurse />
+                    </div>
+                    <div className="col-md-10-nursecards">
+                        <br />
+                        <NurseTable content={this.state.nurses} />
                     </div>
                 </div>
             </div>
