@@ -12,46 +12,46 @@ class ClinicPage extends React.Component {
 
       this.handleChange = this.handleChange.bind(this);
       this.SendUpdateRequest = this.SendUpdateRequest.bind(this);
-  
+
        this.state = {
            name: '',
            description: '',
            adress: ''
        }
 
-  
+
   }
 
   SendUpdateRequest = event => {
     event.preventDefault();
- 
+
     let token = localStorage.getItem('token');
     const options = {
         headers: { 'Authorization': 'Bearer ' + token}
     };
- 
+
     this.state.name = this.props.user.name;
     //this.state.socialSecurityNumber = this.props.user.socialSecurityNumber;
- 
+
     console.log(this.state);
- 
+
      axios.post("http://localhost:8081/api/clinic/update",this.state,options).then(
        (resp) => this.onSuccessHandler(resp),
        (resp) => this.onErrorHandler(resp)
      );
- 
- 
+
+
  }
 
   onErrorHandler(resp) {
     alert("Something is wrong");
-  
+
   }
-  
+
   onSuccessHandler(resp) {
     this.changeState(resp)
     window.location.reload();
-  
+
   }
 
   handleChange(e) {
