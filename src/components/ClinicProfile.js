@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button, FormGroup, FormControl, ControlLabel,Card } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { withRouter,useParams} from "react-router-dom";
+import { withRouter,useParams,Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicProfile.css'
@@ -13,6 +13,7 @@ import '../css/ClinicProfile.css'
 class  ClinicProfile extends React.Component{
   constructor(props) {
       super(props);
+      this.renderData = this.renderData.bind(this);
 
 
 
@@ -36,7 +37,6 @@ class  ClinicProfile extends React.Component{
           (resp) => this.onErrorHandler(resp),
         );
 
-
       }
 
       onSuccessHandler(resp) {
@@ -47,8 +47,6 @@ class  ClinicProfile extends React.Component{
 
       changeState = (resp) => {
 
-        console.log(resp);
-        console.log(this.props.user);
 
                 this.setState({
                     clinicname: resp.data.name,
@@ -64,6 +62,22 @@ class  ClinicProfile extends React.Component{
       onErrorHandler(response) {
           alert("Error response: Uncovered case");
             window.location.href =  "http://localhost:3000/";
+      }
+
+      renderData() {
+        const list = this.state.doctors;
+      return list.map((doctor, index) => {
+         const { name, lastname} = doctor//destructuring
+
+         return (
+
+              <li><Link to={`/doctor/${doctor.name}`}>{doctor.name} {doctor.lastname}</Link></li>
+
+
+
+
+         )
+      })
       }
 
 
@@ -87,6 +101,9 @@ class  ClinicProfile extends React.Component{
                       <Form.Group className="firstColClinic" >
                       <p className="valueNameClinic"><b>Description:</b> {this.state.description}</p>
                       <p className="valueNameClinic"><b>Adress:</b> {this.state.adress}</p>
+                      <ul className="doktori">
+                        {this.renderData()}
+                      </ul>
                       </Form.Group>
 
 
