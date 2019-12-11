@@ -95,7 +95,6 @@ class ClinicPage extends React.Component {
                 <div className="row">
                     <div className="col-md-2clinic">
                     <ClinicForm />
-                    <ClinicAdminForm />
                     </div>
                     <div className="col-md-10clinic">
                         <br />
