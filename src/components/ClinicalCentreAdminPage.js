@@ -6,6 +6,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { withRouter } from "react-router-dom";
+import { Card, Form } from 'react-bootstrap';
+import CCAdminCardInfo from './CCAdminCardInfo'
 
 
 class ClinicalCentreAdminPage extends React.Component{
@@ -56,12 +58,17 @@ class ClinicalCentreAdminPage extends React.Component{
     render() {
         return (
             <div className="container-cca">
+                <h1 className="adminTitle">Hi, {this.props.user.name}!</h1>
                 <div className="row-cca">
-                    <div className="col-md-2-cca">
-                    <AddClinicalCentreAdmin />
+                   
+                    <div className="col-md-2-cca">                       
+                        <CCAdminCardInfo content={this.props.user} />
                     </div>
-                    <div className="col-md-10-cca">
-                        <br />
+
+                    <div className="col-md-10-cca">                     
+                        <AddClinicalCentreAdmin className="btnAdm" />
+                        <br/>
+                        <br/>
                         <ClinicalCentreAdminTable content={this.state.ccadmins} />
                     </div>
                 </div>
