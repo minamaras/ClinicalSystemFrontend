@@ -29,6 +29,7 @@ return this.props.content.map((clinic, index) => {
    const { name, adress } = clinic//destructuring
    return (
 
+
       <tr key={name.toString()}>
         <td><Link to={`/clinic/${clinic.name}`}>{clinic.name}</Link></td>
         <td>{adress}</td>
@@ -49,7 +50,6 @@ render() {
             <div className="row">
                 <div className="col-xs-9">
                     <div className="table-responsive-vertical shadow-z-1">
-                        <h2 id="tablename">Clinics</h2>
                         <Table id='clinic' className="table table-hover table-mc-light-blue">
 
                             <thead>
@@ -65,6 +65,7 @@ render() {
                     </div>
                 </div>
             </div>
+
         </div>
 
 

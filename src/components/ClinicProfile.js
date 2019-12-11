@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { withRouter,useParams} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
-import '../css/ClinicInfoPage.css'
+import '../css/ClinicProfile.css'
 
 
 
@@ -19,7 +19,8 @@ class  ClinicProfile extends React.Component{
       this.state =  {
           clinicname: '',
           adress : '',
-          description: ''
+          description: '',
+          doctors: []
 
       }
 
@@ -31,7 +32,7 @@ class  ClinicProfile extends React.Component{
       };
 
       axios.get(`http://localhost:8081/api/clinics/clinicabout/${this.props.match.params.name}`,options).then(
-          (resp) => this.onSuccessHandler(resp),
+          (resp) => { this.changeState(resp)},
           (resp) => this.onErrorHandler(resp),
         );
 
@@ -46,17 +47,23 @@ class  ClinicProfile extends React.Component{
 
       changeState = (resp) => {
 
+        console.log(resp);
+        console.log(this.props.user);
 
                 this.setState({
                     clinicname: resp.data.name,
                     adress :resp.data.adress,
-                    description: resp.data.description
+                    description: resp.data.description,
+                    doctors: resp.data.doctors
         });
+
+        console.log(this.state);
       }
 
 
       onErrorHandler(response) {
           alert("Error response: Uncovered case");
+            window.location.href =  "http://localhost:3000/";
       }
 
 
@@ -78,14 +85,11 @@ class  ClinicProfile extends React.Component{
                     <div className="clinicCol">
 
                       <Form.Group className="firstColClinic" >
-                      <p className="valueNameClinic">Description: </p>
-                      <p className="valueNameClinic">Adress: </p>
+                      <p className="valueNameClinic"><b>Description:</b> {this.state.description}</p>
+                      <p className="valueNameClinic"><b>Adress:</b> {this.state.adress}</p>
                       </Form.Group>
 
-                      <Form.Group className="secondColClinic" >
-                      <Form.Label className="inputDes">{this.state.description}</Form.Label>
-                      <Form.Label className="inputDes">{this.state.adress}</Form.Label>
-                      </Form.Group>
+
 
                     </div>
           </Card.Body>

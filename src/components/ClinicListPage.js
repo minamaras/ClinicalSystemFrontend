@@ -12,6 +12,7 @@ import '../css/ClinicListPage.css'
 
 
 
+
 class  ClinicListPage extends React.Component{
   constructor(props) {
       super(props);
@@ -19,6 +20,8 @@ class  ClinicListPage extends React.Component{
       this.state =  {
           clinics: []
       }
+
+      console.log(this.props.user);
 
 
       let token = localStorage.getItem('token');
@@ -56,7 +59,9 @@ class  ClinicListPage extends React.Component{
       render() {
           return (
 
-
+              
+              <div>
+              <i><h1 className="naslov">Clinics</h1></i>
               <div className="container-clinic">
                   <div className="row-clinic">
                       <div className="col-md-2-clinic">
@@ -68,7 +73,15 @@ class  ClinicListPage extends React.Component{
 
                       </div>
                   </div>
-                  
+
+              </div>
+
+              <div className="searchdiv">
+                <b><label>Search</label></b>
+                <br></br>
+                <input type="text"  id="searchparam"/>
+                <Button className="dugme">Find me</Button>
+              </div>
               </div>
 
 
