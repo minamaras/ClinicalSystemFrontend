@@ -17,6 +17,7 @@ class NurseTable extends React.Component{
     renderTableData() {
         return this.props.content.map((nurse, index) => {
             const { name, lastname, email} = nurse
+            console.log(nurse)
 
             return (
                 <Card key={name} className="cardContainerNurse" >
