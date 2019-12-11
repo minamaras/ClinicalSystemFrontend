@@ -50,7 +50,7 @@ render() {
             <div className="row">
                 <div className="col-xs-9">
                     <div className="table-responsive-vertical shadow-z-1">
-                        <Table id='clinic' className="table table-hover table-mc-light-blue">
+                        <Table id='clinic' className="tabela">
 
                             <thead>
                                 <tr>
