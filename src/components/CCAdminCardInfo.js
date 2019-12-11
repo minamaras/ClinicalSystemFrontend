@@ -79,7 +79,7 @@ class CCAdminInfo extends React.Component{
           });
       
         this.changeState(resp)
-        //window.location.reload();
+        window.location.reload();
       
       }
       
