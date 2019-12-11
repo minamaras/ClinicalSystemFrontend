@@ -115,10 +115,11 @@ class ClinicAdminTable extends React.Component{
         axios.post(`http://localhost:8081/api/clinics/connectadmin/${this.props.id}`,clinicadmin, options).then(
             console.log(clinicadmin),
             console.log(this.props.id),
-            this.handleClose(),
+            
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
-            window.location.reload()
+            //window.location.reload()
+            this.handleClose()
           );
 
     }
