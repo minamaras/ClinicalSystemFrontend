@@ -1,26 +1,19 @@
-#manage {
-    color: cornflowerblue;
-    margin-left: -7px;
-    margin-bottom: 80px;
-    padding: 40px;
-}
-
-table {
-    margin-left: 280px;
-}
-
-#tablename {
-    margin-left: 280px;
-    margin-top: -170px;
-}
-
-.col-md-20-cca{
-    margin-left: 100px;
+.col-md-2-cca{
+    min-width: 50%;
+    
 }
 
 .col-md-10-cca{
-    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    margin: -110px 0px 10px -20px;
 }
+
+.row-cca{
+    display: flex;
+    flex-direction: row;
+}
+
 
 #ccadminadding {
     margin-left: 10px;
@@ -29,4 +22,12 @@ table {
     border-color: cornflowerblue;
     padding: 10px;
 
+}
+
+.adminTitle{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgb(67, 115, 160);
+    margin-top: 30px;
+    margin-left: 39%;
+    margin-bottom: 20px;
 }
