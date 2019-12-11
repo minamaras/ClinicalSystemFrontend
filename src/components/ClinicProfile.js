@@ -21,7 +21,8 @@ class  ClinicProfile extends React.Component{
           clinicname: '',
           adress : '',
           description: '',
-          doctors: []
+          doctors: [],
+          rating : ''
 
       }
 
@@ -52,7 +53,8 @@ class  ClinicProfile extends React.Component{
                     clinicname: resp.data.name,
                     adress :resp.data.adress,
                     description: resp.data.description,
-                    doctors: resp.data.doctors
+                    doctors: resp.data.doctors,
+                    rating: resp.data.rating
         });
 
         console.log(this.state);
@@ -101,6 +103,9 @@ class  ClinicProfile extends React.Component{
                       <Form.Group className="firstColClinic" >
                       <p className="valueNameClinic"><b>Description:</b> {this.state.description}</p>
                       <p className="valueNameClinic"><b>Adress:</b> {this.state.adress}</p>
+                      <p className="valueNameClinic"><b>Rating:</b> {this.state.rating}</p>
+                      <p className="valueNameClinic"><b>Doctors:</b></p>
+
                       <ul className="doktori">
                         {this.renderData()}
                       </ul>
