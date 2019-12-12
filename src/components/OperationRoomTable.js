@@ -3,7 +3,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import hospitalicon from '../icons/hospital.svg'
+import roomicon from '../icons/surgery-room.svg'
+import '../css/OperationRoom.css'
 
 
 const DoctorDeletedAlert = withReactContent(Swal)
@@ -38,26 +39,39 @@ class OperationRoomTable extends React.Component {
 
     onSuccessHandler(resp) {
         window.location.reload();
+    
     }
 
     renderTableData() {
+        
         return this.props.content.map((room, index) => {
             const { name, number, isReserved} = room
+
+            let reserve;
+
+            if(isReserved === false) {
+                reserve = 'Yes'
+            } else {
+                reserve = 'No'
+            }
+
+            console.log(room)
     
             return (
-                <Card key={name} className="cardContainerDoctor" >
-                <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
-                    <Card.Body className = "cardBody">
-                        <Card.Title className="cardTitle" >{name}</Card.Title>
-                        <Card.Text className='cardText'>
+                <Card key={name} className="cardContainerRoom" >
+                <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={roomicon} alt='Unavailable icon' />
+                    <Card.Body className = "cardBodyRoom">
+                        <Card.Title className="cardTitleRoom" >{name}</Card.Title>
+                        <Card.Text className='cardTextRoom'>
                             
                                Number: {number}
                                <br/>
-                               Reserved: {isReserved}
+                               Reserved : {reserve}
+                               
                                <br/>
                             
                         </Card.Text>
-                        <Button className="deleteRoom" variant="success" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
+                        <Button className="deleteRoom" variant="danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
     
                     </Card.Body>
                 </Card>
@@ -67,7 +81,7 @@ class OperationRoomTable extends React.Component {
     
         render() {
             return (
-                <div className="rendercardsdoctor">
+                <div className="rendercardsroom">
                     {this.renderTableData()}
                 </div>
             )

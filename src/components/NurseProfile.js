@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Modal, Button, Card,Form,Col } from "react-bootstrap";
 import axios from 'axios';
-import '../css/NurseProfile.css'
 
 class NurseProfile extends React.Component {
     
@@ -79,11 +78,11 @@ class NurseProfile extends React.Component {
     render() {
         return (
     
-    <Card className="text-center" id="karticaSestra">
-      <Form className="nurseProfileForm" onSubmit={this.SendUpdateRequest}>
-      <Card.Header></Card.Header>
+    <Card className="text-center" id="karticaClinicAdmin">
+      <Form className="adminProfileForm" onSubmit={this.SendUpdateRequest}>
+      <Card.Header>My Info</Card.Header>
       <Card.Body>
-        <Card.Title>My Info</Card.Title>
+        <Card.Title>About me</Card.Title>
     
            <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
