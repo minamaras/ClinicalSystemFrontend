@@ -22,7 +22,7 @@ class AddOperationRoom extends React.Component {
             show: false,
             name: '',
             number: '',
-            isReserved: ''
+            isReserved: false
         };
     }
 
