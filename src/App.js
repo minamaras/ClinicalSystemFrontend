@@ -290,7 +290,7 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+                      <RoutedLinkContainer link="/nurseprofile" displayText="My Profile" />
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
