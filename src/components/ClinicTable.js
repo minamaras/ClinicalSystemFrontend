@@ -7,6 +7,7 @@ import '../css/ClinicTable.css';
 import hospitalicon from '../icons/hospital.svg'
 import AddAdminToClinic from './AddAdminToClinic'
 import axios from 'axios';
+import ClinicAdminForm from './ClinicAdminForm'
 
 class ClinicTable extends React.Component{
     constructor(props) {
@@ -36,7 +37,7 @@ class ClinicTable extends React.Component{
                         
                     </Card.Text>
                     <div className="addAdmin">
-                      <AddAdminToClinic id={name} />
+                      <ClinicAdminForm id={name} />
                     </div>
                    
 

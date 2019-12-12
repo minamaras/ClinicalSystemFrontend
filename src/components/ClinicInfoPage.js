@@ -93,8 +93,8 @@ class ClinicPage extends React.Component {
             </Form.Group>
           
             <Form.Group className="secondColClinic" >
-            <Form.Control className="inputDes" value={+ " " + this.props.user.clinic.description}/>
-            <Form.Control className="inputDes" value={+ " " + this.props.user.clinic.adress}/>
+            <Form.Control className="inputDes" value={this.props.user.clinic.description}/>
+            <Form.Control className="inputDes" value={this.props.user.clinic.adress}/>
             </Form.Group>
           
           </div>

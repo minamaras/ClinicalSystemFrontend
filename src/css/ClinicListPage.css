@@ -1,6 +1,7 @@
 .container-clinic{
 
-  margin: 200px -100px 0px 0px;
+  margin: 75px 100px 0px 100px;
+  box-shadow: 3px 4px 5px #d8d8d8;
 
 
 }
@@ -12,3 +13,28 @@
 }
 
 .header{  color: #60b0f4; }
+
+.naslov{
+
+  margin: 80px -10px 0px 100px;
+
+}
+
+.searchdiv{
+
+margin : -200px 0px 0px 700px;
+
+}
+
+.dugme {
+
+  margin: 0px 0px 5px 25px;
+  color: #60b0f4;
+}
+
+
+
+.tabela {
+
+  width: 300px;
+}

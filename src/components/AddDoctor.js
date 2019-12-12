@@ -58,6 +58,8 @@ class AddDoctor extends React.Component {
 
     onSuccessHandler(resp) {
 
+      console.log(this.state);
+
         DoctorCreatedAlert.fire({
             title: "Doctor added successfully",
             text: "",
@@ -166,7 +168,7 @@ class AddDoctor extends React.Component {
                             <hr/>
                             <Button className="dugmad" variant="secondary" className="dugme2dr" onClick={this.handleClose}>Close</Button>
                             <Button type="submit" variant="success" className="dugme1dr">Create</Button>
-                            
+
                         </form>
                     </Modal.Body>
                 </Modal>

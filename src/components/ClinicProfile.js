@@ -3,23 +3,26 @@ import axios from 'axios';
 import { Form, Button, FormGroup, FormControl, ControlLabel,Card } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { withRouter,useParams} from "react-router-dom";
+import { withRouter,useParams,Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
-import '../css/ClinicInfoPage.css'
+import '../css/ClinicProfile.css'
 
 
 
 class  ClinicProfile extends React.Component{
   constructor(props) {
       super(props);
+      this.renderData = this.renderData.bind(this);
 
 
 
       this.state =  {
           clinicname: '',
           adress : '',
-          description: ''
+          description: '',
+          doctors: [],
+          rating : ''
 
       }
 
@@ -31,10 +34,9 @@ class  ClinicProfile extends React.Component{
       };
 
       axios.get(`http://localhost:8081/api/clinics/clinicabout/${this.props.match.params.name}`,options).then(
-          (resp) => this.onSuccessHandler(resp),
+          (resp) => { this.changeState(resp)},
           (resp) => this.onErrorHandler(resp),
         );
-
 
       }
 
@@ -50,13 +52,34 @@ class  ClinicProfile extends React.Component{
                 this.setState({
                     clinicname: resp.data.name,
                     adress :resp.data.adress,
-                    description: resp.data.description
+                    description: resp.data.description,
+                    doctors: resp.data.doctors,
+                    rating: resp.data.rating
         });
+
+        console.log(this.state);
       }
 
 
       onErrorHandler(response) {
           alert("Error response: Uncovered case");
+            window.location.href =  "http://localhost:3000/";
+      }
+
+      renderData() {
+        const list = this.state.doctors;
+      return list.map((doctor, index) => {
+         const { name, lastname} = doctor//destructuring
+
+         return (
+
+              <li><Link to={`/doctor/${doctor.name}`}>{doctor.name} {doctor.lastname}</Link></li>
+
+
+
+
+         )
+      })
       }
 
 
@@ -78,14 +101,17 @@ class  ClinicProfile extends React.Component{
                     <div className="clinicCol">
 
                       <Form.Group className="firstColClinic" >
-                      <p className="valueNameClinic">Description: </p>
-                      <p className="valueNameClinic">Adress: </p>
+                      <p className="valueNameClinic"><b>Description:</b> {this.state.description}</p>
+                      <p className="valueNameClinic"><b>Adress:</b> {this.state.adress}</p>
+                      <p className="valueNameClinic"><b>Rating:</b> {this.state.rating}</p>
+                      <p className="valueNameClinic"><b>Doctors:</b></p>
+
+                      <ul className="doktori">
+                        {this.renderData()}
+                      </ul>
                       </Form.Group>
 
-                      <Form.Group className="secondColClinic" >
-                      <Form.Label className="inputDes">{this.state.description}</Form.Label>
-                      <Form.Label className="inputDes">{this.state.adress}</Form.Label>
-                      </Form.Group>
+
 
                     </div>
           </Card.Body>

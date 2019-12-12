@@ -141,8 +141,9 @@ class AddClinicalCentreAdmin extends React.Component{
                                 <br/>
                             </div>
                             <hr/>
-                            <Button type="submit" className="dugme1">Create</Button>
-                            <Button className="dugme2" onClick={this.handleClose}>Close</Button>
+                            <Button className="dugme2" onClick={this.handleClose} variant="secondary">Close</Button>
+                            <Button type="submit" className="dugme1" variant="success">Create</Button>
+                            
                         </form>
                     </Modal.Body>
                 </Modal>

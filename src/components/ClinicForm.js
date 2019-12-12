@@ -71,6 +71,7 @@ class ClinicForm extends React.Component {
 
     handleClose() {
         this.setState({ show: false });
+        window.location.reload();
     }
 
     handleShow() {
@@ -135,8 +136,9 @@ class ClinicForm extends React.Component {
 
                             </div>
                             <hr/>
-                            <Button type="submit" className="dugme1">Create</Button>
-                            <Button className="dugme2" onClick={this.handleClose}>Close</Button>
+                            <Button className="dugme2" onClick={this.handleClose} variant="secondary" style={{float: "right"}}>Close</Button>
+                            <Button type="submit" className="dugme1" variant="success" style={{float: "right", margin: "0 10px 0 0"}} >Create</Button>
+                            
                         </form>
                     </Modal.Body>
                 </Modal>

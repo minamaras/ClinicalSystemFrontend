@@ -38,7 +38,8 @@ class ClinicAdminForm extends React.Component{
         };
 
 
-         axios.post("http://localhost:8081/api/clinicadmin/addclinicadmin", this.state,options).then(
+         axios.post(`http://localhost:8081/api/clinicadmin/addclinicadmin/${this.props.id}`, this.state,options).then(
+             console.log(this.props.id),
              (resp) => this.onSuccessHandlerClinicAdmin(resp),
              (resp) => this.onErrorHandlerClinicAdmin(resp)
          );
@@ -144,8 +145,9 @@ class ClinicAdminForm extends React.Component{
 
                             </div>
                             <hr/>
-                            <Button type="submit" className="dugme1">Create</Button>
-                            <Button className="dugme2" onClick={this.handleClose}>Close</Button>
+                            
+                            <Button className="dugme2" variant="secondary" onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" className="dugme1" variant="success" style={{ float: "right", margin: "0 10px 0 0"}}>Create</Button>
                         </form>
                     </Modal.Body>
                 </Modal>
