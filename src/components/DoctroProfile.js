@@ -18,7 +18,8 @@ class DoctroProfile extends React.Component {
         email:'',
         password:'',
         specialization: '',
-        rating: ''
+        rating: '',
+        clinic: ''
       }
     }
 
@@ -60,7 +61,8 @@ class DoctroProfile extends React.Component {
                    password: resp.data.password,
                    role: resp.data.role,
                    specialization: resp.data.specialization,
-                   rating: resp.data.rating
+                   rating: resp.data.rating,
+                   clinic: resp.data.clinic
      
        });
      }
@@ -85,7 +87,7 @@ class DoctroProfile extends React.Component {
     
     <Card className="text-center" id="karticaDoktor">
       <Form className="doctorProfileForm" onSubmit={this.SendUpdateRequest}>
-      <Card.Header></Card.Header>
+      
       <Card.Body>
         <Card.Title>My Info</Card.Title>
     
@@ -122,10 +124,7 @@ class DoctroProfile extends React.Component {
               </Form.Row>
     
     
-              <Form.Group controlId="formGridAddress1">
-              <Form.Label>Clinic</Form.Label>
-              <Form.Control placeholder="My Clinic" id="adminclinic" name="clinic"  />
-              </Form.Group>
+              
     
     
               <Button variant="primary" type="submit">
@@ -133,7 +132,7 @@ class DoctroProfile extends React.Component {
               </Button>
     
       </Card.Body>
-      <Card.Footer className="text-muted"></Card.Footer>
+      
       </Form>
     </Card>
     

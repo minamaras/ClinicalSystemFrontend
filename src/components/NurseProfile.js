@@ -105,13 +105,6 @@ class NurseProfile extends React.Component {
               </Form.Group>
               </Form.Row>
     
-    
-              <Form.Group controlId="formGridAddress1">
-              <Form.Label>Clinic</Form.Label>
-              <Form.Control placeholder="My Clinic" id="adminclinic" name="clinic"  />
-              </Form.Group>
-    
-    
               <Button variant="primary" type="submit">
               Update Info
               </Button>

@@ -106,9 +106,8 @@ class ClinicAdminProfile extends React.Component {
     
     
               <Form.Group controlId="formGridAddress1">
-              <Form.Label>Clinic</Form.Label>
-              <Form.Control placeholder="My Clinic" id="adminclinic" name="clinic"  />
-              </Form.Group>
+              <Form.Label><b>Clinic:</b> {this.props.user.clinic}</Form.Label>
+                            </Form.Group>
     
     
               <Button variant="primary" type="submit">

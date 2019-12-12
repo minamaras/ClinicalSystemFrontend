@@ -103,8 +103,7 @@ export default class App extends React.Component {
                   password: resp.data.password,
                   role: resp.data.role,
                   specialization: resp.data.specialization,
-                  rating: resp.data.rating,
-                  clinic: resp.data.clinic
+                  rating: resp.data.rating
 
                 });
             }
@@ -119,7 +118,7 @@ export default class App extends React.Component {
                               id: resp.data.id,
                               password: resp.data.password,
                               role: resp.data.role,
-                              clinic: resp.data.clinic
+                              clinic: resp.data.clinic.name
 
                             });
                         }
