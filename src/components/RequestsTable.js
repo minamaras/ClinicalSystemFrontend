@@ -67,21 +67,6 @@ class RequestsTable extends React.Component{
           );
     }
 
-    declineRequest(request){
-
-      let token = localStorage.getItem('token');
-      const options = {
-          headers: { 'Authorization': 'Bearer ' + token}
-      };
-
-
-        axios.post("http://localhost:8081/api/requests/declinerequest", request,options).then(
-            console.log(request),
-            (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp),
-            window.location.reload()
-          );
-    }
 
     onErrorHandler(resp) {
         alert("Error response: Uncovered case");
