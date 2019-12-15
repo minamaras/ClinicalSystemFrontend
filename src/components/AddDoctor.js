@@ -28,7 +28,8 @@ class AddDoctor extends React.Component {
             email: '',
             password: '',
             specialization: '',
-            rating: ''
+            rating: '',
+            repeat: ''
         };
     }
 
@@ -40,10 +41,20 @@ class AddDoctor extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
+        if(this.state.password === this.state.repeat){
+
          axios.post("http://localhost:8081/api/doctors/savedoctor", this.state,options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
+        } else {
+            DoctorCreatedAlert.fire({
+                title: "Repeated password does not match!",
+                text: '',
+                type: "error",
+                button: true
+              });
+        }
     }
 
     onErrorHandler(resp) {
@@ -141,6 +152,15 @@ class AddDoctor extends React.Component {
                                     name="password"
                                     onChange={this.handleChange}
                                     placeholder="Enter password"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="password">Repeat Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    name="repeat"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter repeated password"
                                     required
                                 />
                                 <br/>

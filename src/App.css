@@ -3,8 +3,8 @@
 
 }
 
-.profileButton{
-  margin: 3px 2px 3px 3px;
-  background-color: Transparent;
+.profileButton:hover{
+  background-color: rgb(162, 216, 247);
+  border-radius: 50%;
 
 }
