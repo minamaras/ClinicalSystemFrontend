@@ -24,7 +24,8 @@ class AddClinicalCentreAdmin extends React.Component{
             name: '',
             lasname: '',
             email: '',
-            password: ''
+            password: '',
+            repeat: ''
         };
     }
 
@@ -35,11 +36,19 @@ class AddClinicalCentreAdmin extends React.Component{
         const options = {
             headers: { 'Authorization': 'Bearer ' + token}
         };
-
+        if(this.state.password === this.state.repeat){
          axios.post("http://localhost:8081/api/clinicalcentreadmins/addccadmin", this.state, options).then(
              (resp) => this.onSuccessHandlerccAdmin(resp),
              (resp) => this.onErrorHandlerccAdmin(resp)
          );
+        } else {
+            CCAdminCreatedAlert.fire({
+                title: "Repeated password does not match!",
+                text: '',
+                type: "error",
+                button: true
+              });
+        }
 
     }
 
@@ -136,6 +145,15 @@ class AddClinicalCentreAdmin extends React.Component{
                                     name="password"
                                     onChange={this.handleChange}
                                     placeholder="Enter password"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="specialization">Repeat Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    name="repeat"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter repeated password"
                                     required
                                 />
                                 <br/>

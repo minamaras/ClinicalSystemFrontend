@@ -26,6 +26,7 @@ class AddNurse extends React.Component{
             lastname: '',
             email: '',
             password: '',
+            repeat: ''
 
         };
     }
@@ -38,10 +39,20 @@ class AddNurse extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
+    if(this.state.password === this.state.repeat){
          axios.post("http://localhost:8081/api/nurses/addnurse", this.state, options).then(
-             (resp) => this.onSuccessHandler(resp),
-             (resp) => this.onErrorHandler(resp)
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+            
          );
+    } else {
+        NurseCreatedAlert.fire({
+            title: "Repeated password does not match!",
+            text: '',
+            type: "error",
+            button: true
+          });
+    }
     }
 
     onErrorHandler(resp) {
@@ -137,6 +148,15 @@ class AddNurse extends React.Component{
                                     name="password"
                                     onChange={this.handleChange}
                                     placeholder="Enter password"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="password">Repeat Password</label>
+                                <input type="password"
+                                    name="repeat"
+                                    className="form-control form-control-sm"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter repeated password"
                                     required
                                 />
                                 <br/>

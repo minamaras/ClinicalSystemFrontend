@@ -25,7 +25,8 @@ class ClinicAdminForm extends React.Component{
             name: '',
             lasname: '',
             email: '',
-            password: ''
+            password: '',
+            repeat: ''
         };
     }
 
@@ -37,13 +38,20 @@ class ClinicAdminForm extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-
+        if(this.state.password === this.state.repeat){
          axios.post(`http://localhost:8081/api/clinicadmin/addclinicadmin/${this.props.id}`, this.state,options).then(
              console.log(this.props.id),
              (resp) => this.onSuccessHandlerClinicAdmin(resp),
              (resp) => this.onErrorHandlerClinicAdmin(resp)
          );
-
+        } else {
+            ClinicAdminCreatedAlert.fire({
+                title: "Repeated password does not match!",
+                text: '',
+                type: "error",
+                button: true
+              });
+        }
     }
 
     onErrorHandlerClinicAdmin(resp) {
@@ -139,6 +147,15 @@ class ClinicAdminForm extends React.Component{
                                     name="password"
                                     onChange={this.handleChange}
                                     placeholder="Enter password"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="password">Repeat Password</label>
+                                <input type="password"
+                                    className="form-control form-control-sm"
+                                    name="repeat"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter repeated password"
                                     required
                                 />
                                 <br/>
