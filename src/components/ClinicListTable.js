@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import Routes from './Router'
 import ClinicProfile from './ClinicProfile';
-;
+import clinicsicon from '../icons/clinicphoto.png';
 
 
 
@@ -26,13 +26,16 @@ class ClinicListTable extends React.Component{
 
 renderTableData() {
 return this.props.content.map((clinic, index) => {
-   const { name, adress } = clinic//destructuring
+   const { name, adress,rating } = clinic//destructuring
    return (
 
 
       <tr key={name.toString()}>
+        <img src={clinicsicon} style={{ width: '20px',top:'10px',height:'20px'}} />
         <td><Link to={`/clinic/${clinic.name}`}>{clinic.name}</Link></td>
-        <td>{adress}</td>
+        <td>{clinic.adress}</td>
+        <td>{clinic.rating}</td>
+
       </tr>
 
 
@@ -49,13 +52,15 @@ render() {
         <div className="container">
             <div className="row">
                 <div className="col-xs-9">
-                    <div className="table-responsive-vertical shadow-z-1">
-                        <Table id='clinic' className="tabela">
+                    <div className="table">
+                        <Table id='clinic' className="tabela" style={{ width: '35rem' }}>
 
                             <thead>
                                 <tr>
+                                    <th className="header"></th>
                                     <th className="header">Clinic</th>
                                     <th className="header">Adress</th>
+                                    <th className="header">Rating</th>
                                 </tr>
                             </thead>
                             <tbody>

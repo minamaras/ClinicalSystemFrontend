@@ -1,12 +1,13 @@
 import React from "react";
 import axios from 'axios';
-import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl, ControlLabel, Card } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { withRouter } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicListPage.css'
+
 
 
 
@@ -60,25 +61,16 @@ class  ClinicListPage extends React.Component{
           return (
 
 
-              <div>
-              <i><h1 className="naslov">Clinics</h1></i>
-              <div className="container-clinic">
-              <title>Clinics</title>
-                  <div className="row-clinic">
-                      <div className="col-md-2-clinic">
-                      </div>
-                      <div className="col-md-10-clinic">
+            <Card style={{ width: '40rem',left:'250px',top:'30px'}} className="clinic-card">
+                <Card.Body>
+                  <Card.Title style={{top:'10px',bottom:'20px'}}>Clinics</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">Clinics in our system</Card.Subtitle>
+                  <Card.Text>
+                  <ClinicListTable content={this.state.clinics}/>
+                  </Card.Text>
+                </Card.Body>
+            </Card>
 
-                          <br />
-                          <ClinicListTable content={this.state.clinics} />
-
-                      </div>
-                  </div>
-
-              </div>
-
-
-              </div>
 
 
           );

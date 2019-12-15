@@ -11,19 +11,19 @@ import icon from '../icons/clinicphoto.png';
 
 
 
-class  ClinicProfile extends React.Component{
+class  DoctorInfo extends React.Component{
   constructor(props) {
       super(props);
-      this.renderData = this.renderData.bind(this);
+
 
 
 
       this.state =  {
-          clinicname: '',
-          adress : '',
-          description: '',
-          doctors: [],
-          rating : ''
+          name: '',
+          lastname : '',
+          specialization: '',
+          rating:'',
+          clinic : ''
 
       }
 
@@ -34,10 +34,12 @@ class  ClinicProfile extends React.Component{
           headers: { 'Authorization': 'Bearer ' + token}
       };
 
-      axios.get(`http://localhost:8081/api/clinics/clinicabout/${this.props.match.params.name}`,options).then(
+      axios.get(`http://localhost:8081/api/doctors/doctorabout/${this.props.match.params.id}`,options).then(
           (resp) => { this.changeState(resp)},
           (resp) => this.onErrorHandler(resp),
         );
+
+
 
       }
 
@@ -50,12 +52,13 @@ class  ClinicProfile extends React.Component{
       changeState = (resp) => {
 
           console.log(resp);
+
                 this.setState({
-                    clinicname: resp.data.name,
-                    adress :resp.data.adress,
-                    description: resp.data.description,
-                    doctors: resp.data.doctors,
-                    rating: resp.data.rating
+                    name: resp.data.name,
+                    lastname :resp.data.lastname,
+                    specialization: resp.data.specialization,
+                    rating: resp.data.rating,
+                    clinic: resp.data.clinic
         });
 
         console.log(this.state);
@@ -64,25 +67,10 @@ class  ClinicProfile extends React.Component{
 
       onErrorHandler(response) {
           alert("Error response: Uncovered case");
-            window.location.href =  "http://localhost:3000/";
+
       }
 
-      renderData() {
-        const list = this.state.doctors;
-        
-      return list.map((doctor, index) => {
-         const { name, lastname} = doctor//destructuring
 
-         return (
-
-              <li><Link to={`/doctor/${doctor.id}`}>{doctor.name} {doctor.lastname}</Link></li>
-
-
-
-
-         )
-      })
-      }
 
 
       render() {
@@ -93,10 +81,10 @@ class  ClinicProfile extends React.Component{
 
             <Card.Body>
             <Card.Img  src={icon} style={{height:'70px',width:'70px'}}/>
-              <h1 className="clinicHeader">Clinic's info</h1>
+              <h1 className="clinicHeader">Doctor's info</h1>
               <br/>
 
-              <b><h3 className="clinicTitle">{this.state.clinicname}</h3></b>
+              <b><h3 className="clinicTitle">{this.state.name} {this.state.lastname}</h3></b>
                 <br/>
                  <Form.Row>
 
@@ -105,15 +93,11 @@ class  ClinicProfile extends React.Component{
                     <div className="clinicCol">
 
                       <Form.Group className="firstColClinic" >
-                      <p className="valueNameClinic"><b>Description:</b> {this.state.description}</p>
-                      <p className="valueNameClinic"><b>Adress:</b> {this.state.adress}</p>
+                      <p className="valueNameClinic"><b>Specialization:</b> {this.state.specialization}</p>
                       <p className="valueNameClinic"><b>Rating:</b> {this.state.rating}</p>
-                      <p className="valueNameClinic"><b>Doctors:</b></p>
+                      <p className="valueNameClinic"><b>Clinic:</b> <Link to={`/clinic/${this.state.clinic.name}`}>{this.state.clinic.name}</Link></p>
 
-                      <ul className="doktori">
-                        {this.renderData()}
-                      </ul>
-                      </Form.Group>
+                    </Form.Group>
 
 
 
@@ -132,4 +116,4 @@ class  ClinicProfile extends React.Component{
 
 
 
-  export default withRouter(ClinicProfile);
+  export default withRouter(DoctorInfo);

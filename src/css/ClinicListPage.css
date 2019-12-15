@@ -1,8 +1,13 @@
 .container-clinic{
 
-  margin: 75px 100px 0px 100px;
-  box-shadow: 3px 4px 5px #d8d8d8;
 
+  box-shadow: 3px 4px 5px #d8d8d8;
+  margin: 100px 100px 100px 100px;
+
+}
+
+.row-clinic{
+  width: inherit;
 
 }
 
@@ -14,27 +19,13 @@
 
 .header{  color: #60b0f4; }
 
-.naslov{
+.klinike{
 
-  margin: 80px -10px 0px 100px;
-
+  margin: 80px 350px 0px 350px;
 }
 
-.searchdiv{
+.clinic-card{
 
-margin : -200px 0px 0px 700px;
-
-}
-
-.dugme {
-
-  margin: 0px 0px 5px 25px;
-  color: #60b0f4;
-}
-
-
-
-.tabela {
-
-  width: 300px;
+  margin: 100px 350px 350px 0px;
+  width: 500px;
 }

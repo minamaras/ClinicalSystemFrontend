@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router,Link } from "react-router-dom";
 import axios from 'axios';
 import Routes from './components/Router'
 import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
 import PhotoSlider from './components/PhotoSlider'
+import icon from './icons/korisnik.png'
 
 
 export default class App extends React.Component {
@@ -76,7 +77,9 @@ export default class App extends React.Component {
                 city: resp.data.city,
                 country:resp.data.country,
                 phone:resp.data.phone,
-                socialSecurityNumber: resp.data.socialSecurityNumber
+                socialSecurityNumber: resp.data.socialSecurityNumber,
+                role:resp.data.role
+
 
     });
   }else if (resp.data.role ===  'CLINICALCENTREADMIN'){
@@ -103,7 +106,8 @@ export default class App extends React.Component {
                   password: resp.data.password,
                   role: resp.data.role,
                   specialization: resp.data.specialization,
-                  rating: resp.data.rating
+                  rating: resp.data.rating,
+                  role:resp.data.role
 
                 });
             }
@@ -194,14 +198,15 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/exams" displayText="Exams" />
-                      <RoutedLinkContainer link="/patientprofile" displayText="My Profile" />
+
                       <RoutedLinkContainer link="/cliniclist" displayText="Clinics" />
 
                   </Nav>
             <Nav className="ml-auto">
 
-
+                      <Link to="/patientprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
                       <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
+
                   </Nav>
                   </Navbar.Collapse>
               </Navbar>
@@ -229,7 +234,9 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/doctorprofile" displayText="My Profile" />
+
+
+                      <Link to="/doctorprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -261,7 +268,9 @@ export default class App extends React.Component {
 
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/profilepage" displayText="My Profile" />
+
+
+                      <Link to="/profilepage"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -290,7 +299,9 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
                   <Nav className="ml-auto">
-                      <RoutedLinkContainer link="/nurseprofile" displayText="My Profile" />
+
+
+                      <Link to="/nurseprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -318,7 +329,9 @@ export default class App extends React.Component {
                     <RoutedLinkContainer link="/codebook" displayText="Codebook" />
                 </Nav>
                 <Nav className="ml-auto">
-                    <RoutedLinkContainer link="/ccadminpage" displayText="My Profile" />
+
+
+                    <Link to="/ccadminpage"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
 
                     <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                 </Nav>

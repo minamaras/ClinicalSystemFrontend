@@ -19,6 +19,7 @@ import DoctroProfile from './DoctroProfile'
 import NursePage from './NursePage'
 import NurseProfile from './NurseProfile'
 import ExamTypePage from './ExamTypePage';
+import DoctorInfo from './DoctorInfo';
 
 class Routes extends React.Component {
 
@@ -51,6 +52,7 @@ class Routes extends React.Component {
         <Route exact path="/doctorprofile" render={(props) => <DoctroProfile user={this.props.user}/>} />
         <Route exact path="/examtypes" render={(props) => <ExamTypePage user={this.props.user}/>} />
         <Route exact path="/nurseprofile" render={(props) => <NurseProfile user={this.props.user}/>} />
+        <Route exact path="/doctor/:id" render={(props) => <DoctorInfo user={this.props.user}/>} />
 
 
       </Switch>

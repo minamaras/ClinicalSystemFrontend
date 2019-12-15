@@ -112,7 +112,7 @@ render() {
 
       <Card className="text-center" id="kartica">
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
-  <Card.Header><b>Patients info</b></Card.Header>
+  <Card.Header><b>{this.props.user.name}'s info</b></Card.Header>
   <Card.Body>
 
 
@@ -183,7 +183,7 @@ render() {
           </Button>
 
   </Card.Body>
-  <Card.Footer className="text-muted">Patients info</Card.Footer>
+  <Card.Footer className="text-muted"></Card.Footer>
   </Form>
 </Card>
 
