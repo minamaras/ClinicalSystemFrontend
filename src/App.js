@@ -122,7 +122,9 @@ export default class App extends React.Component {
                               id: resp.data.id,
                               password: resp.data.password,
                               role: resp.data.role,
-                              clinic: resp.data.clinic.name
+                              clinic: resp.data.clinic.name,
+                              clinicdes: resp.data.clinic.description,
+                              clinicadress: resp.data.clinic.adress
 
                             });
                         }

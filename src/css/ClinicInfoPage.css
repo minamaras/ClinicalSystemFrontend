@@ -25,7 +25,7 @@
 
 .inputDes{
     margin-left: 20px;
-    margin-top: 6px;
+    margin-top: 8px;
     margin-bottom: 7px;
 }
 
@@ -49,4 +49,10 @@
 
 .btnEditClinic{
     margin: 4% 0% 0% 45%;
+}
+
+.inputDes2{
+    margin-left: 20px;
+    margin-top: 16px;
+    margin-bottom: 7px;
 }

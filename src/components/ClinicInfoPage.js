@@ -19,7 +19,6 @@ class ClinicPage extends React.Component {
            adress: ''
        }
 
-
   }
 
   SendUpdateRequest = event => {
@@ -30,12 +29,12 @@ class ClinicPage extends React.Component {
         headers: { 'Authorization': 'Bearer ' + token}
     };
 
-    this.state.name = this.props.user.name;
+    this.state.name = this.props.clinicname;
     //this.state.socialSecurityNumber = this.props.user.socialSecurityNumber;
 
     console.log(this.state);
 
-     axios.post("http://localhost:8081/api/clinic/update",this.state,options).then(
+     axios.post("http://localhost:8081/api/clinics/update",this.state,options).then(
        (resp) => this.onSuccessHandler(resp),
        (resp) => this.onErrorHandler(resp)
      );
@@ -79,7 +78,7 @@ class ClinicPage extends React.Component {
     <h1 className="clinicHeader">Clinic's info</h1>
     <br/>
 
-    <h3 className="clinicTitle">{this.props.user.clinic.name}</h3>
+    <h3 className="clinicTitle">{this.props.clinicname}</h3>
       <br/>
        <Form.Row>
 
@@ -93,8 +92,8 @@ class ClinicPage extends React.Component {
             </Form.Group>
           
             <Form.Group className="secondColClinic" >
-            <Form.Control className="inputDes" value={this.props.user.clinic.description}/>
-            <Form.Control className="inputDes" value={this.props.user.clinic.adress}/>
+            <Form.Control className="inputDes" id="description" name="description" defaultValue={this.props.clinicdes} onChange={this.handleChange}/>
+            <Form.Control className="inputDes2" id="adress" name="adress" defaultValue={this.props.clinicadress} onChange={this.handleChange}/>
             </Form.Group>
           
           </div>
