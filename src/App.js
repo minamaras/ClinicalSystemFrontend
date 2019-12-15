@@ -7,7 +7,7 @@ import Routes from './components/Router'
 import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
 import PhotoSlider from './components/PhotoSlider'
-import icon from './icons/korisnik.png'
+import icon from './icons/myprofile.svg'
 
 
 export default class App extends React.Component {
@@ -204,7 +204,7 @@ export default class App extends React.Component {
                   </Nav>
             <Nav className="ml-auto">
 
-                      <Link to="/patientprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
+                      <Link to="/patientprofile"><img className="profileButton" src={icon} style={{height:'30px',width:'auto', margin: "3px 9px 0 0"}}/></Link>
                       <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
 
                   </Nav>
@@ -236,7 +236,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
 
 
-                      <Link to="/doctorprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
+                      <Link to="/doctorprofile"><img className="profileButton" src={icon} style={{height:'30px',width:'auto', margin: "3px 9px 0 0"}}/></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -270,7 +270,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
 
 
-                      <Link to="/profilepage"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
+                      <Link to="/profilepage"><img className="profileButton" src={icon} style={{height:'30px',width:'auto', margin: "3px 9px 0 0"}}/></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm"  onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -301,7 +301,7 @@ export default class App extends React.Component {
                   <Nav className="ml-auto">
 
 
-                      <Link to="/nurseprofile"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
+                      <Link to="/nurseprofile"><img className="profileButton"src={icon} style={{height:'30px',width:'auto', margin: "3px 9px 0 0"}}/></Link>
 
                       <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                   </Nav>
@@ -331,7 +331,7 @@ export default class App extends React.Component {
                 <Nav className="ml-auto">
 
 
-                    <Link to="/ccadminpage"><Button className="profileButton"><img src={icon} style={{height:'30px',width:'30px'}}/></Button></Link>
+                    <Link to="/ccadminpage"><img className="profileButton"src={icon} style={{height:'30px',width:'auto', margin: "3px 9px 0 0"}} /></Link>
 
                     <Button className="signoutBtn" variant="outline-dark" size="sm" onClick={this.SignOut}>Sign Out</Button>
                 </Nav>
