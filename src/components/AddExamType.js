@@ -22,7 +22,8 @@ class AddExamType extends React.Component {
 
         this.state = {
             show: false,
-            name: ''
+            name: '',
+            price: ''
         };
     }
 
@@ -103,6 +104,15 @@ class AddExamType extends React.Component {
                                     name="name"
                                     onChange={this.handleChange}
                                     placeholder="Enter name"
+                                    required
+                                />
+                                <br/>
+                                <input type="number"
+                                    className="form-control form-control-sm"
+                                    id="price"
+                                    name="price"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter pricce"
                                     required
                                 />
                                 <br/>

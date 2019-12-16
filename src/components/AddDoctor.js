@@ -61,7 +61,8 @@ class AddDoctor extends React.Component {
         DoctorCreatedAlert.fire({
             title: "Error occured",
             text: '',
-            type: "error",
+            type: 'error',
+            icon: 'error',
             button: true
           });
 
@@ -74,7 +75,8 @@ class AddDoctor extends React.Component {
         DoctorCreatedAlert.fire({
             title: "Doctor added successfully",
             text: "",
-            type: "success",
+            type: 'success',
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });
