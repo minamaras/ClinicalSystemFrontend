@@ -60,7 +60,8 @@ class AddNurse extends React.Component{
             title: "Error occured",
             text: '',
             type: "error",
-            button: true
+            button: true,
+            icon: 'error'
           });
 
     }
@@ -71,6 +72,7 @@ class AddNurse extends React.Component{
             title: "Nurse added successfully",
             text: "",
             type: "success",
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });

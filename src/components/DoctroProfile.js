@@ -45,7 +45,7 @@ class DoctroProfile extends React.Component {
 
      onErrorHandler(resp) {
 
-        alert("error");
+        
 
      }
 

@@ -71,7 +71,7 @@ class OperationRoomTable extends React.Component {
                                <br/>
                             
                         </Card.Text>
-                        <Button className="deleteRoom" variant="danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
+                        <Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
     
                     </Card.Body>
                 </Card>

@@ -56,6 +56,7 @@ class AddOperationRoom extends React.Component {
             title: "OR added successfully",
             text: "",
             type: "success",
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });

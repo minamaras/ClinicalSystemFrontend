@@ -48,7 +48,8 @@ class AddMedication extends React.Component{
             title: "Error occured",
             text: '',
             type: "error",
-            button: true
+            button: true,
+            icon: 'error'
           });
 
     }
@@ -59,6 +60,7 @@ class AddMedication extends React.Component{
             title: "Medication added successfully",
             text: "",
             type: "success",
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });

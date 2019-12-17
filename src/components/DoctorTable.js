@@ -62,7 +62,7 @@ class DoctorTable extends React.Component {
 
                         </Card.Text>
 
-                        <Button className="deleteDoctor" variant="danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
+                        <Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
 
                     </Card.Body>
                 </Card>

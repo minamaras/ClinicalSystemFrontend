@@ -63,7 +63,6 @@ class NurseProfile extends React.Component {
      
      onSuccessHandler(resp) {
      
-       alert("Success");
        this.changeState(resp)
        window.location.reload();
      

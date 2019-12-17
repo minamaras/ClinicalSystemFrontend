@@ -14,9 +14,8 @@
     align-content: center;
 }
 
-.button{
-    float: left;
-    margin-left: 14%;
+.deleteRoom{
+    margin-left: 34%;
 }
 
 .rendercardsroom{
@@ -35,3 +34,4 @@
     padding-top: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
 }
+
