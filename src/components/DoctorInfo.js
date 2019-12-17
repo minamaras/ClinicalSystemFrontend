@@ -23,7 +23,8 @@ class  DoctorInfo extends React.Component{
           lastname : '',
           specialization: '',
           rating:'',
-          clinic : ''
+          clinicid : '',
+          clinicname:''
 
       }
 
@@ -58,7 +59,8 @@ class  DoctorInfo extends React.Component{
                     lastname :resp.data.lastname,
                     specialization: resp.data.specialization,
                     rating: resp.data.rating,
-                    clinic: resp.data.clinic
+                    clinicid: resp.data.clinicid,
+                    clinicname:resp.data.clinicname
         });
 
         console.log(this.state);
@@ -95,8 +97,10 @@ class  DoctorInfo extends React.Component{
                       <Form.Group className="firstColClinic" >
                       <p className="valueNameClinic"><b>Specialization:</b> {this.state.specialization}</p>
                       <p className="valueNameClinic"><b>Rating:</b> {this.state.rating}</p>
-                      <p className="valueNameClinic"><b>Clinic:</b> <Link to={`/clinic/${this.state.clinic.name}`}>{this.state.clinic.name}</Link></p>
-
+                      <p className="valueNameClinic"><b>Clinic:</b></p>
+                      <ul>
+                      <li className="valueNameClinic"><Link to={`/clinic/${this.state.clinicname}`}>{this.state.clinicname}</Link></li>
+                      </ul>
                     </Form.Group>
 
 

@@ -14,7 +14,8 @@ import icon from '../icons/clinicphoto.png';
 class  ClinicProfile extends React.Component{
   constructor(props) {
       super(props);
-      this.renderData = this.renderData.bind(this);
+      this.renderDataOther = this.renderDataOther.bind(this);
+
 
 
 
@@ -22,12 +23,11 @@ class  ClinicProfile extends React.Component{
           clinicname: '',
           adress : '',
           description: '',
-          doctors: [],
-          rating : ''
+          doctorsId: [],
+          rating : '',
+          doctors:[]
 
       }
-
-
 
       let token = localStorage.getItem('token');
       const options = {
@@ -39,6 +39,15 @@ class  ClinicProfile extends React.Component{
           (resp) => this.onErrorHandler(resp),
         );
 
+        axios.get(`http://localhost:8081/api/doctors/aboutclinicdoctors/${this.props.match.params.name}`,options).then(
+            (resp) => { this.setState({
+                doctors : resp.data,
+            });},
+            (resp) => this.onErrorHandler(resp),
+          );
+
+          console.log(this.state);
+
       }
 
       onSuccessHandler(resp) {
@@ -49,43 +58,46 @@ class  ClinicProfile extends React.Component{
 
       changeState = (resp) => {
 
-          console.log(resp);
                 this.setState({
                     clinicname: resp.data.name,
                     adress :resp.data.adress,
                     description: resp.data.description,
-                    doctors: resp.data.doctors,
-                    rating: resp.data.rating
+                    doctorsId: resp.data.doctorsId,
+                    rating: resp.data.rating,
+
         });
 
-        console.log(this.state);
+        console.log(this.clinicname);
+
+
       }
 
 
       onErrorHandler(response) {
           alert("Error response: Uncovered case");
-            window.location.href =  "http://localhost:3000/";
-      }
+        }
 
-      renderData() {
-        const list = this.state.doctors;
-        
-      return list.map((doctor, index) => {
-         const { name, lastname} = doctor//destructuring
 
-         return (
+
+      renderDataOther(){
+
+        const docs = this.state.doctors;
+        console.log(docs);
+        return docs.map((doctor) => {
+           const {id,name,lastname} = doctor//destructuring
+           return (
 
               <li><Link to={`/doctor/${doctor.id}`}>{doctor.name} {doctor.lastname}</Link></li>
 
+           )
+        })
 
-
-
-         )
-      })
       }
 
 
       render() {
+
+
           return (
             <Card className="text-center-clinic" id="karta">
 
@@ -111,7 +123,7 @@ class  ClinicProfile extends React.Component{
                       <p className="valueNameClinic"><b>Doctors:</b></p>
 
                       <ul className="doktori">
-                        {this.renderData()}
+                      {this.renderDataOther()}
                       </ul>
                       </Form.Group>
 
