@@ -70,6 +70,7 @@ class  ClinicProfile extends React.Component{
         console.log(this.clinicname);
 
 
+
       }
 
 
@@ -82,7 +83,17 @@ class  ClinicProfile extends React.Component{
       renderDataOther(){
 
         const docs = this.state.doctors;
-        console.log(docs);
+        if (docs.lenght === 0){
+
+          return (
+
+             <li>There are currently no doctors working in this clinic.</li>
+
+          );
+
+
+        }else{
+
         return docs.map((doctor) => {
            const {id,name,lastname} = doctor//destructuring
            return (
@@ -94,9 +105,10 @@ class  ClinicProfile extends React.Component{
 
       }
 
+    }
+
 
       render() {
-
 
           return (
             <Card className="text-center-clinic" id="karta">
