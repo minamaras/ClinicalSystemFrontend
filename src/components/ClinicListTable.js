@@ -10,6 +10,11 @@ import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "
 import Routes from './Router'
 import ClinicProfile from './ClinicProfile';
 import clinicsicon from '../icons/clinicphoto.png';
+import BootstrapTable from 'react-bootstrap-table-next';
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import TableHeaderColumn from 'react-bootstrap-table-next';
+import { Button } from "react-bootstrap";
 
 
 
@@ -19,6 +24,8 @@ class ClinicListTable extends React.Component{
         super(props);
 
         this.renderTableData = this.renderTableData.bind(this);
+
+
 
     }
 
@@ -44,32 +51,67 @@ return this.props.content.map((clinic, index) => {
 })
 }
 
+colFormatter = (cell, row) => {
+   return (
+     <Link to='/some/route'>
+       {cell}
+     </Link>
+   )
+ }
 
 
 render() {
+
+console.log(this.props.content);
+
+const columns = [
+
+  {
+    dataField: "icon",
+    text:"",
+     formatter: (cell, row) => <img style={{height:'30px',width:'30px'}} src={clinicsicon}/>,
+     headerStyle: (colum, colIndex) => {
+          return { width: '50px', textAlign: 'center' };
+        }
+  },
+
+
+
+  {
+    dataField: "name",
+    text: "Clinic",
+    filter: textFilter(),
+     formatter: (cell, row) => <Link to={`/clinic/${row.name}`}>{cell}</Link>,
+  },
+  {
+    dataField: "adress",
+    text: "Address",
+    filter: textFilter()
+  },
+  {
+    dataField: "rating",
+    text: "Rating",
+    filter: textFilter()
+  }
+];
+
+
+const clinics = [];
+
+
+for (var i = 0; i < this.props.content.length; i++) {
+
+    clinics.push({name : this.props.content[i].name, adress: this.props.content[i].adress,rating: this.props.content[i].rating});
+}
+console.log(clinics);
     return (
 
         <div className="container">
-            <div className="row">
-                <div className="col-xs-9">
-                    <div className="table">
-                        <Table id='clinic' className="tabela" style={{ width: '35rem' }}>
-
-                            <thead>
-                                <tr>
-                                    <th className="header"></th>
-                                    <th className="header">Clinic</th>
-                                    <th className="header">Adress</th>
-                                    <th className="header">Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.renderTableData()}
-                            </tbody>
-                        </Table>
-                    </div>
-                </div>
-            </div>
+        <BootstrapTable keyField='name' data={clinics} columns= {columns} filter={ filterFactory() }>
+            <TableHeaderColumn dataField="name"  isKey dataFormat={this.ColFormatter} dataSort>Clinic</TableHeaderColumn>
+            <TableHeaderColumn dataField="adress">Adress</TableHeaderColumn>
+            <TableHeaderColumn dataField="rating" dataSort>Rating</TableHeaderColumn>
+        </BootstrapTable>
 
         </div>
 
@@ -81,5 +123,6 @@ render() {
 
 
 }
+
 
 export default (ClinicListTable);
