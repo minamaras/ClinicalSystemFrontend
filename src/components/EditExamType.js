@@ -34,9 +34,10 @@ class EditExamType extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
      
+        this.state.name = this.props.content.name;
         console.log(this.state);
      
-         axios.post("http://localhost:8081/api/types/update",this.state,options).then(
+         axios.post("http://localhost:8081/api/examtypes/update",this.state,options).then(
            (resp) => this.onSuccessHandler(resp),
            (resp) => this.onErrorHandler(resp)
          );
@@ -102,15 +103,7 @@ class EditExamType extends React.Component {
                     <Modal.Body>
                         <form onSubmit={this.SendUpdateRequest} id="editexamform">
                             <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="name"
-                                    name="name"
-                                    onChange={this.handleChange}
-                                    placeholder={this.props.content.name}
-                                    required
-                                />
+                                <p>Name: {this.props.content.name}</p>
                                 <br/>
                                 <input type="number"
                                     className="form-control form-control-sm"
