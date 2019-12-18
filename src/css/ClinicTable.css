@@ -12,7 +12,7 @@
     flex-direction:  row;
     flex-wrap: wrap;
     margin: -170px 0px 10px 280px;
-    
+
 }
 
 .cardBody{
@@ -22,7 +22,7 @@
 .cardTitle{
     text-align: center;
     color: rgb(34, 21, 21);
-    
+
 }
 
 .cardText{
@@ -35,4 +35,7 @@
 }
 
 
+.tabela{
 
+  margin: 0px 100px 100px 100px;
+}

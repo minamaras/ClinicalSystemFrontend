@@ -17,6 +17,8 @@ class ClinicAdminProfile extends React.Component {
         email:'',
         password:''
       }
+
+
     }
 
     SendUpdateRequest = event => {

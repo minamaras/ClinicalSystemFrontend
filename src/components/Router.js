@@ -48,7 +48,7 @@ class Routes extends React.Component {
         <Route exact path="/profilepage" render={(props) => <ClinicAdminProfile user={this.props.user}/>} />
         <Route exact path="/rooms" render={(props) => <OperationRoom user={this.props.user}/>} />
         <Route exact path="/codebook" render={(props) => <Codebook user={this.props.user}/>} />
-        <Route exact path="/manageclinic" render={(props) => <ClinicInfoPage user={this.props.user}/>} />
+        <Route exact path="/manageclinic" render={(props) => <ClinicInfoPage user={this.props.user} clinicdes={this.props.user.clinicdes} clinicadress = {this.props.user.clinicadress} clinicname = {this.props.user.clinic}/>} />
         <Route exact path="/cliniclist" render={(props) => <ClinicListPage user={this.props.user}/>} />
         <Route exact path="/clinic/:name" render={(props) => <ClinicProfile user={this.props.user}/>} />
         <Route exact path="/doctorprofile" render={(props) => <DoctroProfile user={this.props.user}/>} />

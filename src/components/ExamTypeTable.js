@@ -45,13 +45,16 @@ class ExamTypeTable extends React.Component{
    
     renderTableData() {
     return this.props.content.map((examtype, index) => {
-        const { name} = examtype
+        const { name, price} = examtype
 
         return (
             <Card key={name} className="cardContainer" >
             <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{name}</Card.Title>
+                    <Card.Text>
+                        Price: {price}
+                    </Card.Text>
                     <div className="addAdmin">
                     <Button className="deleteExamType" variant="danger" onClick={this.deleteExamType.bind(this, examtype)} >Delete</Button>
                     </div>
