@@ -4,7 +4,8 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import roomicon from '../icons/surgery-room.svg'
-import '../css/OperationRoom.css'
+import '../css/OperationRoom.css';
+import EditRoom from './EditRoom';
 
 
 const DoctorDeletedAlert = withReactContent(Swal)
@@ -72,7 +73,7 @@ class OperationRoomTable extends React.Component {
                             
                         </Card.Text>
                         <Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
-    
+                        <EditRoom content={room}/>
                     </Card.Body>
                 </Card>
                 )

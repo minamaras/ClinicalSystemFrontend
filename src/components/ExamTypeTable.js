@@ -7,6 +7,7 @@ import '../css/ClinicTable.css';
 import hospitalicon from '../icons/hospital.svg'
 import AddAdminToClinic from './AddAdminToClinic'
 import axios from 'axios';
+import EditExamType from './EditExamType';
 
 class ExamTypeTable extends React.Component{
     constructor(props) {
@@ -58,6 +59,7 @@ class ExamTypeTable extends React.Component{
                     <div className="addAdmin">
                     <Button className="deleteExamType" variant="danger" onClick={this.deleteExamType.bind(this, examtype)} >Delete</Button>
                     </div>
+                    <EditExamType content={examtype}/>
                    
 
                 </Card.Body>
