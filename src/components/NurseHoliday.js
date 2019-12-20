@@ -13,6 +13,9 @@ const options = ['Holiday', 'Absence']
 class NurseHoliday extends React.Component{
     constructor(props){
         super(props);
+        var today = new Date(),
+        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
 
         this.handleChange = this.handleChange.bind(this);
         this.createRequest = this.createRequest.bind(this);
@@ -23,7 +26,9 @@ class NurseHoliday extends React.Component{
             type: options[0],
             reason: '',
             start: null,
-            end: null
+            end: null,
+
+            today: date,
         }
 
         
@@ -49,16 +54,27 @@ class NurseHoliday extends React.Component{
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-         axios.post(`http://localhost:8081/api/holiday/makerequest/${this.props.id}`, this.state, options).then(
-             console.log(this.props.id),
-             (resp) => this.onSuccessHandlerClinicAdmin(resp),
-             (resp) => this.onErrorHandlerClinicAdmin(resp)
+         axios.post(`http://localhost:8081/api/holiday/makerequest`, this.state, options).then(
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
          );
     }
 
-    onErrorHandlerClinicAdmin(resp) {
+    onSuccessHandler(resp) {
+            //console.log(this.state)
+            HolidayAlert.fire({
+                title: "Request created successfully",
+                text: "",
+                type: "success",
+            });
+
+            //this.setState({ redirect: this.state.redirect === false });
+            window.location.href = "http://localhost:3000/"
+        }
+
+    onErrorHandler(resp) {
         HolidayAlert.fire({
-            title: "Error occured",
+            title: "Request with the same start date already exists!",
             text: '',
             type: "error",
             button: true
@@ -66,23 +82,12 @@ class NurseHoliday extends React.Component{
 
     }
 
-    onSuccessHandlerClinicAdmin(resp) {
-
-        HolidayAlert.fire({
-            title: "Request created successfully",
-            text: "",
-            type: "success",
-          });
-
-        this.setState({ redirect: this.state.redirect === false });
-        window.location.href = "http://localhost:3000/"
-    }
-
+   
 
     render() {
         return(
             <div className="holidayContainer">
-                <Form className="formCard" onClick={this.createRequest}>
+                <Form className="formCard" onSubmit={this.createRequest}>
 
                     <h2 className="holidayTitle">Make a request</h2>
                     <Form.Row>
@@ -91,7 +96,7 @@ class NurseHoliday extends React.Component{
                         title={this.state.type}
                         id="document-type"
                         variant="info"
-                        onSelect={this.handleSelect.bind(this)}
+                        onSelect={this.handleSelect.bind(this)}                      
                     >
                         {options.map((opt, i) => (
                         <Dropdown.Item key={i} eventKey={i}>
@@ -104,6 +109,9 @@ class NurseHoliday extends React.Component{
                     <Form.Row className="rowScnd">
                         <Form.Label className="chooseLabel">Start date: </Form.Label>
                         <input className="startDate" type="date"
+                        //value = {this.state.start}
+                        min = {this.state.today}
+                        pattern = "dd/mm/yyyy"
                         id="start"
                         name="start"
                         onChange={this.handleChange}
@@ -111,6 +119,7 @@ class NurseHoliday extends React.Component{
                         />
                         <Form.Label className="chooseLabel">End date: </Form.Label>
                         <input className="startDate" type="date" 
+                        min = {this.state.start}
                         id="end"
                         name="end"
                         onChange={this.handleChange}
