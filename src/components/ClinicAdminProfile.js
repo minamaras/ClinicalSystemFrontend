@@ -85,7 +85,7 @@ class ClinicAdminProfile extends React.Component {
     <Card className="karticaClinicAdmin">
       <Form className="adminProfileForm" onSubmit={this.SendUpdateRequest}>
       <Card.Body>
-      <Card.Img style={{height:'80px', width: 'auto'}} className="userIcon" variant="top" src={usericon} alt='Unavailable icon' />
+      <Card.Img style={{height:'80px', width: 'auto'}} className="cadmIcon" variant="top" src={usericon} alt='Unavailable icon' />
 
         <Card.Title className="admTitle">My info</Card.Title>
     
