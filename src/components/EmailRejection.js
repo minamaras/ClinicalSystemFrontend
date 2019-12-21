@@ -114,4 +114,4 @@ class EmailRejection extends React.Component{
 
 }
 
-export default EmailRejection
+export default EmailRejection;
