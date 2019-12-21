@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Modal, Button, Card,Form,Col } from "react-bootstrap";
 import axios from 'axios';
 import '../css/DoctorProfile.css'
+import usericon from '../icons/doctor.svg'
 
 class DoctroProfile extends React.Component {
 
@@ -19,8 +20,9 @@ class DoctroProfile extends React.Component {
         password:'',
         specialization: '',
         rating: '',
-        clinic: ''
+        clinicname: ''
       }
+      console.log(this.props.user)
     }
 
     SendUpdateRequest = event => {
@@ -62,7 +64,6 @@ class DoctroProfile extends React.Component {
                    role: resp.data.role,
                    specialization: resp.data.specialization,
                    rating: resp.data.rating,
-                   clinic: resp.data.clinic
 
        });
      }
@@ -85,49 +86,55 @@ class DoctroProfile extends React.Component {
     render() {
         return (
 
-    <Card className="text-center" id="karticaDoktor">
+    <Card id="karticaDoktor">
       <Form className="doctorProfileForm" onSubmit={this.SendUpdateRequest}>
 
       <Card.Body>
-        <Card.Title>My Info</Card.Title>
+      <Card.Img  style={{height:'73px', width: 'auto'}} className="dctIcon" variant="top" src={usericon} alt='Unavailable icon' />
+
+        <Card.Title className="dctrTitle">My Info</Card.Title>
 
            <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label><b>Email:</b> {this.props.user.email}</Form.Label>
+              <Form.Label className="labeldctr">Email: {this.props.user.email}</Form.Label>
             <Form.Label>  </Form.Label>
               </Form.Group>
-
-            </Form.Row>
+           </Form.Row>
 
               <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>First name</Form.Label>
-              <Form.Control type="text" placeholder="Enter your firstname" id="name" name="name" defaultValue={this.props.user.name} onChange={this.handleChange} />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Lastname</Form.Label>
-              <Form.Control type="text" placeholder="Enter your lastname" id="lastname" name="lastname" defaultValue={this.props.user.lastname} onChange={this.handleChange} />
+              <Form.Label className="labeldctr">Rating: {this.props.user.rating}</Form.Label>
               </Form.Group>
               </Form.Row>
 
               <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Specialization</Form.Label>
-              <Form.Control type="text" placeholder="Enter your specialization" id="specialization" name="specialization" defaultValue={this.props.user.specialization} onChange={this.handleChange} />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control type="text" placeholder="Enter your rating" id="rating" name="rating" defaultValue={this.props.user.rating} onChange={this.handleChange} />
+              <Form.Label className="labeldctr">Clinic: {this.props.user.clinicname}</Form.Label>
               </Form.Group>
               </Form.Row>
 
+              <Form.Row>
+              <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="labeldctr">First name</Form.Label>
+              <Form.Control type="text" placeholder="Enter your firstname" name="name" defaultValue={this.props.user.name} onChange={this.handleChange} />
+              </Form.Group>
+              </Form.Row>
 
+              <Form.Row>
+              <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="labeldctr">Lastname</Form.Label>
+              <Form.Control type="text" placeholder="Enter your lastname" name="lastname" defaultValue={this.props.user.lastname} onChange={this.handleChange} />
+              </Form.Group>
+              </Form.Row>
 
+              <Form.Row>
+              <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="labeldctr">Specialization</Form.Label>
+              <Form.Control type="text" placeholder="Enter your specialization" name="specialization" defaultValue={this.props.user.specialization} onChange={this.handleChange} />
+              </Form.Group>
+              </Form.Row>
 
-
-              <Button variant="primary" type="submit">
+              <Button variant="outline-primary" className="dctrBtn" type="submit">
               Update Info
               </Button>
 

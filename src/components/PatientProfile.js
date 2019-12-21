@@ -112,19 +112,23 @@ render() {
 
       <Card className="text-center" id="kartica">
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
-  <Card.Header><b>{this.props.user.name}'s info</b></Card.Header>
+  
   <Card.Body>
-
+      <Form.Row className="headerPatient">
+      <Form.Group as={Col} controlId="formGridEmail">
+      <b >{this.props.user.name}'s info</b>
+      </Form.Group>
+      </Form.Row>
 
        <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label><b>Email:</b> {this.props.user.email}</Form.Label>
+            <Form.Label className="fontPtnt"><b>Email:</b> {this.props.user.email}</Form.Label>
             <Form.Label>  </Form.Label>
             </Form.Group>
 
 
             <Form.Group as={Col} controlId="formGridEmail" >
-            <Form.Label><b>Social security number:</b>  {this.props.user.socialSecurityNumber}</Form.Label>
+            <Form.Label className="fontPtnt"><b>Social security number:</b>  {this.props.user.socialSecurityNumber}</Form.Label>
             </Form.Group>
 
 
@@ -136,54 +140,53 @@ render() {
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>First name</Form.Label>
+          <Form.Label className="fontPtnt">First name</Form.Label>
           <Form.Control type="text"  id="name" name="name" defaultValue={this.props.user.name} onChange={this.handleChange}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Lastname</Form.Label>
+          <Form.Label className="fontPtnt">Lastname</Form.Label>
           <Form.Control type="text"  id="lastname" name="lastname" defaultValue={this.props.user.lastname} onChange={this.handleChange}/>
           </Form.Group>
           </Form.Row>
 
 
           <Form.Group controlId="formGridAddress1">
-          <Form.Label>Address</Form.Label>
+          <Form.Label className="fontPtnt">Address</Form.Label>
           <Form.Control id="adress" name="adress" defaultValue={this.props.user.adress} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
-          <Form.Label>Country</Form.Label>
+          <Form.Label className="fontPtnt">Country</Form.Label>
           <Form.Control placeholder="Enter country name" id="country" name="country" defaultValue={this.props.user.country} onChange={this.handleChange}/>
           </Form.Group>
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
+          <Form.Label className="fontPtnt">City</Form.Label>
           <Form.Control type="text" id="city"  name="city" defaultValue={this.props.user.city} onChange={this.handleChange} />
           </Form.Group>
 
 
           <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Social security number</Form.Label>
+          <Form.Label className="fontPtnt">Social security number</Form.Label>
           <Form.Control type="text" id="socialSecurityNumber"  name="socialSecurityNumber" defaultValue={this.props.user.socialSecurityNumber} readonly/>
           </Form.Group>
           </Form.Row>
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Phone number</Form.Label>
+          <Form.Label className="fontPtnt">Phone number</Form.Label>
           <Form.Control type="text" id="phone"  name="phone" defaultValue={this.props.user.phone} onChange={this.handleChange} />
           </Form.Group>
           </Form.Row>
 
 
-          <Button variant="primary" type="submit">
-          Update
+          <Button variant="outline-primary" type="submit">
+          Update info
           </Button>
 
   </Card.Body>
-  <Card.Footer className="text-muted"></Card.Footer>
   </Form>
 </Card>
 
