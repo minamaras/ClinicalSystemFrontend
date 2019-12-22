@@ -201,7 +201,7 @@ class AddDoctor extends React.Component {
                                     id="start"
                                     name="start"
                                     onChange={this.handleChange}
-                                    placeholder="Enter start"
+                                    placeholder="Enter start hh:mm:ss"
                                     required
                                 />
                                 <br/>
@@ -211,7 +211,7 @@ class AddDoctor extends React.Component {
                                     id="end"
                                     name="end"
                                     onChange={this.handleChange}
-                                    placeholder="Enter end"
+                                    placeholder="Enter end hh:mm:ss"
                                     required
                                 />
                                 <br/>
