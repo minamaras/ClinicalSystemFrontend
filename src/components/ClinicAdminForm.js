@@ -40,7 +40,6 @@ class ClinicAdminForm extends React.Component{
 
         if(this.state.password === this.state.repeat){
          axios.post(`http://localhost:8081/api/clinicadmin/addclinicadmin/${this.props.id}`, this.state,options).then(
-             console.log(this.props.id),
              (resp) => this.onSuccessHandlerClinicAdmin(resp),
              (resp) => this.onErrorHandlerClinicAdmin(resp)
          );
@@ -49,17 +48,19 @@ class ClinicAdminForm extends React.Component{
                 title: "Repeated password does not match!",
                 text: '',
                 type: "error",
-                button: true
+                button: true,
+                icon: 'error'
               });
         }
     }
 
     onErrorHandlerClinicAdmin(resp) {
         ClinicAdminCreatedAlert.fire({
-            title: "Error occured",
+            title: "User with this email already exists!",
             text: '',
             type: "error",
-            button: true
+            button: true,
+            icon: 'error'
           });
 
     }
@@ -70,6 +71,7 @@ class ClinicAdminForm extends React.Component{
             title: "Clinic admin added successfully",
             text: "",
             type: "success",
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });

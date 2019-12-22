@@ -45,7 +45,7 @@ class AddDiagnosis extends React.Component{
 
     onErrorHandlerccAdmin(resp) {
         DiganosisAlert.fire({
-            title: "Error occured",
+            title: "Diagnosis with this name already exists!",
             text: '',
             type: "error",
             button: true,
