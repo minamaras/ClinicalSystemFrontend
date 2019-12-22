@@ -49,7 +49,7 @@ class OperationRoomTable extends React.Component {
     renderTableData() {
         
         return this.props.content.map((room, index) => {
-            const { name, number,isReserved } = room//destructuring
+            const { name, number,reserved } = room//destructuring
             return (
          
          
@@ -57,7 +57,7 @@ class OperationRoomTable extends React.Component {
                  <img src={roomicon} style={{ width: '20px',top:'10px',height:'20px'}} />
                  <td>{room.name}</td>
                  <td>{room.number}</td>
-                 <td>{room.isReserved}</td>
+                 <td>{room.reserved}</td>
                  <td><Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button></td>
                  <td><EditRoom/></td>
                </tr>
@@ -77,12 +77,20 @@ class OperationRoomTable extends React.Component {
 
                 const name = this.props.content[i].name;
                 const number = this.props.content[i].number;
-                const isReserved =  this.props.content[i].isReserved;
+                const reserved =  this.props.content[i].reserved;
+
+                let res = reserved;
 
                 console.log(this.props.content[i]);
+
+                if(res === "false") {
+                    res = "No"
+                } else {
+                    res = "Yes"
+                }
               
               
-               {rooms.push({name : name, number: number,isReserved: isReserved});}
+               {rooms.push({name : name, number: number,reserved: res});}
               
               }
 
@@ -97,7 +105,7 @@ class OperationRoomTable extends React.Component {
                     Header: "Number"
                   },
                   {
-                    accessor: "isReserved",
+                    accessor: "reserved",
                     Header: "Reserved"
                   },
                   {
