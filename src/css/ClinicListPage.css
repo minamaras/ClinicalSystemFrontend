@@ -27,5 +27,11 @@
 .clinic-card{
 
   margin: 100px 350px 350px 0px;
-  width: 500px;
+  width: 250px;
+
+}
+
+.selectoptions{
+
+  margin: 20px 0px 0px 0px;
 }
