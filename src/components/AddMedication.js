@@ -45,7 +45,7 @@ class AddMedication extends React.Component{
 
     onErrorHandlerccAdmin(resp) {
         MedicationAlert.fire({
-            title: "Error occured",
+            title: "Medication with this name already exists!",
             text: '',
             type: "error",
             button: true,

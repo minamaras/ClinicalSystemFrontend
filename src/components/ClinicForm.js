@@ -47,10 +47,12 @@ class ClinicForm extends React.Component {
 
     onErrorHandler(resp) {
         ClinicCreatedAlert.fire({
-            title: "Error occured",
+            title: "Clinic with this name already exists!",
             text: '',
             type: "error",
-            button: true
+            button: true,
+            icon: 'error'
+
           });
 
     }
@@ -61,6 +63,7 @@ class ClinicForm extends React.Component {
             title: "Clinic added successfully",
             text: "",
             type: "success",
+            icon: 'success'
           });
 
         this.setState({ redirect: this.state.redirect === false });

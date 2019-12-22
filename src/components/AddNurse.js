@@ -57,7 +57,7 @@ class AddNurse extends React.Component{
 
     onErrorHandler(resp) {
         NurseCreatedAlert.fire({
-            title: "Error occured",
+            title: "User with this email already exists!",
             text: '',
             type: "error",
             button: true,

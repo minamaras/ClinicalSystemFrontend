@@ -54,7 +54,7 @@ class AddClinicalCentreAdmin extends React.Component{
 
     onErrorHandlerccAdmin(resp) {
         CCAdminCreatedAlert.fire({
-            title: "Error occured",
+            title: "User with this email already exists!",
             text: '',
             type: "error",
             button: true,
@@ -161,8 +161,8 @@ class AddClinicalCentreAdmin extends React.Component{
                                 <br/>
                             </div>
                             <hr/>
-                            <Button className="dugme2" onClick={this.handleClose} variant="secondary">Close</Button>
-                            <Button type="submit" className="dugme1" variant="success">Create</Button>
+                            <Button  onClick={this.handleClose} variant="secondary" style={{float: 'right'}}>Close</Button>
+                            <Button type="submit" variant="success" style={{float: 'right', margin: '0 10px 0 0'}}>Create</Button>
                             
                         </form>
                     </Modal.Body>

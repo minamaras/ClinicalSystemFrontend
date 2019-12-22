@@ -45,7 +45,7 @@ class  LoginForm  extends React.Component{
 
     onErrorHandler(resp) {
       UserLoggedInAlert.fire({
-            title: "Error occured.Please check if activated your account.",
+            title: "Error occured. Please check if you have activated your account.",
             text: '',
             type: "error",
             button: true

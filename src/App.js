@@ -107,7 +107,8 @@ export default class App extends React.Component {
                   role: resp.data.role,
                   specialization: resp.data.specialization,
                   rating: resp.data.rating,
-                  role:resp.data.role
+                  role:resp.data.role,
+                  clinicname: resp.data.clinicname,
 
                 });
             }
@@ -139,6 +140,7 @@ export default class App extends React.Component {
                                           id: resp.data.id,
                                           password: resp.data.password,
                                           role: resp.data.role,
+                                          clinicid: resp.data.clinicid,
 
                                         });
                                     }
@@ -296,7 +298,7 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/perceptions" displayText="Perceptions" />
-                      <RoutedLinkContainer link="/calendar" displayText=" My Calendar" />
+                      <RoutedLinkContainer link="/calendar" displayText="Calendar" />
                       <RoutedLinkContainer link="/patients" displayText="Patients" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>

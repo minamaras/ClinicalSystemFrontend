@@ -21,6 +21,9 @@ import NurseProfile from './NurseProfile'
 import ExamTypePage from './ExamTypePage';
 import DoctorInfo from './DoctorInfo';
 import ActivatedAccount from './ActivatedAccount'
+import ChangePassword from './ChangePassword'
+import NurseHoliday from './NurseHoliday'
+import MyCalendar from './MyCalendar'
 
 class Routes extends React.Component {
 
@@ -55,7 +58,9 @@ class Routes extends React.Component {
         <Route exact path="/nurseprofile" render={(props) => <NurseProfile user={this.props.user}/>} />
         <Route exact path="/doctor/:id" render={(props) => <DoctorInfo user={this.props.user}/>} />
         <Route exact path="/activated-account" render={(props) => <ActivatedAccount user={this.props.user}/>} />
-
+        <Route exact path="/changepass" render={(props) => <ChangePassword user={this.props.user}/>} />
+        <Route exact path="/holiday" render={(props) => <NurseHoliday user={this.props.user}/>} />
+        <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
 
       </Switch>
         );

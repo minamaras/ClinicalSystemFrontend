@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Modal, Button, Card,Form,Col } from "react-bootstrap";
 import axios from 'axios';
+import usericon from '../icons/nursehat.svg'
+import '../css/NurseProfile.css'
 
 class NurseProfile extends React.Component {
     
@@ -15,7 +17,8 @@ class NurseProfile extends React.Component {
         name:'',
         lastname:'',
         email:'',
-        password:''
+        password:'',
+        clinicid: '',
       }
     }
 
@@ -55,7 +58,8 @@ class NurseProfile extends React.Component {
                    email: resp.data.email,
                    id: resp.data.id,
                    password: resp.data.password,
-                   role: resp.data.role
+                   role: resp.data.role,
+
      
        });
      }
@@ -77,38 +81,45 @@ class NurseProfile extends React.Component {
     render() {
         return (
     
-    <Card className="text-center" id="karticaClinicAdmin">
+    <Card className="nurseCard">
       <Form className="adminProfileForm" onSubmit={this.SendUpdateRequest}>
-      <Card.Header>My Info</Card.Header>
       <Card.Body>
-        <Card.Title>About me</Card.Title>
+      <Card.Img style={{height:'100px', width: 'auto'}} className="nrsIcon" variant="top" src={usericon} alt='Unavailable icon' />
+
+        <Card.Title className="nurseTitle">My info</Card.Title>
     
            <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label><b>Email:</b> {this.props.user.email}</Form.Label>
-            <Form.Label>  </Form.Label>
+              <Form.Label className="labelNurse">Email:  {this.props.user.email}</Form.Label>          
               </Form.Group>
-    
             </Form.Row>
     
+            <Form.Row>
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="labelNurse">Clinic:  {this.props.user.clinicid}</Form.Label>          
+              </Form.Group>
+
+            </Form.Row>
+
               <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>First name</Form.Label>
-              <Form.Control type="text" placeholder="Enter your firstname" id="name" name="name" defaultValue={this.props.user.name} onChange={this.handleChange} />
-              </Form.Group>
-    
-              <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Lastname</Form.Label>
-              <Form.Control type="text" placeholder="Enter your lastname" id="lastname" name="lastname" defaultValue={this.props.user.lastname} onChange={this.handleChange} />
+              <Form.Label className="labelNurse">First name</Form.Label>
+              <Form.Control type="text" placeholder="Enter your firstname" name="name" defaultValue={this.props.user.name} onChange={this.handleChange} />
               </Form.Group>
               </Form.Row>
     
-              <Button variant="primary" type="submit">
+              <Form.Row>
+              <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="labelNurse">Lastname</Form.Label>
+              <Form.Control type="text" placeholder="Enter your lastname" name="lastname" defaultValue={this.props.user.lastname} onChange={this.handleChange} />
+              </Form.Group>
+              </Form.Row>
+    
+              <Button variant="outline-primary" type="submit" className="nurseBtn">
               Update Info
               </Button>
     
       </Card.Body>
-      <Card.Footer className="text-muted"></Card.Footer>
       </Form>
     </Card>
     

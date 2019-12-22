@@ -3,6 +3,8 @@ import ExamTypeTable from './ExamTypeTable'
 import AddExamType from './AddExamType'
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import AddPredefinedAppointment from './AddPredefinedAppointment';
+import '../css/ExamTypePage.css'
 
 
 class ExamTypePage extends React.Component {
@@ -25,6 +27,9 @@ class ExamTypePage extends React.Component {
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
+
+        console.log(this.state.examtypes)
+        
     }
 
     addExamType(examtype) {
@@ -58,6 +63,7 @@ class ExamTypePage extends React.Component {
                     <div className="col-md-2">
                     <AddExamType/>
                     </div>
+                    
                     <div className="col-md-10-drcards">
                         <br />
                         <ExamTypeTable content={this.state.examtypes} />
