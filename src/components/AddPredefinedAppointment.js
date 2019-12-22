@@ -1,4 +1,4 @@
- import React from 'react';
+/*import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
@@ -156,4 +156,4 @@ class AddPredefinedAppointment extends React.Component {
     }
 }
 
-export default AddPredefinedAppointment;
+export default AddPredefinedAppointment;*/
