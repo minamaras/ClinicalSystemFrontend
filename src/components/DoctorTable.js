@@ -43,7 +43,7 @@ class DoctorTable extends React.Component {
 
     renderTableData() {
         return this.props.content.map((doctor, index) => {
-            const { name, lastname, email, specialization, rating} = doctor
+            const { name, lastname, email, specialization, rating, start, end} = doctor
 
             return (
                 <Card key={name} className="cardContainerDoctor" >
@@ -59,6 +59,9 @@ class DoctorTable extends React.Component {
                                Specialization: {specialization}
                                <br/>
                                Rating: {rating}
+                               <br/>
+                               Working hours: {start} - {end}
+
 
                         </Card.Text>
 

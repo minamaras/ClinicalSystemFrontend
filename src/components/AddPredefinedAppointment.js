@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
@@ -14,6 +14,9 @@ class AddPredefinedAppointment extends React.Component {
     constructor(props) {
         super(props);
 
+        var today = new Date(),
+        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -28,8 +31,9 @@ class AddPredefinedAppointment extends React.Component {
             doctor: '',
             room: '',
             type: '',
-            examDate: new Date(),
-            examTime: '10:00'
+            examTime: '10:00',
+
+            examDate: date,
         };
 
         console.log(this.props.tipovi);
@@ -156,4 +160,4 @@ class AddPredefinedAppointment extends React.Component {
     }
 }
 
-export default AddPredefinedAppointment;*/
+export default AddPredefinedAppointment;
