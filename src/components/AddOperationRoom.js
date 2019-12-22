@@ -79,7 +79,7 @@ class AddOperationRoom extends React.Component {
     render() {
         return (
             <div>
-                <Button id="roomadding" onClick={this.handleShow}>
+                <Button id="oroom" onClick={this.handleShow}>
                     Add a room
                 </Button>
                 <Modal
