@@ -265,8 +265,8 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/doctors" displayText="Doctors" />
                       <RoutedLinkContainer link="/nurses" displayText="Nurses" />
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
+                      <RoutedLinkContainer link="/examrooms" displayText="Exam Rooms" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
-                      <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                       <RoutedLinkContainer link="/examtypes" displayText="Exam Types" />
 
