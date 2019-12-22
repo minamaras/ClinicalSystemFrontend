@@ -24,19 +24,22 @@ class  ClinicListPage extends React.Component{
 
       console.log(this.props.user);
 
-
-      let token = localStorage.getItem('token');
-      const options = {
-          headers: { 'Authorization': 'Bearer ' + token}
-      };
-
-      axios.get("http://localhost:8081/api/clinics/allclinics",options).then(
-          (resp) => this.onSuccessHandler(resp),
-          (resp) => this.onErrorHandler(resp)
-      );
-
-
       }
+
+
+
+      componentDidMount () {
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        axios.get("http://localhost:8081/api/clinics/allclinicsdto",options).then(
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+        );
+
+     }
 
 
       onSuccessHandler(resp) {
