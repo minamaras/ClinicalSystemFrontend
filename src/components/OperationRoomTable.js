@@ -82,12 +82,12 @@ class OperationRoomTable extends React.Component {
                 const number = this.props.content[i].number;
                 const reserved =  this.props.content[i].reserved;
 
-                let res = reserved;
+                //let res = reserved;
 
                 console.log(this.props.content[i]);
               
               
-               {rooms.push({name : name, number: number,reserved: res});}
+               {rooms.push({name : name, number: number,reserved: reserved});}
               
               }
 
@@ -115,9 +115,9 @@ class OperationRoomTable extends React.Component {
                   filterAll: true
                   },
                   {
-                    accessor: "number",
+                    accessor: "price",
                     Header: "Delete",
-                    Cell: ({ original }) => (<Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, original)} >Delete</Button>)
+                    Cell: ({ row }) => (<Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, row)} >Delete</Button>)
                   },
                   {
                     accessor: "number",
