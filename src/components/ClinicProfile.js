@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicProfile.css'
 import icon from '../icons/clinicphoto.png';
+import bolnica from "../icons/bolnicaslika.jpeg";
 
 
 
@@ -111,12 +112,12 @@ class  ClinicProfile extends React.Component{
       render() {
 
           return (
+            <div className="wholepage">
             <Card className="text-center-clinic" id="karta">
 
             <Form className="clinicInfo">
 
             <Card.Body>
-            <Card.Img  src={icon} style={{height:'70px',width:'70px'}}/>
               <h1 className="clinicHeader">Clinic's info</h1>
               <br/>
 
@@ -149,6 +150,8 @@ class  ClinicProfile extends React.Component{
 
               </Form>
               </Card>
+
+              </div>
           );
       }
 
