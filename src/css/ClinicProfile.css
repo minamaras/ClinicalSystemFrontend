@@ -1,6 +1,13 @@
 .text-center-clinic{
-    margin:50px 300px 0px 300px;
+    margin:50px 300px 0px 0px;
     box-shadow: 3px 4px 5px #d8d8d8;
+    width: 600px;
+    height: '900px';
+  background-image: url("../icons/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:contain;
+
 }
 
 .clinicHeader{
@@ -57,5 +64,17 @@
 
   left: 50%;
 
+
+}
+
+.wholepage{
+
+  height: '100%';
+  width: '100%';
+
+}
+
+.clinicTitle{
+  text-transform:capitalize;
 
 }
