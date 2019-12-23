@@ -267,10 +267,17 @@ const columns = [
 
             }
            else {
-            console.log(row[id] !== undefined);
+
+             if( typeof row[id] === 'number'){
+              return row[id] !== undefined
+                ? String(row[id]).startsWith(filter.value.toLowerCase())
+                : true;
+
+            }else {
             return row[id] !== undefined
               ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase())
               : true;
+            }
           }
         }}
 
