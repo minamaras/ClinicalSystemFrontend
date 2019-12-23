@@ -112,11 +112,12 @@ render() {
 
       <Card className="text-center" id="kartica">
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
-  
-  <Card.Body>
+
+  <Card.Body >
+
       <Form.Row className="headerPatient">
       <Form.Group as={Col} controlId="formGridEmail">
-      <b >{this.props.user.name}'s info</b>
+      <b className="username">{this.props.user.name}'s info</b>
       </Form.Group>
       </Form.Row>
 
