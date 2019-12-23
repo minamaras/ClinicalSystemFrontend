@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicProfile.css'
 import icon from '../icons/clinicphoto.png';
-import bolnica from "../icons/bolnicaslika.jpeg";
+
 
 
 
