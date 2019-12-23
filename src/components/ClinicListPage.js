@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicListPage.css'
+import headericon from '../icons/klinika.svg';
 
 
 
@@ -43,14 +44,41 @@ class  ClinicListPage extends React.Component{
 
 
       onSuccessHandler(resp) {
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
           var tempClinics = [];
 
           for (var i = 0; i < resp.data.length; i++) {
-              tempClinics.push(resp.data[i]);
+            const name = resp.data[i].name;
+            const adress = resp.data[i].adress;
+            const rating =  resp.data[i].rating;
+            const doctors = [];
+            const exams = [];
+
+            axios.get(`http://localhost:8081/api/doctors/aboutclinicdoctors/${resp.data[i].name}`,options).then(
+                (resp) => {
+
+                        resp.data.map((doc, index) => {
+                        exams.push(doc.examType.name);
+                        });
+                },
+                (resp) => this.onErrorHandler(resp),
+              );
+
+
+
+              {tempClinics.push({name : name, adress: adress,rating: rating,exams:exams});}
+
           }
+
           this.setState({
               clinics : tempClinics,
           });
+
 
       }
 
@@ -64,10 +92,9 @@ class  ClinicListPage extends React.Component{
           return (
 
 
-            <Card style={{ width: '40rem',left:'250px',top:'30px'}} className="clinic-card">
+            <Card style={{ width: '60rem',left:'70px',top:'30px'}} className="clinic-card">
                 <Card.Body>
-                  <Card.Title style={{top:'10px',bottom:'20px'}}>Clinics</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">Clinics in our system</Card.Subtitle>
+                  <Card.Title style={{top:'10px',bottom:'20px',color:'#60b0f4'}}><i>Clinics in our system</i></Card.Title>
                   <Card.Text>
                   <ClinicListTable content={this.state.clinics}/>
                   </Card.Text>
