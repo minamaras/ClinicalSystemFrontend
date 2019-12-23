@@ -5,6 +5,9 @@ import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import hospitalicon from '../icons/surgeon.svg'
 import '../css/DoctorTable.css'
+import 'react-table-6/react-table.css';
+import matchSorter from 'match-sorter'
+var ReactTable = require('react-table-6').default;
 
 
 const DoctorDeletedAlert = withReactContent(Swal)
@@ -19,21 +22,21 @@ class DoctorTable extends React.Component {
 
         let token = localStorage.getItem('token');
         const options = {
-            headers: { 'Authorization': 'Bearer ' + token}
+            headers: { 'Authorization': 'Bearer ' + token }
         };
 
         //console.log(doctor.email);
 
-         axios.post("http://localhost:8081/api/doctors/deletedoctor", doctor, options).then(
-             console.log(doctor),
-             (resp) => this.onSuccessHandler(resp),
-             (resp) => this.onErrorHandler(resp)
-         );
+        axios.post("http://localhost:8081/api/doctors/deletedoctor", doctor, options).then(
+            console.log(doctor),
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp)
+        );
     }
 
     onErrorHandler(resp) {
-      console.log("error");
-      alert("error");
+        console.log("error");
+        alert("error");
 
     }
 
@@ -42,44 +45,121 @@ class DoctorTable extends React.Component {
     }
 
     renderTableData() {
+
         return this.props.content.map((doctor, index) => {
-            const { name, lastname, email, specialization, rating, start, end} = doctor
-
+            const { name, lastname, email, specialization, rating, start, end } = doctor//destructuring
             return (
-                <Card key={name} className="cardContainerDoctor" >
-                <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
-                    <Card.Body className = "cardBody">
-                        <Card.Title className="cardTitle" >{name}</Card.Title>
-                        <Card.Text className='cardText'>
-
-                               Lastname: {lastname}
-                               <br/>
-                               Email: {email}
-                               <br/>
-                               Specialization: {specialization}
-                               <br/>
-                               Rating: {rating}
-                               <br/>
-                               Working hours: {start} - {end}
 
 
-                        </Card.Text>
+                <tr key={name.toString()}>
+                    <img src={hospitalicon} style={{ width: '20px', top: '10px', height: '20px' }} />
+                    <td>{doctor.name}</td>
+                    <td>{doctor.lastname}</td>
+                    <td>{doctor.email}</td>
+                    <td>{doctor.specialization}</td>
+                    <td>{doctor.rating}</td>
+                    <td>{doctor.start}</td>
+                    <td>{doctor.end}</td>
+                    <td><Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button></td>
+                </tr>
 
-                        <Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button>
 
-                    </Card.Body>
-                </Card>
-                )
-            })
-        }
 
-        render() {
-            return (
-                <div className="containerRenderCardsDoctor">
-                    {this.renderTableData()}
-                </div>
             )
+        })
+
+    }
+
+    render() {
+
+        const doctors = [];
+
+        for (var i = 0; i < this.props.content.length; i++) {
+
+            const name = this.props.content[i].name;
+            const lastname = this.props.content[i].lastname;
+            const email = this.props.content[i].email;
+            const specialization = this.props.content[i].specialization;
+            const rating = this.props.content[i].rating;
+            const start = this.props.content[i].start;
+            const end = this.props.content[i].end;
+
+            console.log(this.props.content[i]);
+
+
+            { doctors.push({ name: name, lastname: lastname, email: email, specialization: specialization, rating: rating, start: start, end: end }); }
 
         }
+
+        const columns = [
+
+            {
+                accessor: "name",
+                Header: "Name",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["name"] }),
+                filterAll: true
+            },
+            {
+                accessor: "lastname",
+                Header: "Lastname",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["lastname"] }),
+                filterAll: true
+            },
+            {
+                accessor: "email",
+                Header: "Email",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["email"] }),
+                filterAll: true
+            },
+            {
+                accessor: "email",
+                Header: "Delete",
+                Cell: ({ row }) => (<Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteDoctor.bind(this, row)} >Delete</Button>)
+            },
+            {
+                accessor: "specialization",
+                Header: "Specialization",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["specialization"] }),
+                filterAll: true
+            },
+            {
+                accessor: "rating",
+                Header: "Rating",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["rating"] }),
+                filterAll: true
+            },
+            {
+                accessor: "start",
+                Header: "Start time",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["start"] }),
+                filterAll: true
+            },
+            {
+                accessor: "end",
+                Header: "End time",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["end"] }),
+                filterAll: true
+            }
+        ];
+
+        return (
+            <div>
+                <ReactTable data={doctors} columns={columns}
+                    minRows={0}
+                    showPagination={false}
+                    filterable
+                    defaultFilterMethod={(filter, row) =>
+                        String(row[filter.id]) === filter.value} />
+            </div>
+        )
+
+    }
 }
 export default DoctorTable;
