@@ -107,8 +107,7 @@ export default class App extends React.Component {
                   role: resp.data.role,
                   specialization: resp.data.specialization,
                   rating: resp.data.rating,
-                  role:resp.data.role,
-                  clinicname: resp.data.clinicname,
+                  role:resp.data.role
 
                 });
             }
@@ -140,7 +139,6 @@ export default class App extends React.Component {
                                           id: resp.data.id,
                                           password: resp.data.password,
                                           role: resp.data.role,
-                                          clinicid: resp.data.clinicid,
 
                                         });
                                     }
@@ -265,8 +263,8 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/doctors" displayText="Doctors" />
                       <RoutedLinkContainer link="/nurses" displayText="Nurses" />
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
-                      <RoutedLinkContainer link="/examrooms" displayText="Exam Rooms" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
+                      <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                       <RoutedLinkContainer link="/examtypes" displayText="Exam Types" />
 
@@ -298,7 +296,7 @@ export default class App extends React.Component {
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/perceptions" displayText="Perceptions" />
-                      <RoutedLinkContainer link="/calendar" displayText="Calendar" />
+                      <RoutedLinkContainer link="/calendar" displayText=" My Calendar" />
                       <RoutedLinkContainer link="/patients" displayText="Patients" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                   </Nav>
