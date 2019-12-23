@@ -107,7 +107,10 @@ export default class App extends React.Component {
                   role: resp.data.role,
                   specialization: resp.data.specialization,
                   rating: resp.data.rating,
-                  role:resp.data.role
+                  clinicname: resp.data.clinicname,
+                  start: resp.data.start,
+                  end: resp.data.end
+
 
                 });
             }

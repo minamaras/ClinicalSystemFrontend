@@ -15,10 +15,10 @@ class AddDoctor extends React.Component {
     constructor(props) {
         super(props);
 
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
         this.addDoctor = this.addDoctor.bind(this);
 
         this.state = {
@@ -29,9 +29,18 @@ class AddDoctor extends React.Component {
             password: '',
             specialization: '',
             rating: '',
-            repeat: ''
+            repeat: '',
+            start: '',
+            end: ''
+            
         };
+
+        
     }
+
+    onChangeStart = startTime => this.setState({ start: startTime })
+
+    onChangeEnd = endTime => this.setState({ end: endTime })
 
     addDoctor(event) {
         event.preventDefault();
@@ -126,7 +135,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter name"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="lastname">Lastname</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
@@ -136,7 +145,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter lastname"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="email">Email</label>
                                 <input type="email"
                                     className="form-control form-control-sm"
@@ -146,7 +155,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter email"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="password">Password</label>
                                 <input type="password"
                                     className="form-control form-control-sm"
@@ -156,7 +165,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter password"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="password">Repeat Password</label>
                                 <input type="password"
                                     className="form-control form-control-sm"
@@ -165,7 +174,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter repeated password"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="specialization">Specialization</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
@@ -175,7 +184,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter specialization"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="rating">Rating</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
@@ -185,7 +194,28 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter rating"
                                     required
                                 />
+                                <br />
+                                <label htmlFor="start">Start</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="start"
+                                    name="start"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter start hh:mm:ss"
+                                    required
+                                />
                                 <br/>
+                                <label htmlFor="end">End</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="end"
+                                    name="end"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter end hh:mm:ss"
+                                    required
+                                />
+                                <br/>
+
                             </div>
                             <hr/>
                             <Button className="dugmad" variant="secondary" className="dugme2dr" onClick={this.handleClose}>Close</Button>

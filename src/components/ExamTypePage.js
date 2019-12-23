@@ -63,10 +63,13 @@ class ExamTypePage extends React.Component {
                     <div className="col-md-2">
                     <AddExamType/>
                     </div>
-                    
+                    <div className="col-md-2">
+                    <AddPredefinedAppointment/>
+                    </div>
                     <div className="col-md-10-drcards">
                         <br />
                         <ExamTypeTable content={this.state.examtypes} />
+                    
                     </div>
                 </div>
             </div>
