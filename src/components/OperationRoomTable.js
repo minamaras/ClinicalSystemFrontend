@@ -7,6 +7,7 @@ import roomicon from '../icons/surgery-room.svg'
 import '../css/OperationRoom.css';
 import EditRoom from './EditRoom';
 import 'react-table-6/react-table.css';
+import matchSorter from 'match-sorter'
 var ReactTable = require('react-table-6').default;
 
 
@@ -33,6 +34,8 @@ class OperationRoomTable extends React.Component {
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
+
+         console.log(room);
     }
 
     onErrorHandler(resp) {
@@ -82,12 +85,6 @@ class OperationRoomTable extends React.Component {
                 let res = reserved;
 
                 console.log(this.props.content[i]);
-
-                if(res === "false") {
-                    res = "No"
-                } else {
-                    res = "Yes"
-                }
               
               
                {rooms.push({name : name, number: number,reserved: res});}
@@ -98,23 +95,32 @@ class OperationRoomTable extends React.Component {
 
                   {
                     accessor: "name",
-                    Header:"Name"
+                    Header:"Name",
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["name"] }),
+                  filterAll: true
                   },
                   {
                     accessor: "number",
-                    Header: "Number"
+                    Header: "Number",
+                    filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["number"] }),
+                  filterAll: true
                   },
                   {
                     accessor: "reserved",
-                    Header: "Reserved"
+                    Header: "Reserved",
+                    filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["reserved"] }),
+                  filterAll: true
                   },
                   {
-                    accessor: "price",
+                    accessor: "number",
                     Header: "Delete",
-                    Cell: ({ row }) => (<Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, row)} >Delete</Button>)
+                    Cell: ({ original }) => (<Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, original)} >Delete</Button>)
                   },
                   {
-                    accessor: "price",
+                    accessor: "number",
                     Header: "Edit",
                     Cell: ({ original }) => (<EditRoom content={original}/>)
                   }
@@ -122,9 +128,12 @@ class OperationRoomTable extends React.Component {
 
             return (
               <div>
-                    <ReactTable data={rooms} columns={columns}
-                        minRows={0}
-                        showPagination={false} />
+                <ReactTable data={rooms} columns={columns}
+                  minRows={0}
+                  showPagination={false}
+                  filterable
+                  defaultFilterMethod={(filter, row) =>
+                    String(row[filter.id]) === filter.value} />
               </div>
             )
     

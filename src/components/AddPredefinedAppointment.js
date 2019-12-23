@@ -29,16 +29,18 @@ class AddPredefinedAppointment extends React.Component {
 
         this.state = {
             show: false,
-            duration: '',
-            doctor: '',
+            name: '',
+            startTime: '',
+            endTime: '',
+            doctorEmail: '',
             doctors: [],
-            room: '',
+            roomNumber: '',
             rooms: [],
-            type: '',
+            start: null,
+            examTypeName: '',
             examtypes: [],
-            examTime: '10:00',
 
-            examDate: date,
+            today: date,
         };
 
     }
@@ -72,10 +74,7 @@ class AddPredefinedAppointment extends React.Component {
         console.log(resp.data);
       
         for (var i = 0; i < resp.data.length; i++) {
-            tempexams.push(resp.data[i].name);
-            console.log(resp.data[i]);
-            console.log(resp.data[i].name);
-            console.log(tempexams);
+            tempexams.push(resp.data[i]);
         }
       
         this.setState({
@@ -92,9 +91,7 @@ class AddPredefinedAppointment extends React.Component {
         console.log(resp.data);
       
         for (var i = 0; i < resp.data.length; i++) {
-            tempdoctors.push(resp.data[i].name);
-            console.log(resp.data[i]);
-            console.log(resp.data[i].name);
+            tempdoctors.push(resp.data[i]);
         }
       
         this.setState({
@@ -112,15 +109,14 @@ class AddPredefinedAppointment extends React.Component {
         console.log(resp.data);
       
         for (var i = 0; i < resp.data.length; i++) {
-            temprooms.push(resp.data[i].name);
-            console.log(resp.data[i]);
-            console.log(resp.data[i].name);
+            temprooms.push(resp.data[i]);
         }
       
         this.setState({
             rooms : temprooms,
         });
       
+        console.log(this.state.rooms);
       
     }
 
@@ -148,7 +144,9 @@ class AddPredefinedAppointment extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-         axios.post("http://localhost:8081/api/examtypes/addpredefined", this.state, options).then(
+        console.log(this.state);
+
+         axios.post("http://localhost:8081/api/appointments/savepredefined", this.state, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -230,57 +228,95 @@ class AddPredefinedAppointment extends React.Component {
                     <Modal.Body>
                         <form onSubmit={this.addPredefinedAppointment} id="addDoctorForm">
                             <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="name"
+                                    name="name"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter name"
+                                    required
+                                />
                                 <label htmlFor="doctor">Doctor</label>
-                                <DropdownButton
-                                    title={this.state.doctor}
-                                    id="document-type"
-                                    variant="info"
-                                    onSelect={this.handleSelectDoctor.bind(this)}
-                                >
-                                    {this.state.doctors.map((opt, i) => (
-                                        <Dropdown.Item key={i} eventKey={i}>
-                                            {opt}
-                                        </Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
+                                <Select
+                                    className="selectoptions"
+                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    onChange={entry => {
+                                        this.setState({ doctorEmail: entry.value });
+                                    }
+                                    }
+                                    value={this.state.doctorEmail.value}
+                                    options={
+
+                                        this.state.doctors.map((type, i) => {
+                                            return { value: type.email, label: type.email };
+                                        })
+                                    }
+                                />
                                 <br />
-                                <label htmlFor="examDate">Date</label>
+                                <label htmlFor="start">Date</label>
+                                <input className="start" type="date"
+                                    min={this.state.today}
+                                    pattern="dd/mm/yyyy"
+                                    id="start"
+                                    name="start"
+                                    onChange={this.handleChange}
+                                    required
+                                />
                                 <br />
-                                <DatePicker id="examDate" name="examDate" onChange={this.onChange} value={this.state.examDate} />
+                                <label htmlFor="startTime">Start time:</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="startTime"
+                                    name="startTime"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter start hh:mm:ss"
+                                    required
+                                />
                                 <br />
+                                <label htmlFor="endTime">End time:</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="endTime"
+                                    name="endTime"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter end hh:mm:ss"
+                                    required
+                                />
                                 <br />
-                                <label htmlFor="examTime">Time</label>
-                                <br />
-                                <TimePicker id="examTime" name="examTime" onChange={this.onChangeTime} value={this.state.examTime} />
-                                <br />
-                                <br />
-                                <label htmlFor="room">Room</label>
-                                <DropdownButton
-                                    title={this.state.room}
-                                    id="document-type"
-                                    variant="info"
-                                    onSelect={this.handleSelectRoom.bind(this)}
-                                >
-                                    {this.state.rooms.map((opt, i) => (
-                                        <Dropdown.Item key={i} eventKey={i}>
-                                            {opt}
-                                        </Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
+                                <label htmlFor="roomNumber">Room</label>
+                                <Select
+                                    className="selectoptions"
+                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    onChange={entry => {
+                                        this.setState({ roomNumber: entry.value });
+                                    }
+                                    }
+                                    value={this.state.roomNumber.value}
+                                    options={
+
+                                        this.state.rooms.map((type, i) => {
+                                            return { value: type.number, label: type.number };
+                                        })
+                                    }
+                                />
                                 <br />
                                 Select exam type :{" "}
-                                <DropdownButton
-                                    title={this.state.type}
-                                    id="document-type"
-                                    variant="info"
-                                    onSelect={this.handleSelect.bind(this)}
-                                >
-                                    {this.state.examtypes.map((opt, i) => (
-                                        <Dropdown.Item key={i} eventKey={i}>
-                                            {opt}
-                                        </Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
+                                <Select
+                                    className="selectoptions"
+                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    onChange={entry => {
+                                        this.setState({ examTypeName: entry.value });
+                                    }
+                                    }
+                                    value={this.state.examTypeName.value}
+                                    options={
+
+                                        this.state.examtypes.map((type, i) => {
+                                            return { value: type.name, label: type.name };
+                                        })
+                                    }
+                                />
                             </div>
                             <hr />
                             <Button className="roomDugme" variant="secondary" style={{ float: "right" }} onClick={this.handleClose}>Close</Button>
