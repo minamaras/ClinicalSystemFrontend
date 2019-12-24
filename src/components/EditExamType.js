@@ -85,7 +85,7 @@ class EditExamType extends React.Component {
     render() {
         return (
             <div>
-                <Button id="examedit" onClick={this.handleShow}>
+                <Button variant="outline-primary" id="examedit" onClick={this.handleShow}>
                     Edit
                 </Button>
                 <Modal
