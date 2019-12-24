@@ -21,8 +21,7 @@ class AddExaminationRoom extends React.Component {
         this.state = {
             show: false,
             name: '',
-            number: '',
-            isReserved: false
+            number: ''
         };
     }
 
@@ -79,7 +78,7 @@ class AddExaminationRoom extends React.Component {
     render() {
         return (
             <div>
-                <Button id="roomadding" onClick={this.handleShow}>
+                <Button id="examroomadd" onClick={this.handleShow}>
                     Add a room
                 </Button>
                 <Modal
@@ -114,16 +113,6 @@ class AddExaminationRoom extends React.Component {
                                     name="number"
                                     onChange={this.handleChange}
                                     placeholder="Enter number"
-                                    required
-                                />
-                                <br/>
-                                <label htmlFor="isReserved">Reserve</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="isReserved"
-                                    name="isReserved"
-                                    onChange={this.handleChange}
-                                    placeholder="Yes or No"
                                     required
                                 />
                                 <br/>
