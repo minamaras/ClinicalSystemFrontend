@@ -26,12 +26,41 @@
 
 .clinic-card{
 
-  margin: 100px 350px 350px 0px;
-  width: 250px;
+  width: 1000px;
 
 }
 
 .selectoptions{
 
+  width: 300px;
+}
+
+
+
+.contrainer-options-picker{
+  color: #60b0f4;
+}
+
+.grupa1 {
+
+  font-size: 18px;
+  font-color:  #60b0f4;
   margin: 20px 0px 0px 0px;
+
+}
+
+.grupa {
+
+  font-size: 18px;
+  font-color:  #60b0f4;
+  margin: 20px 0px 0px 0px;
+
+}
+
+
+.red {
+
+margin: 10px 0px 10px 0px;
+background-color: #C8C8C8;
+
 }

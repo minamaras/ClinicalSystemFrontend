@@ -29,7 +29,7 @@ render() {
                     This system is designed for doctors, nurses and patients.
                     We're here to help you!
                     </p>
-                    <font size="10" ><i>Hello {this.props.user.name}</i></font>
+                    <font size="10" ><i style={{'text-transform':'capitalize'}}>Hello {this.props.user.name}</i></font>
 
                   </Carousel.Caption>
 
@@ -47,7 +47,7 @@ render() {
                   This system is designed for doctors, nurses and patients.
                   We're here to help you!
                   </p>
-                  <font size="10" ><i>Hello {this.props.user.name}</i></font>
+                  <font size="10" ><i style={{'text-transform':'capitalize'}}>Hello {this.props.user.name}</i></font>
 
 
                 </Carousel.Caption>
@@ -65,7 +65,7 @@ render() {
                     This system is designed for doctors, nurses and patients.
                     We're here to help you!
                     </p>
-                    <font size="10" ><i>Hello {this.props.user.name}</i></font>
+                    <font size="10" ><i style={{'text-transform':'capitalize'}}>Hello {this.props.user.name}</i></font>
 
                   </Carousel.Caption>
 
