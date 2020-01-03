@@ -4,6 +4,7 @@ import { Modal, Button, Card, Form, Col } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import '../css/ClinicInfoPage.css'
 import Pricelist from './Pricelist';
+import DoctorList from './DoctorList'
 
 
 class ClinicPage extends React.Component {
@@ -97,6 +98,10 @@ class ClinicPage extends React.Component {
         <Card id="pricelist">
           <h3 id="header">Pricelist</h3>
           <Pricelist/>
+        </Card>
+        <Card id="doctorlist">
+          <h3 id="doctorheader">Doctors</h3>
+          <DoctorList/>
         </Card>
       </div>
     )

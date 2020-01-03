@@ -60,8 +60,14 @@
 #pricelist {
     float: right;
     margin-top: -33.2%;
-    margin-right: 23%;
+    margin-right: 22%;
     padding: 20px;
+}
+
+#doctorlist {
+    padding: 20px;
+    margin-top: 2%;
+    float: left;
 }
 
 #header {
@@ -69,7 +75,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#doctorheader {
+    color: cornflowerblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #pricelistable {
-    width: fit-content;
+    width: max-content;
     padding: 20px;
 }
