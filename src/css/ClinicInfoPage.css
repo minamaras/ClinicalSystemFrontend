@@ -6,7 +6,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 30px;
     text-align: center;
-    color: rgb(13, 118, 189);
+    color:cornflowerblue;
     
 }
 
@@ -55,4 +55,21 @@
     margin-left: 20px;
     margin-top: 16px;
     margin-bottom: 7px;
+}
+
+#pricelist {
+    float: right;
+    margin-top: -33.2%;
+    margin-right: 23%;
+    padding: 20px;
+}
+
+#header {
+    color: cornflowerblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#pricelistable {
+    width: fit-content;
+    padding: 20px;
 }
