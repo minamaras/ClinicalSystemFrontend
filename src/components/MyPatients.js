@@ -39,6 +39,9 @@ class MyPatients extends React.Component {
         });
     }
 
+    onErrorHandler(resp) {
+        alert("Something went wrong");  
+    }
     render() {
         return (
             <div>
