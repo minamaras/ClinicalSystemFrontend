@@ -24,7 +24,7 @@
 
 .deleteDoctor{
     float: left;
-    margin-left: 35%;
+    margin-left: 9%;
 }
 
 .containerRenderCardsDoctor{
@@ -33,4 +33,8 @@
     flex-wrap: wrap;
     margin: -170px 0px 10px 280px;
 
+}
+
+#spec {
+    width: 170px;
 }
