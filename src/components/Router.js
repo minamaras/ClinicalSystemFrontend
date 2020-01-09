@@ -26,6 +26,7 @@ import NurseHoliday from './NurseHoliday'
 import MyCalendar from './MyCalendar'
 import ExaminationRoom from './ExaminationRoom'
 import MyPatients from './MyPatients'
+import PatientInfo from './PatientInfo';
 
 class Routes extends React.Component {
 
@@ -65,6 +66,7 @@ class Routes extends React.Component {
         <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
         <Route exact path="/examrooms" render={(props) => <ExaminationRoom user={this.props.user}/>} />
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
+        <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
 
       </Switch>
         );

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import 'react-table-6/react-table.css';
+import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import matchSorter from 'match-sorter'
 var ReactTable = require('react-table-6').default;
 
@@ -74,6 +75,7 @@ class MyPatientsTable extends React.Component {
                   {
                     accessor: "socialSecurityNumber",
                     Header: "SS number",
+                    Cell: ({ row }) => (<Link to={{pathname:`/patient/${row.socialSecurityNumber}`, state :{data : row} } }>{row.socialSecurityNumber}</Link>),
                     filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["socialSecurityNumber"] }),
                   filterAll: true
