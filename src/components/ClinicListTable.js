@@ -32,8 +32,10 @@ class ClinicListTable extends React.Component{
       select2: undefined,
       examTypes : [],
       startDate: new Date(),
-       filtered: [],
-       clinics: this.props.content
+      filtered: [],
+      clinics: this.props.content,
+      price:'',
+      selectedExamType:''
     };
 
         this.renderTableData = this.renderTableData.bind(this);
@@ -130,9 +132,10 @@ onFilteredChangeCustom = (value, accessor) => {
     if (insertNewFilter) {
       filtered.push({ id: accessor, value: value});
     }
-    console.log(value);
+
     this.setState({ filtered: filtered });
 
+console.log(filtered);
   };
 
 
@@ -149,25 +152,20 @@ render() {
 const columns = [
 
   {
+    Header : "Exams",
     accessor: "exams",
-    //Header:"Exams",
     width: 50,
-    //render: ({value}) =>{
-			//const tagList = value.map(x=>x).join(", ")
-			//return <span>{tagList}</span>
-		//},
     Cell: e => <img style={{height:'30px',width:'30px'}} src={clinicsicon}/>,
     filterMethod: (filter, row) => {
 
-      return row.exams.some(x=>x.includes(filter.value));
+      return row.exams.some(x=>x.name.includes(filter.value));
 
-
-}
+    }
 
 },{
     accessor: "name",
     Header: "Clinic",
-    Cell: ({ row }) => (<Link to={{pathname:`/clinic/${row.name}`, state :{data : row} } }>{row.name}</Link>),
+    Cell: ({ row }) => (<Link to={{pathname:`/clinic/${row.name}/${this.state.selectedExamType}`, state :{data : row} } }>{row.name}</Link>),
   },
   {
     accessor: "adress",
@@ -177,12 +175,14 @@ const columns = [
     accessor: "rating",
     Header: "Rating"
   },
+  
 ];
 
 
     return (
 
         <div className="container">
+
         <Form className="container-options-picker">
         <Form.Row className="red">
         <Form.Group as={Col} className="grupa1">
@@ -201,14 +201,25 @@ const columns = [
                 //}),
                 "exams"
               );
+
+              this.state.price='';
+              this.state.selectedExamType='';
+
             }else{
 
-              this.onFilteredChangeCustom(entry.value,
+              this.onFilteredChangeCustom(entry.value.name,
                 //entry.map(o => {
                   //return o.value;
                 //}),
                 "exams"
               );
+              this.state.price=entry.value.price;
+
+              const index =entry.value.name.indexOf(' ');
+              console.log(index);
+              console.log(entry.value.name.lenght);
+              var res = entry.value.name.substring(0,index);
+              this.state.selectedExamType=res;
             }
           }}
 
@@ -216,7 +227,7 @@ const columns = [
 
           options={
             this.state.examTypes.map((type, i) => {
-            return {id: i,value:type.name, label: type.name};
+            return {id: i,value:type, label: type.name};
           })
         }
 
@@ -233,6 +244,12 @@ const columns = [
              className="picker"
            />
            </Form.Group>
+
+           <Form.Group as={Col}className="grupa">
+           <b>Appointment price</b>{" "}
+           <br></br>
+           <input value={this.state.price}></input>
+              </Form.Group>
            </Form.Row>
            </Form>
 

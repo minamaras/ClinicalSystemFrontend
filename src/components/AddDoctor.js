@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
+import Select from 'react-select';
 import '../css/AddDoctor.css'
 
 const DoctorCreatedAlert = withReactContent(Swal)
@@ -31,12 +32,47 @@ class AddDoctor extends React.Component {
             rating: '',
             repeat: '',
             start: '',
-            end: ''
-            
+            end: '',
+            examType:'',
+            examTypes:[]
+
         };
 
-        
+
     }
+
+    componentDidMount () {
+
+      let token = localStorage.getItem('token');
+      const options = {
+          headers: { 'Authorization': 'Bearer ' + token}
+          };
+
+      axios.get('http://localhost:8081/api/examtypes/all',options).then(
+            (resp) => this.Success(resp),
+            (resp) => this.onErrorHandler(resp),
+          );
+
+
+    }
+
+
+Success(resp) {
+
+      var tempexams = [];
+
+      for (var i = 0; i < resp.data.length; i++) {
+          tempexams.push(resp.data[i]);
+      }
+
+      this.setState({
+          examTypes : tempexams,
+      });
+
+
+    }
+
+
 
     onChangeStart = startTime => this.setState({ start: startTime })
 
@@ -67,6 +103,9 @@ class AddDoctor extends React.Component {
     }
 
     onErrorHandler(resp) {
+
+        console.log(this.state);
+
         DoctorCreatedAlert.fire({
             title: "Error occured",
             text: '',
@@ -215,6 +254,24 @@ class AddDoctor extends React.Component {
                                     required
                                 />
                                 <br/>
+                                <label>Exam type</label>
+                                <Select
+                                className="selectoptions"
+                                  onChange={entry => {
+                                      this.setState({ examType: entry.value });
+                                      console.log(entry);
+                                  }}
+                                  value={this.state.examType.name}
+
+                                  options={
+                                    this.state.examTypes.map((type, i) => {
+                                    return {id: i,value:type, label: type.name};
+                                  })
+                                }
+
+                                />
+
+
 
                             </div>
                             <hr/>

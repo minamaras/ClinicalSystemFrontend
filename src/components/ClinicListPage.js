@@ -63,7 +63,8 @@ class  ClinicListPage extends React.Component{
                 (resp) => {
 
                         resp.data.map((doc, index) => {
-                        exams.push(doc.examType.name);
+                        exams.push(doc.examType);
+                        console.log(doc.examType);
                         });
                 },
                 (resp) => this.onErrorHandler(resp),

@@ -1,12 +1,14 @@
-.text-center-clinic{
-    margin:50px 300px 0px 0px;
+.AdresaIRejting{
+width: 300px;
+
+}
+
+
+.cliniccard{
+    margin:50px 100px 100px 0px;
     box-shadow: 3px 4px 5px #d8d8d8;
-    width: 600px;
-    height: '900px';
-  background-image: url("../icons/background.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size:contain;
+    height: 500px;
+    background-image: url("../icons/doctorbackground.png");
 
 }
 
@@ -15,6 +17,7 @@
     font-size: 30px;
     text-align: center;
     color: rgb(13, 118, 189);
+
 
 }
 
