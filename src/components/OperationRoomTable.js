@@ -81,13 +81,12 @@ class OperationRoomTable extends React.Component {
                 const name = this.props.content[i].name;
                 const number = this.props.content[i].number;
                 const reserved =  this.props.content[i].reserved;
-
-                //let res = reserved;
+                const dateReserved = this.props.content[i].dateReserved;
 
                 console.log(this.props.content[i]);
               
               
-               {rooms.push({name : name, number: number,reserved: reserved});}
+               {rooms.push({name : name, number: number,reserved: reserved, dateReserved: dateReserved});}
               
               }
 
@@ -112,6 +111,13 @@ class OperationRoomTable extends React.Component {
                     Header: "Reserved",
                     filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["reserved"] }),
+                  filterAll: true
+                  },
+                  {
+                    accessor: "dateReserved",
+                    Header: "Date",
+                    filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["dateReserved"] }),
                   filterAll: true
                   },
                   {

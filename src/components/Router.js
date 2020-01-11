@@ -27,6 +27,7 @@ import MyCalendar from './MyCalendar'
 import ExaminationRoom from './ExaminationRoom'
 import MyPatients from './MyPatients'
 import AvailableDoctors from './AvailableDoctors'
+import PatientInfo from './PatientInfo';
 
 class Routes extends React.Component {
 
@@ -69,6 +70,7 @@ class Routes extends React.Component {
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
         //<Route exact path="/clinic/:name/:examtype" render={(props) => <AvailableDoctors user={this.props.user}/>} />
 
+        <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
 
       </Switch>
         );

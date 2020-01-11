@@ -7,6 +7,7 @@ import hospitalicon from '../icons/surgeon.svg'
 import '../css/DoctorTable.css'
 import 'react-table-6/react-table.css';
 import matchSorter from 'match-sorter'
+import Select from "react-select";
 var ReactTable = require('react-table-6').default;
 
 
@@ -15,8 +16,33 @@ class DoctorTable extends React.Component {
     constructor(props) {
         super(props);
 
-        this.renderTableData = this.renderTableData.bind(this);
+        this.state = {
+            filtered: [],
+            selected: undefined
+        }
     }
+
+    onFilteredChangeCustom = (value, accessor) => {
+        let filtered = this.state.filtered;
+        let insertNewFilter = 1;
+
+        if (filtered.length) {
+            filtered.forEach((filter, i) => {
+                if (filter["id"] === accessor) {
+                    if (value === "" || !value.length) filtered.splice(i, 1);
+                    else filter["value"] = value;
+
+                    insertNewFilter = 0;
+                }
+            });
+        }
+
+        if (insertNewFilter) {
+            filtered.push({ id: accessor, value: value });
+        }
+
+        this.setState({ filtered: filtered });
+    };
 
     deleteDoctor(doctor) {
 
@@ -42,32 +68,6 @@ class DoctorTable extends React.Component {
 
     onSuccessHandler(resp) {
         window.location.reload();
-    }
-
-    renderTableData() {
-
-        return this.props.content.map((doctor, index) => {
-            const { name, lastname, email, specialization, rating, start, end } = doctor//destructuring
-            return (
-
-
-                <tr key={name.toString()}>
-                    <img src={hospitalicon} style={{ width: '20px', top: '10px', height: '20px' }} />
-                    <td>{doctor.name}</td>
-                    <td>{doctor.lastname}</td>
-                    <td>{doctor.email}</td>
-                    <td>{doctor.specialization}</td>
-                    <td>{doctor.rating}</td>
-                    <td>{doctor.start}</td>
-                    <td>{doctor.end}</td>
-                    <td><Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteDoctor.bind(this, doctor)} >Delete</Button></td>
-                </tr>
-
-
-
-            )
-        })
-
     }
 
     render() {
@@ -151,12 +151,46 @@ class DoctorTable extends React.Component {
 
         return (
             <div>
+                <b>Specialization:{" "}</b>
+                <Select
+                    id="spec"
+                    onChange={entry => {
+                        this.setState({ selected: entry });
+                        if (entry == null) {
+                            this.onFilteredChangeCustom([],
+                             
+                                "specialization"
+                            );
+                        } else {
+
+                            this.onFilteredChangeCustom(entry.value,
+                                
+                                "specialization"
+                            );
+                        }
+                    }}
+                    value={this.state.selected}
+
+                    options={
+                        doctors.map((o, i) => {
+                            return { id: i, value: o.specialization, label: o.specialization };
+                        })
+                    }
+
+                />
+                <br/>
+                <br/>
                 <ReactTable data={doctors} columns={columns}
+                    filtered={this.state.filtered}
                     minRows={0}
                     showPagination={false}
                     filterable
                     defaultFilterMethod={(filter, row) =>
-                        String(row[filter.id]) === filter.value} />
+                        String(row[filter.id]) === filter.value}
+                    onFilteredChange={(filtered, column, value) => {
+                        this.onFilteredChangeCustom(value, column.id || column.accessor);
+                    }} />
+
             </div>
         )
 

@@ -224,16 +224,6 @@ Success(resp) {
                                     required
                                 />
                                 <br />
-                                <label htmlFor="rating">Rating</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="rating"
-                                    name="rating"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter rating"
-                                    required
-                                />
-                                <br />
                                 <label htmlFor="start">Start</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
