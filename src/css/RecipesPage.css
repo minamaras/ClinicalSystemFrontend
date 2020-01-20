@@ -1,0 +1,32 @@
+.prescimg{
+    margin: 2% 0% 0% 46.5%;
+}
+
+.prescTitle{
+    text-align: center;
+}
+
+
+table{
+    border: 1px solid rgb(160, 160, 160);
+    margin-top: 3%
+}
+
+
+.tableRecipes{
+    box-shadow: 3px 2px 1px rgb(214, 214, 214);
+}
+
+.contentTr{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 16px;
+    color: rgb(18, 53, 73);
+}
+
+.headerTr{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 21px;
+    color: rgb(95, 134, 160);
+}
