@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
+import Select from 'react-select';
 import '../css/AddDoctor.css'
 
 const DoctorCreatedAlert = withReactContent(Swal)
@@ -15,10 +16,10 @@ class AddDoctor extends React.Component {
     constructor(props) {
         super(props);
 
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
         this.addDoctor = this.addDoctor.bind(this);
 
         this.state = {
@@ -29,9 +30,53 @@ class AddDoctor extends React.Component {
             password: '',
             specialization: '',
             rating: '',
-            repeat: ''
+            repeat: '',
+            start: '',
+            end: '',
+            examType:'',
+            examTypes:[]
+
         };
+
+
     }
+
+    componentDidMount () {
+
+      let token = localStorage.getItem('token');
+      const options = {
+          headers: { 'Authorization': 'Bearer ' + token}
+          };
+
+      axios.get('http://localhost:8081/api/examtypes/all',options).then(
+            (resp) => this.Success(resp),
+            (resp) => this.onErrorHandler(resp),
+          );
+
+
+    }
+
+
+Success(resp) {
+
+      var tempexams = [];
+
+      for (var i = 0; i < resp.data.length; i++) {
+          tempexams.push(resp.data[i]);
+      }
+
+      this.setState({
+          examTypes : tempexams,
+      });
+
+
+    }
+
+
+
+    onChangeStart = startTime => this.setState({ start: startTime })
+
+    onChangeEnd = endTime => this.setState({ end: endTime })
 
     addDoctor(event) {
         event.preventDefault();
@@ -58,6 +103,9 @@ class AddDoctor extends React.Component {
     }
 
     onErrorHandler(resp) {
+
+        console.log(this.state);
+
         DoctorCreatedAlert.fire({
             title: "Error occured",
             text: '',
@@ -126,7 +174,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter name"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="lastname">Lastname</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
@@ -136,7 +184,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter lastname"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="email">Email</label>
                                 <input type="email"
                                     className="form-control form-control-sm"
@@ -146,7 +194,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter email"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="password">Password</label>
                                 <input type="password"
                                     className="form-control form-control-sm"
@@ -156,7 +204,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter password"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="password">Repeat Password</label>
                                 <input type="password"
                                     className="form-control form-control-sm"
@@ -165,7 +213,7 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter repeated password"
                                     required
                                 />
-                                <br/>
+                                <br />
                                 <label htmlFor="specialization">Specialization</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
@@ -175,17 +223,46 @@ class AddDoctor extends React.Component {
                                     placeholder="Enter specialization"
                                     required
                                 />
-                                <br/>
-                                <label htmlFor="rating">Rating</label>
+                                <br />
+                                <label htmlFor="start">Start</label>
                                 <input type="text"
                                     className="form-control form-control-sm"
-                                    id="rating"
-                                    name="rating"
+                                    id="start"
+                                    name="start"
                                     onChange={this.handleChange}
-                                    placeholder="Enter rating"
+                                    placeholder="Enter start hh:mm:ss"
                                     required
                                 />
                                 <br/>
+                                <label htmlFor="end">End</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="end"
+                                    name="end"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter end hh:mm:ss"
+                                    required
+                                />
+                                <br/>
+                                <label>Exam type</label>
+                                <Select
+                                className="selectoptions"
+                                  onChange={entry => {
+                                      this.setState({ examType: entry.value });
+                                      console.log(entry);
+                                  }}
+                                  value={this.state.examType.name}
+
+                                  options={
+                                    this.state.examTypes.map((type, i) => {
+                                    return {id: i,value:type, label: type.name};
+                                  })
+                                }
+
+                                />
+
+
+
                             </div>
                             <hr/>
                             <Button className="dugmad" variant="secondary" className="dugme2dr" onClick={this.handleClose}>Close</Button>

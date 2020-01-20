@@ -3,11 +3,15 @@ import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import '../css/ClinicTable.css';
 import hospitalicon from '../icons/hospital.svg'
 import AddAdminToClinic from './AddAdminToClinic'
 import axios from 'axios';
 import EditExamType from './EditExamType';
+import 'react-table-6/react-table.css';
+import matchSorter from 'match-sorter'
+import '../css/ExamTypePage.css'
+
+var ReactTable = require('react-table-6').default;
 
 class ExamTypeTable extends React.Component{
     constructor(props) {
@@ -45,42 +49,81 @@ class ExamTypeTable extends React.Component{
 
    
     renderTableData() {
-    return this.props.content.map((examtype, index) => {
-        const { name, price} = examtype
+        return this.props.content.map((type, index) => {
+            const { name, price } = type//destructuring
+            return (
 
-        return (
-            <Card key={name} className="cardContainer" >
-            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={hospitalicon} alt='Unavailable icon' />
-                <Card.Body className = "cardBody">
-                    <Card.Title className="cardTitle" >{name}</Card.Title>
-                    <Card.Text>
-                        Price: {price}
-                    </Card.Text>
-                    <div className="addAdmin">
-                    <Button className="deleteExamType" variant="danger" onClick={this.deleteExamType.bind(this, examtype)} >Delete</Button>
-                    </div>
-                    <EditExamType content={examtype}/>
-                   
 
-                </Card.Body>
-            </Card>
+                <tr key={name.toString()}>
+                    <img src={hospitalicon} style={{ width: '20px', top: '10px', height: '20px' }} />
+                    <td>{type.name}</td>
+                    <td>{type.price}</td>
+                    <td><Button id="deletedugme" variant="outline-danger" onClick={this.deleteExamType.bind(this, type)} >Delete</Button></td>
+                    <td><EditExamType/></td>
+                </tr>
+
+
+
             )
         })
     }
 
     render() {
+        const types = [];
+
+        for (var i = 0; i < this.props.content.length; i++) {
+
+            const name = this.props.content[i].name;
+            const price = this.props.content[i].price;
+
+            console.log(this.props.content[i]);
+
+
+            { types.push({ name: name, price: price}); }
+
+        }
+
+        const columns = [
+
+            {
+                accessor: "name",
+                Header: "Name",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["name"] }),
+                filterAll: true
+            },
+            {
+                accessor: "price",
+                Header: "price",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["price"] }),
+                filterAll: true
+            },
+            {
+                accessor: "name",
+                Header: "Delete",
+                Cell: ({ row }) => (<Button className="deleteDoctor" variant="outline-danger" onClick={this.deleteExamType.bind(this, row)} >Delete</Button>)
+            },
+            {
+                accessor: "name",
+                Header: "Edit",
+                Cell: ({ original }) => (<EditExamType content={original}/>)
+             }
+            
+        ];
+
         return (
-            <div className="containerRenderCardsClinic">
-                {this.renderTableData()}
+            <div>
+                <ReactTable data={types} columns={columns}
+                    minRows={0}
+                    showPagination={false}
+                    filterable
+                    defaultFilterMethod={(filter, row) =>
+                        String(row[filter.id]) === filter.value} />
             </div>
         )
 
     }
-
-
-
-
-
 }
 
 export default ExamTypeTable

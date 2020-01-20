@@ -82,7 +82,7 @@ class  DoctorInfo extends React.Component{
             <Form className="clinicInfo">
 
             <Card.Body>
-            <Card.Img  src={icon} style={{height:'70px',width:'70px'}}/>
+  
               <h1 className="clinicHeader">Doctor's info</h1>
               <br/>
 

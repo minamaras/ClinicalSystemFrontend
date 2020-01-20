@@ -1,21 +1,19 @@
 import React from 'react';
-import ExamTypeTable from './ExamTypeTable'
-import AddExamType from './AddExamType'
+import AddExaminationRoom from './AddExaminationRoom';
+import ExaminationRoomTable from './ExaminationRoomTable';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
-import AddPredefinedAppointment from './AddPredefinedAppointment';
-import '../css/ExamTypePage.css'
 
 
-class ExamTypePage extends React.Component {
+class ExaminationRoom extends React.Component {
 
     constructor(props) {
         super(props);
         this.state =  {
-            examtypes: []
+            rooms: []
         }
 
-        this.addExamType = this.addExamType.bind(this);
+        this.addRoom = this.addRoom.bind(this);
 
 
         let token = localStorage.getItem('token');
@@ -23,31 +21,27 @@ class ExamTypePage extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-        axios.get("http://localhost:8081/api/examtypes/all",options).then(
+        axios.get("http://localhost:8081/api/examinationrooms/all",options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
-
-        console.log(this.state.examtypes)
-        
     }
 
-    addExamType(examtype) {
+    addRoom(room) {
         this.setState(prevState => ({
-            examtypes: [...prevState.examtypes, examtype]
+            rooms: [...prevState.rooms, room]
         }));
     }
 
     onSuccessHandler(resp) {
-        var tempExams = [];
+        var tempRooms= [];
 
         for (var i = 0; i < resp.data.length; i++) {
-            tempExams.push(resp.data[i]);
+            tempRooms.push(resp.data[i]);
         }
         this.setState({
-            examtypes: tempExams
+            rooms: tempRooms
         });
-
     }
 
     onErrorHandler(response) {
@@ -58,18 +52,14 @@ class ExamTypePage extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1 id="manage">Manage types of exams</h1>
+                <h1 id="manage">Manage examination rooms</h1>
                 <div className="row">
                     <div className="col-md-2">
-                    <AddExamType/>
+                    <AddExaminationRoom/>
                     </div>
-                    <div className="col-md-2">
-                    <AddPredefinedAppointment/>
-                    </div>
-                    <div className="col-md-10-drcards">
+                    <div className="col-md-10">
                         <br />
-                        <ExamTypeTable content={this.state.examtypes} />
-                    
+                        <ExaminationRoomTable content={this.state.rooms} />
                     </div>
                 </div>
             </div>
@@ -77,4 +67,4 @@ class ExamTypePage extends React.Component {
     }
 }
 
-export default withRouter(ExamTypePage);
+export default withRouter(ExaminationRoom);

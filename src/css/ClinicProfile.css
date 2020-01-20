@@ -1,6 +1,15 @@
-.text-center-clinic{
-    margin:50px 300px 0px 300px;
+.AdresaIRejting{
+width: 300px;
+
+}
+
+
+.cliniccard{
+    margin:50px 100px 100px 0px;
     box-shadow: 3px 4px 5px #d8d8d8;
+    height: 500px;
+    background-image: url("../icons/doctorbackground.png");
+
 }
 
 .clinicHeader{
@@ -8,6 +17,7 @@
     font-size: 30px;
     text-align: center;
     color: rgb(13, 118, 189);
+
 
 }
 
@@ -58,4 +68,35 @@
   left: 50%;
 
 
+}
+
+.wholepage{
+
+  height: '100%';
+  width: '100%';
+
+}
+
+.clinicTitle{
+  text-transform:capitalize;
+
+}
+
+#viewMR {
+    margin: 5% 30% 10% 30%;
+    background-color: cornflowerblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-color: cornflowerblue;
+    
+}
+
+#startExam {
+    margin: 5% 30% 0% 30%;
+    background-color: cornflowerblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-color: cornflowerblue;
+}
+
+#patientInfo {
+    margin-right: 50%;
 }

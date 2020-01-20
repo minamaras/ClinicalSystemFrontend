@@ -6,7 +6,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 30px;
     text-align: center;
-    color: rgb(13, 118, 189);
+    color:cornflowerblue;
     
 }
 
@@ -55,4 +55,32 @@
     margin-left: 20px;
     margin-top: 16px;
     margin-bottom: 7px;
+}
+
+#pricelist {
+    float: right;
+    margin-top: -33.2%;
+    margin-right: 22%;
+    padding: 20px;
+}
+
+#doctorlist {
+    padding: 20px;
+    margin-top: 2%;
+    float: left;
+}
+
+#header {
+    color: cornflowerblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#doctorheader {
+    color: cornflowerblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#pricelistable {
+    width: max-content;
+    padding: 20px;
 }

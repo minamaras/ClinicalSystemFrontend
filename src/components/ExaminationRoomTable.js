@@ -5,15 +5,13 @@ import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import roomicon from '../icons/surgery-room.svg'
 import '../css/OperationRoom.css';
-import EditRoom from './EditRoom';
 import 'react-table-6/react-table.css';
 import matchSorter from 'match-sorter'
 var ReactTable = require('react-table-6').default;
 
 
-
 const DoctorDeletedAlert = withReactContent(Swal)
-class OperationRoomTable extends React.Component {
+class ExaminationRoomTable extends React.Component {
     constructor(props) {
         super(props);
 
@@ -29,13 +27,11 @@ class OperationRoomTable extends React.Component {
 
         //console.log(doctor.email);
 
-         axios.post("http://localhost:8081/api/rooms/deleteroom", room, options).then(
+         axios.post("http://localhost:8081/api/examinationrooms/deleteroom", room, options).then(
              console.log(room),
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
-
-         console.log(room);
     }
 
     onErrorHandler(resp) {
@@ -52,28 +48,40 @@ class OperationRoomTable extends React.Component {
     renderTableData() {
         
         return this.props.content.map((room, index) => {
-            const { name, number,reserved } = room//destructuring
+            const { name, number, isReserved} = room
+
+            let reserve;
+
+            if(isReserved === false) {
+                reserve = 'Yes'
+            } else {
+                reserve = 'No'
+            }
+
+            console.log(room)
+    
             return (
-         
-         
-               <tr key={name.toString()}>
-                 <img src={roomicon} style={{ width: '20px',top:'10px',height:'20px'}} />
-                 <td>{room.name}</td>
-                 <td>{room.number}</td>
-                 <td>{room.reserved}</td>
-                 <td><Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button></td>
-                 <td><EditRoom/></td>
-               </tr>
-         
-         
-         
-            )
-         })
-      
+                <Card key={name} className="cardContainerRoom" >
+                <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={roomicon} alt='Unavailable icon' />
+                    <Card.Body className = "cardBodyRoom">
+                        <Card.Title className="cardTitleRoom" >{name}</Card.Title>
+                        <Card.Text className='cardTextRoom'>
+                            
+                               Number: {number}
+                               <br/>
+                               Reserved : {reserve}
+                               
+                               <br/>
+                            
+                        </Card.Text>
+                        <Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button>
+                    </Card.Body>
+                </Card>
+                )
+            })
         }
     
         render() {
-
             const rooms = [];
 
             for (var i = 0; i < this.props.content.length; i++) {
@@ -81,12 +89,13 @@ class OperationRoomTable extends React.Component {
                 const name = this.props.content[i].name;
                 const number = this.props.content[i].number;
                 const reserved =  this.props.content[i].reserved;
-                const dateReserved = this.props.content[i].dateReserved;
+
+                //let res = reserved;
 
                 console.log(this.props.content[i]);
               
               
-               {rooms.push({name : name, number: number,reserved: reserved, dateReserved: dateReserved});}
+               {rooms.push({name : name, number: number,reserved: reserved});}
               
               }
 
@@ -114,21 +123,9 @@ class OperationRoomTable extends React.Component {
                   filterAll: true
                   },
                   {
-                    accessor: "dateReserved",
-                    Header: "Date",
-                    filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dateReserved"] }),
-                  filterAll: true
-                  },
-                  {
                     accessor: "price",
                     Header: "Delete",
                     Cell: ({ row }) => (<Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, row)} >Delete</Button>)
-                  },
-                  {
-                    accessor: "number",
-                    Header: "Edit",
-                    Cell: ({ original }) => (<EditRoom content={original}/>)
                   }
             ];
 
@@ -145,4 +142,4 @@ class OperationRoomTable extends React.Component {
     
         }
 }
-export default OperationRoomTable;
+export default ExaminationRoomTable;

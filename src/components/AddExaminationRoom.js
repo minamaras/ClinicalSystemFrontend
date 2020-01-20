@@ -4,11 +4,10 @@ import { Modal, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
-import '../css/EditExamType.css'
 
-const TypeCreatedAlert = withReactContent(Swal)
+const RoomCreatedAlert = withReactContent(Swal)
 
-class EditExamType extends React.Component {
+class AddExaminationRoom extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,49 +16,43 @@ class EditExamType extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
-        this.SendUpdateRequest = this.SendUpdateRequest.bind(this);
+        this.addRoom = this.addRoom.bind(this);
 
         this.state = {
             show: false,
             name: '',
-            price: ''
+            number: ''
         };
     }
 
-    SendUpdateRequest = event => {
+    addRoom(event) {
         event.preventDefault();
-     
+
         let token = localStorage.getItem('token');
         const options = {
             headers: { 'Authorization': 'Bearer ' + token}
         };
-     
-        this.state.name = this.props.content.name;
-        console.log(this.state);
-     
-         axios.post("http://localhost:8081/api/examtypes/update",this.state,options).then(
-           (resp) => this.onSuccessHandler(resp),
-           (resp) => this.onErrorHandler(resp)
+
+         axios.post("http://localhost:8081/api/examinationrooms/add", this.state, options).then(
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
          );
-     
-     
-     }
+    }
 
     onErrorHandler(resp) {
-        TypeCreatedAlert.fire({
+        RoomCreatedAlert.fire({
             title: "Error occured",
             text: '',
             type: "error",
-            button: true,
-            icon: 'error'
+            button: true
           });
 
     }
 
     onSuccessHandler(resp) {
 
-        TypeCreatedAlert.fire({
-            title: "Exam type updated successfully",
+        RoomCreatedAlert.fire({
+            title: "Examination room added successfully",
             text: "",
             type: "success",
             icon: 'success'
@@ -85,8 +78,8 @@ class EditExamType extends React.Component {
     render() {
         return (
             <div>
-                <Button variant="outline-primary" id="examedit" onClick={this.handleShow}>
-                    Edit
+                <Button id="examroomadd" onClick={this.handleShow}>
+                    Add a room
                 </Button>
                 <Modal
                     show={this.state.show}
@@ -97,28 +90,36 @@ class EditExamType extends React.Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Edit exam type
+                            Add a room
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={this.SendUpdateRequest} id="editexamform">
+                        <form onSubmit={this.addRoom} id="addDoctorForm">
                             <div className="form-group">
-                                <p>Name: {this.props.content.name}</p>
-                                <br/>
-                                <input type="number"
+                                <label htmlFor="name">Name</label>
+                                <input type="text"
                                     className="form-control form-control-sm"
-                                    id="price"
-                                    name="price"
+                                    id="name"
+                                    name="name"
                                     onChange={this.handleChange}
-                                    placeholder={this.props.content.price}
+                                    placeholder="Enter name"
+                                    required
+                                />
+                                <br/>
+                                <label htmlFor="lastname">Number</label>
+                                <input type="text"
+                                    className="form-control form-control-sm"
+                                    id="number"
+                                    name="number"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter number"
                                     required
                                 />
                                 <br/>
                             </div>
                             <hr/>
-                            <Button className="dugmad" variant="secondary" className="dugme2dr" onClick={this.handleClose}>Close</Button>
-                            <Button type="submit" className="editExamdugme">Edit</Button>
-                            
+                            <Button className="roomDugme" variant = "secondary" style={{float: "right"}} onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant = "success" style={{float: "right", margin: "0px 10px 0px 0px" }} className="roomDugme">Add</Button>
                         </form>
                     </Modal.Body>
                 </Modal>
@@ -128,4 +129,4 @@ class EditExamType extends React.Component {
     }
 }
 
-export default EditExamType;
+export default AddExaminationRoom;
