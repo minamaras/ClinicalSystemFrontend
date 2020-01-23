@@ -28,6 +28,9 @@ import ExaminationRoom from './ExaminationRoom'
 import MyPatients from './MyPatients'
 import AvailableDoctors from './AvailableDoctors'
 import PatientInfo from './PatientInfo';
+import MedicalRecord from './MedicalRecord';
+import ClinicsFilteringPage from './ClinicsFilteringPage';
+
 
 class Routes extends React.Component {
 
@@ -56,8 +59,14 @@ class Routes extends React.Component {
         <Route exact path="/codebook" render={(props) => <Codebook user={this.props.user}/>} />
         <Route exact path="/manageclinic" render={(props) => <ClinicInfoPage user={this.props.user} clinicdes={this.props.user.clinicdes} clinicadress = {this.props.user.clinicadress} clinicname = {this.props.user.clinic}/>} />
         <Route exact path="/cliniclist" render={(props) => <ClinicListPage user={this.props.user}/>} />
-        <Route exact path="/clinic/:name/:examtype" render={(props) => <ClinicProfile user={this.props.user}/>} />
-        <Route exact path="/clinic/:name/" render={(props) => <ClinicProfile user={this.props.user}/>} />
+
+        <Route exact path="/clinic/:name/:exam/:date/:time" render={(props) => <ClinicProfile user={this.props.user}/>} />
+        <Route exact path="/clinic/:name//" render={(props) => <ClinicProfile user={this.props.user}/>} />
+        <Route exact path="/clinic/:name///" render={(props) => <ClinicProfile user={this.props.user}/>} />
+        <Route exact path="/clinic/:name///undefined" render={(props) => <ClinicProfile user={this.props.user}/>} />
+
+
+
         <Route exact path="/doctorprofile" render={(props) => <DoctroProfile user={this.props.user}/>} />
         <Route exact path="/examtypes" render={(props) => <ExamTypePage user={this.props.user}/>} />
         <Route exact path="/nurseprofile" render={(props) => <NurseProfile user={this.props.user}/>} />
@@ -68,7 +77,9 @@ class Routes extends React.Component {
         <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
         <Route exact path="/examrooms" render={(props) => <ExaminationRoom user={this.props.user}/>} />
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
-        //<Route exact path="/clinic/:name/:examtype" render={(props) => <AvailableDoctors user={this.props.user}/>} />
+        <Route exact path="/medicalrecord" render={(props) => <MedicalRecord user={this.props.user}/>} />
+        <Route exact path="/allclinics" render={(props) => <ClinicsFilteringPage user={this.props.user}/>} />
+
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
 
