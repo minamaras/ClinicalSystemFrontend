@@ -1,0 +1,96 @@
+.naslov{
+ margin: 80px 0px 0px 0px;
+ font-size: 35px;
+}
+
+.nesto{
+margin: 200px -40px 0px 0px;
+display: flex;
+flex-direction: row;
+width: 100%;
+
+}
+
+#naslovpravi{
+  margin: 50px 0px 0px 50px;
+  color: rgb(0, 0, 0);
+}
+
+
+.karticaBolesti{
+
+  width: 250px;
+  height: auto;
+  margin: 50px 0px 0px 0px;
+}
+
+.pozadina{
+
+  background-color: rgb(182, 218, 250);;
+}
+
+.filters{
+
+  margin: -10px 0px 0px 30px;
+  background: #c1cee3;
+  width: 85%;
+  border-style: solid;
+
+}
+
+.filterinput{
+  margin: 0px 0px 0px 35px;
+}
+
+.select{
+  width: 45%;
+  margin: -35px 0px 0px 250px;
+
+}
+
+.filterbutton{
+
+  margin: 20px 0px 10px 30px;
+  width: 100px;
+}
+
+.datepicker{
+
+margin: 5px 30px 0px 37px;
+
+}
+
+.timepicker{
+
+  margin: 20px -150px 0px 0px;
+}
+
+.infobutton{
+  margin: 5px 0px 20px 830px;
+  background-color: transparent;
+}
+
+.selectedExamType{
+  width: 200px;
+  margin: 10px 0px 0px 30px;
+}
+
+.examtypelabel{
+  margin: 0px 30px 0px 30px;
+}
+
+.filterlabel{
+  margin: 0px 0px 0px 35px;
+}
+
+.filterresults{
+
+  margin: 10px 0px 0px 30px;
+}
+
+.filterresultslabel{
+  margin: 25px 0px 0px 30px;
+  border-style: solid;
+  border-color: black;
+  width: 80%;
+}

@@ -170,7 +170,7 @@ export default class App extends React.Component {
         return (
           <Router>
              <div id="mynav">
-                <Navbar bg="light" variant="light"  style={{width:'auto'}} >
+                <Navbar bg="light" variant="light">
                     <Navbar.Brand>Clinical System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -196,7 +196,7 @@ export default class App extends React.Component {
           return (
             <Router>
               <div className = "Mynavbar container">
-                  <Navbar bg="light" variant="light" style={{width:'auto'}}>
+                  <Navbar bg="light" variant="light" style={{left:'0', right:'0',top:'0',position: 'absolute',width:'100%'}} >
                       <Navbar.Brand>Clinical System</Navbar.Brand>
                       <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
@@ -204,7 +204,8 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/" displayText="Home" />
                       <RoutedLinkContainer link="/exams" displayText="Exams" />
 
-                      <RoutedLinkContainer link="/cliniclist" displayText="Clinics" />
+                      <RoutedLinkContainer link="/allclinics" displayText="Clinics" />
+                      <RoutedLinkContainer link="/medicalrecord" displayText="My medical record" />
 
                   </Nav>
             <Nav className="ml-auto">

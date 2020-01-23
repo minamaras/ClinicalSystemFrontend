@@ -18,7 +18,7 @@ top: 35%;
 #kartica{
 
 padding: 10px 10px 3px 10px;
-  margin: 12px 180px 5px 180px;
+margin: 0px 180px 5px 180px;
 
 
 }
@@ -35,4 +35,8 @@ padding: 10px 10px 3px 10px;
 .username{
   text-transform:capitalize;
 
+}
+
+.pozadinaPacijentProfila{
+  margin: 200px 0px 0px 0px;
 }

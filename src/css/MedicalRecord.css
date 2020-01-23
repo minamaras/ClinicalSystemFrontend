@@ -1,0 +1,25 @@
+.naslov{
+ margin: 80px 0px 0px 0px;
+ font-size: 35px;
+}
+
+.nesto{
+
+
+margin: 200px -40px 0px 0px;
+display: flex;
+flex-direction: column;
+
+}
+
+#naslovpravi{
+  margin: 60px 0px 0px 0px;
+}
+
+
+.karticaBolesti{
+
+  width: 250px;
+  height: auto;
+  margin: 50px 0px 0px 0px;
+}
