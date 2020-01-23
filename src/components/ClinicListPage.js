@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom'
 import ClinicListTable from './ClinicListTable'
 import '../css/ClinicListPage.css'
 import headericon from '../icons/klinika.svg';
+import moment from 'moment';
 
 
 
@@ -58,14 +59,34 @@ class  ClinicListPage extends React.Component{
             const rating =  resp.data[i].rating;
             const doctors = [];
             const exams = [];
+            const takenterms = [];
+
+            console.log(resp.data[i].name);
 
             axios.get(`http://localhost:8081/api/doctors/aboutclinicdoctors/${resp.data[i].name}`,options).then(
                 (resp) => {
 
+                          console.log(resp.data);
+
                         resp.data.map((doc, index) => {
-                        exams.push(doc.examType);
-                        console.log(doc.examType);
+
+                            var workTimeBegin =  moment(doc.start, 'HH:mm:ss');
+                            var workTimeEnd =  moment(doc.end, 'HH:mm:ss');
+
+                            var appointments = [];
+
+                        doc.appointments.map((a, index) => {
+
+                            var appointmentTimeBegin =  moment(a.startTime, 'HH:mm:ss');
+                            var appointmentTimeEnd =  moment(a.endTime, 'HH:mm:ss');
+
+                          appointments.push({date: a.start,appointmentTimeBegin:appointmentTimeBegin._i,appointmentTimeEnd:appointmentTimeEnd._i});
+
                         });
+
+                        exams.push({exam: doc.examType,appointments:appointments,workTimeBegin:workTimeBegin._i,workTimeEnd:workTimeEnd._i});
+                        });
+
                 },
                 (resp) => this.onErrorHandler(resp),
               );
@@ -73,6 +94,7 @@ class  ClinicListPage extends React.Component{
 
 
               {tempClinics.push({name : name, adress: adress,rating: rating,exams:exams});}
+              console.log(tempClinics);
 
           }
 
@@ -80,7 +102,7 @@ class  ClinicListPage extends React.Component{
               clinics : tempClinics,
           });
 
-
+          console.log(tempClinics);
       }
 
 
