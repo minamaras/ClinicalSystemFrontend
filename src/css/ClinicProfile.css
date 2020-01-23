@@ -87,7 +87,7 @@ width: 300px;
     background-color: cornflowerblue;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-color: cornflowerblue;
-    
+
 }
 
 #startExam {
@@ -99,4 +99,52 @@ width: 300px;
 
 #patientInfo {
     margin-right: 50%;
+}
+
+.nesto{
+margin: 200px -40px 0px 0px;
+display: flex;
+flex-direction: row;
+width: auto;
+height: auto;
+
+}
+
+.pozadina{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.back{
+  width: 100%;
+  height: 100%;
+  background-color: #dedede;
+  margin: 100px 0px 0px 0px;
+}
+
+.slikadoktora{
+
+  /* Center and scale the image nicely */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+
+}
+
+.filter{
+
+  margin: 30px 0px 0px 80px;
+  width: 300px;
+}
+
+.nazivklinike{
+  margin: 50px 0px 0px 400px;
+
+}
+.slika{
+
+  margin: 0px 0px 0px 40px;
 }
