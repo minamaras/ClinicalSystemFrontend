@@ -30,6 +30,15 @@
 
 }
 
+.vreme{
+  margin: 50px 20px 0px 0px;
+}
+
+.timerpicker{
+
+  width: 200px;
+}
+
 .selectoptions{
 
   width: 300px;
