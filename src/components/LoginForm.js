@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl, ControlLabel,Card,Col } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { withRouter } from "react-router-dom";
@@ -81,36 +81,66 @@ class  LoginForm  extends React.Component{
 
 render(){
   return(
+    <div className="loginpozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+    <Card className="logincard">
+    <Form onSubmit={this.SendLoginRequest} className="loginform">
 
-    <form onSubmit={this.SendLoginRequest} className="loginform">
-    <div className="form-group">
-        <label htmlFor="email">Email</label>
+    <Card.Body>
 
-        <input type="email"
-            className="form-control form-control-sm"
-            id="email"
-            name="email"
-            onChange={this.handleChange}
-            placeholder="Enter email"
-            required
-        />
+    <Form.Row>
+         <Form.Group as={Col} controlId="formGridEmail">
 
-        <br/>
-        <label htmlFor="password">Password</label>
-        <input type="password"
-            className="form-control form-control-sm"
-            id="password"
-            name="password"
-            onChange={this.handleChange}
-            placeholder="Enter password"
-            required
-        />
+            <Form.Label className="fontPtnt"><b>Email</b></Form.Label>
+
+         </Form.Group>
+
+         <Form.Group>
+
+              <Form.Control type="email"
+                  className="mejl"
+                  id="email"
+                  name="email"
+                  onChange={this.handleChange}
+                  placeholder="Enter email"
+                  required
+              />
+
+        </Form.Group>
+
+    </Form.Row>
+
+    <Form.Row>
+             <Form.Group as={Col} controlId="formGridEmail">
+
+                <Form.Label className="fontPtnt"><b>Password</b></Form.Label>
+
+            </Form.Group>
+
+             <Form.Group>
+
+                 <Form.Control type="password"
+                     className="lozinka"
+                     id="password"
+                     name="password"
+                     onChange={this.handleChange}
+                     placeholder="Enter password"
+                     required
+                 />
+            </Form.Group>
+
+    </Form.Row>
+
+            <Button variant="outline-primary" type="submit" className="dugme">
+                Login
+            </Button>
+
+        </Card.Body>
+
+          </Form>
+
+    </Card>
+
     </div>
-    <br/>
-    <Button type="submit">Login</Button>
-</form>
-
-
 
           );
     }
