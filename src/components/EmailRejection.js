@@ -94,11 +94,8 @@ class EmailRejection extends React.Component{
         };
 
         axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, emailText, options).then(
-            console.log(this.props.id),
-            console.log(emailText),   
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
-            window.location.reload()
             
           );
     }

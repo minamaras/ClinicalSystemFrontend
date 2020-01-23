@@ -60,10 +60,8 @@ class RequestsTable extends React.Component{
       };
 
         axios.post("http://localhost:8081/api/requests/confirmrequest", request,options).then(
-            console.log(request),
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
-            window.location.reload()
           );
     }
 

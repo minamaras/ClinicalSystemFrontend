@@ -24,6 +24,7 @@ import ActivatedAccount from './ActivatedAccount'
 import ChangePassword from './ChangePassword'
 import NurseHoliday from './NurseHoliday'
 import MyCalendar from './MyCalendar'
+import RecipesPage from './RecipesPage'
 import ExaminationRoom from './ExaminationRoom'
 import MyPatients from './MyPatients'
 import AvailableDoctors from './AvailableDoctors'
@@ -75,6 +76,7 @@ class Routes extends React.Component {
         <Route exact path="/changepass" render={(props) => <ChangePassword user={this.props.user}/>} />
         <Route exact path="/holiday" render={(props) => <NurseHoliday user={this.props.user}/>} />
         <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
+        <Route exact path="/prescription" render={(props) => <RecipesPage user={this.props.user}/>} />
         <Route exact path="/examrooms" render={(props) => <ExaminationRoom user={this.props.user}/>} />
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
         <Route exact path="/medicalrecord" render={(props) => <MedicalRecord user={this.props.user}/>} />

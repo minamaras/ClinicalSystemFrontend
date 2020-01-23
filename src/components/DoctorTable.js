@@ -53,11 +53,10 @@ class DoctorTable extends React.Component {
 
         //console.log(doctor.email);
 
-        axios.post("http://localhost:8081/api/doctors/deletedoctor", doctor, options).then(
-            console.log(doctor),
-            (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp)
-        );
+         axios.post("http://localhost:8081/api/doctors/deletedoctor", doctor, options).then(
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
+         );
     }
 
     onErrorHandler(resp) {
