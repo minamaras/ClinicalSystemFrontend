@@ -16,10 +16,9 @@ import "react-select/dist/react-select.css";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import matchSorter from "match-sorter";
+import moment from 'moment';
+import TimePicker from "react-time-picker";
 var ReactTable = require('react-table-v6').default;
-
-
-
 
 
 
@@ -28,6 +27,8 @@ class ClinicListTable extends React.Component{
     constructor(props) {
         super(props);
 
+          this.handleChange = this.handleChange.bind(this);
+
       this.state = {
       select2: undefined,
       examTypes : [],
@@ -35,12 +36,16 @@ class ClinicListTable extends React.Component{
       filtered: [],
       clinics: this.props.content,
       price:'',
-      selectedExamType:''
+      selectedExamType:'',
+      selectedDate:'',
+      time: '10:00',
+      tempclinics:[]
+
     };
 
         this.renderTableData = this.renderTableData.bind(this);
 
-
+        console.log(this.state.time);
     }
 
 
@@ -58,7 +63,13 @@ class ClinicListTable extends React.Component{
               (resp) => this.onErrorHandler(resp),
             );
 
+            var dateString = this.state.startDate.getFullYear() + '-' + (this.state.startDate.getMonth() + 1) + '-' + this.state.startDate.getDate();
+            //console.log(dateString);
 
+            this.setState({
+
+              selectedDate: dateString
+            });
       }
 
 
@@ -107,11 +118,51 @@ return this.props.content.map((clinic, index) => {
    }
 
 
-   handleChange = date => {
+
+onChangeTime = time => {
+
+var timeNew =  moment(time, 'HH:mm:ss');
+var duration = moment("00:30:00","HH:mm:ss");
+var nesto = timeNew.add(30,'m').format("HH:mm:ss");
+
+var drugoVreme = moment(nesto,"HH:mm:ss");
+console.log(drugoVreme);
+console.log(timeNew);
+if(timeNew._i < drugoVreme._i){
+console.log("haha")
+}
+
+  this.setState({ time: timeNew._i });
+
+if(this.state.filtered[0] != undefined){
+
+  this.state.filtered[0].time = timeNew._i;
+
+  }
+
+}
+
+
+
+
+handleChange = date => {
+
+     var dateString =date.toISOString().substring(0,10);
+     console.log(date.toISOString().substring(0,10));
+     console.log(date);
+
+
        this.setState({
-         startDate: date
+         startDate: date,
+         selectedDate:dateString,
        });
-     };
+
+       console.log(dateString);
+       if(this.state.filtered[0] != undefined){
+       this.state.filtered[0].date=dateString;
+     }
+
+   }
 
 onFilteredChangeCustom = (value, accessor) => {
 
@@ -129,9 +180,20 @@ onFilteredChangeCustom = (value, accessor) => {
       });
     }
 
+    var dateString =this.state.startDate.toISOString().substring(0,10);
+
+    if(this.state.time != undefined){
+
+      if (insertNewFilter) {
+        filtered.push({ id: accessor, value: value, date:dateString,time:this.state.time});
+      }
+
+    }else{
+
     if (insertNewFilter) {
-      filtered.push({ id: accessor, value: value});
+      filtered.push({ id: accessor, value: value, date:dateString,time:''});
     }
+  }
 
     this.setState({ filtered: filtered });
 
@@ -140,13 +202,17 @@ console.log(filtered);
 
 
 
+
 render() {
 
   console.log(this.props.content)
+  console.log(this.state.startDate);
+  console.log(this.props.content);
 
   this.props.content.map((clinic, i) => {
   console.log(clinic.exams);
 })
+
 
 
 const columns = [
@@ -158,14 +224,22 @@ const columns = [
     Cell: e => <img style={{height:'30px',width:'30px'}} src={clinicsicon}/>,
     filterMethod: (filter, row) => {
 
-      return row.exams.some(x=>x.name.includes(filter.value));
+      var temp = moment(filter.time,"HH:mm:ss");
+      var durationS= temp.add(30,'m').format("HH:mm:ss");
 
-    }
+      var durationM = moment(durationS,"HH:mm:ss");
+      var duration = durationM._i;
+      console.log(duration);
+      var temp = [];
 
+      
+
+
+}
 },{
     accessor: "name",
     Header: "Clinic",
-    Cell: ({ row }) => (<Link to={{pathname:`/clinic/${row.name}/${this.state.selectedExamType}`, state :{data : row} } }>{row.name}</Link>),
+    Cell: ({ row }) => (<Link to={{pathname:`/clinic/${row.name}/${this.state.selectedExamType}/${this.state.selectedDate}`, state :{data : row} } }>{row.name}</Link>),
   },
   {
     accessor: "adress",
@@ -175,13 +249,14 @@ const columns = [
     accessor: "rating",
     Header: "Rating"
   },
-  
+
 ];
 
-
+console.log(this.state.time);
     return (
 
         <div className="container">
+        <pre>{JSON.stringify(this.state.filtered, null, 2)}</pre>
 
         <Form className="container-options-picker">
         <Form.Row className="red">
@@ -237,20 +312,42 @@ const columns = [
         <Form.Group as={Col}className="grupa">
         <b>Select appointment date:</b>{" "}
         <br></br>
+
         <DatePicker
-             selected={ this.state.startDate }
-             onChange={ this.handleChange }
+             selected={ this.state.startDate}
+             //onChange={ this.handleChange}
+             onChange={this.handleChange}
+             value= {this.state.inputValue}
              name="startDate"
              className="picker"
+             minDate={moment().toDate()}
+             dateFormat="yyyy-mm-dd"
+
            />
            </Form.Group>
+
 
            <Form.Group as={Col}className="grupa">
            <b>Appointment price</b>{" "}
            <br></br>
            <input value={this.state.price}></input>
               </Form.Group>
+
            </Form.Row>
+
+           <Form.Row className="red">
+           <Form.Group as={Col} className="vreme">
+           <label><b>Appointment time:</b></label>
+           <br/>
+           <TimePicker
+              onChange={this.onChangeTime}
+              value={this.state.time}
+              locale="sv-sv"
+            />
+
+           </Form.Group>
+           </Form.Row>
+
            </Form>
 
         <ReactTable  data={this.props.content}
