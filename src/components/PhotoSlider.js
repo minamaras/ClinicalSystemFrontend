@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Modal, Button, Card, Carousel } from "react-bootstrap";
-import bolnica from '../icons/bolnica.jfif'
-import doktor from '../icons/doktor.jfif'
-import lekovi from '../icons/lekovi.jfif'
+import slider1 from '../icons/slider1.svg'
+import slider2 from '../icons/slider2.svg'
+import slider3 from '../icons/slider3.svg'
 import '../css/PhotoSlider.css';
 
 
@@ -17,10 +17,10 @@ render() {
     return ( <div>
 
 
-        <Carousel style={{ height:'50px', width: 'auto'}}>
+        <Carousel style={{ height:'50px', width: 'auto',top:'60px', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
             <Carousel.Item>
                   <img
-                  className="d-block w-100" src={bolnica} alt="First slide"/>
+                  className="d-block w-100" src={slider1} alt="First slide"/>
 
                   <Carousel.Caption className="text">
 
@@ -38,7 +38,7 @@ render() {
 
             <Carousel.Item>
                 <img
-                className="d-block w-100" src={doktor} alt="Third slide"/>
+                className="d-block w-100" src={slider2} alt="Third slide"/>
 
                 <Carousel.Caption className="text">
 
@@ -56,7 +56,7 @@ render() {
 
             <Carousel.Item>
                   <img
-                  className="d-block w-100" src={lekovi} alt="Third slide"/>
+                  className="d-block w-100" src={slider3} alt="Third slide"/>
 
                   <Carousel.Caption className="text">
 
