@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
+import 'moment/locale/en-gb';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { withRouter } from 'react-router-dom';
 
+
 const localizer = momentLocalizer(moment);
+
+const myEventsList = []
 
 class MyCalendar extends React.Component {
   constructor() {
+    
     super();
+
+    
     const now = new Date();
     const events = [
       {
@@ -25,6 +32,11 @@ class MyCalendar extends React.Component {
       name: 'React',
       events
     };
+    
+  }
+
+  componentDidMount(){
+
   }
 
   render() {
@@ -33,11 +45,11 @@ class MyCalendar extends React.Component {
           <br />
         <div style={{ height: '450pt'}}>
           <Calendar
-            events={this.state.events}
+            localizer={localizer}
+            events={myEventsList}
             startAccessor="start"
             endAccessor="end"
             defaultDate={moment().toDate()}
-            localizer={localizer}
           />
         </div>
       </div>
