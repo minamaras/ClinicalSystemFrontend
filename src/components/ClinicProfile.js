@@ -6,25 +6,24 @@ import withReactContent from 'sweetalert2-react-content';
 import { withRouter,useParams,Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import '../css/ClinicProfile.css'
-import icon from '../icons/clinicphoto.png';
+import icon from '../icons/klinika.svg';
+import doctors from '../icons/doctors.svg';
 import clinicsicon from '../icons/doctor.svg';
 import Select from 'react-select';
 import "react-select/dist/react-select.css";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import matchSorter from "match-sorter";
-var ReactTable = require('react-table-v6').default;
-
-
+import ClinicDoctorsTable from './ClinicDoctorsTable';
+import moment from 'moment';
 
 
 class  ClinicProfile extends React.Component{
   constructor(props) {
       super(props);
-      this.renderDataOther = this.renderDataOther.bind(this);
 
-
-
+      this.handleChange = this.handleChange.bind(this);
+      this.handleChangeResultFiltering = this.handleChangeResultFiltering.bind(this);
 
       this.state =  {
           clinicname: '',
@@ -36,9 +35,13 @@ class  ClinicProfile extends React.Component{
           filtered:[],
           examTypes:[],
           select2: undefined,
-          exam: props.match.params.examtype
-
-      }
+          exam: props.match.params.examtype,
+          date: props.match.params.date,
+          startDate: new Date(),
+          clinic:'',
+          filter:'',
+          startingdoctors:[]
+        }
 
 
 
@@ -52,20 +55,78 @@ class  ClinicProfile extends React.Component{
           (resp) => this.onErrorHandler(resp),
         );
 
+        var exams=[];
+        var doctorstemp=[];
         axios.get(`http://localhost:8081/api/doctors/aboutclinicdoctors/${this.props.match.params.name}`,options).then(
             (resp) => {
-              this.setState({
-                doctors : resp.data,
-            });},
-            (resp) => this.onErrorHandler(resp),
-          );
+              console.log(resp.data);
 
-          console.log(this.state);
+              resp.data.map((doctor, index) => {
 
+                var strint = doctor.start.toString().substring(0,2);
+                var time = parseInt(strint);
+
+                var strinte = doctor.end.toString().substring(0,2);
+                var timeend = parseInt(strinte);
+                console.log(timeend);
+
+                const locale = 'eu'; // or whatever you want...
+                const hours = [];
+
+                for(let hour = time; hour < timeend; hour++) {
+                  hours.push(moment({ hour }).format('HH:mm:ss'));
+                  hours.push(
+                      moment({
+                          hour,
+                          minute: 30
+                      }).format('HH:mm:ss')
+                  );
+              }
+
+              var self = this;
+              var actualhours=[];
+
+              doctor.appointments.forEach(function (appointment) {
+
+                console.log(appointment.startTime);
+                hours.forEach(function (term) {
+
+
+                  if(appointment.date == self.props.match.params.date && appointment.startTime == term){
+
+                    console.log(hours.indexOf(term));
+                    hours.splice( hours.indexOf(term), 1 );
+
+                  }
+
+                });
+
+
+              });
+
+
+              if(doctor.examType.name.toLowerCase().includes(self.props.match.params.exam.toLowerCase())){
+
+                doctorstemp.push({name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+              }
+            });
+
+
+            console.log(doctorstemp);
+            this.setState({
+              doctors: doctorstemp,
+              startingdoctors: doctorstemp,
+            });
+
+          },
+            (resp) =>this.onErrorHandler(resp));
       }
 
 
+
       componentDidMount () {
+
+
 
         let token = localStorage.getItem('token');
         const options = {
@@ -75,39 +136,17 @@ class  ClinicProfile extends React.Component{
             const tempExams = [];
 
         axios.get('http://localhost:8081/api/examtypes/all',options).then(
-              (resp) => this.Success(resp),
+              (resp) => {this.setState({
+
+                examTypes: resp.data,
+
+              });},
               (resp) => this.onErrorHandler(resp),
             );
-
-            if(this.state.exam != undefined){
-
-                let filtered = this.state.filtered;
-                filtered.push({ id: "examType", value: this.state.exam});
-
-
-              this.setState({ filtered: filtered });
-
-
-            }
 
 
       }
 
-
-      Success(resp) {
-
-            var tempexams = [];
-
-            for (var i = 0; i < resp.data.length; i++) {
-                tempexams.push(resp.data[i]);
-            }
-
-            this.setState({
-                examTypes : tempexams,
-            });
-
-
-          }
 
 
       onSuccessHandler(resp) {
@@ -124,6 +163,7 @@ class  ClinicProfile extends React.Component{
                     description: resp.data.description,
                     doctorsId: resp.data.doctorsId,
                     rating: resp.data.rating,
+                    clinic: resp.data,
 
         });
 
@@ -140,246 +180,137 @@ class  ClinicProfile extends React.Component{
 
 
 
-      renderDataOther(){
+    handleChange = date => {
 
-        const docs = this.state.doctors;
-        if (docs.lenght === 0){
-
-          return (
-
-             <li>There are currently no doctors working in this clinic.</li>
-
-          );
+         var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+         console.log(dateString);
 
 
-        }else{
-
-        return docs.map((doctor) => {
-           const {id,name,lastname} = doctor//destructuring
-           return (
-
-              <li><Link to={`/doctor/${doctor.id}`}>{doctor.name} {doctor.lastname}</Link></li>
-
-           )
-        })
-
-      }
-
-    }
+           this.setState({
+             startDate: date,
+           });
 
 
-    onFilteredChangeCustom = (value, accessor) => {
+           this.setState({
 
-      let filtered = this.state.filtered;
-        let insertNewFilter = 1;
+             date: date,
+           });
 
-        if (filtered.length) {
-          filtered.forEach((filter, i) => {
-            if (filter["id"] === accessor) {
-              if (value === "" || !value.length) filtered.splice(i, 1);
-              else filter["value"] = value;
+           console.log(dateString);
+           if(this.state.filtered[0] != undefined){
+           this.state.filtered[0].date=dateString;
+         }
 
-              insertNewFilter = 0;
-            }
-          });
-        }
+       }
 
-        if (insertNewFilter) {
-          filtered.push({ id: accessor, value: value});
-        }
 
-        this.setState({ filtered: filtered });
+       handleChange(e) {
+             this.setState({...this.state, [e.target.name]: e.target.value});
 
-    console.log(filtered);
-      };
+         }
 
+
+  handleChangeResultFiltering(e) {
+
+           this.setState({...this.state, [e.target.name]: e.target.value});
+
+           if(e.target != undefined){
+           console.log(e.target.value);
+         }
+
+         if(document.getElementsByName("filter")[0].value ==''){
+
+         this.setState({
+           doctors: this.state.startingdoctors,
+         });
+         return;
+         }
+
+         var resultingdoctors =[];
+         var doctorsName=[];
+         var doctorsLastname=[];
+         var doctorsRating=[];
+         var doctorsFirstAndLastName=[];
+
+
+         this.state.doctors.forEach(function (arrayItem) {
+
+           if(arrayItem.name.toLowerCase().includes(e.target.value.toLowerCase())){
+             doctorsName.push(arrayItem);
+         }
+
+         if(arrayItem.lastname.toLowerCase().includes(e.target.value.toLowerCase())){
+           doctorsLastname.push(arrayItem);
+       }
+
+       if(arrayItem.lastname.toLowerCase().includes(e.target.value.toLowerCase())){
+         doctorsFirstAndLastName.push(arrayItem);
+     }
+
+       if(arrayItem.rating.toString().startsWith(e.target.value)){
+           doctorsRating.push(arrayItem);
+     }
+
+     console.log(doctorsFirstAndLastName);
+ });
+
+
+     resultingdoctors = doctorsName;
+
+       doctorsLastname.forEach(function (arrayItem) {
+
+         if(resultingdoctors.some(x=>x.name == arrayItem.name)){
+           return;
+         }else{
+           resultingdoctors.push(arrayItem);
+         }
+
+       });
+
+
+       doctorsRating.forEach(function (arrayItem) {
+
+         if(resultingdoctors.some(x=>x.name == arrayItem.name)){
+           return;
+         }else{
+           resultingdoctors.push(arrayItem);
+         }
+
+       });
+
+
+       this.setState({
+
+         doctors: resultingdoctors,
+
+       });
+
+       }
 
 
       render() {
 
-        const columns = [
+          if(this.props.match.params.date != undefined && this.props.match.params.time != undefined && this.props.match.params.exam != undefined){
+          return(
+            <div className="back">
+            <img src = {doctors} className="slikadoktora"></img>
+            <h1 className="nazivklinike"><u>{this.state.clinicname}</u></h1>
+            <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
+            <div className="nesto">
 
-          {
-            Header : "Exam",
-            accessor: "examType",
-            width: 50,
-            Cell: e => <img style={{height:'30px',width:'30px'}} src={clinicsicon}/>,
-            //Cell: ({ row }) => (<label>{row.examType.name}</label>),
-            filterMethod: (filter, row) => {
+                        <br />
+                        <ClinicDoctorsTable content={this.state.doctors} date={this.props.match.params.date}/>
+                        <br />
+            </div>
 
-              return row.examType.name.includes(filter.value);
+            </div>
 
-            }
-
-        },{
-            accessor: "name",
-            Header: "Doctor's name",
-            Cell: ({ row }) => (<Link to={{pathname:`/doctor/${row.name}`, state :{data : row} } }>{row.name}</Link>),
-          },
-          {
-            accessor: "lastname",
-            Header: "Doctors's lastname"
-          },
-          {
-            accessor: "rating",
-            Header: "Rating"
-          },
-        ];
-
-
-          return (
-            <div className="wholepage">
-
-            <Card className="cliniccard">
-
-            <Form className="clinicInfo">
-
-
-            <Card.Body>
-              <h1 className="clinicHeader"><b>{this.state.clinicname}</b></h1>
-
-
-              <br/>
-                <br/>
-
-
-                 <Card className="AdresaIRejting">
-
-                 <Card.Text><b>Address:</b> {this.state.adress}</Card.Text>
-
-                 <Card.Text><b>Rating:</b> {this.state.rating}</Card.Text>
-
-                 </Card>
-                 <br>
-                 </br>
-
-                 <Form.Row style={{width:'75%'}}>
-                 <Form.Group as={Col} >
-
-                 <b>Select appointment type :</b>{" "}
-                 <Select
-                 className="selectoptions"
-                   onChange={entry => {
-                       this.setState({ select2: entry });
-                       console.log(entry);
-                       if(entry == null){
-                       this.onFilteredChangeCustom([],
-                         "examType"
-                       );
-
-                       //this.state.price='';
-                       //this.state.selectedExamType='';
-
-                     }else{
-
-                       this.onFilteredChangeCustom(entry.value.name,
-                         "examType"
-                       );
-                       //this.state.price=entry.value.price;
-
-                       //const index =entry.value.name.indexOf(' ');
-                       //console.log(index);
-                       //console.log(entry.value.name.lenght);
-                       //var res = entry.value.name.substring(0,index);
-                       //this.state.selectedExamType=res;
-                     }
-                   }}
-
-                   value={this.state.select2}
-
-                   options={
-                     this.state.examTypes.map((type, i) => {
-                     return {id: i,value:type, label: type.name};
-                   })
-                 }
-
-                 />
-
-                 </Form.Group>
-
-                 <Form.Group>
-                 <b>Select appointment date:</b>{" "}
-                 <br></br>
-                 <DatePicker
-                      selected={ this.state.startDate }
-                      onChange={ this.handleChange }
-                      name="startDate"
-                      className="picker"
-
-                    />
-
-                 </Form.Group>
-
-                 </Form.Row>
-
-                    <ReactTable  data={this.state.doctors}
-                    style={{height:'80%'}}
-
-                    columns= {columns}
-                    filterable
-                    filtered={this.state.filtered}
-                    minRows={0}
-                    showPagination={true}
-
-                    onFilteredChange={(filtered, column, value) => {
-
-                        this.onFilteredChangeCustom(value, column.id || column.accessor);
-
-                      }}
-
-                    defaultFilterMethod={(filter, row, column) => {
-                      const id = filter.pivotId || filter.id;
-                        console.log(row[id]);
-                        console.log(filter.value);
-
-                      // if (typeof filter.value === "object") {
-                      //
-                      //   //for(var i=0;i<filter.value.length;i++){
-                      //       console.log(row[id]);
-                      //       console.log("n");
-                      //       console.log(matchSorter([row[id]], filter.value));
-                      //
-                      //     if(matchSorter([row[id]], filter.value).lenght !== 0){
-                      //       console.log(row[id] !== undefined);
-                      //       return row[id] !== undefined;
-                      //     }else {
-                      //       return true;
-                      //     }
-                      //
-                      //   }
-                      if (typeof filter.value === "object") {
-                               return row[id] !== undefined
-                                 ? filter.value.indexOf(row[id]) > -1
-                                 : true;
-                       }
-                        else {
-
-                         if( typeof row[id] === 'number'){
-                          return row[id] !== undefined
-                            ? String(row[id]).startsWith(filter.value.toLowerCase())
-                            : true;
-
-                        }else {
-                        return row[id] !== undefined
-                          ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase())
-                          : true;
-                        }
-                      }
-                    }}
-                      />
-                      <br>
-                      </br>
-
-                    </Card.Body>
-
-
-
-
-              </Form>
-              </Card>
-
-              </div>
           );
+        }else{
+          return(
+            <div>Nedefinisani</div>
+          );
+        }
       }
 
   }
