@@ -109,7 +109,7 @@ handleChange(e) {
 
 render() {
     return (
-
+      <div className="pozadinaPacijentProfila">
       <Card className="text-center" id="kartica">
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
 
@@ -190,6 +190,7 @@ render() {
   </Card.Body>
   </Form>
 </Card>
+</div>
 
 
     )
