@@ -14,7 +14,8 @@ class PhotoSlider extends React.Component{
 }
 
 render() {
-    return ( <div>
+    if(this.props.user.isLoggedIn){
+      return ( <div>
 
 
         <Carousel style={{ height:'50px', width: 'auto',top:'60px', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
@@ -76,6 +77,70 @@ render() {
       </div>
     )
 
+
+    } else {
+      return ( <div>
+
+
+        <Carousel style={{ height:'50px', width: 'auto',top:'60px', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+            <Carousel.Item>
+                  <img
+                  className="d-block w-100" src={slider1} alt="First slide"/>
+
+                  <Carousel.Caption className="text">
+
+                  <h1>Welcome to the Clinical System!</h1>
+                  <p>
+                    This system is designed for doctors, nurses and patients.
+                    We're here to help you!
+                    </p>
+
+                  </Carousel.Caption>
+
+
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                className="d-block w-100" src={slider2} alt="Third slide"/>
+
+                <Carousel.Caption className="text">
+
+                <h1>Welcome to the Clinical System!</h1>
+                <p>
+                  This system is designed for doctors, nurses and patients.
+                  We're here to help you!
+                  </p>
+
+
+                </Carousel.Caption>
+
+            </Carousel.Item>
+
+            <Carousel.Item>
+                  <img
+                  className="d-block w-100" src={slider3} alt="Third slide"/>
+
+                  <Carousel.Caption className="text">
+
+                  <h1>Welcome to the Clinical System!</h1>
+                  <p>
+                    This system is designed for doctors, nurses and patients.
+                    We're here to help you!
+                    </p>
+                    
+
+                  </Carousel.Caption>
+
+            </Carousel.Item>
+        </Carousel>
+
+
+      </div>
+    )
+
+    }
+    
 
 }
 
