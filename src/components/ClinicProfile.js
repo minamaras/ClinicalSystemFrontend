@@ -7,7 +7,8 @@ import { withRouter,useParams,Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import '../css/ClinicProfile.css'
 import icon from '../icons/klinika.svg';
-import doctors from '../icons/doctors.svg';
+import clinicprofileimage from '../icons/2112.jpg';
+import doctors from '../icons/Career_3-01.jpg';
 import clinicsicon from '../icons/doctor.svg';
 import Select from 'react-select';
 import "react-select/dist/react-select.css";
@@ -15,7 +16,9 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import matchSorter from "match-sorter";
 import ClinicDoctorsTable from './ClinicDoctorsTable';
+import AllDoctorsFromClinicTable from './AllDoctorsFromClinicTable.js';
 import moment from 'moment';
+
 
 
 class  ClinicProfile extends React.Component{
@@ -37,10 +40,13 @@ class  ClinicProfile extends React.Component{
           select2: undefined,
           exam: props.match.params.examtype,
           date: props.match.params.date,
+          time: props.match.params.time,
+          name: props.match.params.name,
           startDate: new Date(),
           clinic:'',
           filter:'',
-          startingdoctors:[]
+          startingdoctors:[],
+          exams:[]
         }
 
 
@@ -59,6 +65,7 @@ class  ClinicProfile extends React.Component{
         var doctorstemp=[];
         axios.get(`http://localhost:8081/api/doctors/aboutclinicdoctors/${this.props.match.params.name}`,options).then(
             (resp) => {
+              if(this.props.match.params.date !==  undefined && this.props.match.params.date !==  undefined && this.props.match.params.time !==  undefined  ){
               console.log(resp.data);
 
               resp.data.map((doctor, index) => {
@@ -104,11 +111,11 @@ class  ClinicProfile extends React.Component{
 
               });
 
-
               if(doctor.examType.name.toLowerCase().includes(self.props.match.params.exam.toLowerCase())){
 
-                doctorstemp.push({name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
+
             });
 
 
@@ -117,8 +124,65 @@ class  ClinicProfile extends React.Component{
               doctors: doctorstemp,
               startingdoctors: doctorstemp,
             });
+          }else{
 
-          },
+
+            resp.data.map((doctor, index) => {
+
+              var strint = doctor.start.toString().substring(0,2);
+              var time = parseInt(strint);
+
+              var strinte = doctor.end.toString().substring(0,2);
+              var timeend = parseInt(strinte);
+              console.log(timeend);
+
+              const locale = 'eu'; // or whatever you want...
+              const hours = [];
+
+              for(let hour = time; hour < timeend; hour++) {
+                hours.push(moment({ hour }).format('HH:mm:ss'));
+                hours.push(
+                    moment({
+                        hour,
+                        minute: 30
+                    }).format('HH:mm:ss')
+                );
+            }
+
+            var self = this;
+            var actualhours=[];
+
+            doctor.appointments.forEach(function (appointment) {
+
+              console.log(appointment.startTime);
+              hours.forEach(function (term) {
+
+
+                if(appointment.date == self.props.match.params.date && appointment.startTime == term){
+
+                  console.log(hours.indexOf(term));
+                  hours.splice( hours.indexOf(term), 1 );
+
+                }
+
+              });
+
+
+            });
+
+
+              doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+            });
+
+          this.setState({
+            doctors: doctorstemp,
+            startingdoctors: doctorstemp,
+          });
+
+          console.log(this.state.doctors);
+
+          }
+        },
             (resp) =>this.onErrorHandler(resp));
       }
 
@@ -232,6 +296,13 @@ class  ClinicProfile extends React.Component{
          var doctorsRating=[];
          var doctorsFirstAndLastName=[];
 
+         var trywholename=false;
+
+         var firstandlast = e.target.value.split(/ (?!\|)/);
+         if( firstandlast !== undefined && firstandlast[0] !== undefined && firstandlast[1] !== undefined){
+           trywholename=true;
+         }
+
 
          this.state.doctors.forEach(function (arrayItem) {
 
@@ -243,9 +314,12 @@ class  ClinicProfile extends React.Component{
            doctorsLastname.push(arrayItem);
        }
 
-       if(arrayItem.lastname.toLowerCase().includes(e.target.value.toLowerCase())){
-         doctorsFirstAndLastName.push(arrayItem);
+        if(trywholename){
+       if(arrayItem.lastname.toLowerCase().includes(firstandlast[1].toLowerCase()))
+        if(arrayItem.name.toLowerCase().includes(firstandlast[0].toLowerCase())){
+         {doctorsFirstAndLastName.push(arrayItem);}
      }
+   }
 
        if(arrayItem.rating.toString().startsWith(e.target.value)){
            doctorsRating.push(arrayItem);
@@ -259,7 +333,17 @@ class  ClinicProfile extends React.Component{
 
        doctorsLastname.forEach(function (arrayItem) {
 
-         if(resultingdoctors.some(x=>x.name == arrayItem.name)){
+         if(resultingdoctors.some(x=>x.id == arrayItem.id)){
+           return;
+         }else{
+           resultingdoctors.push(arrayItem);
+         }
+
+       });
+
+       doctorsFirstAndLastName.forEach(function (arrayItem) {
+
+         if(resultingdoctors.some(x=>x.id == arrayItem.id)){
            return;
          }else{
            resultingdoctors.push(arrayItem);
@@ -270,7 +354,7 @@ class  ClinicProfile extends React.Component{
 
        doctorsRating.forEach(function (arrayItem) {
 
-         if(resultingdoctors.some(x=>x.name == arrayItem.name)){
+         if(resultingdoctors.some(x=>x.id == arrayItem.id)){
            return;
          }else{
            resultingdoctors.push(arrayItem);
@@ -285,16 +369,18 @@ class  ClinicProfile extends React.Component{
 
        });
 
+       console.log(this.state.doctors);
        }
 
 
       render() {
 
           if(this.props.match.params.date != undefined && this.props.match.params.time != undefined && this.props.match.params.exam != undefined){
+
           return(
-            <div className="back">
+            <div className="back" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
             <img src = {doctors} className="slikadoktora"></img>
-            <h1 className="nazivklinike"><u>{this.state.clinicname}</u></h1>
+            <h1 className="nazivklinike">Doctors from clinic <b>{this.state.clinicname}</b> that are avalaible for selected exam type for date <u>{this.state.date}</u> at time <b>{this.state.time}</b> </h1>
             <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
             <div className="nesto">
 
@@ -306,9 +392,71 @@ class  ClinicProfile extends React.Component{
             </div>
 
           );
-        }else{
+        }else if (this.props.match.params.date == undefined && this.props.match.params.time == undefined && this.props.match.params.exam == undefined && this.props.match.params.name !== undefined){
+
+          console.log("mislim da sam u ovom else-u i ovo su mi parameri");
+          console.log(this.props.match.params);
+
+
           return(
-            <div>Nedefinisani</div>
+
+
+            <div className="back" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+            <img src = {clinicprofileimage} className="slikadoktora"></img>
+            <h1 className="nazivklinike"><u>{this.state.clinicname}</u></h1>
+            <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
+
+            <DatePicker
+                 selected={ this.state.startDate}
+                 //onChange={ this.handleChange}
+                 onChange={this.handleChangeDate}
+                 value= {this.state.inputValue}
+                 name="startDate"
+                 className="datepicker"
+                 minDate={moment().toDate()}
+
+
+               />
+             <div className="type">
+             <b className="examtypelabel" style={{opacity:'0.7'}}>Select appointment type :</b>{" "}
+             <Select
+             options={
+              this.state.exams.map((type, i) => {
+              return {id: i,value:type.name, label: type.name};
+               })
+             }
+             onChange={entry => {
+
+                 if(entry == null){
+                   this.setState({
+                     selecetedexam: '',
+                     clinics: this.state.alltheclinics,
+                 });
+               }else{
+
+               this.setState({ selecetedexam: entry.value});
+             }
+             }
+             }
+             value={this.state.selecetedexam}
+             className="selectedExamType"
+             required
+              />
+
+              </div>
+
+
+            <div className="nesto">
+
+                        <br />
+                        <AllDoctorsFromClinicTable content={this.state.doctors}/>
+                        <br />
+            </div>
+
+            </div>
+
+
+
           );
         }
       }

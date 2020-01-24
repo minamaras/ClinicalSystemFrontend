@@ -3,14 +3,14 @@ import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import '../css/ClinicDoctorTable.css';
+import '../css/AllDoctorsFromAClinicTable.css';
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
 
 
-class ClinicDoctorTable extends React.Component{
+class AllDoctorsFromClinicTable extends React.Component{
     constructor(props) {
         super(props);
 
@@ -90,4 +90,4 @@ class ClinicDoctorTable extends React.Component{
 
 }
 
-export default (ClinicDoctorTable)
+export default (AllDoctorsFromClinicTable)

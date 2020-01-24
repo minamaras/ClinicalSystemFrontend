@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter,Link } from "react-router-dom";
 import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
-import icon from '../icons/hospitalisation.svg'
+import icon from '../icons/16534.jpg'
 import info from '../icons/information.svg'
 import clear from '../icons/close.svg'
 import '../css/ClinicsFilteringPage.css';
@@ -60,7 +60,7 @@ class ClinicsFilteringPage extends React.Component{
       }
 
 
-      
+
 
       }
 
@@ -273,7 +273,7 @@ SendFilters = event => {
 
 
 
-     if(this.state.startDate == undefined || this.state.selecetedexam == undefined || this.state.time == undefined){
+     if(this.state.startDate == undefined || this.state.selecetedexam == undefined || this.state.time == undefined || this.state.dateString == ''){
 
        PatientAlert.fire({
            title: "We can not filter without time,date and exam type.Please try again.",
@@ -371,8 +371,8 @@ render() {
     return (
 
 
-        <div className="pozadina">
-        <pre>{JSON.stringify({parameter:this.state.parameter,filter:this.state.filter,date:this.state.dateString,time:this.state.time,exam:this.state.selecetedexam,input:this.state.resultfilter}, null, 2)}</pre>
+        <div className="pozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+        <img src = {icon} className="slikazaklinike"></img>
         <h1 id="naslovpravi">Clinics in our system</h1>
 
         <div>

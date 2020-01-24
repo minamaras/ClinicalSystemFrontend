@@ -9,6 +9,8 @@ import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
 
+const PatientAlert = withReactContent(Swal)
+
 
 class ClinicsFilteringTable extends React.Component{
     constructor(props) {
@@ -16,8 +18,33 @@ class ClinicsFilteringTable extends React.Component{
 
 
         this.renderTableData = this.renderTableData.bind(this);
+        this.RednderLink = this.RednderLink.bind(this);
+
 
     }
+
+
+    RednderLink(c) {
+
+      var number;
+
+      if(this.props.date !== undefined && this.props.time !== undefined && this.props.exam !== undefined){
+
+          number = 1;
+
+        return(
+        <Link name="linkforclinic"   to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}/${this.props.exam}/${this.props.date}/${this.props.time}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
+    );
+    }else{
+
+        number = 0;
+
+
+      return(
+      <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
+  );
+  }
+}
 
 
     renderTableData() {
@@ -25,6 +52,7 @@ class ClinicsFilteringTable extends React.Component{
     return this.props.content.map((c, index) => {
         //const { name, adress, description, clinicAdmin} = clinic
         //console.log(clinic)
+
 
         return (
             <Card key={c.name} className="cardContainer" >
@@ -43,8 +71,8 @@ class ClinicsFilteringTable extends React.Component{
                           <label><b> Exam price: </b></label> &nbsp;
                           <label>{c.examprice}</label>
                           <br/>
+                          {this.RednderLink(c)}
 
-                          <Link to={{pathname:`/clinic/${c.name.replace(/\s/g,'')}/${this.props.exam}/${this.props.date}/${this.props.time}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
 
                     </Card.Text>
                     <div className="addAdmin">
