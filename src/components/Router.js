@@ -32,6 +32,7 @@ import PatientInfo from './PatientInfo';
 import MedicalRecord from './MedicalRecord';
 import ClinicsFilteringPage from './ClinicsFilteringPage';
 
+import { createBrowserHistory } from 'history';
 
 class Routes extends React.Component {
 
@@ -42,7 +43,7 @@ class Routes extends React.Component {
     render(){
         return (
         <Switch>
-        <Route exact path="/" render={(props) => <PhotoSlider user={this.props.user}/>}/>
+        <Route exact path="/" history={createBrowserHistory}  render={(props) => <PhotoSlider user={this.props.user}/>}/>
         <Route exact path="/login" render={(props) => <LoginForm changeState={this.props.changeState} />}/>
         <Route exact path="/register" component={RegistrationForm} />
 
