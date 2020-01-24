@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, Button, FormGroup, FormControl, ControlLabel,Col } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl, ControlLabel,Col ,Card} from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -97,8 +97,10 @@ handleChange(e) {
 
   render() {
     return (
-      <div>
-        <div className="registerCard">
+
+      <div className="background" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+      <Card className="regcard">
+      <Card.Body>
       <Form className="formReg" onSubmit={this.SendRegisterRequest}>
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
@@ -162,14 +164,13 @@ handleChange(e) {
           </Form.Row>
 
 
-          <Button variant="outline-primary" type="submit">
+          <button variant="primary" type="submit" className="regbutton">
           Register
-          </Button>
+          </button>
 </Form>
+</Card.Body>
+</Card>
 </div>
-</div>
-
-
 
     );
   }
