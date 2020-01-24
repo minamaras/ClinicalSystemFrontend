@@ -17,11 +17,24 @@ class AllDoctorsFromClinicTable extends React.Component{
 
         this.renderTableData = this.renderTableData.bind(this);
         this.renderTerms = this.renderTerms.bind(this);
+        this.check = this.check.bind(this);
     }
 
 
+check(hours){
+
+  if( hours !== undefined){
+ return(<label name="avaliableterms">Avaliable terms this doctor has for date <u> {this.props.date}:</u></label>);
+}else{
+  return(<label name="avaliableterms"></label>);
+}
+
+
+}
+
     renderTerms(data){
 
+      if(data != undefined){
       return data.map((term, index) => {
           return (
             <Link>
@@ -32,6 +45,9 @@ class AllDoctorsFromClinicTable extends React.Component{
     )
 
         });
+      }else {
+        return;
+      }
 
     }
 
@@ -46,24 +62,25 @@ class AllDoctorsFromClinicTable extends React.Component{
 
 
         return (
-            <Card key={doctor.name} className="cardContainer" style={{height:'auto',left:'50px'}} >
-            <Card.Title className="cardTitle" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
+            <Card key={doctor.name} className="cardContainerDoktoraProfila" style={{height:'auto',left:'50px'}} >
+            <Card.Title className="cardTitleDoktoraProfila" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
 
-                <Card.Body className = "cardBody">
+                <Card.Body className = "cardBodyDoktoraProfila">
 
-                    <Card.Text className='cardText'>
-                          <label><b>Doctor does exam type:</b>{doctor.exam}</label>
+                    <Card.Text className='cardTextDoktoraProfila'>
+                          <label><b>Doctor does exam type: </b>{doctor.exam}</label>
+                          <br/>
                           <label><b>Doctors rating: </b></label> &nbsp;
                           <label>{doctor.rating}</label>
 
                           <br/>
-                          <label>Avaliable terms this doctor has for date <u> {this.props.date}:</u></label>
-                          <ul className="terms">
+                          {this.check(doctor.hours)}
+                          <ul className="termini">
                           {this.renderTerms(doctor.hours)}
                           </ul>
                     </Card.Text>
-                    <div className="addAdmin">
+                    <div className="addDoktoraProfila">
                     </div>
 
 

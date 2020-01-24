@@ -372,7 +372,6 @@ render() {
 
 
         <div className="pozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-        <img src = {icon} className="slikazaklinike"></img>
         <h1 id="naslovpravi">Clinics in our system</h1>
 
         <div>

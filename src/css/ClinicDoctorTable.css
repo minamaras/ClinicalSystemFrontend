@@ -1,4 +1,4 @@
-.cardContainer{
+.cardContainerDoktor{
 
     margin: 20px 0px 0px 3px;
     width: 100%;
@@ -6,39 +6,29 @@
     padding: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     font-family: "Comic Sans MS", cursive, sans-serif;
-
-
-}
-
-.containerRenderCardsClinic{
-    display: flex;
-    flex-direction:  column;
-    flex-wrap: wrap;
-    margin: -170px 0px 10px 0px;
-    width: 85%;
-    height: 20%;
-
+    flex-direction: row;
 
 }
 
-.cardBody{
+
+.cardBodyDoktor{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.cardTitle{
+.cardTitleDoktor{
     text-align: center;
     color: rgb(34, 21, 21);
 
 }
 
-.cardText{
+.cardTextDoktor{
     font-size: 20px;
     padding: 10px;
     font-family: "Comic Sans MS", cursive, sans-serif;
 
 }
 
-.addAdmin{
+.addDoktor{
     float: left;
     margin-left: 14%;
 }

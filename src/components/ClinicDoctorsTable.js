@@ -46,15 +46,17 @@ class ClinicDoctorTable extends React.Component{
 
 
         return (
-            <Card key={doctor.name} className="cardContainer" style={{height:'auto',left:'50px'}} >
-            <Card.Title className="cardTitle" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
+            <Card key={doctor.name} className="cardContainerDoktor" style={{height:'auto',left:'50px'}} >
+            <Card.Title className="cardTitleDoktor" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
 
-                <Card.Body className = "cardBody">
+                <Card.Body className = "cardBodyDoktor">
 
-                    <Card.Text className='cardText'>
+                    <Card.Text className='cardTextDoktor'>
                           <label><b>Doctor does exam type:</b>{doctor.exam}</label>
+                          <br/>
                           <label><b>Doctors rating: </b></label> &nbsp;
+
                           <label>{doctor.rating}</label>
 
                           <br/>
@@ -63,7 +65,7 @@ class ClinicDoctorTable extends React.Component{
                           {this.renderTerms(doctor.hours)}
                           </ul>
                     </Card.Text>
-                    <div className="addAdmin">
+                    <div className="addDoktor">
                     </div>
 
 

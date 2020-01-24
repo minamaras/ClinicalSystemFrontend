@@ -1,38 +1,27 @@
-.cardContainer{
+.cardContainerDoktoraProfila{
 
     margin: 20px 0px 0px 3px;
-    width: 100%;
+    width: auto;
     height:auto;
     padding: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    margin-left: 25px;
 }
 
-.containerRenderCardsClinic{
-    display: flex;
-    flex-direction:  column;
-    flex-wrap: wrap;
-    margin: -170px 0px 10px 0px;
-    width: 85%;
-    height: 20%;
-
-
-}
-
-.cardBody{
+.cardBodyDoktoraProfila{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f7cb92;
+
     color: gray;
 }
 
-.cardTitle{
+.cardTitleDoktoraProfila{
     text-align: center;
-    background-color: #f7cb92;
     color: gray;
 
 }
 
-.cardText{
+.cardTextDoktoraProfila{
     font-size: 20px;
     padding: 10px;
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -40,7 +29,7 @@
 
 }
 
-.addAdmin{
+.addDoktoraProfila{
     float: left;
     margin-left: 14%;
 }
@@ -55,9 +44,8 @@
   margin: 0px 0px 0px 20px;
 }
 
-.terms{
+.termini{
 
-  border-style: solid;
-  border-color: black;
+
   padding: 20px;
 }

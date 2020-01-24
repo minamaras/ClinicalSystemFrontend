@@ -3,66 +3,6 @@ width: 300px;
 
 }
 
-
-.cliniccard{
-    margin:50px 100px 100px 0px;
-    box-shadow: 3px 4px 5px #d8d8d8;
-    height: 500px;
-    background-image: url("../icons/doctorbackground.png");
-
-}
-
-.clinicHeader{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 30px;
-    text-align: center;
-    color: rgb(13, 118, 189);
-
-
-}
-
-.clinicTitle{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 35px;
-    text-align: center;
-}
-
-.valueNameClinic{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 22px;
-    margin-top: 11px;
-    margin-bottom: 11px;
-}
-
-.inputDes{
-    margin-left: 20px;
-    margin-top: -6px;
-    margin-bottom: 6px;
-}
-
-
-.firstColClinic{
-    display: flex;
-    flex-direction: column;
-}
-
-.secondColClinic{
-    display: flex;
-    flex-direction: column;
-    margin: 5px 10px 5px 20px;
-    width: 80%;
-
-}
-
-.clinicCol{
-    display: flex;
-    flex-direction: row;
-}
-
-.btnEditClinic{
-    margin: 4% 0% 0% 45%;
-}
-
 .slika{
 
   left: 50%;
@@ -77,36 +17,25 @@ width: 300px;
 
 }
 
-.clinicTitle{
-  text-transform:capitalize;
 
-}
-
-#viewMR {
-    margin: 5% 30% 10% 30%;
-    background-color: cornflowerblue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-color: cornflowerblue;
-
-}
-
-#startExam {
-    margin: 5% 30% 0% 30%;
-    background-color: cornflowerblue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-color: cornflowerblue;
-}
-
-#patientInfo {
-    margin-right: 50%;
-}
 
 .nesto{
 margin: 300px 0px 0px 0px;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 width: auto;
 height: auto;
+padding: 10px;
+
+}
+
+.nesto1{
+margin: 300px 0px 0px 0px;
+display: flex;
+flex-direction: column;
+width: auto;
+height: auto;
+padding: 10px;
 
 }
 
@@ -121,6 +50,21 @@ height: auto;
   height: 100%;
   background-color: white;
   margin: 47px 0px 0px 50px;
+}
+
+
+.back1{
+  width: 100%;
+  height: 100%;
+  margin: 47px 0px 0px 50px;
+  background-image: url("../icons/16333.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 50px 0px 0px 0px;
+
 }
 
 .slikadoktora{
@@ -143,7 +87,14 @@ height: auto;
 }
 
 .nazivklinike{
-  margin: -60px 0px 0px 55px;
+  margin: 0px 0px 0px 55px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  opacity: 0.7;
+
+}
+
+.nazivklinike1{
+  margin: 100px 0px 0px 75px;
   font-family: "Comic Sans MS", cursive, sans-serif;
   opacity: 0.7;
 

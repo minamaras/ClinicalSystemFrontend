@@ -55,13 +55,13 @@ class ClinicsFilteringTable extends React.Component{
 
 
         return (
-            <Card key={c.name} className="cardContainer" >
-            <Card.Title className="cardTitle"><b>{c.name}</b></Card.Title>
+            <Card key={c.name} className="cardContainerKlinika" >
+            <Card.Title className="cardTitleKlinika"><b>{c.name}</b></Card.Title>
 
 
-                <Card.Body className = "cardBody">
+                <Card.Body className = "cardBodyKlinika">
 
-                    <Card.Text className='cardText'>
+                    <Card.Text className='cardTextKlinika'>
                           <label><b>Address </b></label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
@@ -75,7 +75,7 @@ class ClinicsFilteringTable extends React.Component{
 
 
                     </Card.Text>
-                    <div className="addAdmin">
+                    <div className="addKlinika">
                     </div>
 
 

@@ -7,7 +7,7 @@ import { withRouter,useParams,Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 import '../css/ClinicProfile.css'
 import icon from '../icons/klinika.svg';
-import clinicprofileimage from '../icons/2112.jpg';
+import clinicprofileimage from '../icons/polymesh.jpg';
 import doctors from '../icons/Career_3-01.jpg';
 import clinicsicon from '../icons/doctor.svg';
 import Select from 'react-select';
@@ -26,7 +26,10 @@ class  ClinicProfile extends React.Component{
       super(props);
 
       this.handleChange = this.handleChange.bind(this);
+      this.handleChangeDate = this.handleChangeDate.bind(this);
       this.handleChangeResultFiltering = this.handleChangeResultFiltering.bind(this);
+      this.FilterDocs = this.FilterDocs.bind(this);
+      this.handleSelectChange = this.handleSelectChange.bind(this);
 
       this.state =  {
           clinicname: '',
@@ -37,7 +40,6 @@ class  ClinicProfile extends React.Component{
           doctors:[],
           filtered:[],
           examTypes:[],
-          select2: undefined,
           exam: props.match.params.examtype,
           date: props.match.params.date,
           time: props.match.params.time,
@@ -46,7 +48,10 @@ class  ClinicProfile extends React.Component{
           clinic:'',
           filter:'',
           startingdoctors:[],
-          exams:[]
+          exams:[],
+          select:undefined,
+          startDate: new Date(),
+          dateString:'',
         }
 
 
@@ -80,8 +85,18 @@ class  ClinicProfile extends React.Component{
                 const locale = 'eu'; // or whatever you want...
                 const hours = [];
 
-                for(let hour = time; hour < timeend; hour++) {
+                for(let hour = time; hour <= timeend; hour++) {
                   hours.push(moment({ hour }).format('HH:mm:ss'));
+                  if(hour == timeend){
+
+                    hours.push(
+                        moment({
+                            hour,
+                            minute: 0
+                        }).format('HH:mm:ss')
+                    );
+                    break;
+                  }
                   hours.push(
                       moment({
                           hour,
@@ -89,6 +104,8 @@ class  ClinicProfile extends React.Component{
                       }).format('HH:mm:ss')
                   );
               }
+
+
 
               var self = this;
               var actualhours=[];
@@ -126,8 +143,14 @@ class  ClinicProfile extends React.Component{
             });
           }else{
 
-
+            var tempexams = [];
             resp.data.map((doctor, index) => {
+
+
+            if(tempexams.indexOf(doctor.examType.name) == -1){
+              tempexams.push(doctor.examType.name)
+            }
+
 
               var strint = doctor.start.toString().substring(0,2);
               var time = parseInt(strint);
@@ -136,50 +159,19 @@ class  ClinicProfile extends React.Component{
               var timeend = parseInt(strinte);
               console.log(timeend);
 
-              const locale = 'eu'; // or whatever you want...
-              const hours = [];
-
-              for(let hour = time; hour < timeend; hour++) {
-                hours.push(moment({ hour }).format('HH:mm:ss'));
-                hours.push(
-                    moment({
-                        hour,
-                        minute: 30
-                    }).format('HH:mm:ss')
-                );
-            }
-
-            var self = this;
-            var actualhours=[];
-
-            doctor.appointments.forEach(function (appointment) {
-
-              console.log(appointment.startTime);
-              hours.forEach(function (term) {
 
 
-                if(appointment.date == self.props.match.params.date && appointment.startTime == term){
+              doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
 
-                  console.log(hours.indexOf(term));
-                  hours.splice( hours.indexOf(term), 1 );
-
-                }
-
-              });
-
-
-            });
-
-
-              doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
             });
 
           this.setState({
             doctors: doctorstemp,
             startingdoctors: doctorstemp,
+            exams:tempexams,
           });
 
-          console.log(this.state.doctors);
+          console.log(this.state);
 
           }
         },
@@ -187,29 +179,6 @@ class  ClinicProfile extends React.Component{
       }
 
 
-
-      componentDidMount () {
-
-
-
-        let token = localStorage.getItem('token');
-        const options = {
-            headers: { 'Authorization': 'Bearer ' + token}
-            };
-
-            const tempExams = [];
-
-        axios.get('http://localhost:8081/api/examtypes/all',options).then(
-              (resp) => {this.setState({
-
-                examTypes: resp.data,
-
-              });},
-              (resp) => this.onErrorHandler(resp),
-            );
-
-
-      }
 
 
 
@@ -244,34 +213,137 @@ class  ClinicProfile extends React.Component{
 
 
 
-    handleChange = date => {
-
-         var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-         console.log(dateString);
-
-
-           this.setState({
-             startDate: date,
-           });
-
-
-           this.setState({
-
-             date: date,
-           });
-
-           console.log(dateString);
-           if(this.state.filtered[0] != undefined){
-           this.state.filtered[0].date=dateString;
-         }
-
-       }
-
-
        handleChange(e) {
              this.setState({...this.state, [e.target.name]: e.target.value});
 
          }
+
+
+handleChangeDate = date => {
+
+
+               //var dateString = date.getFullYear() + '-' + 0 +(date.getMonth() + 1) + '-' + date.getDate();
+               var dateString =date.toISOString().substring(0,10);
+               console.log(dateString);
+
+                this.setState({
+                  startDate: date,
+                  dateString:dateString,
+
+                });
+
+                console.log(this.state.select);
+                console.log(this.state.startDate);
+
+                if(this.state.select !== undefined && this.state.dateString !== undefined ){
+
+                  {this.FilterDocs()}
+                }
+                else{
+                return;
+                }
+
+            }
+
+  handleSelectChange = entry => {
+
+      var self = this;
+
+        if(entry == null){
+          this.setState({
+            select: undefined,
+            doctor: self.state.startingdoctors,
+        });
+      }
+
+      else{
+
+        this.setState({ select: entry.value});
+
+
+        if(this.state.dateString !== undefined && this.state.select !== undefined){
+
+
+                {this.FilterDocs()}
+    }else{
+      return;
+    }
+    }
+  }
+
+
+
+    FilterDocs(){
+
+      console.log("in the filter function");
+
+
+      var returnDoctors =[];
+      var self= this;
+
+      this.state.doctors.forEach(function (doctor) {
+
+        console.log(doctor.exam);
+        console.log(self.state.select);
+
+        if(doctor.exam == self.state.select){
+
+
+
+          var strint = doctor.start.toString().substring(0,2);
+          var time = parseInt(strint);
+
+          var strinte = doctor.end.toString().substring(0,2);
+          var timeend = parseInt(strinte);
+
+          console.log(self.state.dateString);
+
+          const locale = 'eu'; // or whatever you want...
+                const hours = [];
+
+                for(let hour = time; hour < timeend; hour++) {
+                  hours.push(moment({ hour }).format('HH:mm:ss'));
+                  hours.push(
+                      moment({
+                          hour,
+                          minute: 30
+                      }).format('HH:mm:ss')
+                  );
+              }
+
+            doctor.appointments.forEach(function (appointment) {
+              hours.forEach(function (term) {
+
+                console.log(appointment.date);
+                console.log(self.state.dateString);
+              if(appointment.date == self.state.dateString && appointment.startTime == term){
+
+                console.log(term);
+                hours.splice( hours.indexOf(term), 1 );
+                console.log(hours);
+
+              }
+            });
+
+            });
+
+        returnDoctors.push({exam:doctor.exam,id:doctor.id,
+          name:doctor.name,lastname:doctor.lastname,
+          rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+
+        }
+
+      });
+
+
+
+
+      this.setState({
+
+        doctors: returnDoctors,
+      });
+
+    }
 
 
   handleChangeResultFiltering(e) {
@@ -394,16 +466,13 @@ class  ClinicProfile extends React.Component{
           );
         }else if (this.props.match.params.date == undefined && this.props.match.params.time == undefined && this.props.match.params.exam == undefined && this.props.match.params.name !== undefined){
 
-          console.log("mislim da sam u ovom else-u i ovo su mi parameri");
-          console.log(this.props.match.params);
-
+          console.log(this.state.select);
 
           return(
 
 
-            <div className="back" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-            <img src = {clinicprofileimage} className="slikadoktora"></img>
-            <h1 className="nazivklinike"><u>{this.state.clinicname}</u></h1>
+            <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+            <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
             <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
             <DatePicker
@@ -419,26 +488,15 @@ class  ClinicProfile extends React.Component{
                />
              <div className="type">
              <b className="examtypelabel" style={{opacity:'0.7'}}>Select appointment type :</b>{" "}
+
              <Select
              options={
               this.state.exams.map((type, i) => {
-              return {id: i,value:type.name, label: type.name};
+              return {id: i,value:type, label: type};
                })
              }
-             onChange={entry => {
-
-                 if(entry == null){
-                   this.setState({
-                     selecetedexam: '',
-                     clinics: this.state.alltheclinics,
-                 });
-               }else{
-
-               this.setState({ selecetedexam: entry.value});
-             }
-             }
-             }
-             value={this.state.selecetedexam}
+             onChange={this.handleSelectChange}
+             value={this.state.select}
              className="selectedExamType"
              required
               />
@@ -446,7 +504,7 @@ class  ClinicProfile extends React.Component{
               </div>
 
 
-            <div className="nesto">
+            <div className="nesto1">
 
                         <br />
                         <AllDoctorsFromClinicTable content={this.state.doctors}/>
