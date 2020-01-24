@@ -203,9 +203,9 @@ export default class App extends React.Component {
                   <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                       <RoutedLinkContainer link="/" displayText="Home" />
+                      <RoutedLinkContainer link="/allclinicsprofile" displayText="All clinics" />
                       <RoutedLinkContainer link="/exams" displayText="Exams" />
-
-                      <RoutedLinkContainer link="/allclinics" displayText="Clinics" />
+                      <RoutedLinkContainer link="/allclinics" displayText="Search clinics" />
                       <RoutedLinkContainer link="/medicalrecord" displayText="My medical record" />
 
                   </Nav>

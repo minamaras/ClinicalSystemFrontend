@@ -24,9 +24,11 @@ class ClinicDoctorTable extends React.Component{
 
       return data.map((term, index) => {
           return (
+            <li>
             <Link>
-            [{term}]   &nbsp;
-            </Link>
+            [{term}]
+            </Link></li>
+
 
 
     )

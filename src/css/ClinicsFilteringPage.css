@@ -1,21 +1,52 @@
 .naslov{
  margin: 80px 0px 0px 0px;
  font-size: 35px;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ font-size: 19px;
+ color: rgb(65, 76, 90);
+
 }
 
-.nesto{
-margin: 200px -40px 0px 0px;
+.Klinike{
+margin: 150px -40px 0px 0px;
 display: flex;
 flex-direction: column;
 width: auto;
 height: auto;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 19px;
+color: rgb(65, 76, 90);
+
 
 }
 
 #naslovpravi{
-  margin: -80px 0px 0px 50px;
+  margin: -80px 0px 0px 35px;
   color: rgb(0, 0, 0);
   opacity: 0.7;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(65, 76, 90);
+  margin-top: 2.5px;
+}
+
+.clearButton{
+
+  height: 50px;
+  width: 50px;
+  margin: 0px 0px 0px 20px;
+}
+
+.buttonforshowingfilters{
+
+  margin: 0px 0px 10px 30px;
+  height: 50px;
+  width: 50px
+}
+
+.buttonforhiddingfilters{
+  margin: 0px 0px 0px -150px;
+  height: 50px;
+  width: 50px
 }
 
 
@@ -28,28 +59,52 @@ height: auto;
 
 .pozadina{
 
-  background-color: white;
-  margin: 150px 0px 0px 0px;
+  width: 100%;
+  height: 100%;
+  margin: 47px 0px 0px 50px;
+  background-image: url("../icons/ambulance.svg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 50px 0px 0px 0px;
 
 }
 
 .filters{
 
-  margin: -10px 0px 0px 30px;
+  margin: 0px 0px 0px 30px;
   background: #c1cee3;
   width: 30%;
   height: 300px;
   border-style: solid;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 
 }
 
+.everythingelse{
+  margin: -350px 0px 0px 0px;
+}
+
 .filterinput{
-  margin: 0px 0px 30px 35px;
+  margin: 0px 0px 30px 45px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .select{
   width: 45%;
   margin: -35px 0px 0px 250px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 
 }
 
@@ -57,47 +112,84 @@ height: auto;
 
   margin: 20px 0px 10px 30px;
   width: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .datepicker{
 
 margin: 5px 30px 0px 37px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 19px;
+color: rgb(65, 76, 90);
+
 
 }
 
 .timepicker{
 
   margin: 20px -150px 0px 0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .infobutton{
   margin: 5px 0px 20px 450px;
   background-color: transparent;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+  height: 50px;
+  width: 50px
+
 }
 
 .selectedExamType{
   width: 200px;
   margin: 10px 0px 0px 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .examtypelabel{
   margin: 0px 30px 0px 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .filterlabel{
   margin: 0px 0px 0px 35px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .filterresults{
 
   margin: 10px 0px 0px 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+  height: 50px;
+
 }
 
 .filterresultslabel{
   margin: 25px 0px 0px 30px;
-  border-style: solid;
-  border-color: black;
   width: 80%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+
 }
 
 .slikazaklinike{

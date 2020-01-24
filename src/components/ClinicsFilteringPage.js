@@ -4,6 +4,8 @@ import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
 import icon from '../icons/16534.jpg'
 import info from '../icons/information.svg'
 import clear from '../icons/close.svg'
+import filter from '../icons/filter.svg'
+import less from '../icons/less.svg'
 import '../css/ClinicsFilteringPage.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -329,9 +331,22 @@ onChangeTime = time => {
   this.setState({ time});
 }
 
+ShowFilters = event => {
+
+document.getElementById("filters").style.visibility = "visible";
+document.getElementById("everythingelse").style.margin = "0px 0px 0px 0px";
+
+}
+
+HideFilters = event => {
+
+  console.log("jsafjsa");
+
+document.getElementById("filters").style.visibility = "hidden";
+document.getElementById("everythingelse").style.margin = "-350px 0px 0px 0px";
 
 
-
+}
 handleChangeDate = date => {
 
 
@@ -377,8 +392,7 @@ render() {
         <div>
 
         <label className="naslov"></label>
-
-        <div className="filters">
+        <div className="filters" name="filters" id="filters"style={{visibility:'hidden'}}>
           <br/>
           <label className="filterlabel">Search for clinic:</label>
           <br/>
@@ -431,18 +445,21 @@ render() {
 
          <Button style={{background:'#575f6e'}} onClick={this.SendFilters} className="filterbutton">Filter</Button>
          <button className="infobutton" onClick={this.showInformation}><img src={info} style={{width:'20px',height:'25px'}}></img></button>
+         <button onClick={this.HideFilters} className="buttonforhiddingfilters"><img src={less} style={{height:'30px',width:'30px'}}></img></button>
 
         </div>
-        <label className="filterresultslabel">If you only want to filter clinics by name/adress/rating you can enter your search here.
-        Also you can use this filed after you found clinics that have doctors who can do choosen appointment type and are free,to further filter trough them.
+        <div className="everythingelse" id="everythingelse">
+        <label className="filterresultslabel">
         </label>
         <br/>
         <input className="filterresults" name="resultfilter" onChange={this.handleChangeResultFiltering}></input>
         <button className="clearButton" onClick={this.ClearInput}><img src ={clear} style={{height:'20px',width:'20px'}}></img></button>
-        <div className="nesto">
+        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'30px',width:'30px'}}></img></button>
+        <div className="Klinike">
                     <br />
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>
                     <br />
+        </div>
         </div>
 
 

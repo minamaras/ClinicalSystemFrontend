@@ -3,16 +3,15 @@ import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
-import '../css/ClinicsFilteringTable.css';
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
-import ClinicProfile from './ClinicProfile';
+import '../css/RenderClinic.css';
 
 const PatientAlert = withReactContent(Swal)
 
 
-class ClinicsFilteringTable extends React.Component{
+class RenderClinic extends React.Component{
     constructor(props) {
         super(props);
 
@@ -26,24 +25,10 @@ class ClinicsFilteringTable extends React.Component{
 
     RednderLink(c) {
 
-      var number;
-
-      if(this.props.date !== undefined && this.props.time !== undefined && this.props.exam !== undefined){
-
-          number = 1;
-
-        return(
-        <Link name="linkforclinic"   to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}/${this.props.exam}/${this.props.date}/${this.props.time}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
-    );
-    }else{
-
-        number = 0;
-
-
       return(
       <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
   );
-  }
+
 }
 
 
@@ -55,13 +40,13 @@ class ClinicsFilteringTable extends React.Component{
 
 
         return (
-            <Card key={c.name} className="cardContainerKlinika" >
-            <Card.Title className="cardTitleKlinika"><b>{c.name}</b></Card.Title>
+            <Card key={c.name} className="cardContainerKlinikaSve" >
+            <Card.Title className="cardTitleKlinikaSve"><b>{c.name}</b></Card.Title>
 
 
-                <Card.Body className = "cardBodyKlinika">
+                <Card.Body className = "cardBodyKlinikaSve">
 
-                    <Card.Text className='cardTextKlinika'>
+                    <Card.Text className='cardTextKlinikaSve'>
                           <label><b>Address </b></label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
@@ -75,7 +60,7 @@ class ClinicsFilteringTable extends React.Component{
 
 
                     </Card.Text>
-                    <div className="addKlinika">
+                    <div className="addKlinikaSve">
                     </div>
 
 
@@ -90,7 +75,7 @@ class ClinicsFilteringTable extends React.Component{
     render() {
       console.log(this.props);
         return (
-            <div className="containerRenderCardsKlinika">
+            <div className="containerRenderCardsClinic">
                 {this.renderTableData()}
             </div>
         );
@@ -100,4 +85,4 @@ class ClinicsFilteringTable extends React.Component{
 
 }
 
-export default (ClinicsFilteringTable)
+export default (RenderClinic)

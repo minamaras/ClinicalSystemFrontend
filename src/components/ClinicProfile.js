@@ -473,7 +473,7 @@ handleChangeDate = date => {
 
             <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
             <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
-            <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
+            <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
             <DatePicker
                  selected={ this.state.startDate}

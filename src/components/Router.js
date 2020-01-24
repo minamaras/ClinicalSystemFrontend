@@ -32,6 +32,7 @@ import PatientInfo from './PatientInfo';
 import MedicalRecord from './MedicalRecord';
 import ClinicsFilteringPage from './ClinicsFilteringPage';
 import HolidayRequests from './HolidayRequests';
+import AllClinics from './AllClinics';
 
 import { createBrowserHistory } from 'history';
 
@@ -61,7 +62,9 @@ class Routes extends React.Component {
         <Route exact path="/rooms" render={(props) => <OperationRoom user={this.props.user}/>} />
         <Route exact path="/codebook" render={(props) => <Codebook user={this.props.user}/>} />
         <Route exact path="/manageclinic" render={(props) => <ClinicInfoPage user={this.props.user} clinicdes={this.props.user.clinicdes} clinicadress = {this.props.user.clinicadress} clinicname = {this.props.user.clinic}/>} />
-        <Route exact path="/cliniclist" render={(props) => <ClinicListPage user={this.props.user}/>} />
+        <Route exact path="/allclinics" render={(props) => <ClinicsFilteringPage user={this.props.user}/>} />
+        <Route exact path="/allclinicsprofile" render={(props) => <AllClinics user={this.props.user}/>} />
+
 
         <Route exact path="/clinic/:name/:exam/:date/:time" render={(props) => <ClinicProfile user={this.props.user}/>} />
         <Route exact path="/clinic/:name" render={(props) => <ClinicProfile user={this.props.user} parameter='0'/>} />
