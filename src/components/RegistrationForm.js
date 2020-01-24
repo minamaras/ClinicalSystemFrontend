@@ -97,7 +97,8 @@ handleChange(e) {
 
   render() {
     return (
-
+      <div>
+        <div className="registerCard">
       <Form className="formReg" onSubmit={this.SendRegisterRequest}>
           <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
@@ -161,10 +162,12 @@ handleChange(e) {
           </Form.Row>
 
 
-          <Button variant="primary" type="submit">
+          <Button variant="outline-primary" type="submit">
           Register
           </Button>
 </Form>
+</div>
+</div>
 
 
 
