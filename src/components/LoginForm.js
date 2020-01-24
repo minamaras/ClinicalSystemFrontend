@@ -90,7 +90,7 @@ render(){
     <Form.Row>
          <Form.Group as={Col} controlId="formGridEmail">
 
-            <Form.Label className="fontPtnt"><b>Email</b></Form.Label>
+            <Form.Label className="fontPtntE">Email</Form.Label>
 
          </Form.Group>
 
@@ -112,7 +112,7 @@ render(){
     <Form.Row>
              <Form.Group as={Col} controlId="formGridEmail">
 
-                <Form.Label className="fontPtnt"><b>Password</b></Form.Label>
+                <Form.Label className="fontPtntP">Password</Form.Label>
 
             </Form.Group>
 
@@ -127,6 +127,9 @@ render(){
                      required
                  />
             </Form.Group>
+
+                <p className="donthave">Don't have an account?</p> <a href="/register" className="registerA">Register</a>
+
 
     </Form.Row>
 
