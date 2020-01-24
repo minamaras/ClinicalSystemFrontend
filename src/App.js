@@ -271,6 +271,7 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
                       <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                       <RoutedLinkContainer link="/examtypes" displayText="Exam Types" />
+                      <RoutedLinkContainer link="/holidayrequests" displayText="Holiday Requests" />
 
                   </Nav>
                   <Nav className="ml-auto">

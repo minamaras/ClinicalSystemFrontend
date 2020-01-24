@@ -31,6 +31,7 @@ import AvailableDoctors from './AvailableDoctors'
 import PatientInfo from './PatientInfo';
 import MedicalRecord from './MedicalRecord';
 import ClinicsFilteringPage from './ClinicsFilteringPage';
+import HolidayRequests from './HolidayRequests';
 
 
 class Routes extends React.Component {
@@ -81,6 +82,7 @@ class Routes extends React.Component {
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
         <Route exact path="/medicalrecord" render={(props) => <MedicalRecord user={this.props.user}/>} />
         <Route exact path="/allclinics" render={(props) => <ClinicsFilteringPage user={this.props.user}/>} />
+        <Route exact path="/holidayrequests" render={(props) => <HolidayRequests user={this.props.user}/>} />
 
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
