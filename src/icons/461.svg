@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="216px" height="151.2px" viewBox="0 0 216 151.2" enable-background="new 0 0 216 151.2"
+	 xml:space="preserve">
+<g>
+	<rect fill="#FFFFFF" width="216" height="151.2"/>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" width="216" height="151.2"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_2_)">
+			<g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="137.971,158.1 139.795,157.53 108.756,150.904 104.335,158.1 						"/>
+					</g>
+					<g opacity="0.3"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="104.335,158.1 108.756,150.904 85.49,118.559 93.651,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="93.651,158.1 85.49,118.559 72.662,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="72.662,158.1 85.49,118.559 55.838,111.786 72.587,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="72.587,158.1 55.838,111.786 10.565,125.883 72.417,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#23BCFF" d="M20.885,77.458l-10.319,48.425l45.273-14.098L20.885,77.458z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="70.896,158.1 72.417,158.1 10.565,125.883 20.396,154.909 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="70.896,158.1 20.396,154.909 22.244,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="22.244,158.1 20.396,154.909 18.539,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="10.565,125.883 -3,149.276 -3,158.1 14.394,158.1 20.396,154.909 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="-3,69.967 -3,89.07 20.885,77.458 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="-3,89.07 -3,111.973 10.565,125.883 20.885,77.458 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="18.539,158.1 20.396,154.909 14.394,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="-3,111.973 -3,128.908 10.565,125.883 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="-3,128.908 -3,149.276 10.565,125.883 						"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g opacity="0.6">
+						<polygon fill="#39D2FF" points="132.242,158.1 105.834,150.596 110.907,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="110.907,158.1 105.834,150.596 104.13,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="104.13,158.1 105.834,150.596 90.668,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="90.668,158.1 105.834,150.596 67.636,110.694 78.918,158.1 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#0093FF" points="78.918,158.1 67.636,110.694 40.44,140.106 71.25,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M67.636,110.694l-37.832,1.028l10.636,28.384L67.636,110.694z"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M40.44,140.106l-10.636-28.384l-28.971,19.29L40.44,140.106z"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="71.25,158.1 40.44,140.106 28.977,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#23BCFF" points="28.977,158.1 40.44,140.106 0.833,131.012 18.182,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="-3,153.699 -3,158.1 6.108,158.1 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#23BCFF" points="-3,105.909 -3,125.401 0.833,131.012 29.805,111.722 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="0.833,131.012 -3,134.115 -3,153.699 6.108,158.1 18.182,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="-3,80.822 -3,105.909 29.805,111.722 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="-3,125.401 -3,134.115 0.833,131.012 						"/>
+					</g>
+				</g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="104.561,158.1 108.812,151.18 139.341,157.698 138.054,158.1 138.832,158.1 140.25,157.657 
+							108.78,150.938 108.7,150.92 104.29,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="93.739,158.1 85.713,119.213 108.617,151.055 104.29,158.1 104.561,158.1 108.895,151.045 
+							85.584,118.638 85.377,118.729 93.503,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="72.832,158.1 85.465,119.157 93.503,158.1 93.739,158.1 85.515,118.254 72.589,158.1 						
+							"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M72.831,158.1L85.6,118.741l0.039-0.119l-29.981-6.85L72.411,158.1H72.831z M85.341,118.79L72.621,158
+							l-16.602-45.908L85.341,118.79z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="72.385,158.1 10.867,126.057 55.767,112.076 72.411,158.1 72.657,158.1 55.909,111.79 
+							10.263,126.003 71.883,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M10.411,126.2l0.041-0.193l10.364-48.631l35.241,34.609L10.411,126.2z M20.954,77.834l-10.235,48.027
+							l44.9-13.982L20.954,77.834z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="66.745,158.1 70.404,158.1 20.481,154.946 10.767,126.266 71.885,158.1 72.383,158.1 
+							10.363,125.795 20.312,155.167 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="22.292,158.1 20.604,155.185 66.735,158.1 70.404,158.1 20.404,154.941 20.188,154.927 
+							22.025,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="18.758,158.1 20.396,155.286 22.025,158.1 22.292,158.1 20.396,154.826 18.491,158.1 						
+							"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="10.593,125.752 -3,149.193 -3,149.653 10.538,126.309 20.255,155 14.425,158.1 14.918,158.1 
+							20.451,155.159 20.538,155.112 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="-3,69.993 -3,70.235 20.573,77.628 -3,89.088 -3,89.346 21.197,77.583 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="-3,89.088 -3,89.346 20.723,77.813 10.497,125.795 -3,111.956 -3,112.286 10.633,126.266 
+							21.047,77.398 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="14.916,158.1 20.092,155.348 18.49,158.1 18.758,158.1 20.7,154.764 14.426,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="-3,111.955 -3,112.286 10.338,125.962 -3,128.937 -3,129.173 10.792,126.098 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="-3,128.936 -3,129.173 10.333,126.201 -3,149.193 -3,149.653 10.665,126.088 10.797,125.86 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="108.752" cy="151.051" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="55.838" cy="112.179" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="10.565" cy="126.031" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="20.396" cy="155.056" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="20.88" cy="77.628" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="85.49" cy="118.706" r="1.022"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g>
+						<polygon fill="#0093FF" points="99.277,158.1 88.122,149.756 121.087,145.63 111.551,158.1 111.842,158.1 121.605,145.333 
+							87.524,149.598 98.892,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="88.217,158.1 87.947,149.914 98.892,158.1 99.277,158.1 87.7,149.44 87.985,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="78.409,158.1 87.716,149.925 87.986,158.1 88.217,158.1 87.931,149.428 78.058,158.1 						
+							"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="62.712,158.1 57.088,99.432 87.674,149.655 78.06,158.1 78.409,158.1 87.9,149.764 
+							87.973,149.7 57.023,98.882 56.81,98.954 62.479,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="55.395,158.1 39.049,133.895 56.847,99.345 62.479,158.1 62.712,158.1 57.04,98.932 
+							57.002,98.54 38.813,133.85 38.781,133.912 55.115,158.1 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M38.894,134.197L24.597,92.678l32.501,6.18L38.894,134.197z M24.945,92.979l13.991,40.631
+							l17.814-34.582L24.945,92.979z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M39.142,134.208L3.395,108.692l21.434-16.051l0.051,0.15L39.142,134.208z M3.787,108.687L38.688,133.6
+							L24.713,93.016L3.787,108.687z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="36.535,158.1 38.998,134.232 55.115,158.1 55.395,158.1 38.833,133.575 36.303,158.1 						
+							"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="31.046,158.1 3.938,109.08 38.793,133.958 36.303,158.1 36.535,158.1 39.03,133.916 
+							39.037,133.848 3.658,108.595 3.489,108.746 30.782,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="-3,147.599 -3,147.857 18.049,158.1 18.578,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="-3,94.745 -3,94.977 24.386,92.973 3.583,108.551 -3,104.701 -3,104.968 3.532,108.79 
+							3.599,108.828 25.156,92.684 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="3.601,108.469 -3,118.083 -3,118.492 3.58,108.909 30.782,158.1 31.045,158.1 						"/>
+						<polygon fill="#0093FF" points="-3,147.856 18.049,158.1 18.578,158.1 -3,147.599 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="-3,70.308 -3,70.605 24.471,92.735 -3,94.746 -3,94.977 25.072,92.922 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="-3,104.7 -3,104.968 3.425,108.727 -3,118.083 -3,118.492 3.686,108.754 3.756,108.653 						
+							"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="87.823" cy="149.955" r="1.245"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="56.925" cy="98.942" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="38.916" cy="133.903" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="24.771" cy="92.829" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="3.591" cy="108.689" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="121.346" cy="145.276" r="1.246"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="93.134,158.1 88.713,150.904 57.674,157.53 59.498,158.1 						"/>
+					</g>
+					<g opacity="0.3"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="103.817,158.1 111.979,118.559 88.713,150.904 93.134,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="124.807,158.1 111.979,118.559 103.817,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="124.881,158.1 141.631,111.786 111.979,118.559 124.807,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="125.052,158.1 186.903,125.883 141.631,111.786 124.881,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#23BCFF" d="M176.584,77.458l10.319,48.425l-45.272-14.098L176.584,77.458z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="126.572,158.1 177.072,154.909 186.903,125.883 125.052,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="175.225,158.1 177.072,154.909 126.572,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="178.93,158.1 177.072,154.909 175.225,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="205.586,158.1 186.903,125.883 177.072,154.909 183.074,158.1 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<path fill="#0093FF" d="M215.621,65.215v31.221l-39.037-18.978L215.621,65.215z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#39D2FF" d="M215.621,96.436l-28.718,29.447l-10.319-48.425L215.621,96.436z"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="183.074,158.1 177.072,154.909 178.93,158.1 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#0093FF" d="M215.621,96.436v35.85l-28.718-6.402L215.621,96.436z"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="215.621,158.1 215.621,132.286 186.903,125.883 205.586,158.1 						"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g opacity="0.6">
+						<polygon fill="#39D2FF" points="86.562,158.1 91.634,150.596 65.227,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="93.338,158.1 91.634,150.596 86.562,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="106.8,158.1 91.634,150.596 93.338,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="118.551,158.1 129.832,110.694 91.634,150.596 106.8,158.1 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#0093FF" points="126.218,158.1 157.028,140.106 129.832,110.694 118.551,158.1 						"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M129.832,110.694l37.832,1.028l-10.636,28.384L129.832,110.694z"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M157.028,140.106l10.636-28.384l28.971,19.29L157.028,140.106z"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="168.492,158.1 157.028,140.106 126.218,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#23BCFF" points="179.286,158.1 196.635,131.012 157.028,140.106 168.492,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="208.141,158.1 215.621,146.377 191.361,158.1 						"/>
+					</g>
+					<g opacity="0.6">
+						<path fill="#23BCFF" d="M167.664,111.722l47.957-8.499l-18.986,27.789L167.664,111.722z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="191.361,158.1 215.621,146.377 196.635,131.012 179.286,158.1 						"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M167.664,111.722l47.957-45.173v36.674L167.664,111.722z"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M196.635,131.012l18.986-27.789v43.154L196.635,131.012z"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#23BCFF" points="215.621,158.1 215.621,146.377 208.141,158.1 						"/>
+					</g>
+				</g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="59.415,158.1 58.128,157.698 88.657,151.18 92.908,158.1 93.179,158.1 88.769,150.92 
+							88.688,150.938 57.219,157.657 58.637,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="93.179,158.1 88.852,151.055 111.756,119.213 103.73,158.1 103.966,158.1 112.092,118.729 
+							111.885,118.638 88.574,151.045 92.908,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="103.966,158.1 112.004,119.157 124.638,158.1 124.88,158.1 111.954,118.254 103.73,158.1 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M124.638,158.1h0.42l16.753-46.328l-29.98,6.85l0.039,0.119L124.638,158.1z M141.449,112.092
+							L124.848,158l-12.721-39.211L141.449,112.092z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="125.058,158.1 141.701,112.076 186.602,126.057 125.084,158.1 125.586,158.1 187.205,126.003 
+							141.56,111.79 124.813,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M141.412,111.985l35.24-34.609l10.364,48.631l0.041,0.193L141.412,111.985z M141.85,111.879
+							l44.9,13.982l-10.235-48.027L141.85,111.879z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="125.584,158.1 186.701,126.266 176.988,154.946 127.064,158.1 130.724,158.1 177.157,155.167 
+							187.105,125.795 125.085,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="130.733,158.1 176.864,155.185 175.177,158.1 175.444,158.1 177.281,154.927 177.064,154.941 
+							127.064,158.1 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="175.442,158.1 177.072,155.286 178.711,158.1 178.979,158.1 177.072,154.826 175.177,158.1 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="182.551,158.1 183.043,158.1 177.213,155 186.932,126.309 205.368,158.1 205.635,158.1 
+							186.875,125.752 176.932,155.112 177.018,155.159 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M176.271,77.583l39.465-12.378v31.564L176.271,77.583z M176.896,77.628l38.608,18.771v-30.88
+							L176.896,77.628z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M176.422,77.398l39.393,19.151l-28.979,29.717L176.422,77.398z M176.746,77.813l10.226,47.982
+							l28.454-29.178L176.746,77.813z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="178.979,158.1 177.377,155.348 182.553,158.1 183.043,158.1 176.769,154.764 178.71,158.1 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M186.676,126.098l29.061-29.799v36.277L186.676,126.098z M187.131,125.962l28.374,6.327V96.868
+							L187.131,125.962z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="205.367,158.1 205.634,158.1 187.136,126.201 215.505,132.526 215.505,158.1 215.736,158.1 
+							215.736,132.34 215.646,132.321 186.672,125.86 186.804,126.088 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="88.717" cy="151.051" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="141.631" cy="112.179" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="186.903" cy="126.031" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="177.072" cy="155.056" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="176.588" cy="77.628" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="111.979" cy="118.706" r="1.022"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g>
+						<polygon fill="#0093FF" points="85.918,158.1 76.382,145.63 109.347,149.756 98.191,158.1 98.577,158.1 109.944,149.598 
+							75.863,145.333 85.627,158.1 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="98.577,158.1 109.521,149.914 109.251,158.1 109.483,158.1 109.77,149.44 98.191,158.1 						
+							"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="109.483,158.1 109.753,149.925 119.06,158.1 119.41,158.1 109.538,149.428 109.252,158.1 
+													"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="119.059,158.1 119.409,158.1 109.795,149.655 140.381,99.432 134.757,158.1 134.989,158.1 
+							140.659,98.954 140.445,98.882 109.496,149.7 109.568,149.764 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="134.988,158.1 140.621,99.345 158.42,133.895 142.074,158.1 142.354,158.1 158.688,133.912 
+							158.656,133.85 140.467,98.54 140.43,98.932 134.757,158.1 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M140.371,98.858l32.5-6.18l-14.297,41.519L140.371,98.858z M140.718,99.028l17.814,34.582
+							l13.991-40.631L140.718,99.028z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M172.588,92.792l0.052-0.15l21.435,16.051l-35.748,25.516L172.588,92.792z M172.756,93.016
+							L158.78,133.6l34.901-24.913L172.756,93.016z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="142.354,158.1 158.471,134.232 160.934,158.1 161.166,158.1 158.636,133.575 142.074,158.1 
+													"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="160.934,158.1 161.166,158.1 158.676,133.958 193.53,109.08 166.423,158.1 166.687,158.1 
+							193.979,108.746 193.811,108.595 158.432,133.848 158.438,133.916 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="179.42,158.1 215.291,140.643 203.756,158.1 204.032,158.1 215.949,140.065 215.57,140.25 
+							178.892,158.1 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M172.313,92.684L216,95.881l-22.063,12.908l-0.066,0.038L172.313,92.684z M173.082,92.973
+							l20.805,15.578l21.354-12.493L173.082,92.973z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="166.687,158.1 193.889,108.909 215.449,140.309 178.891,158.1 179.42,158.1 215.792,140.399 
+							193.867,108.469 166.423,158.1 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M172.396,92.922l43.152-34.762l0.188-0.151v38.085L172.396,92.922z M172.998,92.735l42.507,3.111
+							V58.492L172.998,92.735z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M193.783,108.754l-0.07-0.102l22.023-12.885v44.958L193.783,108.754z M194.044,108.727l21.461,31.254
+							v-43.81L194.044,108.727z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="204.033,158.1 215.505,140.739 215.505,158.1 215.736,158.1 215.736,139.969 215.524,140.29 
+							203.756,158.1 						"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="109.646" cy="149.955" r="1.245"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="140.544" cy="98.942" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="158.553" cy="133.903" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="172.697" cy="92.829" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="193.878" cy="108.689" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="76.123" cy="145.276" r="1.246"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_3_" width="216" height="151.2"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_4_)">
+			<g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="78.029,-6.9 76.205,-6.33 107.244,0.296 111.665,-6.9 						"/>
+					</g>
+					<g opacity="0.3"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="111.665,-6.9 107.244,0.296 130.51,32.641 122.349,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="122.349,-6.9 130.51,32.641 143.338,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="143.338,-6.9 130.51,32.641 160.162,39.414 143.413,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="143.413,-6.9 160.162,39.414 205.435,25.316 143.584,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#23BCFF" d="M195.115,73.741l10.319-48.425l-45.272,14.098L195.115,73.741z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="145.104,-6.9 143.584,-6.9 205.435,25.316 195.604,-3.709 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="145.104,-6.9 195.604,-3.709 193.756,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="193.756,-6.9 195.604,-3.709 197.461,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="205.435,25.316 219,1.924 219,-6.9 201.605,-6.9 195.604,-3.709 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="219,81.233 219,62.13 195.115,73.741 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="219,62.13 219,39.227 205.435,25.316 195.115,73.741 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="197.461,-6.9 195.604,-3.709 201.605,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="219,39.227 219,22.292 205.435,25.316 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="219,22.292 219,1.924 205.435,25.316 						"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g opacity="0.6">
+						<polygon fill="#39D2FF" points="83.758,-6.9 110.166,0.604 105.093,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="105.093,-6.9 110.166,0.604 111.869,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="111.869,-6.9 110.166,0.604 125.332,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="125.332,-6.9 110.166,0.604 148.363,40.506 137.082,-6.9 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#0093FF" points="137.082,-6.9 148.363,40.506 175.56,11.094 144.75,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M148.363,40.506l37.832-1.028L175.56,11.094L148.363,40.506z"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M175.56,11.094l10.636,28.384l28.971-19.29L175.56,11.094z"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="144.75,-6.9 175.56,11.094 187.023,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#23BCFF" points="187.023,-6.9 175.56,11.094 215.166,20.188 197.818,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="219,-2.499 219,-6.9 209.892,-6.9 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#23BCFF" points="219,45.291 219,25.799 215.166,20.188 186.195,39.478 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="215.166,20.188 219,17.085 219,-2.499 209.892,-6.9 197.818,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="219,70.378 219,45.291 186.195,39.478 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="219,25.799 219,17.085 215.166,20.188 						"/>
+					</g>
+				</g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="111.439,-6.9 107.188,0.02 76.659,-6.498 77.946,-6.9 77.168,-6.9 75.75,-6.457 107.22,0.262 
+							107.3,0.279 111.711,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="122.262,-6.9 130.287,31.986 107.383,0.145 111.711,-6.9 111.439,-6.9 107.105,0.154 
+							130.416,32.562 130.623,32.471 122.497,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="143.168,-6.9 130.535,32.043 122.497,-6.9 122.262,-6.9 130.485,32.945 143.411,-6.9 						
+							"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M143.169-6.9L130.4,32.459l-0.039,0.119l29.98,6.85L143.589-6.9H143.169z M130.658,32.41
+							l12.721-39.211l16.602,45.908L130.658,32.41z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="143.615,-6.9 205.133,25.143 160.232,39.124 143.589,-6.9 143.344,-6.9 160.091,39.41 
+							205.736,25.196 144.117,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M205.589,25l-0.041,0.193l-10.364,48.631l-35.24-34.609L205.589,25z M195.046,73.365l10.235-48.027
+							l-44.9,13.982L195.046,73.365z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="149.255,-6.9 145.596,-6.9 195.52,-3.746 205.232,24.934 144.115,-6.9 143.617,-6.9 
+							205.637,25.404 195.688,-3.967 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="193.707,-6.9 195.396,-3.985 149.265,-6.9 145.596,-6.9 195.596,-3.741 195.813,-3.728 
+							193.975,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="197.242,-6.9 195.604,-4.086 193.975,-6.9 193.707,-6.9 195.604,-3.626 197.51,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="205.406,25.447 219,2.007 219,1.547 205.463,24.891 195.744,-3.801 201.575,-6.9 
+							201.082,-6.9 195.549,-3.959 195.463,-3.912 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="219,81.208 219,80.965 195.427,73.571 219,62.111 219,61.854 194.803,73.617 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="219,62.111 219,61.854 195.277,73.387 205.503,25.404 219,39.244 219,38.914 205.367,24.934 
+							194.952,73.802 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="201.084,-6.9 195.908,-4.148 197.51,-6.9 197.242,-6.9 195.3,-3.564 201.574,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="219,39.245 219,38.914 205.662,25.237 219,22.263 219,22.026 205.207,25.102 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="219,22.264 219,22.026 205.667,24.999 219,2.007 219,1.547 205.335,25.111 205.203,25.34 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="107.248" cy="0.148" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="160.162" cy="39.021" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="205.435" cy="25.169" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="195.604" cy="-3.856" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="195.119" cy="73.571" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="130.51" cy="32.494" r="1.022"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g>
+						<polygon fill="#0093FF" points="116.723,-6.9 127.878,1.443 94.913,5.569 104.449,-6.9 104.158,-6.9 94.395,5.867 
+							128.476,1.602 117.107,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="127.783,-6.9 128.053,1.286 117.108,-6.9 116.723,-6.9 128.301,1.76 128.015,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="137.591,-6.9 128.284,1.274 128.014,-6.9 127.783,-6.9 128.069,1.771 137.941,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="153.288,-6.9 158.912,51.768 128.326,1.545 137.94,-6.9 137.591,-6.9 128.1,1.436 
+							128.027,1.5 158.977,52.317 159.19,52.246 153.521,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="160.605,-6.9 176.951,17.305 159.152,51.854 153.521,-6.9 153.288,-6.9 158.961,52.268 
+							158.998,52.66 177.188,17.35 177.219,17.288 160.885,-6.9 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M177.105,17.003l14.297,41.519l-32.5-6.18L177.105,17.003z M191.055,58.221L177.063,17.59
+							l-17.814,34.582L191.055,58.221z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M176.857,16.992l35.748,25.516l-21.435,16.051l-0.052-0.15L176.857,16.992z M212.213,42.513
+							L177.312,17.6l13.976,40.584L212.213,42.513z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="179.465,-6.9 177.002,16.968 160.885,-6.9 160.605,-6.9 177.167,17.625 179.697,-6.9 						
+							"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="184.954,-6.9 212.062,42.12 177.207,17.241 179.697,-6.9 179.465,-6.9 176.97,17.284 
+							176.963,17.352 212.342,42.604 212.511,42.454 185.219,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="219,3.601 219,3.343 197.951,-6.9 197.422,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="219,56.455 219,56.223 191.613,58.227 212.418,42.648 219,46.499 219,46.231 212.468,42.41 
+							212.401,42.372 190.844,58.516 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="212.398,42.73 219,33.117 219,32.708 212.42,42.291 185.219,-6.9 184.955,-6.9 						"/>
+						<polygon fill="#0093FF" points="219,3.344 197.951,-6.9 197.422,-6.9 219,3.601 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="219,80.891 219,80.594 191.529,58.465 219,56.454 219,56.223 190.928,58.277 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="219,46.5 219,46.231 212.575,42.473 219,33.116 219,32.708 212.314,42.445 212.244,42.547 
+													"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="128.177" cy="1.245" r="1.245"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="159.075" cy="52.257" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="177.084" cy="17.296" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="191.229" cy="58.371" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="212.409" cy="42.51" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="94.654" cy="5.924" r="1.246"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="122.866,-6.9 127.287,0.296 158.326,-6.33 156.502,-6.9 						"/>
+					</g>
+					<g opacity="0.3"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="112.183,-6.9 104.021,32.641 127.287,0.296 122.866,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="91.193,-6.9 104.021,32.641 112.183,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="91.119,-6.9 74.369,39.414 104.021,32.641 91.193,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="90.948,-6.9 29.097,25.316 74.369,39.414 91.119,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#23BCFF" d="M39.416,73.741L29.097,25.316l45.272,14.098L39.416,73.741z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="89.428,-6.9 38.928,-3.709 29.097,25.316 90.948,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="40.775,-6.9 38.928,-3.709 89.428,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="37.07,-6.9 38.928,-3.709 40.775,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#39D2FF" points="10.414,-6.9 29.097,25.316 38.928,-3.709 32.926,-6.9 						"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<path fill="#0093FF" d="M0.379,85.985V54.764l39.037,18.978L0.379,85.985z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#39D2FF" d="M0.379,54.764l28.718-29.447l10.319,48.425L0.379,54.764z"/>
+					</g>
+					<g opacity="0.8"  a:adobe-blending-mode="normal">
+						<polygon fill="#0093FF" points="32.926,-6.9 38.928,-3.709 37.07,-6.9 						"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<path fill="#0093FF" d="M0.379,54.764v-35.85l28.718,6.402L0.379,54.764z"/>
+					</g>
+					<g opacity="0.6"  a:adobe-blending-mode="normal">
+						<polygon fill="#23BCFF" points="0.379,-6.9 0.379,18.914 29.097,25.316 10.414,-6.9 						"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g opacity="0.6">
+						<polygon fill="#39D2FF" points="129.438,-6.9 124.365,0.604 150.773,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="122.662,-6.9 124.365,0.604 129.438,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="109.199,-6.9 124.365,0.604 122.662,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<polygon fill="#23BCFF" points="97.449,-6.9 86.168,40.506 124.365,0.604 109.199,-6.9 						"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#0093FF" points="89.782,-6.9 58.972,11.094 86.168,40.506 97.449,-6.9 						"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M86.168,40.506l-37.832-1.028l10.636-28.384L86.168,40.506z"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M58.972,11.094L48.336,39.478l-28.971-19.29L58.972,11.094z"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="47.508,-6.9 58.972,11.094 89.782,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#23BCFF" points="36.714,-6.9 19.365,20.188 58.972,11.094 47.508,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#39D2FF" points="7.859,-6.9 0.379,4.822 24.639,-6.9 						"/>
+					</g>
+					<g opacity="0.6">
+						<path fill="#23BCFF" d="M48.336,39.478L0.379,47.977l18.986-27.789L48.336,39.478z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="24.639,-6.9 0.379,4.822 19.365,20.188 36.714,-6.9 						"/>
+					</g>
+					<g>
+						<path fill="#39D2FF" d="M48.336,39.478L0.379,84.651V47.977L48.336,39.478z"/>
+					</g>
+					<g opacity="0.3">
+						<path fill="#23BCFF" d="M19.365,20.188L0.379,47.977V4.822L19.365,20.188z"/>
+					</g>
+					<g opacity="0.6">
+						<polygon fill="#23BCFF" points="0.379,-6.9 0.379,4.822 7.859,-6.9 						"/>
+					</g>
+				</g>
+				<g opacity="0.5"  a:adobe-blending-mode="multiply">
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="156.586,-6.9 157.872,-6.498 127.343,0.02 123.092,-6.9 122.82,-6.9 127.231,0.279 
+							127.312,0.262 158.781,-6.457 157.363,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="122.82,-6.9 127.148,0.145 104.244,31.986 112.27,-6.9 112.034,-6.9 103.908,32.471 
+							104.115,32.562 127.426,0.154 123.092,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="112.034,-6.9 103.996,32.043 91.362,-6.9 91.12,-6.9 104.046,32.945 112.27,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M91.362-6.9h-0.42L74.189,39.428l29.98-6.85l-0.039-0.119L91.362-6.9z M74.551,39.107L91.152-6.801
+							l12.721,39.211L74.551,39.107z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="90.942,-6.9 74.299,39.124 29.398,25.143 90.916,-6.9 90.414,-6.9 28.795,25.196 74.44,39.41 
+							91.188,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M74.588,39.215l-35.24,34.609L28.983,25.193L28.942,25L74.588,39.215z M74.15,39.32l-44.9-13.982
+							l10.235,48.027L74.15,39.32z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="90.416,-6.9 29.299,24.934 39.012,-3.746 88.936,-6.9 85.276,-6.9 38.843,-3.967 
+							28.895,25.404 90.915,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="85.267,-6.9 39.136,-3.985 40.823,-6.9 40.556,-6.9 38.719,-3.728 38.936,-3.741 88.936,-6.9 
+													"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="40.558,-6.9 38.928,-4.086 37.289,-6.9 37.021,-6.9 38.928,-3.626 40.823,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="33.449,-6.9 32.957,-6.9 38.787,-3.801 29.068,24.891 10.632,-6.9 10.365,-6.9 29.125,25.447 
+							39.068,-3.912 38.982,-3.959 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M39.729,73.617L0.264,85.996V54.432L39.729,73.617z M39.104,73.571L0.495,54.801v30.88L39.104,73.571z
+							"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M39.578,73.802L0.186,54.65l28.979-29.717L39.578,73.802z M39.254,73.387L29.028,25.404L0.574,54.582
+							L39.254,73.387z"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="37.021,-6.9 38.623,-4.148 33.447,-6.9 32.957,-6.9 39.231,-3.564 37.29,-6.9 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<path fill="#005AF3" d="M29.324,25.102L0.264,54.9V18.623L29.324,25.102z M28.869,25.237L0.495,18.91v35.422L28.869,25.237z"
+							/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<polygon fill="#005AF3" points="10.633,-6.9 10.366,-6.9 28.864,24.999 0.495,18.674 0.495,-6.9 0.264,-6.9 0.264,18.859 
+							0.354,18.879 29.328,25.34 29.196,25.111 						"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="127.284" cy="0.148" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="74.369" cy="39.021" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="29.097" cy="25.169" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="38.928" cy="-3.856" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="39.412" cy="73.571" r="1.022"/>
+					</g>
+					<g  a:adobe-blending-mode="normal">
+						<circle fill="#005AF3" cx="104.021" cy="32.494" r="1.022"/>
+					</g>
+				</g>
+				<g opacity="0.4">
+					<g>
+						<polygon fill="#0093FF" points="130.082,-6.9 139.618,5.569 106.653,1.443 117.809,-6.9 117.424,-6.9 106.056,1.602 
+							140.137,5.867 130.373,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="117.424,-6.9 106.479,1.286 106.749,-6.9 106.517,-6.9 106.23,1.76 117.809,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="106.517,-6.9 106.247,1.274 96.94,-6.9 96.59,-6.9 106.462,1.771 106.748,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="96.941,-6.9 96.591,-6.9 106.205,1.545 75.619,51.768 81.243,-6.9 81.011,-6.9 75.341,52.246 
+							75.555,52.317 106.504,1.5 106.432,1.436 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="81.012,-6.9 75.379,51.854 57.58,17.305 73.926,-6.9 73.646,-6.9 57.313,17.288 57.344,17.35 
+							75.533,52.66 75.57,52.268 81.243,-6.9 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M75.629,52.342l-32.5,6.18l14.297-41.519L75.629,52.342z M75.282,52.172L57.468,17.59L43.477,58.221
+							L75.282,52.172z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M43.412,58.408l-0.052,0.15L21.926,42.508l35.748-25.516L43.412,58.408z M43.244,58.184L57.22,17.6
+							L22.318,42.513L43.244,58.184z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="73.646,-6.9 57.529,16.968 55.066,-6.9 54.834,-6.9 57.364,17.625 73.926,-6.9 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="55.066,-6.9 54.834,-6.9 57.324,17.241 22.47,42.12 49.577,-6.9 49.313,-6.9 22.021,42.454 
+							22.189,42.604 57.568,17.352 57.562,17.284 						"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="36.58,-6.9 0.709,10.557 12.244,-6.9 11.968,-6.9 0.051,11.135 0.43,10.95 37.108,-6.9 						
+							"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M43.688,58.516L0,55.318L22.063,42.41l0.066-0.038L43.688,58.516z M42.918,58.227L22.113,42.648
+							L0.759,55.142L42.918,58.227z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="49.313,-6.9 22.111,42.291 0.551,10.891 37.109,-6.9 36.58,-6.9 0.208,10.801 22.133,42.73 
+							49.577,-6.9 						"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M43.604,58.277L0.451,93.039L0.264,93.19V55.105L43.604,58.277z M43.002,58.465L0.495,55.354v37.354
+							L43.002,58.465z"/>
+					</g>
+					<g>
+						<path fill="#0093FF" d="M22.217,42.445l0.07,0.102L0.264,55.432V10.474L22.217,42.445z M21.956,42.473L0.495,11.219v43.81
+							L21.956,42.473z"/>
+					</g>
+					<g>
+						<polygon fill="#0093FF" points="11.967,-6.9 0.495,10.461 0.495,-6.9 0.264,-6.9 0.264,11.23 0.476,10.91 12.244,-6.9 						
+							"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="106.354" cy="1.245" r="1.245"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="75.456" cy="52.257" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="57.447" cy="17.296" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="43.303" cy="58.371" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="22.122" cy="42.51" r="1.246"/>
+					</g>
+					<g>
+						<circle fill="#0093FF" cx="139.877" cy="5.924" r="1.246"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
