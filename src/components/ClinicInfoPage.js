@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import '../css/ClinicInfoPage.css'
 import Pricelist from './Pricelist';
 import DoctorList from './DoctorList'
+import slika from '../icons/money.svg';
 
 
 class ClinicPage extends React.Component {
@@ -70,7 +71,7 @@ class ClinicPage extends React.Component {
   render() {
     return (
       <div>
-        <Card className="text-center-clinic" id="karta">
+        <Card className="text-center-clinic" id="karticaKlinika">
           <Form className="clinicInfo" onSubmit={this.SendUpdateRequest}>
             <Card.Body>
               <h1 className="clinicHeader">Clinic's info</h1>
@@ -96,6 +97,7 @@ class ClinicPage extends React.Component {
           </Form>
         </Card>
         <Card id="pricelist">
+          <img src = {slika} id="slikamoney"></img>
           <h3 id="header">Pricelist</h3>
           <Pricelist/>
         </Card>
