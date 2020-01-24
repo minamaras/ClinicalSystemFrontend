@@ -21,7 +21,8 @@ class RequestsTable extends React.Component{
         const { name, lastname, email, password } = request
 
         return (
-            <Card key={email.toString()} className="cardContainer" >
+            <div className="divCardReg">
+            <Card key={email.toString()} className="cardContainerReg" >
             <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={usericon} alt="Unavailable icon" />
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{email}</Card.Title>
@@ -39,6 +40,7 @@ class RequestsTable extends React.Component{
 
                 </Card.Body>
             </Card>
+            </div>
         )
 
     })
@@ -46,7 +48,7 @@ class RequestsTable extends React.Component{
 
     render() {
         return (
-            <div className="containerRenderCards">
+            <div className="containerRenderCardsReq">
                 {this.renderTableData()}
             </div>
         )
