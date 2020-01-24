@@ -23,7 +23,8 @@ class AddExamType extends React.Component {
         this.state = {
             show: false,
             name: '',
-            price: ''
+            price: '',
+            duration: ''
         };
     }
 
@@ -113,6 +114,15 @@ class AddExamType extends React.Component {
                                     name="price"
                                     onChange={this.handleChange}
                                     placeholder="Enter price"
+                                    required
+                                />
+                                <br/>
+                                <input type="number"
+                                    className="form-control form-control-sm"
+                                    id="duration"
+                                    name="duration"
+                                    onChange={this.handleChange}
+                                    placeholder="Enter duration in minutes"
                                     required
                                 />
                                 <br/>

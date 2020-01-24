@@ -75,11 +75,12 @@ class ExamTypeTable extends React.Component{
 
             const name = this.props.content[i].name;
             const price = this.props.content[i].price;
+            const duration = this.props.content[i].duration;
 
             console.log(this.props.content[i]);
 
 
-            { types.push({ name: name, price: price}); }
+            { types.push({ name: name, price: price, duration: duration}); }
 
         }
 
@@ -97,6 +98,13 @@ class ExamTypeTable extends React.Component{
                 Header: "price",
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["price"] }),
+                filterAll: true
+            },
+            {
+                accessor: "duration",
+                Header: "Duration [mins]",
+                filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["duration"] }),
                 filterAll: true
             },
             {

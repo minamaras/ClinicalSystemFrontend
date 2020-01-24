@@ -59,8 +59,8 @@
 
 #pricelist {
     float: right;
-    margin-top: -33.2%;
-    margin-right: 22%;
+    margin-top: 2%;
+    margin-right: 6%;
     padding: 20px;
 }
 
@@ -83,4 +83,12 @@
 #pricelistable {
     width: max-content;
     padding: 20px;
+}
+
+#karticaKlinika {
+    margin-top: 80px;
+}
+
+#slikamoney {
+    size: 10em;
 }
