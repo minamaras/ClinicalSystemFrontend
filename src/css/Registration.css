@@ -1,4 +1,29 @@
 .formReg{
 
-  margin: 0px 300px 0px 300px;
+  margin: 0px 0px 0px 0px;
+  width: auto;
+}
+
+.regcard{
+
+  margin: 80px 0px 0px 1200px;
+  width: 45%;
+  height: auto;
+}
+
+.regbutton{
+  background-color: transparent;
+  margin: 0px 0px 0px 500px;
+  width: 100px;
+}
+
+.background{
+
+  background-image: url("../icons/register.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 50px 0px 0px 0px;
 }

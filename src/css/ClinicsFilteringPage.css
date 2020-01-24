@@ -6,14 +6,15 @@
 .nesto{
 margin: 200px -40px 0px 0px;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 width: 100%;
 
 }
 
 #naslovpravi{
-  margin: 50px 0px 0px 50px;
+  margin: -80px 0px 0px 50px;
   color: rgb(0, 0, 0);
+  opacity: 0.7;
 }
 
 
@@ -26,20 +27,23 @@ width: 100%;
 
 .pozadina{
 
-  background-color: rgb(182, 218, 250);;
+  background-color: white;
+  margin: 60px 0px 0px 0px;
+
 }
 
 .filters{
 
   margin: -10px 0px 0px 30px;
   background: #c1cee3;
-  width: 85%;
+  width: 30%;
+  height: 300px;
   border-style: solid;
 
 }
 
 .filterinput{
-  margin: 0px 0px 0px 35px;
+  margin: 0px 0px 30px 35px;
 }
 
 .select{
@@ -66,7 +70,7 @@ margin: 5px 30px 0px 37px;
 }
 
 .infobutton{
-  margin: 5px 0px 20px 830px;
+  margin: 5px 0px 20px 450px;
   background-color: transparent;
 }
 
@@ -93,4 +97,14 @@ margin: 5px 30px 0px 37px;
   border-style: solid;
   border-color: black;
   width: 80%;
+}
+
+.slikazaklinike{
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 450px;
+  width: 100%;
+  margin: -10px 10px 0px 0px;
+
 }

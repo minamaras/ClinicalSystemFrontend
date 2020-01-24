@@ -1,19 +1,21 @@
 .logincard{
-  margin: 300px 0px 0px 850px;
+  margin: auto;
+  margin-top: 200px;
   width: 500px;
   height: auto;
+  padding: 10px;
 }
 
 .dugme{
 
-  margin: 0px 0px 0px 150px;
+  margin: 0px 0px 0px 378px;
 }
 
 .lozinka{
 
 margin: 0px 150px 0px 0px;
 width: 70px;
-box-shadow: 3px 4px 5px #d8d8d8;
+box-shadow: 2px 3px 4px #d8d8d8;
 
 }
 
@@ -21,7 +23,7 @@ box-shadow: 3px 4px 5px #d8d8d8;
 
   margin: -5px 150px 0px 0px;
   width: 70px;
-  box-shadow: 3px 4px 5px #d8d8d8;
+  box-shadow: 2px 3px 4px #d8d8d8;
 
 }
 
@@ -32,5 +34,26 @@ box-shadow: 3px 4px 5px #d8d8d8;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+}
+
+.registerA{
+  padding-left: 10px;
+  cursor: pointer;
+  color: rgb(77, 85, 131);
+}
+
+.fontPtntP{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+  margin-top: 5px;
+}
+
+.fontPtntE{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+  margin-top: 2.5px;
 
 }

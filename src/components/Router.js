@@ -33,6 +33,7 @@ import MedicalRecord from './MedicalRecord';
 import ClinicsFilteringPage from './ClinicsFilteringPage';
 import HolidayRequests from './HolidayRequests';
 
+import { createBrowserHistory } from 'history';
 
 class Routes extends React.Component {
 
@@ -43,7 +44,7 @@ class Routes extends React.Component {
     render(){
         return (
         <Switch>
-        <Route exact path="/" render={(props) => <PhotoSlider user={this.props.user}/>}/>
+        <Route exact path="/" history={createBrowserHistory}  render={(props) => <PhotoSlider user={this.props.user}/>}/>
         <Route exact path="/login" render={(props) => <LoginForm changeState={this.props.changeState} />}/>
         <Route exact path="/register" component={RegistrationForm} />
 
@@ -63,10 +64,7 @@ class Routes extends React.Component {
         <Route exact path="/cliniclist" render={(props) => <ClinicListPage user={this.props.user}/>} />
 
         <Route exact path="/clinic/:name/:exam/:date/:time" render={(props) => <ClinicProfile user={this.props.user}/>} />
-        <Route exact path="/clinic/:name//" render={(props) => <ClinicProfile user={this.props.user}/>} />
-        <Route exact path="/clinic/:name///" render={(props) => <ClinicProfile user={this.props.user}/>} />
-        <Route exact path="/clinic/:name///undefined" render={(props) => <ClinicProfile user={this.props.user}/>} />
-
+        <Route exact path="/clinic/:name" render={(props) => <ClinicProfile user={this.props.user} parameter='0'/>} />
 
 
         <Route exact path="/doctorprofile" render={(props) => <DoctroProfile user={this.props.user}/>} />

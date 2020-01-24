@@ -6,8 +6,6 @@
     padding: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     font-family: "Comic Sans MS", cursive, sans-serif;
-
-
 }
 
 .containerRenderCardsClinic{
@@ -23,11 +21,14 @@
 
 .cardBody{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7cb92;
+    color: gray;
 }
 
 .cardTitle{
     text-align: center;
-    color: rgb(34, 21, 21);
+    background-color: #f7cb92;
+    color: gray;
 
 }
 
@@ -35,6 +36,7 @@
     font-size: 20px;
     padding: 10px;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    color: gray;
 
 }
 

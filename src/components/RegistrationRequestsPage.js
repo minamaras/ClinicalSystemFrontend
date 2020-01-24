@@ -44,7 +44,7 @@ class RegistrationRequestsPage extends React.Component{
     render() {
         return (
             <div className="container">
-                <h1 id="manage">Requests for registration</h1>
+                <h1 id="manageR">Requests for registration</h1>
                 <div className="row">
 
                     <div className="col-md-10">
