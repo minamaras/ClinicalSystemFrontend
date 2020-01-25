@@ -123,7 +123,7 @@ class ChangePassword extends React.Component{
                     onChange={this.handleChange}
                     required></FormControl>
 
-                    <Button variant="outline-dark" type="submit" className="dugmeChange">Submit</Button>
+                    <Button variant="outline-primary" type="submit" className="dugmeChange">Submit</Button>
                 </Form>
                 </div>
             </div>

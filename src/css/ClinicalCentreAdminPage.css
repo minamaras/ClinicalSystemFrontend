@@ -6,7 +6,7 @@
 .col-md-10-cca{
     display: flex;
     flex-direction: column;
-    margin: -110px 0px 10px -20px;
+    margin: -110px 0px 10px 65px;
 }
 
 .row-cca{
@@ -16,18 +16,24 @@
 
 
 #ccadminadding {
-    margin-left: 10px;
+    margin-left: 0px;
     margin-top: 170px;
     background-color: cornflowerblue;
     border-color: cornflowerblue;
     padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
 
+}
+
+#ccadminadding:hover{
+    background-color: rgb(80, 117, 185);
 }
 
 .adminTitle{
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: rgb(67, 115, 160);
-    margin-top: 30px;
-    margin-left: 39%;
+    margin-top: 70px;
+    margin-left: 42%;
     margin-bottom: 20px;
 }

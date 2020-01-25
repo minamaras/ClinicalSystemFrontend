@@ -44,7 +44,7 @@ class MyPatients extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{ margin: '99px 0 0 0'}}>
                 <MyPatientsTable content={this.state.patients}/>
             </div>
         );
