@@ -18,7 +18,7 @@ class MyPatients extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
             };
 
-        axios.get('http://localhost:8081/api/patients/allfromclinic', options).then(
+        axios.get('http://localhost:8081/api/patients/all', options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
         );

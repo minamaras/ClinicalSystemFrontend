@@ -136,3 +136,26 @@ color: rgb(65, 76, 90);
   font-size: 19px;
   color: rgb(65, 76, 90);
 }
+
+#patientinfo {
+ 
+  margin-top: 12%;
+  width: 340px;
+  height: 500px;
+
+}
+
+#startExam {
+  width: 200px;
+  height: 40px;
+  margin-left: 40px;
+}
+
+#viewMR {
+  width: 200px;
+  height: 40px;
+  align-content: center;
+  margin-left: 40px;
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
+}
