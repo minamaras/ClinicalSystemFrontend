@@ -34,9 +34,10 @@ class HolidayRequestsTable extends React.Component{
 
                     </Card.Text>
                     <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
-                    <div className="declineBtn">
+                    <Button className="declineButton" onClick={this.declineRequest.bind(this, request)} variant="danger">Decline</Button>
+                    {/*<div className="declineBtn">
                          <DeclineHolidayRequest id={email} />
-                    </div>
+                       </div>*/}
 
                 </Card.Body>
             </Card>
@@ -64,6 +65,22 @@ class HolidayRequestsTable extends React.Component{
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
           );
+    }
+
+    declineRequest(holiday) {
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        //console.log(doctor.email);
+
+         axios.post("http://localhost:8081/api/holiday/decline", holiday, options).then(
+           
+             (resp) => this.onSuccessHandler(resp),
+             (resp) => this.onErrorHandler(resp)
+         );
     }
 
 
