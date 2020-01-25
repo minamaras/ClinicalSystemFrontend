@@ -1,8 +1,7 @@
 .cardContainerDoktoraProfila{
-
-    margin: 20px 0px 0px 3px;
-    width: auto;
-    height:auto;
+    margin: 0px 0px 0px 3px;
+    width: 200px;
+    height: 400px;
     padding: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -32,7 +31,7 @@
 
     color: gray;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
+
     color: rgb(65, 76, 90);
 
 }

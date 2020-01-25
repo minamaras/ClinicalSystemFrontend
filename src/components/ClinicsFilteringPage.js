@@ -307,11 +307,12 @@ console.log(this.state.date);
 
         this.onSuccessHandler(resp);
 
-          console.log(this.state);
-      //window.location.reload();
+        document.getElementById("filters").style.visibility = "hidden";
+        document.getElementById("everythingelse").style.margin = "-200px 0px 0px 0px";
     },
       (resp) => this.onErrorHandler(resp)
     );
+
 
 
 }
@@ -391,12 +392,8 @@ render() {
 
         <div>
 
-        <label className="naslov"></label>
+
         <div className="filters" name="filters" id="filters"style={{visibility:'hidden'}}>
-          <br/>
-          <label className="filterlabel">Search for clinic:</label>
-          <br/>
-          <input name="filter" className="filterinput" onChange={this.handleChange} ></input>
 
            <DatePicker
                 selected={ this.state.startDate}
@@ -416,9 +413,9 @@ render() {
                  locale="sv-sv"
                  className="timepicker"
                />
-               <br/>
-               <b className="examtypelabel">Select appointment type :</b>{" "}
+
                <Select
+               placeholder="Select appointment type"
                options={
                 this.state.exams.map((type, i) => {
                 return {id: i,value:type.name, label: type.name};
@@ -438,15 +435,13 @@ render() {
                }
                }
                value={this.state.selecetedexam}
-               className="selectedExamType"
+               className="selectedtype"
                required
                 />
 
 
-         <Button style={{background:'#575f6e'}} onClick={this.SendFilters} className="filterbutton">Filter</Button>
+         <button onClick={this.SendFilters} className="filterbutton">Filter</button>
          <button className="infobutton" onClick={this.showInformation}><img src={info} style={{width:'20px',height:'25px'}}></img></button>
-         <button onClick={this.HideFilters} className="buttonforhiddingfilters"><img src={less} style={{height:'30px',width:'30px'}}></img></button>
-
         </div>
         <div className="everythingelse" id="everythingelse">
         <label className="filterresultslabel">
@@ -454,7 +449,7 @@ render() {
         <br/>
         <input className="filterresults" name="resultfilter" onChange={this.handleChangeResultFiltering}></input>
         <button className="clearButton" onClick={this.ClearInput}><img src ={clear} style={{height:'20px',width:'20px'}}></img></button>
-        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'30px',width:'30px'}}></img></button>
+        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'20px',width:'20px'}}></img></button>
         <div className="Klinike">
                     <br />
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>

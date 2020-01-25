@@ -62,14 +62,14 @@ check(hours){
 
 
         return (
-            <Card key={doctor.name} className="cardContainerDoktoraProfila" style={{height:'auto',left:'50px'}} >
+            <Card key={doctor.name} className="cardContainerDoktoraProfila" >
             <Card.Title className="cardTitleDoktoraProfila" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
 
                 <Card.Body className = "cardBodyDoktoraProfila">
 
                     <Card.Text className='cardTextDoktoraProfila'>
-                          <label><b>Doctor does exam type: </b>{doctor.exam}</label>
+                          <label><b>Doctor does exam type: </b>{doctor.exam.name}</label>
                           <br/>
                           <label><b>Doctors rating: </b></label> &nbsp;
                           <label>{doctor.rating}</label>

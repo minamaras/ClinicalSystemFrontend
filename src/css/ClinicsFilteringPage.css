@@ -21,7 +21,7 @@ color: rgb(65, 76, 90);
 }
 
 #naslovpravi{
-  margin: -80px 0px 0px 35px;
+  margin: 0px 0px 0px 35px;
   color: rgb(0, 0, 0);
   opacity: 0.7;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -34,27 +34,27 @@ color: rgb(65, 76, 90);
   height: 50px;
   width: 50px;
   margin: 0px 0px 0px 20px;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
 .buttonforshowingfilters{
 
-  margin: 0px 0px 10px 30px;
+  margin: 0px 0px 0px 30px;
   height: 50px;
-  width: 50px
+  width: 50px;
+  box-shadow: 3px 4px 5px #d8d8d8;;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
 .buttonforhiddingfilters{
   margin: 0px 0px 0px -150px;
   height: 50px;
-  width: 50px
-}
-
-
-.karticaBolesti{
-
-  width: 250px;
-  height: auto;
-  margin: 50px 0px 0px 0px;
+  width: 50px;
+  box-shadow: 3px 4px 10px #706e6e;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
 .pozadina{
@@ -74,20 +74,23 @@ color: rgb(65, 76, 90);
 
 .filters{
 
-  margin: 0px 0px 0px 30px;
+  margin: 25px 0px 0px 30px;
   background: #c1cee3;
-  width: 30%;
-  height: 300px;
-  border-style: solid;
+  width: 800px;
+  height: 200px;
+  box-shadow: 3px 4px 10px #d8d8d8;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  border-radius: 10px;
+  background-color: transparent;
+  border-color: transparent;
 
 
 }
 
 .everythingelse{
-  margin: -350px 0px 0px 0px;
+  margin: -200px 0px 0px 0px;
 }
 
 .filterinput{
@@ -95,6 +98,9 @@ color: rgb(65, 76, 90);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  box-shadow: 3px 4px 10px #706e6e;
+  border-radius: 10px;
+  border-color: transparent;
 
 }
 
@@ -104,56 +110,71 @@ color: rgb(65, 76, 90);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  box-shadow: 3px 4px 10px #706e6e;
+  border-radius: 10px;
+  border-color: transparent;
 
 
 }
 
 .filterbutton{
 
-  margin: 20px 0px 10px 30px;
+  margin: 30px 0px 0px 30px;
   width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  box-shadow: 3px 4px 10px #706e6e;
+  border-radius: 15px;
+  border-color: transparent;
+  background-color: transparent;
 
 }
 
 .datepicker{
 
-margin: 5px 30px 0px 37px;
+margin: 20px 0px 0px 30px;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-font-size: 19px;
 color: rgb(65, 76, 90);
+box-shadow: 3px 4px 10px #706e6e;
+
 
 
 }
 
 .timepicker{
 
-  margin: 20px -150px 0px 0px;
+  margin: 20px -150px 0px 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  box-shadow: 3px 4px 10px #706e6e;
+  height: 35px;
 
 }
 
 .infobutton{
-  margin: 5px 0px 20px 450px;
+  margin: 5px 0px 20px 600px;
   background-color: transparent;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
   height: 50px;
-  width: 50px
+  width: 50px;
+  box-shadow: 3px 4px 10px #706e6e;
+  border-radius: 10px;
+  border-color: transparent;
 
 }
 
-.selectedExamType{
-  width: 200px;
-  margin: 10px 0px 0px 30px;
+.selectedtype{
+  width: 250px;
+  margin: 25px 0px 0px 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+  box-shadow: 3px 4px 10px #706e6e;
+  height: 35px;
 
 }
 
@@ -163,14 +184,14 @@ color: rgb(65, 76, 90);
   font-size: 19px;
   color: rgb(65, 76, 90);
 
+
 }
 
-.filterlabel{
-  margin: 0px 0px 0px 35px;
+.filternaslov{
+  margin: -60px 0px 0px 10px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
-
 }
 
 .filterresults{
@@ -180,6 +201,8 @@ color: rgb(65, 76, 90);
   font-size: 19px;
   color: rgb(65, 76, 90);
   height: 50px;
+  border-radius: 10px;
+
 
 }
 
