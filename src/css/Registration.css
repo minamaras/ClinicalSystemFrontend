@@ -1,29 +1,42 @@
 .formReg{
 
-  margin: 0px 0px 0px 0px;
+
   width: auto;
+  padding: 10px;
+
 }
 
-.regcard{
+.regcardR{
 
-  margin: 80px 0px 0px 1200px;
-  width: 45%;
+  margin: auto;
+  margin-top: 25px;
+  width: 55%;
   height: auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 17.5px;
+  color: rgb(65, 76, 90);
 }
 
 .regbutton{
-  background-color: transparent;
-  margin: 0px 0px 0px 500px;
-  width: 100px;
+  width: 94px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  color: rgb(65, 76, 90);
+  float: right;
 }
 
-.background{
+.backgroundReg{
 
-  background-image: url("../icons/register.jpg");
+  background-image: url("../icons/rg.jpg");
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 50px 0px 0px 0px;
+}
+
+.registerA{
+  padding-left: 10px;
+  cursor: pointer;
+  color: rgb(77, 85, 131);
 }
