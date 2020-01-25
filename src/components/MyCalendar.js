@@ -43,7 +43,7 @@ class MyCalendar extends React.Component {
     return (
       <div>
           <br />
-        <div style={{ height: '450pt'}}>
+        <div style={{ height: '450pt', margin: '50px 0 0 0'}}>
           <Calendar
             localizer={localizer}
             events={myEventsList}

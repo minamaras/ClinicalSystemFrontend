@@ -15,7 +15,6 @@
 
 margin: 0px 150px 0px 0px;
 width: 70px;
-box-shadow: 2px 3px 4px #d8d8d8;
 
 }
 
@@ -23,12 +22,11 @@ box-shadow: 2px 3px 4px #d8d8d8;
 
   margin: -5px 150px 0px 0px;
   width: 70px;
-  box-shadow: 2px 3px 4px #d8d8d8;
 
 }
 
 .loginpozadina{
-  background-image: url("../icons/vektor.svg");
+  background-image: url("../icons/rg.jpg");
 
   /* Center and scale the image nicely */
   background-position: center;

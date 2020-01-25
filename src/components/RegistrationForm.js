@@ -98,8 +98,8 @@ handleChange(e) {
   render() {
     return (
 
-      <div className="background" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-      <Card className="regcard">
+      <div className="backgroundReg" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+      <Card className="regcardR">
       <Card.Body>
       <Form className="formReg" onSubmit={this.SendRegisterRequest}>
           <Form.Row>
@@ -135,7 +135,7 @@ handleChange(e) {
 
           <Form.Group controlId="formGridAddress1">
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="Enter your adress" id="adress" name="adress" onChange={this.handleChange}  />
+          <Form.Control placeholder="Enter your address" id="adress" name="adress" onChange={this.handleChange}  />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
@@ -146,27 +146,28 @@ handleChange(e) {
           <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" id="city" placeholder="Enter your city." name="city" onChange={this.handleChange} />
+          <Form.Control type="text" id="city" placeholder="Enter city" name="city" onChange={this.handleChange} />
           </Form.Group>
 
 
           <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Social security number</Form.Label>
-          <Form.Control type="text" id="socialSecurityNumber" placeholder="Enter your social security number." name="socialSecurityNumber" onChange={this.handleChange}/>
+          <Form.Control type="text" id="socialSecurityNumber" placeholder="Enter social security number" name="socialSecurityNumber" onChange={this.handleChange}/>
           </Form.Group>
           </Form.Row>
 
           <Form.Row>
           <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Phone number</Form.Label>
-          <Form.Control type="text" id="phone" placeholder="Enter your phone number." name="phone" onChange={this.handleChange}/>
+          <Form.Control type="text" id="phone" placeholder="Enter phone number" name="phone" onChange={this.handleChange}/>
           </Form.Group>
           </Form.Row>
-
-
-          <button variant="primary" type="submit" className="regbutton">
+          <Form.Row>
+          <p className="donthave">Already have an account?</p> <a href="/login" className="registerA">Log in</a>
+          </Form.Row>
+          <Button variant="outline-primary" type="submit" className="regbutton">
           Register
-          </button>
+          </Button>
 </Form>
 </Card.Body>
 </Card>

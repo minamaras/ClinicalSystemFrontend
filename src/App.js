@@ -110,7 +110,8 @@ export default class App extends React.Component {
                   rating: resp.data.rating,
                   clinicname: resp.data.clinicname,
                   start: resp.data.start,
-                  end: resp.data.end
+                  end: resp.data.end,
+                  firstLogin: resp.data.firstLogin
 
 
                 });
@@ -128,7 +129,9 @@ export default class App extends React.Component {
                               role: resp.data.role,
                               clinic: resp.data.clinic.name,
                               clinicdes: resp.data.clinic.description,
-                              clinicadress: resp.data.clinic.adress
+                              clinicadress: resp.data.clinic.adress,
+                              firstLogin: resp.data.firstLogin
+
 
                             });
                         }
@@ -143,6 +146,7 @@ export default class App extends React.Component {
                                           id: resp.data.id,
                                           password: resp.data.password,
                                           role: resp.data.role,
+                                          firstLogin: resp.data.firstLogin
 
                                         });
                                     }
@@ -270,7 +274,6 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
                       <RoutedLinkContainer link="/businessreport" displayText="Business Reports" />
-                      <RoutedLinkContainer link="/holiday" displayText="Holiday" />
                       <RoutedLinkContainer link="/examtypes" displayText="Exam Types" />
                       <RoutedLinkContainer link="/holidayrequests" displayText="Holiday Requests" />
 

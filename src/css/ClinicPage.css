@@ -1,8 +1,15 @@
 .col-md-2clinic{
-    margin-top: 20px;
+    margin-top: 120px;
     display: flex;
     flex-direction: column;
 
+}
+
+#manage{
+    color: cornflowerblue;
+    margin-left: 45px;
+    
+    padding: 20px;
 }
 
 

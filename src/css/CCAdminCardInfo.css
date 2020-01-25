@@ -1,6 +1,8 @@
 .ccacardC{
-    width: 54%;
-    box-shadow: 3px 3px 4px #d8d8d8;
+    width: 66%;
+    box-shadow: 2px 2px 2px #d8d8d8;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
 }
 
 .userIconCCA{
@@ -13,7 +15,7 @@
 }
 
 .myinfocca{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 31%;
     font-size: 150%;
     color: rgb(26, 66, 112);
