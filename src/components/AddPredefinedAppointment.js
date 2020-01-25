@@ -30,8 +30,6 @@ class AddPredefinedAppointment extends React.Component {
         this.state = {
             show: false,
             name: '',
-            startTime: '',
-            endTime: '',
             doctorEmail: '',
             doctors: [],
             roomNumber: '',
@@ -261,26 +259,6 @@ class AddPredefinedAppointment extends React.Component {
                                     id="start"
                                     name="start"
                                     onChange={this.handleChange}
-                                    required
-                                />
-                                <br />
-                                <label htmlFor="startTime">Start time:</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="startTime"
-                                    name="startTime"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter start hh:mm:ss"
-                                    required
-                                />
-                                <br />
-                                <label htmlFor="endTime">End time:</label>
-                                <input type="text"
-                                    className="form-control form-control-sm"
-                                    id="endTime"
-                                    name="endTime"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter end hh:mm:ss"
                                     required
                                 />
                                 <br />
