@@ -28,7 +28,7 @@ class AllDoctorsFromClinicTable extends React.Component{
       if(doctor.hours != undefined){
         if(this.props.date != ''){
 
-      return(<DoctorsTerms doctor={doctor} date={this.props.date} user={this.props.user}/>);
+      return(<DoctorsTerms doctor={doctor} date={this.props.date} user={this.props.user} exam={doctor.exam}/>);
     }
     }else if(doctor.hours!= undefined && doctor.hours.lenght == 0) {
           return(<label>No avaliable terms for this date.</label>);

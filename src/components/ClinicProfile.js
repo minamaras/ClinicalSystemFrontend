@@ -155,7 +155,7 @@ class  ClinicProfile extends React.Component{
               });
 
 
-                doctorstemp.push({gender:doctor.gender,exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
 
             });
@@ -524,7 +524,7 @@ handleChangeDate = date => {
           );
         }else if (this.props.match.params.date == undefined && this.props.match.params.time == undefined && this.props.match.params.exam == undefined && this.props.match.params.name !== undefined){
 
-          console.log(this.state.select);
+          console.log(this.state.dateString);
 
           return(
 

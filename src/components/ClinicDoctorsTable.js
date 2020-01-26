@@ -23,19 +23,6 @@ class ClinicDoctorTable extends React.Component{
 
     renderTerms(data){
 
-      return data.map((term, index) => {
-          return (
-            <li>
-            <Link>
-            [{term}]
-            </Link></li>
-
-
-
-    )
-
-        });
-
     }
 
 
@@ -59,7 +46,7 @@ class ClinicDoctorTable extends React.Component{
                 <Card.Body className = "cardBodyDoktor">
 
                     <Card.Text className='cardTextDoktor'>
-                          <label><b>Doctor does exam type:</b>{doctor.exam}</label>
+                          <label><b>Doctor does exam type:</b>{doctor.exam.name}</label>
                           <br/>
                           <label><b>Doctors rating: </b></label> &nbsp;
 
@@ -68,7 +55,7 @@ class ClinicDoctorTable extends React.Component{
                           <br/>
                           <label>Avaliable terms this doctor has for date <u> {this.props.date}:</u></label>
                           <div className="termsdiv">
-                          {<DoctorsTerms doctor={doctor} date={this.props.date}/>}
+                          <DoctorsTerms doctor={doctor} date={this.props.date} exam={doctor.exam}/>
                           </div>
                     </Card.Text>
                     <div className="addDoktor">

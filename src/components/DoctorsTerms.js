@@ -39,16 +39,37 @@ class DoctorsTerms extends React.Component {
     renderTerms(){
 
       return this.props.doctor.hours.map((term, index) => {
-        if(this.props.date != ''){
+
+        if(this.props.date != '' || this.props.date != undefined){
+          if(typeof  this.props.doctor.exam === "object"){
+            console.log("think he's an obect");
           return (
 
-            <Link className="singleterm" to ={{pathname:`/appointment/${this.props.doctor.id}/${this.props.date}/${term}/`}} >
+            <Link className="singleterm" to ={{pathname:`/appointment/${this.props.doctor.id}/${this.props.doctor.exam.name}/${this.props.doctor.exam.price}/${this.props.date}/${term}/`}}>
             [{term}] &nbsp;
             </Link>
 
     )
 
-  }
+          }
+        else{
+
+          console.log("think he's a string");
+
+          return (
+
+            <Link className="singleterm" to ={{pathname:`/appointment/${this.props.doctor.id}/${this.props.doctor.exam}/${this.props.date}/${term}/`}}>
+            [{term}] &nbsp;
+            </Link>
+
+    )
+
+
+
+        }
+
+      }
+
 
         });
 
