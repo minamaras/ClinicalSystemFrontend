@@ -8,6 +8,7 @@ import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
+import DoctorsTerms from './DoctorsTerms';
 
 
 class AllDoctorsFromClinicTable extends React.Component{
@@ -17,35 +18,21 @@ class AllDoctorsFromClinicTable extends React.Component{
 
         this.renderTableData = this.renderTableData.bind(this);
         this.renderTerms = this.renderTerms.bind(this);
-        this.check = this.check.bind(this);
     }
 
 
-check(hours){
-
-  if( hours !== undefined){
- return(<label name="avaliableterms">Avaliable terms this doctor has for date <u> {this.props.date}:</u></label>);
-}else{
-  return(<label name="avaliableterms"></label>);
-}
 
 
-}
+    renderTerms(doctor){
 
-    renderTerms(data){
+      if(doctor.hours != undefined){
+        if(this.props.date != ''){
 
-      if(data != undefined){
-      return data.map((term, index) => {
-          return (
-            <Link>
-            [{term}]   &nbsp;
-            </Link>
-
-
-    )
-
-        });
-      }else {
+      return(<DoctorsTerms doctor={doctor} date={this.props.date} user={this.props.user}/>);
+    }
+    }else if(doctor.hours!= undefined && doctor.hours.lenght == 0) {
+          return(<label>No avaliable terms for this date.</label>);
+      }else{
         return;
       }
 
@@ -56,11 +43,6 @@ check(hours){
 
 
     return this.props.content.map((doctor, index) => {
-        //const { name, adress, description, clinicAdmin} = clinic
-        //console.log(clinic)
-
-
-
         return (
             <Card key={doctor.name} className="cardContainerDoktoraProfila" >
             <Card.Title className="cardTitleDoktoraProfila" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
@@ -74,11 +56,10 @@ check(hours){
                           <label><b>Doctors rating: </b></label> &nbsp;
                           <label>{doctor.rating}</label>
 
+
                           <br/>
-                          {this.check(doctor.hours)}
-                          <ul className="termini">
-                          {this.renderTerms(doctor.hours)}
-                          </ul>
+                          {this.renderTerms(doctor)}
+
                     </Card.Text>
                     <div className="addDoktoraProfila">
                     </div>

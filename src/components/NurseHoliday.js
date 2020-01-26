@@ -31,7 +31,7 @@ class NurseHoliday extends React.Component{
             today: date,
         }
 
-        
+
     }
 
     handleSelect(eventKey, event) {
@@ -45,7 +45,7 @@ class NurseHoliday extends React.Component{
         this.setState({...this.state, [e.target.name]: e.target.value});
     }
 
-    
+
     createRequest(event) {
         event.preventDefault();
 
@@ -82,7 +82,7 @@ class NurseHoliday extends React.Component{
 
     }
 
-   
+
 
     render() {
         return(
@@ -96,7 +96,7 @@ class NurseHoliday extends React.Component{
                         title={this.state.type}
                         id="document-type"
                         variant="info"
-                        onSelect={this.handleSelect.bind(this)}                      
+                        onSelect={this.handleSelect.bind(this)}
                     >
                         {options.map((opt, i) => (
                         <Dropdown.Item key={i} eventKey={i}>
@@ -105,7 +105,7 @@ class NurseHoliday extends React.Component{
                         ))}
                     </DropdownButton>
                     </Form.Row>
-                    
+
                     <Form.Row className="rowScnd">
                         <Form.Label className="chooseLabel">Start date: </Form.Label>
                         <input className="startDate" type="date"
@@ -115,10 +115,10 @@ class NurseHoliday extends React.Component{
                         id="start"
                         name="start"
                         onChange={this.handleChange}
-                        required                       
+                        required
                         />
                         <Form.Label className="chooseLabel">End date: </Form.Label>
-                        <input className="startDate" type="date" 
+                        <input className="startDate" type="date"
                         min = {this.state.start}
                         id="end"
                         name="end"
@@ -138,7 +138,7 @@ class NurseHoliday extends React.Component{
                     </Form.Row>
                 </Form>
             </div>
-            
+
         )
     }
 }

@@ -155,7 +155,7 @@ class  ClinicProfile extends React.Component{
               });
 
 
-                doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                doctorstemp.push({gender:doctor.gender,exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
 
             });
@@ -185,7 +185,7 @@ class  ClinicProfile extends React.Component{
 
 
 
-              doctorstemp.push({exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
+              doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
 
             });
 
@@ -501,20 +501,19 @@ handleChangeDate = date => {
 
        });
 
-       console.log(this.state.doctors);
+
        }
 
 
       render() {
+        console.log(this.props.match.params.date);
 
           if(this.props.match.params.date != undefined && this.props.match.params.time != undefined && this.props.match.params.exam != undefined){
 
           return(
-            <div className="back" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-            <h1 className="nazivklinike">Doctors from clinic <b>{this.state.clinicname}</b> that are avalaible for selected exam type for date <u>{this.state.date}</u> at time <b>{this.state.time}</b> </h1>
+            <div className="back" >
             <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
             <div className="nesto">
-
                         <br />
                         <ClinicDoctorsTable content={this.state.doctors} date={this.props.match.params.date}/>
                         <br />
@@ -531,8 +530,6 @@ handleChangeDate = date => {
 
 
             <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-            <pre>{JSON.stringify(this.state.select, null, 2)}</pre>
-            <pre>{JSON.stringify(this.state.dateString, null, 2)}</pre>
             <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
             <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
@@ -568,7 +565,7 @@ handleChangeDate = date => {
             <div className="nesto1">
 
                         <br />
-                        <AllDoctorsFromClinicTable content={this.state.doctors}/>
+                        <AllDoctorsFromClinicTable content={this.state.doctors} date={this.state.dateString} user={this.props.user}/>
                         <br />
             </div>
 

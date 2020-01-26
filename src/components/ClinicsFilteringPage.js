@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter,Link } from "react-router-dom";
-import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
+import { Modal, Button, Card, ListGroup,Form,Col} from "react-bootstrap";
 import icon from '../icons/16534.jpg'
 import info from '../icons/information.svg'
 import clear from '../icons/close.svg'
@@ -19,7 +19,6 @@ import moment from 'moment';
 import TimePicker from "react-time-picker";
 
 const PatientAlert = withReactContent(Swal)
-
 
 const filteringParameter = [
   { label: "By name", value: "name" },
@@ -308,7 +307,7 @@ console.log(this.state.date);
         this.onSuccessHandler(resp);
 
         document.getElementById("filters").style.visibility = "hidden";
-        document.getElementById("everythingelse").style.margin = "-200px 0px 0px 0px";
+        document.getElementById("everythingelse").style.margin = "-100px 0px 0px 0px";
     },
       (resp) => this.onErrorHandler(resp)
     );
@@ -320,11 +319,12 @@ console.log(this.state.date);
 showInformation = event => {
 
   PatientAlert.fire({
-      title: "This is a page for filtering.You can choose exam type and pick a date and time and will show you all the clinics that have avaliable doctors that are specialized for given exam type.Also you can enter name,rating and address in the input filed as additional filters.",
-      text: '',
-      type: "error",
+      title: '',
+      text: "This is a page for filtering.You can choose exam type and pick a date and time and will show you all the clinics that have avaliable doctors that are specialized for given exam type.Also you can enter name/rating/address in the input filed as additional filters.",
+      type: "success",
       button: true
     });
+
 }
 
 onChangeTime = time => {
@@ -388,8 +388,6 @@ render() {
 
 
         <div className="pozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-        <h1 id="naslovpravi">Clinics in our system</h1>
-
         <div>
 
 
