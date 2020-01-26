@@ -1,14 +1,13 @@
 .cardContainerKlinika{
 
     margin: 0px 30px 30px 30px;
-    width: auto;
+    width: 200px;
     height: auto;
     padding-top: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     border-style: solid;
     border-color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: rgb(65, 76, 90);
 }
 
 .cardBodyKlinika{
@@ -37,6 +36,7 @@
     margin-left: 14%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(65, 76, 90);
+
 }
 
 
