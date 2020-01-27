@@ -20,7 +20,7 @@ class DiagnosisCards extends React.Component{
     renderTableData() {
     return this.props.content.map((diagnosis, index) => {
         const { name, text} = diagnosis
-        console.log(diagnosis)
+        //console.log(diagnosis)
 
         return (
             <Card key={name} className="cardDContainer" >

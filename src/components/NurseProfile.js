@@ -82,7 +82,7 @@ class NurseProfile extends React.Component {
         return (
     
     <Card className="nurseCard">
-      <Form className="adminProfileForm" onSubmit={this.SendUpdateRequest}>
+      <Form className="nurseProfileForm" onSubmit={this.SendUpdateRequest}>
       <Card.Body>
       <Card.Img style={{height:'100px', width: 'auto'}} className="nrsIcon" variant="top" src={usericon} alt='Unavailable icon' />
 

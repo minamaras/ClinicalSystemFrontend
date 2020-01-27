@@ -29,19 +29,19 @@ class ClinicPage extends React.Component {
         };
 
 
-        axios.get("http://localhost:8081/api/clinics/allclinics",options).then(
+        axios.get("http://localhost:8081/api/clinics/allclinicsdto",options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp)
         );
 
-
+/*
         axios.get("http://localhost:8081/api/clinicadmin/all",options).then(
             (resp) => this.onSuccessHandlerClinicAdmin(resp),
             (resp) => this.onErrorHandlerClinicAdmin(resp)
         );
 
         
-
+*/
 
     }
 
@@ -72,7 +72,7 @@ class ClinicPage extends React.Component {
     onErrorHandler(response) {
         alert("Error response: Uncovered case");
     }
-
+/*
     onSuccessHandlerClinicAdmin(resp) {
         var tempClinicAdmins = [];
 
@@ -87,7 +87,7 @@ class ClinicPage extends React.Component {
     onErrorHandlerClinicAdmin(response) {
         alert("Error response: Uncovered case");
     }
-
+*/
     render() {
         return (
             <div>

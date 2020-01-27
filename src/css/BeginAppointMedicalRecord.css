@@ -1,0 +1,172 @@
+.medicalRecContainer{
+    display: flex;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.basicInfoRecord{
+    margin: -60px 40px 0 -100px;
+    background-color: aliceblue;
+    padding: 15px;
+    height: auto;
+    position: fixed;
+    max-width: 370px;
+
+}
+
+.medicalRecTitle{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: auto;
+    margin-top: 75px;
+}
+
+
+.rowRecord{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+
+.labelRec{
+    width: 150px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.pRec{
+    margin-top: 11px;
+    font-size: 18px;
+    height: auto;
+    overflow-wrap: normal;
+}
+
+.appReport{
+    margin: 0px 10px 30px 340px;
+    background-color: aliceblue;
+    padding: 20px;
+    min-width: 850px;
+    max-width: 980px;
+
+}
+
+.appReportAndRec{
+    display: flex;
+}
+
+.divAllR{
+    display: flex;
+    margin: 30px 0 0 0;
+    background-color: rgb(219, 232, 241);
+    padding: 20px;
+}
+
+.divReport{
+    margin: 0 70px 0 0;
+    width: auto;
+    max-width: 440px;
+}
+
+.divRecipe{
+    margin: 30px 0 0 90px;
+    background-color: rgb(219, 232, 241);
+    padding: 20px;
+    min-width: 260px;
+    max-width: 350px;
+}
+
+.editBasic{
+    margin: 0 0 0 20px;
+    cursor: pointer;
+}
+
+.basicTitle{
+    display: flex;
+    flex-direction: row;
+}
+
+.btnEditBasic{
+    margin: 5% 0 2% 25%;
+}
+
+
+.btnCancelBasic{
+    margin: 5% 0 2% 7%;
+}
+
+.addReport{
+    margin: 0px 0 20px 400px;
+    outline: none;
+    border: none;
+    height: 60px;
+    width: 190px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    cursor: pointer;
+    background-color: rgb(57, 91, 117);
+    box-shadow: 2px 2px 2px rgb(212, 215, 218);
+    color: white;
+}
+
+.addReport:hover{
+    background-color: rgb(72, 124, 161);
+}
+
+
+.topTitle{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.reportRowDiv{
+    display: flex;
+    flex-direction: row;
+}
+
+.reportRowTitle{
+    width: 80px;
+    font-size: 18px;
+}
+
+.reportRowText{
+    font-size: 18px;
+    color: rgb(71, 71, 83);
+}
+
+.reportRowTextText{
+    font-size: 18px;
+    color: rgb(71, 71, 83);
+    margin-left: 15px;
+}
+
+.medicationListRec{
+    font-size: 18px;
+    color: rgb(71, 71, 83);
+    list-style-type: none;
+}
+
+
+.authRec{
+    font-size: 18px;
+    margin: 0px 0 8px 6px;
+}
+
+.authRecNurse{
+    font-size: 18px;
+}
+
+.recText{
+    font-size: 18px;
+}
+
+.recTextTitle{
+    font-size: 18px;
+    margin: 5px 0 -1px 0;
+}
+
+.upButtons{
+    display: flex;
+    flex-direction: row;
+}
+
+

@@ -34,9 +34,9 @@ class RecipesTable extends React.Component{
         const options = {
             headers: { 'Authorization': 'Bearer ' + token}
         };
+        console.log(recipe.id);
 
-
-         axios.post("http://localhost:8081/api/recipes/authenticate", recipe, options).then(
+         axios.get(`http://localhost:8081/api/recipes/authenticate/${recipe.id}`, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
