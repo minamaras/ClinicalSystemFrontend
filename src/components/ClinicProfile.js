@@ -56,6 +56,9 @@ class  ClinicProfile extends React.Component{
 
 
 
+
+
+
       let token = localStorage.getItem('token');
       const options = {
           headers: { 'Authorization': 'Bearer ' + token}
@@ -75,35 +78,58 @@ class  ClinicProfile extends React.Component{
 
               resp.data.map((doctor, index) => {
 
+              if(doctor.examType.name.toLowerCase().includes(this.props.match.params.exam.toLowerCase())){
+
                 var strint = doctor.start.toString().substring(0,2);
                 var time = parseInt(strint);
 
                 var strinte = doctor.end.toString().substring(0,2);
-                var timeend = parseInt(strinte);
-                console.log(timeend);
+                var minutesend = doctor.end.toString().substring(3,5);
+                var minutesendnumber = parseInt(minutesend);
 
-                const locale = 'eu'; // or whatever you want...
+
+                console.log(minutesend);
+                var timeend = parseInt(strinte);
+                var dur = parseInt(doctor.examType.duration);
+
+
+
                 const hours = [];
 
+
+                var duration=0;
+
+
                 for(let hour = time; hour <= timeend; hour++) {
-                  hours.push(moment({ hour }).format('HH:mm:ss'));
-                  if(hour == timeend){
+
+                  if(hour == timeend && duration == parseInt(minutesendnumber)){
 
                     hours.push(
                         moment({
                             hour,
-                            minute: 0
+                            minute: duration
                         }).format('HH:mm:ss')
                     );
                     break;
                   }
+
                   hours.push(
                       moment({
                           hour,
-                          minute: 30
+                          minute: duration
                       }).format('HH:mm:ss')
                   );
-              }
+
+                    duration = duration+dur;
+
+                    if(duration >= 60){
+                      duration = duration%60;
+                    }else {
+                      hour=hour-1;
+                    }
+
+
+                }
 
 
 
@@ -128,19 +154,17 @@ class  ClinicProfile extends React.Component{
 
               });
 
-              if(doctor.examType.name.toLowerCase().includes(self.props.match.params.exam.toLowerCase())){
 
-                doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
 
             });
 
-
-            console.log(doctorstemp);
             this.setState({
               doctors: doctorstemp,
               startingdoctors: doctorstemp,
             });
+            console.log(this.state.doctors);
           }else{
 
             var tempexams = [];
@@ -161,7 +185,7 @@ class  ClinicProfile extends React.Component{
 
 
 
-              doctorstemp.push({exam:doctor.examType.name,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
+              doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
 
             });
 
@@ -223,6 +247,7 @@ handleChangeDate = date => {
 
 
                //var dateString = date.getFullYear() + '-' + 0 +(date.getMonth() + 1) + '-' + date.getDate();
+
                var dateString =date.toISOString().substring(0,10);
                console.log(dateString);
 
@@ -231,15 +256,20 @@ handleChangeDate = date => {
                   dateString:dateString,
 
                 });
+              console.log(date);
 
-                console.log(this.state.select);
-                console.log(this.state.startDate);
+                if(this.state.select !== undefined && this.state.dateString !== ''){
 
-                if(this.state.select !== undefined && this.state.dateString !== undefined ){
+                    console.log("misli da je definisan datum");
+                    console.log(this.state.startDate);
 
-                  {this.FilterDocs()}
+                  {this.FilterDocs(this.state.select,this.state.startingdoctors,date)}
+
                 }
                 else{
+                console.log("misli da je nije definisan datum");
+                  console.log(this.state.date);
+                  console.log(this.state.select);
                 return;
                 }
 
@@ -249,46 +279,50 @@ handleChangeDate = date => {
 
       var self = this;
 
-        if(entry == null){
+
+        if(entry== null){
           this.setState({
             select: undefined,
-            doctor: self.state.startingdoctors,
+            doctors: self.state.startingdoctors,
         });
       }
 
       else{
 
+
         this.setState({ select: entry.value});
 
+        if(this.state.dateString !== '' && entry.value !== undefined){
 
-        if(this.state.dateString !== undefined && this.state.select !== undefined){
+          this.setState({ doctors : this.state.startingdoctors});
 
 
-                {this.FilterDocs()}
-    }else{
-      return;
+                {this.FilterDocs(entry.value,this.state.startingdoctors,this.state.startDate)}
     }
     }
   }
 
 
 
-    FilterDocs(){
+    FilterDocs(type,docs,date){
 
       console.log("in the filter function");
+      var self = this;
 
+      var dateString =date.toISOString().substring(0,10);
 
       var returnDoctors =[];
-      var self= this;
-
-      this.state.doctors.forEach(function (doctor) {
-
-        console.log(doctor.exam);
-        console.log(self.state.select);
-
-        if(doctor.exam == self.state.select){
 
 
+      docs.forEach(function (doctor) {
+
+        console.log(doctor.exam.name);
+        console.log(type);
+
+
+        if(doctor.exam.name == type){
+
+          console.log("same exam");
 
           var strint = doctor.start.toString().substring(0,2);
           var time = parseInt(strint);
@@ -296,31 +330,57 @@ handleChangeDate = date => {
           var strinte = doctor.end.toString().substring(0,2);
           var timeend = parseInt(strinte);
 
-          console.log(self.state.dateString);
+          var minutesend = doctor.end.toString().substring(3,5);
+          var minutesendnumber = parseInt(minutesend);
 
-          const locale = 'eu'; // or whatever you want...
-                const hours = [];
+          var timeend = parseInt(strinte);
+          var dur = parseInt(doctor.exam.duration);
+          const hours = [];
+          var duration=0;
 
-                for(let hour = time; hour < timeend; hour++) {
-                  hours.push(moment({ hour }).format('HH:mm:ss'));
-                  hours.push(
-                      moment({
-                          hour,
-                          minute: 30
-                      }).format('HH:mm:ss')
-                  );
+
+          for(let hour = time; hour <= timeend; hour++) {
+
+            if(hour == timeend && duration == parseInt(minutesendnumber)){
+
+              hours.push(
+                  moment({
+                      hour,
+                      minute: duration
+                  }).format('HH:mm:ss')
+              );
+              break;
+            }
+
+            hours.push(
+                moment({
+                    hour,
+                    minute: duration
+                }).format('HH:mm:ss')
+            );
+
+              duration = duration+dur;
+
+              if(duration >= 60){
+                duration = duration%60;
+              }else {
+                hour=hour-1;
               }
+
+
+          }
+
+            console.log("paased making terms");
+
+
 
             doctor.appointments.forEach(function (appointment) {
               hours.forEach(function (term) {
 
-                console.log(appointment.date);
-                console.log(self.state.dateString);
-              if(appointment.date == self.state.dateString && appointment.startTime == term){
+              if(appointment.date == dateString && appointment.startTime == term){
 
-                console.log(term);
                 hours.splice( hours.indexOf(term), 1 );
-                console.log(hours);
+                console.log("thinks they are same");
 
               }
             });
@@ -441,21 +501,19 @@ handleChangeDate = date => {
 
        });
 
-       console.log(this.state.doctors);
+
        }
 
 
       render() {
+        console.log(this.props.match.params.date);
 
           if(this.props.match.params.date != undefined && this.props.match.params.time != undefined && this.props.match.params.exam != undefined){
 
           return(
-            <div className="back" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-            <img src = {doctors} className="slikadoktora"></img>
-            <h1 className="nazivklinike">Doctors from clinic <b>{this.state.clinicname}</b> that are avalaible for selected exam type for date <u>{this.state.date}</u> at time <b>{this.state.time}</b> </h1>
+            <div className="back" >
             <input className="filter" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
             <div className="nesto">
-
                         <br />
                         <ClinicDoctorsTable content={this.state.doctors} date={this.props.match.params.date}/>
                         <br />
@@ -466,7 +524,7 @@ handleChangeDate = date => {
           );
         }else if (this.props.match.params.date == undefined && this.props.match.params.time == undefined && this.props.match.params.exam == undefined && this.props.match.params.name !== undefined){
 
-          console.log(this.state.select);
+          console.log(this.state.dateString);
 
           return(
 
@@ -475,19 +533,18 @@ handleChangeDate = date => {
             <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
             <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
+            <br/>
             <DatePicker
                  selected={ this.state.startDate}
-                 //onChange={ this.handleChange}
                  onChange={this.handleChangeDate}
                  value= {this.state.inputValue}
                  name="startDate"
-                 className="datepicker"
+                 className="datepickerClinicProfile"
                  minDate={moment().toDate()}
 
 
                />
              <div className="type">
-             <b className="examtypelabel" style={{opacity:'0.7'}}>Select appointment type :</b>{" "}
 
              <Select
              options={
@@ -495,10 +552,11 @@ handleChangeDate = date => {
               return {id: i,value:type, label: type};
                })
              }
-             onChange={this.handleSelectChange}
+             onChange ={this.handleSelectChange}
              value={this.state.select}
-             className="selectedExamType"
+             className="type"
              required
+             placeholder="Select exam type"
               />
 
               </div>
@@ -507,7 +565,7 @@ handleChangeDate = date => {
             <div className="nesto1">
 
                         <br />
-                        <AllDoctorsFromClinicTable content={this.state.doctors}/>
+                        <AllDoctorsFromClinicTable content={this.state.doctors} date={this.state.dateString} user={this.props.user}/>
                         <br />
             </div>
 

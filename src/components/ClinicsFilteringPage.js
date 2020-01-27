@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter,Link } from "react-router-dom";
-import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
+import { Modal, Button, Card, ListGroup,Form,Col} from "react-bootstrap";
 import icon from '../icons/16534.jpg'
 import info from '../icons/information.svg'
 import clear from '../icons/close.svg'
@@ -19,7 +19,6 @@ import moment from 'moment';
 import TimePicker from "react-time-picker";
 
 const PatientAlert = withReactContent(Swal)
-
 
 const filteringParameter = [
   { label: "By name", value: "name" },
@@ -307,11 +306,12 @@ console.log(this.state.date);
 
         this.onSuccessHandler(resp);
 
-          console.log(this.state);
-      //window.location.reload();
+        document.getElementById("filters").style.visibility = "hidden";
+        document.getElementById("everythingelse").style.margin = "-100px 0px 0px 0px";
     },
       (resp) => this.onErrorHandler(resp)
     );
+
 
 
 }
@@ -319,11 +319,12 @@ console.log(this.state.date);
 showInformation = event => {
 
   PatientAlert.fire({
-      title: "This is a page for filtering.You can choose exam type and pick a date and time and will show you all the clinics that have avaliable doctors that are specialized for given exam type.Also you can enter name,rating and address in the input filed as additional filters.",
-      text: '',
-      type: "error",
+      title: '',
+      text: "This is a page for filtering.You can choose exam type and pick a date and time and will show you all the clinics that have avaliable doctors that are specialized for given exam type.Also you can enter name/rating/address in the input filed as additional filters.",
+      type: "success",
       button: true
     });
+
 }
 
 onChangeTime = time => {
@@ -387,16 +388,10 @@ render() {
 
 
         <div className="pozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-        <h1 id="naslovpravi">Clinics in our system</h1>
-
         <div>
 
-        <label className="naslov"></label>
+
         <div className="filters" name="filters" id="filters"style={{visibility:'hidden'}}>
-          <br/>
-          <label className="filterlabel">Search for clinic:</label>
-          <br/>
-          <input name="filter" className="filterinput" onChange={this.handleChange} ></input>
 
            <DatePicker
                 selected={ this.state.startDate}
@@ -416,9 +411,9 @@ render() {
                  locale="sv-sv"
                  className="timepicker"
                />
-               <br/>
-               <b className="examtypelabel">Select appointment type :</b>{" "}
+
                <Select
+               placeholder="Select appointment type"
                options={
                 this.state.exams.map((type, i) => {
                 return {id: i,value:type.name, label: type.name};
@@ -438,15 +433,13 @@ render() {
                }
                }
                value={this.state.selecetedexam}
-               className="selectedExamType"
+               className="selectedtype"
                required
                 />
 
 
-         <Button style={{background:'#575f6e'}} onClick={this.SendFilters} className="filterbutton">Filter</Button>
+         <button onClick={this.SendFilters} className="filterbutton">Filter</button>
          <button className="infobutton" onClick={this.showInformation}><img src={info} style={{width:'20px',height:'25px'}}></img></button>
-         <button onClick={this.HideFilters} className="buttonforhiddingfilters"><img src={less} style={{height:'30px',width:'30px'}}></img></button>
-
         </div>
         <div className="everythingelse" id="everythingelse">
         <label className="filterresultslabel">
@@ -454,7 +447,7 @@ render() {
         <br/>
         <input className="filterresults" name="resultfilter" onChange={this.handleChangeResultFiltering}></input>
         <button className="clearButton" onClick={this.ClearInput}><img src ={clear} style={{height:'20px',width:'20px'}}></img></button>
-        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'30px',width:'30px'}}></img></button>
+        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'20px',width:'20px'}}></img></button>
         <div className="Klinike">
                     <br />
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>

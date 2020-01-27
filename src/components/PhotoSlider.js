@@ -16,13 +16,13 @@ class PhotoSlider extends React.Component{
 render() {
     if(this.props.user.isLoggedIn){
 
-      if(this.props.user.role === "CLINICALCENTREADMIN"){
+      if(this.props.user.role === "CLINICALCENTREADMIN" || this.props.user.role === "DOCTOR" || this.props.user.role === "NURSE" || this.props.user.role === "CLINICADMIN"){
 
         if(this.props.user.firstLogin === true){
 
           this.props.history.push('/changepass');
         }
-      }
+      }  
 
       return ( <div>
 

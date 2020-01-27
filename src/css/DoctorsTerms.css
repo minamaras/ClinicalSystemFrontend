@@ -1,0 +1,15 @@
+.showingtermsbutton{
+  background-color: transparent;
+}
+
+.closetermsbutton{
+  margin: 10px 0px 0px 0px;
+}
+
+.avaliableTerms{
+  border-style: solid;
+}
+
+.singleterm{
+  color: #636161;
+}

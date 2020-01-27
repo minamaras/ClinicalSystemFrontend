@@ -26,7 +26,7 @@ class RenderClinic extends React.Component{
     RednderLink(c) {
 
       return(
-      <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
+      <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Visit {c.name}'s profile</Link>
   );
 
 }

@@ -106,8 +106,6 @@ render() {
 
 
         <div>
-        <h1 id="naslovpravi">Medical Record</h1>
-
         <div>
         <Card className="karticaBolesti">
           <Card.Title> Your disease history:</Card.Title>

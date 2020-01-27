@@ -41,7 +41,9 @@ class ClinicsFilteringTable extends React.Component{
 
 
       return(
-      <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Interested? Click here to see more about making an appointment at this clinic</Link>
+      <div className="ClinicProfileLink">
+      <Link name="linkforclinic" to ={{pathname:`/clinic/${c.name.replace(/\s/g,'')}`}} >Visit {c.name}'s profile</Link>
+      </div>
   );
   }
 }

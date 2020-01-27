@@ -91,7 +91,7 @@ class DeclineHolidayRequest extends React.Component{
             }
         };
 
-        axios.post(`http://localhost:8081/api/holidayrequests/declinerequest/${this.props.id}`, emailText, options).then(
+        axios.post(`http://localhost:8081/api/holiday/decline/${this.props.id}`, emailText, options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
             

@@ -20,21 +20,21 @@ width: 300px;
 
 
 .nesto{
-margin: 300px 0px 0px 0px;
+margin: 0px 0px 0px 100px;
+background-color: white;
+width: 100%;
+height: 100%;
 display: flex;
-flex-direction: column;
-width: auto;
-height: auto;
+flex-direction: row;
 padding: 10px;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 color: rgb(65, 76, 90);
 
 
 }
 
 .nesto1{
-margin: 300px 0px 0px 0px;
+margin: 170px 0px 0px 35px;
 display: flex;
 flex-direction: column;
 width: auto;
@@ -53,18 +53,20 @@ color: rgb(65, 76, 90);
 }
 
 .back{
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  margin: 90px 0px 0px 50px;
+
+  margin: 50px 0px 0px 0px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 
 .back1{
   width: 100%;
   height: 100%;
-  margin: 47px 0px 0px 50px;
-  background-image: url("../icons/clinicstaff1.svg");
+  background-image: url("../icons/nursephotobackground.svg");
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -72,6 +74,11 @@ color: rgb(65, 76, 90);
   background-size: cover;
   margin: 50px 0px 0px 0px;
 
+}
+
+.datepickerClinicProfile{
+  margin: 50px 0px 0px 75px;
+  width: 190px;
 }
 
 .slikadoktora{
@@ -88,9 +95,8 @@ color: rgb(65, 76, 90);
 
 .filter{
 
-  margin: 540px 0px 0px 100px;
-  width: 300px;
-
+  margin: 40px 0px 0px 150px;
+  width: 330px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
@@ -98,8 +104,8 @@ color: rgb(65, 76, 90);
 
 .filter1{
 
-  margin: 50px 0px 0px 80px;
-  width: 300px;
+  margin: 20px 0px 0px 80px;
+  width: 380px;
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
@@ -107,8 +113,7 @@ color: rgb(65, 76, 90);
 }
 
 .nazivklinike{
-  margin: -580px 0px 0px 160px;
-
+  margin: 0px 0px 0px 160px;
   opacity: 0.7;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: rgb(65, 76, 90);
@@ -116,7 +121,7 @@ color: rgb(65, 76, 90);
 }
 
 .nazivklinike1{
-  margin: 100px 0px 0px 75px;
+  margin: 10px 0px 0px 75px;
 
   opacity: 0.7;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -129,10 +134,35 @@ color: rgb(65, 76, 90);
   margin: 0px 0px 0px 40px;
 }
 
-.type{
-  margin: -75px 0px 0px 600px;
 
+
+.type{
+  margin: 20px 0px 0px 36px;
+  width: 190px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
+}
+
+#patientinfo {
+
+  margin-top: 12%;
+  width: 340px;
+  height: 500px;
+
+}
+
+#startExam {
+  width: 200px;
+  height: 40px;
+  margin-left: 40px;
+}
+
+#viewMR {
+  width: 200px;
+  height: 40px;
+  align-content: center;
+  margin-left: 40px;
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
 }

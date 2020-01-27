@@ -4,10 +4,11 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Modal, Button, Card } from "react-bootstrap";
 import '../css/ClinicDoctorTable.css';
-import clinic from '../icons/klinika.svg'
+import docmale from '../icons/onedoctor.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
+import DoctorsTerms from './DoctorsTerms';
 
 
 class ClinicDoctorTable extends React.Component{
@@ -22,20 +23,9 @@ class ClinicDoctorTable extends React.Component{
 
     renderTerms(data){
 
-      return data.map((term, index) => {
-          return (
-            <li>
-            <Link>
-            [{term}]
-            </Link></li>
-
-
-
-    )
-
-        });
-
     }
+
+
 
     renderTableData() {
       console.log(this.props.content);
@@ -48,14 +38,15 @@ class ClinicDoctorTable extends React.Component{
 
 
         return (
-            <Card key={doctor.name} className="cardContainerDoktor" style={{height:'auto',left:'50px'}} >
+          <div>
+            <Card key={doctor.name} name={doctor.id} className="cardContainerDoktor" style={{height:'auto',left:'50px'}}>
             <Card.Title className="cardTitleDoktor" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
 
                 <Card.Body className = "cardBodyDoktor">
 
                     <Card.Text className='cardTextDoktor'>
-                          <label><b>Doctor does exam type:</b>{doctor.exam}</label>
+                          <label><b>Doctor does exam type:</b>{doctor.exam.name}</label>
                           <br/>
                           <label><b>Doctors rating: </b></label> &nbsp;
 
@@ -63,9 +54,9 @@ class ClinicDoctorTable extends React.Component{
 
                           <br/>
                           <label>Avaliable terms this doctor has for date <u> {this.props.date}:</u></label>
-                          <ul className="terms">
-                          {this.renderTerms(doctor.hours)}
-                          </ul>
+                          <div className="termsdiv">
+                          <DoctorsTerms doctor={doctor} date={this.props.date} exam={doctor.exam}/>
+                          </div>
                     </Card.Text>
                     <div className="addDoktor">
                     </div>
@@ -73,6 +64,7 @@ class ClinicDoctorTable extends React.Component{
 
                 </Card.Body>
             </Card>
+            </div>
             )
 
 
