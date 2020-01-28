@@ -33,6 +33,7 @@ import MedicalRecord from './MedicalRecord';
 import ClinicsFilteringPage from './ClinicsFilteringPage';
 import HolidayRequests from './HolidayRequests';
 import AllClinics from './AllClinics';
+import BeginAppointMedicalRecord from './BeginAppointMedicalRecord'
 import ScheduleAppointment from './ScheduleAppointment';
 
 import { createBrowserHistory } from 'history';
@@ -91,6 +92,7 @@ class Routes extends React.Component {
         <Route exact path="/examrequests" render={(props) => <AppointmentRequests user={this.props.user}/>} />
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
+        <Route exact path="/startappointment/medicalrecord" render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
 
       </Switch>
         );

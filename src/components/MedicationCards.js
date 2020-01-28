@@ -20,7 +20,7 @@ class MedicationCards extends React.Component{
     renderTableData() {
     return this.props.content.map((medication, index) => {
         const { name, text} = medication
-        console.log(medication)
+        //console.log(medication)
 
         return (
             <Card key={name} className="cardDContainer" >

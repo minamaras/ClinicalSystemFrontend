@@ -344,7 +344,7 @@ HideFilters = event => {
   console.log("jsafjsa");
 
 document.getElementById("filters").style.visibility = "hidden";
-document.getElementById("everythingelse").style.margin = "-350px 0px 0px 0px";
+document.getElementById("everythingelse").style.margin = "-200px 0px 0px 0px";
 
 
 }
@@ -392,7 +392,8 @@ render() {
 
 
         <div className="filters" name="filters" id="filters"style={{visibility:'hidden'}}>
-
+        <Button className="buttonforhiddingfilters"onClick={this.HideFilters} variant="link">X</Button>
+        <br/>
            <DatePicker
                 selected={ this.state.startDate}
                 //onChange={ this.handleChange}
@@ -438,16 +439,16 @@ render() {
                 />
 
 
-         <button onClick={this.SendFilters} className="filterbutton">Filter</button>
-         <button className="infobutton" onClick={this.showInformation}><img src={info} style={{width:'20px',height:'25px'}}></img></button>
+         <Button onClick={this.SendFilters} className="filterbutton" variant="light">Filter</Button>
+         <Button className="infobutton" onClick={this.showInformation} variant="light">Info</Button>
         </div>
         <div className="everythingelse" id="everythingelse">
         <label className="filterresultslabel">
         </label>
         <br/>
         <input className="filterresults" name="resultfilter" onChange={this.handleChangeResultFiltering}></input>
-        <button className="clearButton" onClick={this.ClearInput}><img src ={clear} style={{height:'20px',width:'20px'}}></img></button>
-        <button onClick={this.ShowFilters} className="buttonforshowingfilters"><img src={filter} style={{height:'20px',width:'20px'}}></img></button>
+        <Button className="clearButton" onClick={this.ClearInput} variant="link">Clear input</Button>
+        <Button onClick={this.ShowFilters} className="buttonforshowingfilters"  variant="link">Filter</Button>
         <div className="Klinike">
                     <br />
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>

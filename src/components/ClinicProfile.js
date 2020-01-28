@@ -19,7 +19,7 @@ import ClinicDoctorsTable from './ClinicDoctorsTable';
 import AllDoctorsFromClinicTable from './AllDoctorsFromClinicTable.js';
 import moment from 'moment';
 
-
+const ErrorSearch = withReactContent(Swal)
 
 class  ClinicProfile extends React.Component{
   constructor(props) {
@@ -246,8 +246,6 @@ class  ClinicProfile extends React.Component{
 handleChangeDate = date => {
 
 
-               //var dateString = date.getFullYear() + '-' + 0 +(date.getMonth() + 1) + '-' + date.getDate();
-
                var dateString =date.toISOString().substring(0,10);
                console.log(dateString);
 
@@ -256,22 +254,7 @@ handleChangeDate = date => {
                   dateString:dateString,
 
                 });
-              console.log(date);
 
-                if(this.state.select !== undefined && this.state.dateString !== ''){
-
-                    console.log("misli da je definisan datum");
-                    console.log(this.state.startDate);
-
-                  {this.FilterDocs(this.state.select,this.state.startingdoctors,date)}
-
-                }
-                else{
-                console.log("misli da je nije definisan datum");
-                  console.log(this.state.date);
-                  console.log(this.state.select);
-                return;
-                }
 
             }
 
@@ -283,44 +266,40 @@ handleChangeDate = date => {
         if(entry== null){
           this.setState({
             select: undefined,
-            doctors: self.state.startingdoctors,
         });
       }
 
       else{
 
-
         this.setState({ select: entry.value});
-
-        if(this.state.dateString !== '' && entry.value !== undefined){
-
-          this.setState({ doctors : this.state.startingdoctors});
-
-
-                {this.FilterDocs(entry.value,this.state.startingdoctors,this.state.startDate)}
-    }
     }
   }
 
 
+    FilterDocs(){
 
-    FilterDocs(type,docs,date){
+      if(this.state.select == undefined || this.state.dateString == ''){
 
-      console.log("in the filter function");
+        ErrorSearch.fire({
+            title: "You didnt enter date or you didn't select exam type so we can't filter.Please try again.",
+            text: '',
+            type: "error",
+            button: true
+          });
+
+       return;
+
+      }
+
+
       var self = this;
-
-      var dateString =date.toISOString().substring(0,10);
 
       var returnDoctors =[];
 
 
-      docs.forEach(function (doctor) {
+      this.state.startingdoctors.forEach(function (doctor) {
 
-        console.log(doctor.exam.name);
-        console.log(type);
-
-
-        if(doctor.exam.name == type){
+        if(doctor.exam.name == self.state.select){
 
           console.log("same exam");
 
@@ -377,7 +356,7 @@ handleChangeDate = date => {
             doctor.appointments.forEach(function (appointment) {
               hours.forEach(function (term) {
 
-              if(appointment.date == dateString && appointment.startTime == term){
+              if(appointment.date == self.state.dateString && appointment.startTime == term){
 
                 hours.splice( hours.indexOf(term), 1 );
                 console.log("thinks they are same");
@@ -396,13 +375,9 @@ handleChangeDate = date => {
       });
 
 
-
-
       this.setState({
-
-        doctors: returnDoctors,
+        doctors: returnDoctors
       });
-
     }
 
 
@@ -414,13 +389,25 @@ handleChangeDate = date => {
            console.log(e.target.value);
          }
 
-         if(document.getElementsByName("filter")[0].value ==''){
+         console.log(this.state.dateString);
+         console.log(this.state.select);
+         console.log(this.state.doctors);
 
+         if(document.getElementsByName("filter")[0].value ==''){
+          if(this.state.select == undefined || this.state.dateString == ''){
+            console.log("thinks hes here");
          this.setState({
            doctors: this.state.startingdoctors,
          });
          return;
-         }
+       }else{
+         console.log("in gere");
+         if(this.state.select != undefined && this.state.dateString != ''){
+         this.FilterDocs();
+         return;
+       }
+       }
+       }
 
          var resultingdoctors =[];
          var doctorsName=[];
@@ -434,7 +421,6 @@ handleChangeDate = date => {
          if( firstandlast !== undefined && firstandlast[0] !== undefined && firstandlast[1] !== undefined){
            trywholename=true;
          }
-
 
          this.state.doctors.forEach(function (arrayItem) {
 
@@ -560,6 +546,7 @@ handleChangeDate = date => {
               />
 
               </div>
+              <Button className="buttonForFiltering" variant="light" onClick={this.FilterDocs}>Filter</Button>
 
 
             <div className="nesto1">

@@ -1,0 +1,39 @@
+.recipeAdding{
+    margin: 0px 0 20px 40px;
+    outline: none;
+    border: none;
+    height: 60px;
+    width: 190px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    cursor: pointer;
+    background-color: rgb(229, 237, 243);
+    box-shadow: 2px 2px 2px rgb(212, 215, 218);
+    color: rgb(38, 64, 83);
+}
+
+
+.recipeAdding:hover{
+    background-color: rgb(217, 226, 233);
+}
+
+
+
+.checkboxSingle{
+    margin: 0 5px 0 5px;
+}
+
+.MedicListDiv{
+    max-height: 420px;
+    overflow: scroll;
+    width: 240px;
+}
+
+.allDivRec{
+    display: flex;
+    flex-direction: row;
+}
+
+.contentRecipeDiv{
+    margin: 0 0 0 30px;
+}

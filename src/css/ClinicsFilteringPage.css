@@ -31,10 +31,8 @@ color: rgb(65, 76, 90);
 
 .clearButton{
 
-  height: 50px;
-  width: 50px;
+
   margin: 0px 0px 0px 20px;
-  opacity: 0.5;
 }
 
 .buttonforshowingfilters{
@@ -42,15 +40,10 @@ color: rgb(65, 76, 90);
   margin: 0px 0px 0px 30px;
   height: 50px;
   width: 50px;
-  opacity: 0.7;
 }
 
 .buttonforhiddingfilters{
-  margin: 0px 0px 0px -150px;
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  border-color: transparent;
+  margin: 5px 0px 0px 500px
 }
 
 .pozadina{
@@ -58,7 +51,7 @@ color: rgb(65, 76, 90);
   width: 100%;
   height: 100%;
   margin: 80px 0px 0px 50px;
-  background-image: url("../icons/ambulance.svg");
+  background-image: url("../icons/19366.jpg");
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -115,7 +108,6 @@ color: rgb(65, 76, 90);
   font-size: 19px;
   border-color: transparent;
   background-color: gray;
-  opacity: 0.5;
 
 }
 
@@ -140,13 +132,10 @@ color: rgb(65, 76, 90);
 }
 
 .infobutton{
-  margin: 0px 0px 0px 0px;
-  background-color: transparent;
+  margin: 30px 0px 0px 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 19px;
   color: rgb(65, 76, 90);
-  height: 50px;
-  width: 50px;
   border-radius: 10px;
   border-color: transparent;
 

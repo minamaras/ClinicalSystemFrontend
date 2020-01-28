@@ -119,6 +119,8 @@ export default class App extends React.Component {
 
             else if (resp.data.role ===  'CLINICADMIN'){
 
+              console.log(resp.data);
+
                           this.setState({
                               isLoggedIn: true,
                               name: resp.data.name,
