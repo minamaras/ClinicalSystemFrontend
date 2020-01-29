@@ -205,7 +205,7 @@ class BeginAppointMedicalRecord extends React.Component{
                 return(
                     <div className="divAllR">
                     <div className="divReport">
-                        <div class="basicTitle">
+                        <div className="basicTitle">
                             <h4>Report</h4>
                            {report.editable && <img src={editicon} onClick={() => this.handleEditButton(i, report.diagnosisName, report.text)} title="Update report" className="editReport" style={{height:'27px', width: 'auto'}} alt='Unavailable icon' />}
                         </div>
@@ -291,9 +291,9 @@ class BeginAppointMedicalRecord extends React.Component{
 
     renderMedicationNames(medication){
         return(
-            medication.map((name, i) => {
+            medication.map(name => {
                 return(
-                    <li className="medicationListRec" key={i}>{name}</li>
+                    <li className="medicationListRec" key={name}>{name}</li>
                 )
             })
         )
