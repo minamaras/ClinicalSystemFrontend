@@ -4,13 +4,14 @@ import { Modal, Button, Form } from "react-bootstrap";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import '../css/BeginAppointMedicalRecord.css';
+import '../css/EndAppointmentRecord.css';
 import editicon from '../icons/editR.svg';
 import recordicon from '../icons/rcd.svg';
 import AddReport from './AddReport'
 import AddRecipe from './AddRecipe'
 import wait from '../icons/hourglass.svg'
 import checked from '../icons/checkmark.svg'
+
 
 const MedRecAlert = withReactContent(Swal)
 
@@ -349,8 +350,9 @@ class BeginAppointMedicalRecord extends React.Component{
                     <h1 className="medicalRecTitle">{this.state.patientName}'s Medical record</h1>
                 </div>
                 <div className="upButtons">
-                <AddRecipe content={this.state.patientemail} />
-                <AddReport content={this.state.patientemail} />                
+                <AddRecipe content={this.state.patientemail}/>
+                <button className="endAppBtn">End appointment</button>
+                <button className="anotherAppBtn">Make another appointment</button>
                 </div>
                 <div className="medicalRecContainer">
                     

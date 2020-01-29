@@ -1,10 +1,12 @@
 import React from 'react'
+import {Route, withRouter, Switch } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import { Modal, Button, Form } from "react-bootstrap";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../css/AddReport.css';
+import browserHistory from "react-router";
 
 const MedRecAlert = withReactContent(Swal)
 
@@ -137,7 +139,9 @@ class AddReport extends React.Component{
             icon: 'success',
             button: true
           });
-          window.location.reload();
+          //window.location.reload();
+          this.props.history.push('/endappointment/medicalrecord');
+          
     }
 
 
@@ -199,4 +203,4 @@ class AddReport extends React.Component{
 
 }
 
-export default AddReport
+export default withRouter(AddReport)
