@@ -27,6 +27,8 @@ class AppointmentRequests extends React.Component {
     }
 
     onSuccessHandler(resp) {
+        console.log(resp.data);
+        
         var temp = [];
 
         for (var i = 0; i < resp.data.length; i++) {

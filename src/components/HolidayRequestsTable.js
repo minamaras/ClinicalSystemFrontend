@@ -7,6 +7,7 @@ import usericon from '../icons/user.svg';
 import '../css/RegistrationTable.css';
 import EMailRejection from './EmailRejection';
 import DeclineHolidayRequest from './DeclineHolidayRequest';
+import '../css/HolidayRequests.css'
 
 class HolidayRequestsTable extends React.Component{
 
@@ -23,8 +24,8 @@ class HolidayRequestsTable extends React.Component{
         const { start, end, email, password } = request
 
         return (
-            <Card key={email.toString()} className="cardContainer" >
-            <Card.Img style={{height:'130px', width: 'auto'}} className="userIcon" variant="top" src={usericon} alt="Unavailable icon" />
+            <Card key={email.toString()} className="cardContainerHoliday" >
+            
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{email}</Card.Title>
                     <Card.Text className='cardText'>
@@ -34,8 +35,8 @@ class HolidayRequestsTable extends React.Component{
                             End date: {end}
 
                     </Card.Text>
-                    <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
-                    <Button className="declineButton" onClick={this.sendEmail.bind(this, request)} variant="danger">Decline</Button>
+                    <Button id="acceptBtnH" onClick={this.acceptRequest.bind(this, request)} >Accept</Button>
+                    <Button id="declineH" onClick={this.sendEmail.bind(this, request)} >Decline</Button>
                     {/*<div className="declineBtn">
                         <DeclineHolidayRequest id={email} />
         </div>*/}

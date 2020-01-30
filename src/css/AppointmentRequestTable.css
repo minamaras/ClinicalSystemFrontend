@@ -1,0 +1,31 @@
+.cardAppReq {
+    margin: 0px 30px 30px 30px;
+    width: 450px;
+    height: 300px;
+    padding-top: 10px;
+    box-shadow: 5px 4px 5px #d8d8d8;
+    border-style: solid;
+    border-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(65, 76, 90);
+
+    background-image: url("../icons/womendoctor.svg");
+
+    /* Center and scale the image nicely */
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 15em;
+
+}
+
+#editinfo {
+    background-color: rgb(167, 119, 212);
+    border-color: rgb(167, 119, 212);
+    margin-top: -75px;
+}
+
+#checkbtn {
+    background-color: rgb(167, 119, 212);
+    margin-top: -10px;
+    border-color: rgb(167, 119, 212);
+}

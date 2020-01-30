@@ -16,12 +16,15 @@ class AssignRoom extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
         
+       
+        
         this.state = {
             doctors: [],
             rooms: []
         }
     }
 
+    
     handleClose() {
         this.setState({ show: false });
     }
@@ -34,10 +37,13 @@ class AssignRoom extends React.Component {
         this.setState({...this.state, [e.target.name]: e.target.value});
     }
 
+    
+    
+
     render() {
         return (
             <div>
-                <Button id="doctoradding" onClick={this.handleShow}>
+                <Button id="editinfo" onClick={this.handleShow}>
                     Edit Information
                 </Button>
                 <Modal
