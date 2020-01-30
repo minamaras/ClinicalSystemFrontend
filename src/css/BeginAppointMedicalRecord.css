@@ -61,7 +61,7 @@
 }
 
 .divReport{
-    margin: 0 70px 0 0;
+    margin: 0 20px 0 0;
     width: auto;
     max-width: 440px;
 }
@@ -77,6 +77,13 @@
 .editBasic{
     margin: 0 0 0 20px;
     cursor: pointer;
+}
+
+.editReport{
+    float: right;
+    margin: 0px 0 0 20px;
+    cursor: pointer
+
 }
 
 .basicTitle{
@@ -126,6 +133,7 @@
 .reportRowTitle{
     width: 80px;
     font-size: 18px;
+    margin-right: 5px;
 }
 
 .reportRowText{
@@ -136,7 +144,7 @@
 .reportRowTextText{
     font-size: 18px;
     color: rgb(71, 71, 83);
-    margin-left: 15px;
+    
 }
 
 .medicationListRec{
@@ -169,4 +177,20 @@
     flex-direction: row;
 }
 
+.editReportContent{
+    width: 100%;
+    margin-bottom: 5px;
+    resize: none;
+    outline: none;
+}
+
+.selectChangeR{
+    margin: 0;
+    background-color: aliceblue;
+    outline-width: none;
+}
+
+.btnEditReport{
+    margin: 3.5% 0 0 36%;
+}
 

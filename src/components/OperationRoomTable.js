@@ -60,7 +60,9 @@ class OperationRoomTable extends React.Component {
                  <img src={roomicon} style={{ width: '20px',top:'10px',height:'20px'}} />
                  <td>{room.name}</td>
                  <td>{room.number}</td>
-                 <td>{room.reserved}</td>
+                 <td>{room.reservedFrom}</td>
+                 <td>{room.reservedTill}</td>
+                 <td>{room.dateR}</td>
                  <td><Button className="deleteRoom" variant="outline-danger" onClick={this.deleteRoom.bind(this, room)} >Delete</Button></td>
                  <td><EditRoom/></td>
                </tr>
@@ -81,12 +83,14 @@ class OperationRoomTable extends React.Component {
                 const name = this.props.content[i].name;
                 const number = this.props.content[i].number;
                 const reserved =  this.props.content[i].reserved;
-                const dateReserved = this.props.content[i].dateReserved;
+                const dateR = this.props.content[i].dateR;
+                const reservedFrom = this.props.content[i].reservedFrom;
+                const reservedTill = this.props.content[i].reservedTill;
 
                 console.log(this.props.content[i]);
               
               
-               {rooms.push({name : name, number: number,reserved: reserved, dateReserved: dateReserved});}
+               {rooms.push({name : name, number: number,reserved: reserved, dateR: dateR, reservedFrom: reservedFrom, reservedTill: reservedTill});}
               
               }
 
@@ -114,10 +118,24 @@ class OperationRoomTable extends React.Component {
                   filterAll: true
                   },
                   {
-                    accessor: "dateReserved",
+                    accessor: "dateR",
                     Header: "Date",
                     filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dateReserved"] }),
+                    matchSorter(rows, filter.value, { keys: ["dateR"] }),
+                  filterAll: true
+                  },
+                  {
+                    accessor: "reservedFrom",
+                    Header: "Reserved From",
+                    filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["reservedFrom"] }),
+                  filterAll: true
+                  },
+                  {
+                    accessor: "reservedTill",
+                    Header: "Reserved Till",
+                    filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["reservedTill"] }),
                   filterAll: true
                   },
                   {

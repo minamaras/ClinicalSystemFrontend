@@ -35,8 +35,10 @@ import HolidayRequests from './HolidayRequests';
 import AllClinics from './AllClinics';
 import BeginAppointMedicalRecord from './BeginAppointMedicalRecord'
 import ScheduleAppointment from './ScheduleAppointment';
+import EndAppointmentRecord from './EndAppointmentRecord';
 
 import { createBrowserHistory } from 'history';
+import AppointmentRequests from './AppointmentRequests';
 
 class Routes extends React.Component {
 
@@ -88,10 +90,11 @@ class Routes extends React.Component {
         <Route exact path="/medicalrecord" render={(props) => <MedicalRecord user={this.props.user}/>} />
         <Route exact path="/allclinics" render={(props) => <ClinicsFilteringPage user={this.props.user}/>} />
         <Route exact path="/holidayrequests" render={(props) => <HolidayRequests user={this.props.user}/>} />
-
+        <Route exact path="/examrequests" render={(props) => <AppointmentRequests user={this.props.user}/>} />
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
-        <Route exact path="/startappointment/medicalrecord" render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
+        <Route exact path="/startappointment/medicalrecord" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
+        <Route exact path="/endappointment/medicalrecord" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />
 
       </Switch>
         );
