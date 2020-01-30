@@ -9,15 +9,36 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 font-size: 19px;
 color: rgb(65, 76, 90);
 
+
 }
 
+.velikapozadinakartica{
+  margin: 100px 0px 0px 60px;
+  display: flex;
+  flex-direction: row;
+  width: 86%;
+  height: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 19px;
+  color: rgb(65, 76, 90);
+  background-image: url("../icons/19366.jpg");
 
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+
+}
+.prazanprostor{
+  margin:  200px 0px 0px 0px;
+}
 
 .pozadinaSveKlinike{
 
-  width: 100%;
-  height: 100%;
-  background-image: url("../icons/19366.jpg");
+background-color: red;
+  /*background-image: url("../icons/pozadina.jpg");
 
   /* Center and scale the image nicely */
   background-position: center;

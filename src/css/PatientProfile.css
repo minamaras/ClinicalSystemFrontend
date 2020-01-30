@@ -15,16 +15,24 @@ top: 35%;
 
 }
 
-#kartica{
+.kartica{
 
 padding: 10px 10px 3px 10px;
-margin: 0px 180px 5px 180px;
+margin: -100px 180px 5px 180px;
+width: auto;
+
+background-image: url("../icons/opcija2.png");
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 
 
 }
 
-.fontPtnt{
-  font-family: Arial, Helvetica, sans-serif;
+.updateDugme{
+  margin: 0px 0px 0px 300px;
 }
 
 .text-center{

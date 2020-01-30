@@ -1,19 +1,21 @@
 .cardContainerKlinika{
 
-    margin: 0px 30px 30px 30px;
-    width: 370px;
+    margin: 20px 30px 30px 135px;
+    width: 67%;
     height: auto;
     padding-top: 10px;
     box-shadow: 3px 4px 5px #d8d8d8;
     border-style: solid;
     border-color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url("../icons/clinicheart.svg");
+    /*background-image: url("../icons/pozadina.jpg");*/
 
     /* Center and scale the image nicely */
-    background-position: center;
+    /*background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: rgb(185, 203, 215);*/
+    background-color: rgba(245, 245, 245, 0.4)!important;
 }
 
 .cardBodyKlinika{

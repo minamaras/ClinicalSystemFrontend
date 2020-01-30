@@ -15,14 +15,21 @@ class MedicalRecord extends React.Component{
   constructor(props) {
       super(props);
 
-      this.renderTableData = this.renderTableData.bind(this);
 
-      this.state={
-        patient:'',
-        doctorVisits:[],
-        medicalHistory:'',
-        doctors:[],
-        diseases:[]
+      this.state = {
+
+          additional: '',
+          allergies: '',
+          bloodtype: '',
+          measures: '',
+          eyes: '',
+          patientemail: 'nothing',
+          patientName: '',
+
+          reports: [],
+          recipes: [],
+
+
       }
 
 
@@ -37,10 +44,16 @@ componentDidMount () {
               headers: { 'Authorization': 'Bearer ' + token}
                   };
 
-            axios.get('http://localhost:8081/api/medicalrecord/getrecord',options).then(
-                      (resp) => this.onSuccessHandler(resp),
+                  axios.post(`http://localhost:8081/api/medicalrecord/info`, this.state.patientemail, options).then(
+                              (resp) => this.onSuccessHandler(resp),
+                              (resp) => this.onErrorHandler(resp)
+                            );
+
+                  axios.post(`http://localhost:8081/api/reports/info`, this.state.patientemail, options).then(
+                      (resp) => this.onSuccessHandlerReport(resp),
                       (resp) => this.onErrorHandler(resp)
-                      );
+                  );
+
                     }
 
 
@@ -52,7 +65,8 @@ onErrorHandler(resp) {
       title: "Error occured",
       text: '',
       type: "error",
-      button: true
+      button: true,
+      icon: "error",
     });
 
 }
@@ -62,41 +76,54 @@ onErrorHandler(resp) {
 
 onSuccessHandler(resp) {
 
-  //console.log(resp);
 
   this.setState({
 
-    medicalHistory : resp.data.medicalHistory,
-    doctorVisits: resp.data.doctorVisits,
-    patient: resp.data.patient,
-    diseases: resp.data.diseases,
-
-
+    additional : resp.data.additional,
+    allergies: resp.data.allergies,
+    bloodtype: resp.data.bloodtype,
+    measures: resp.data.measures,
+    eyes: resp.data.eyes,
+    patientName: resp.data.patientName,
 
   });
 
-
-  console.log(this.state);
-
-
-
 }
 
-
-
-renderTableData() {
-  console.log(this.state.diseases);
-  const lista = this.state.diseases;
-return lista.map((d, index) => {
-
-    return (
-      <li>
-      {d}
-      </li>
-        )
+onSuccessHandlerReport(resp){
+    //console.log(resp.data)
+    this.setState({
+        reports: resp.data
     })
 }
 
+
+
+renderReport(){
+    return(
+                this.state.reports.map(report => {
+            return(
+                <div className="divAllR">
+                <div className="divReport">
+                    <h4>Report</h4>
+                    <div className="reportRowDiv">
+                    <p className="reportRowTitle">Doctor: </p>
+                    <p className="reportRowText">{ report.doctoremail }</p>
+                    </div>
+                    <div className="reportRowDiv">
+                    <p className="reportRowTitle">Content: </p>
+                    <p className="reportRowTextText">{ report.text }</p>
+                    </div>
+                    <div className="reportRowDiv">
+                    {report.diagnosisName && <p className="reportRowTitle">Diagnose:</p>}
+                    {report.diagnosisName && <p className="reportRowText">{ report.diagnosisName }</p>}
+                    </div>
+                </div>
+                </div>
+            )
+        })
+   )
+}
 
 
 
@@ -105,42 +132,62 @@ render() {
     return (
 
 
-        <div>
-        <div>
-        <Card className="karticaBolesti">
-          <Card.Title> Your disease history:</Card.Title>
-        <Card.Img style={{height:'50px', width: 'auto'}} className="userIcon" variant="top" src={icon} alt='Unavailable icon' />
-            <Card.Body className = "cardBody">
+      <div>
+          <div className="topTitle">
+              <h1 className="medicalRecTitle"><label style={{'text-transform':'capitalize'}}>{this.state.patientName}</label>'s Medical record</h1>
+          </div>
+          <div className="medicalRecContainer">
 
-            <Card.Text className='cardText'>
-                <ul>
-                  {this.renderTableData()}
-                </ul>
-            </Card.Text>
+              <div className="basicInfoRecord">
+              <div className="basicTitle">
+                  <h1>Basic information</h1>
+              </div>
 
-                <div className="addAdmin">
-                </div>
+              <div className="rowRecord">
+              <Form.Label className="labelRec">Allergies: </Form.Label>
+                  {!this.state.editMode && <p className="pRec">{ this.state.allergies }</p>}
+                  {this.state.editMode && <input type="text" className="pRec" defaultValue={this.state.allergies} name="allergies" onChange={this.handleChange} />}
+              </div>
+
+              <div className="rowRecord">
+              <Form.Label className="labelRec">Blood type: </Form.Label>
+                  {!this.state.editMode && <p className="pRec">{ this.state.bloodtype }</p>}
+                  {this.state.editMode && <input type="text" className="pRec" name="bloodtype" defaultValue={this.state.bloodtype} onChange={this.handleChange}/>}
+              </div>
+
+              <div className="rowRecord">
+              <Form.Label className="labelRec">Measures: </Form.Label>
+                  {!this.state.editMode && <p className="pRec">{ this.state.measures }</p>}
+                  {this.state.editMode && <input type="text" className="pRec" name="measures" defaultValue={this.state.measures} onChange={this.handleChange}/>}
+              </div>
+
+              <div className="rowRecord">
+              <Form.Label className="labelRec">Diopter: </Form.Label>
+                  {!this.state.editMode && <p className="pRec">{ this.state.eyes }</p>}
+                  {this.state.editMode && <input type="text" className="pRec" name="eyes" defaultValue={this.state.eyes} onChange={this.handleChange}/>}
+              </div>
+
+              <div className="rowRecord">
+              <Form.Label className="labelRec">Aditional info: </Form.Label>
+                  {!this.state.editMode && <p className="pRec">{ this.state.additional }</p>}
+                  {this.state.editMode && <input type="text" className="pRec" name="additional" defaultValue={this.state.additional} onChange={this.handleChange}/>}
+              </div>
+
+           </div>
 
 
-            </Card.Body>
-        </Card>
-
-
-        </div>
-
-
-        <label className="naslov" style={{'text-transform':'capitalize'}}> {this.state.patient.name},  </label>
-        <label className="naslov"> this is the history of the appointments you had:</label>
-
-        <div className="nesto">
-                    <br />
-                    <DoctorVistisTable content={this.state.doctorVisits}/>
-                    <br />
-        </div>
-
-
-        </div>
-
+          <div className="appReport">
+              <h2>Medical history</h2>
+              <div className="appReportAndRec">
+             <div className="levoReport">
+              {this.renderReport()}
+              </div>
+              <div className="desnoRecipe">
+              </div>
+              </div>
+          </div>
+          </div>
+      </div>
 
 
 

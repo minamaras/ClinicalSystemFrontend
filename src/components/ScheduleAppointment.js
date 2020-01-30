@@ -85,6 +85,14 @@ class ScheduleAppointment extends React.Component{
                 type: 'success',
                 icon: 'success'
               });
+
+              document.getElementById("requestbutton").style.visibility = "hidden";
+              document.getElementById("time").remove();
+              document.getElementById("date").remove();
+              document.getElementById("price").remove();
+              document.getElementById("labelftersending").style.visibility = "visible";
+              document.getElementById("labelftersending").style.margin = "-150px 0px 0px 0px";
+
         },
           (resp) =>{
 
@@ -109,19 +117,22 @@ class ScheduleAppointment extends React.Component{
         return(
 
               <div className="behind"style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-              <Card className="pregledCardContainer" style={{width:'370px',height:'330px',left:'100px',top:'50px'}}>
+              <Card className="pregledCardContainer" style={{width:'370px',height:'330px',left:'100px',top:'50px',backgroundcolor: 'rgba(245, 245, 245, 0.4)!important'}}>
               <Card.Title className="pregledcardTitle"></Card.Title>
 
 
                   <Card.Body className = "pregledcardBody">
                   <Card.Text className='pregledcardText'>
-                      <label className="appointmentdate"><b>Appointment date </b> {this.props.match.params.date}</label>
+                      <label className="appointmentdate" id="date"><b>Appointment date </b> {this.props.match.params.date}</label>
                       <br/>
-                      <label className="appointmenttime"><b>Appointment time </b> {this.props.match.params.term}</label>
+                      <label className="appointmenttime" id="time"><b>Appointment time </b> {this.props.match.params.term}</label>
                       <br/>
-                      <label className="appointmentprice"><b>Appointment price </b>{this.props.match.params.examprice}</label>
+                      <label className="appointmentprice" id="price"><b>Appointment price </b>{this.props.match.params.examprice}</label>
                       <br/>
-                      <Button className="sendrequestbutton" variant="secondary" onClick={this.sendRequest}>Make a request for this appointment</Button>
+                      <Button className="sendrequestbutton" variant="secondary" id="requestbutton" onClick={this.sendRequest}>Make a request for this appointment</Button>
+                      <label id="labelftersending" style={{visibility:'hidden'}}>
+                      Great! Your request for this appointment is sent to admin of the clinic. Soon you will get an email regarding your request.
+                      </label>
                       </Card.Text>
                       <div className="pregledCardAdd">
                       </div>

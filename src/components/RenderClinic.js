@@ -53,8 +53,7 @@ class RenderClinic extends React.Component{
                           <label><b> Rating </b></label>&nbsp;
                           <label>{c.rating}</label>
                           <br/>
-                          <label><b> Exam price: </b></label> &nbsp;
-                          <label>{c.examprice}</label>
+                          
                           <br/>
                           {this.RednderLink(c)}
 

@@ -72,14 +72,16 @@ render() {
     return (
 
 
-        <div className="pozadinaSveKlinike" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
 
-        <div className="SveKlinike">
+        <Card className="velikapozadinakartica">
+        <div className="prazanprostor">
+        </div>
                     <br />
                     <RenderClinic content={this.state.clinics}/>
                     <br />
-        </div>
-</div>
+        </Card>
+
+
 
 
     );

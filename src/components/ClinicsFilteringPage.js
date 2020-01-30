@@ -111,7 +111,8 @@ onErrorHandler(resp) {
       title: "Error occured",
       text: '',
       type: "error",
-      button: true
+      button: true,
+      icon: "error"
     });
 
 }
@@ -280,7 +281,8 @@ SendFilters = event => {
            title: "We can not filter without time,date and exam type.Please try again.",
            text: '',
            type: "error",
-           button: true
+           button: true,
+           icon: "error"
          });
 
       return;
@@ -307,12 +309,10 @@ console.log(this.state.date);
         this.onSuccessHandler(resp);
 
         document.getElementById("filters").style.visibility = "hidden";
-        document.getElementById("everythingelse").style.margin = "-100px 0px 0px 0px";
+        document.getElementById("everythingelse").style.margin = "-200px 0px 0px 250px";
     },
       (resp) => this.onErrorHandler(resp)
     );
-
-
 
 }
 
@@ -322,7 +322,7 @@ showInformation = event => {
       title: '',
       text: "This is a page for filtering.You can choose exam type and pick a date and time and will show you all the clinics that have avaliable doctors that are specialized for given exam type.Also you can enter name/rating/address in the input filed as additional filters.",
       type: "success",
-      button: true
+      button: true,
     });
 
 }
@@ -335,7 +335,7 @@ onChangeTime = time => {
 ShowFilters = event => {
 
 document.getElementById("filters").style.visibility = "visible";
-document.getElementById("everythingelse").style.margin = "0px 0px 0px 0px";
+document.getElementById("everythingelse").style.margin ="0px 0px 0px 250px";
 
 }
 
@@ -344,7 +344,7 @@ HideFilters = event => {
   console.log("jsafjsa");
 
 document.getElementById("filters").style.visibility = "hidden";
-document.getElementById("everythingelse").style.margin = "-200px 0px 0px 0px";
+document.getElementById("everythingelse").style.margin = "-200px 0px 0px 250px";
 
 
 }
@@ -439,9 +439,10 @@ render() {
                 />
 
 
-         <Button onClick={this.SendFilters} className="filterbutton" variant="light">Filter</Button>
+         <Button onClick={this.SendFilters} className="buttonthatfilters" variant="light">Filter</Button>
          <Button className="infobutton" onClick={this.showInformation} variant="light">Info</Button>
         </div>
+        <br/>
         <div className="everythingelse" id="everythingelse">
         <label className="filterresultslabel">
         </label>
@@ -449,11 +450,14 @@ render() {
         <input className="filterresults" name="resultfilter" onChange={this.handleChangeResultFiltering}></input>
         <Button className="clearButton" onClick={this.ClearInput} variant="link">Clear input</Button>
         <Button onClick={this.ShowFilters} className="buttonforshowingfilters"  variant="link">Filter</Button>
-        <div className="Klinike">
+
                     <br />
+                    <Card className="velikakartica">
+                    <div className="prostor"></div>
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>
+                    </Card>
                     <br />
-        </div>
+
         </div>
 
 

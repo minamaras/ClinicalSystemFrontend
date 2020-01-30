@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
 import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
+import moment from 'moment';
 import Select from 'react-select';
 
 const RoomCreatedAlert = withReactContent(Swal)
@@ -34,11 +35,13 @@ class AddPredefinedAppointment extends React.Component {
             doctors: [],
             roomNumber: '',
             rooms: [],
-            start: null,
             examTypeName: '',
             examtypes: [],
-
-            today: date,
+            startTime: undefined,
+            endTime: undefined,
+            date:'',
+            today: new Date(),
+            type:''
         };
 
     }
@@ -49,10 +52,6 @@ class AddPredefinedAppointment extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
             };
 
-        axios.get('http://localhost:8081/api/examtypes/all', options).then(
-            (resp) => this.onSuccessHandlerExam(resp),
-            (resp) => this.onErrorHandlerExam(resp),
-        );
 
         axios.get('http://localhost:8081/api/rooms/all', options).then(
             (resp) => this.onSuccessHandlerRoom(resp),
@@ -65,57 +64,50 @@ class AddPredefinedAppointment extends React.Component {
         );
     }
 
-    onSuccessHandlerExam(resp) {
-
-        var tempexams = [];
-      
-        console.log(resp.data);
-      
-        for (var i = 0; i < resp.data.length; i++) {
-            tempexams.push(resp.data[i]);
-        }
-      
-        this.setState({
-            examtypes : tempexams,
-        });
-      
-      
-    }
 
     onSuccessHandlerDoctor(resp) {
 
         var tempdoctors = [];
-      
+        var tempexams = [];
+
         console.log(resp.data);
-      
+
         for (var i = 0; i < resp.data.length; i++) {
+
             tempdoctors.push(resp.data[i]);
-        }
-      
+
+                if (tempexams.some(x=> x.name == resp.data[i].examType.name) == false){
+                  tempexams.push(resp.data[i].examType);
+                }
+          }
+
+
+
         this.setState({
             doctors : tempdoctors,
+            examtypes: tempexams,
         });
-      
-      
+
+
     }
 
 
     onSuccessHandlerRoom(resp) {
 
         var temprooms = [];
-      
+
         console.log(resp.data);
-      
+
         for (var i = 0; i < resp.data.length; i++) {
             temprooms.push(resp.data[i]);
         }
-      
+
         this.setState({
             rooms : temprooms,
         });
-      
+
         console.log(this.state.rooms);
-      
+
     }
 
 
@@ -132,19 +124,31 @@ class AddPredefinedAppointment extends React.Component {
     }
 
     onChange = (date) => this.setState({ examDate: date })
-    onChangeTime = (time) => this.setState({examTime : time })
+
 
     addPredefinedAppointment(event) {
         event.preventDefault();
+
+        console.log(this.state);
 
         let token = localStorage.getItem('token');
         const options = {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-        console.log(this.state);
+        var dateandtimeS = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(this.state.startTime.substring(0,2)),parseInt(this.state.startTime.substring(3,5)),0);
+        var dateandtimeE = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(this.state.endTime.substring(0,2)),parseInt(this.state.endTime.substring(3,5)),0);
 
-         axios.post("http://localhost:8081/api/appointments/savepredefined", this.state, options).then(
+        console.log(dateandtimeS.getTime());
+        console.log(dateandtimeE.getTime());
+        var objekat = {examTypeName:this.state.examTypeName,doctorEmail:this.state.doctorEmail,
+          roomNumber:this.state.roomNumber,name:this.state.name,date:this.state.date,
+          type:this.state.type,startTime:dateandtimeS.getTime(),endTime:dateandtimeE.getTime()};
+
+          console.log(objekat);
+
+
+         axios.post("http://localhost:8081/api/appointments/savepredefined", objekat, options).then(
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -158,13 +162,19 @@ class AddPredefinedAppointment extends React.Component {
             icon: 'error',
             button: true
           });
+          console.log(resp);
+
+    }
+
+    onChangeTime = time => {
+      this.setState({ startTime: time});
 
     }
 
     onSuccessHandler(resp) {
 
         RoomCreatedAlert.fire({
-            title: "OR added successfully",
+            title: "Predefined appointment added successfully",
             text: "",
             type: "success",
             icon: 'success'
@@ -235,10 +245,11 @@ class AddPredefinedAppointment extends React.Component {
                                     placeholder="Enter name"
                                     required
                                 />
+                                <br/>
                                 <label htmlFor="doctor">Doctor</label>
                                 <Select
                                     className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    style={{ width: "25%", marginBottom: "10px" }}
                                     onChange={entry => {
                                         this.setState({ doctorEmail: entry.value });
                                     }
@@ -251,21 +262,36 @@ class AddPredefinedAppointment extends React.Component {
                                         })
                                     }
                                 />
-                                <br />
+
                                 <label htmlFor="start">Date</label>
+                                  <br/>
                                 <input className="start" type="date"
                                     min={this.state.today}
                                     pattern="dd/mm/yyyy"
                                     id="start"
-                                    name="start"
+                                    name="date"
                                     onChange={this.handleChange}
                                     required
+                                    style={{marginTop:'2px'}}
+
                                 />
-                                <br />
+
+
+                                <TimePicker
+                                   onChange={this.onChangeTime}
+                                   value={this.state.starttime}
+                                   locale="sv-sv"
+                                   className="timepicker"
+
+                                 />
+
+                                <br/>
+
                                 <label htmlFor="roomNumber">Room</label>
+                                <br/>
                                 <Select
                                     className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    style={{ width: "25%", marginBottom: "5px",marginTop:'7px' }}
                                     onChange={entry => {
                                         this.setState({ roomNumber: entry.value });
                                     }
@@ -282,16 +308,27 @@ class AddPredefinedAppointment extends React.Component {
                                 Select exam type :{" "}
                                 <Select
                                     className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "40px" }}
+                                    style={{ width: "25%", marginBottom: "8px",marginTop:'7px' }}
                                     onChange={entry => {
-                                        this.setState({ examTypeName: entry.value });
+                                        this.setState({
+                                          examTypeName: entry.label,
+                                          type: entry.value,
+                                        });
+                                        var date = moment(this.state.startTime,"HH:mm")
+                                            .add(entry.value.duration,'minutes')
+                                            .format('HH:mm');
+
+                                            this.setState({
+                                              endTime:date
+                                            });
+
                                     }
                                     }
-                                    value={this.state.examTypeName.value}
+                                    value={this.state.examTypeName.label}
                                     options={
 
                                         this.state.examtypes.map((type, i) => {
-                                            return { value: type.name, label: type.name };
+                                            return { value: type, label: type.name };
                                         })
                                     }
                                 />

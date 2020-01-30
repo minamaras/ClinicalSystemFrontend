@@ -30,6 +30,9 @@ class  ClinicProfile extends React.Component{
       this.handleChangeResultFiltering = this.handleChangeResultFiltering.bind(this);
       this.FilterDocs = this.FilterDocs.bind(this);
       this.handleSelectChange = this.handleSelectChange.bind(this);
+      this.renderExams = this.renderExams.bind(this);
+      this.renderExams = this.renderExams.bind(this);
+      this.ShowPredef = this.ShowPredef.bind(this);
 
       this.state =  {
           clinicname: '',
@@ -95,6 +98,7 @@ class  ClinicProfile extends React.Component{
 
 
                 const hours = [];
+                const events =[];
 
 
                 var duration=0;
@@ -142,9 +146,10 @@ class  ClinicProfile extends React.Component{
                 hours.forEach(function (term) {
 
 
-                  if(appointment.date == self.props.match.params.date && appointment.startTime == term){
+                  if(appointment.date == self.props.match.params.date && appointment.startTime == term && (appointment.status == 'SHEDULED'|| appointment.classification =='HAPPENING')){
 
                     console.log(hours.indexOf(term));
+                    events.push(term);
                     hours.splice( hours.indexOf(term), 1 );
 
                   }
@@ -155,7 +160,7 @@ class  ClinicProfile extends React.Component{
               });
 
 
-                doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                doctorstemp.push({events:events,gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
 
             });
@@ -284,7 +289,8 @@ handleChangeDate = date => {
             title: "You didnt enter date or you didn't select exam type so we can't filter.Please try again.",
             text: '',
             type: "error",
-            button: true
+            button: true,
+            icon: "error"
           });
 
        return;
@@ -296,6 +302,7 @@ handleChangeDate = date => {
 
       var returnDoctors =[];
 
+      console.log(this.state.dateString);
 
       this.state.startingdoctors.forEach(function (doctor) {
 
@@ -316,7 +323,7 @@ handleChangeDate = date => {
           var dur = parseInt(doctor.exam.duration);
           const hours = [];
           var duration=0;
-
+          var events=[];
 
           for(let hour = time; hour <= timeend; hour++) {
 
@@ -359,6 +366,7 @@ handleChangeDate = date => {
               if(appointment.date == self.state.dateString && appointment.startTime == term){
 
                 hours.splice( hours.indexOf(term), 1 );
+                events.push(term);
                 console.log("thinks they are same");
 
               }
@@ -368,7 +376,7 @@ handleChangeDate = date => {
 
         returnDoctors.push({exam:doctor.exam,id:doctor.id,
           name:doctor.name,lastname:doctor.lastname,
-          rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+          rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours,events:events});
 
         }
 
@@ -378,6 +386,7 @@ handleChangeDate = date => {
       this.setState({
         doctors: returnDoctors
       });
+
     }
 
 
@@ -490,6 +499,30 @@ handleChangeDate = date => {
 
        }
 
+       renderExams(){
+
+         return this.state.exams.map((exam, index) => {
+           console.log(exam.name);
+             return (
+
+                 <Button className="dugmadi"style={{height:'auto'}} variant="light" onClick={() => {
+
+                   alert("Print some text")
+
+                  }}>
+                 {exam}
+                 </Button>
+
+
+                 )
+
+           })
+         }
+
+         ShowPredef(){
+           alert('jsnjs');
+         }
+
 
       render() {
         console.log(this.props.match.params.date);
@@ -516,6 +549,8 @@ handleChangeDate = date => {
 
 
             <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+
+            <div className="parametri">
             <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
             <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
@@ -547,14 +582,23 @@ handleChangeDate = date => {
 
               </div>
               <Button className="buttonForFiltering" variant="light" onClick={this.FilterDocs}>Filter</Button>
+              <br/>
+              <label className="explanation"> Pick a date and exam type and see avaliable terms.
+              </label>
+              <br/>
+              <div className="tipovipredef">
+              <h4 className="naslovtipovapred">See this clinic's predefined appointments</h4>
+              <label></label>
+              {this.renderExams()}
+              </div>
+              </div>
+            <Card className="karticadoktora">
 
-
-            <div className="nesto1">
-
+              <div className="prostorneki"></div>
                         <br />
                         <AllDoctorsFromClinicTable content={this.state.doctors} date={this.state.dateString} user={this.props.user}/>
                         <br />
-            </div>
+            </Card>
 
             </div>
 
