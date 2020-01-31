@@ -27,13 +27,24 @@ class AppointmentRequests extends React.Component {
     }
 
     onSuccessHandler(resp) {
-        console.log(resp.data);
-        
+
+
         var temp = [];
 
         for (var i = 0; i < resp.data.length; i++) {
-            temp.push(resp.data[i]);
+
+            var startTime =  resp.data[i].startTime.toString();
+            var endTime =  resp.data[i].endTime.toString();
+
+            console.log(endTime);
+            console.log(startTime);
+
+            temp.push({startTime:startTime,endTime:endTime,id:resp.data[i].id,date:resp.data[i].date,
+            examTypeName:resp.data[i].examTypeName,name:resp.data[i].name,doctorid:resp.data[i].doctorid,
+            doctorEmail:resp.data[i].doctorEmail,start:resp.data[i].start});
+
         }
+
         this.setState({
             requests: temp
         });

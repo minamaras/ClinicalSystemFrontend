@@ -21,8 +21,8 @@ class AppointmentReqTable extends React.Component {
         this.renderTableData = this.renderTableData.bind(this);
         this.checkAvailableRooms = this.checkAvailableRooms.bind(this);
 
-    
-        
+
+
     }
 
     checkAvailableRooms(appointment) {
@@ -32,8 +32,18 @@ class AppointmentReqTable extends React.Component {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
+        var date = appointment.start.toString().substring(0,10);
+
+        var dateandtimeS = new Date(parseInt(appointment.date.substring(0,4)),parseInt(appointment.date.substring(6,8))-1,parseInt(appointment.date.substring(9,11)),parseInt(appointment.startTime.substring(0,2)),parseInt(appointment.startTime.substring(3,5)),0);
+        var dateandtimeE = new Date(parseInt(appointment.date.substring(0,4)),parseInt(appointment.date.substring(6,8))-1,parseInt(appointment.date.substring(9,11)),parseInt(appointment.endTime.substring(0,2)),parseInt(appointment.endTime.substring(3,5)),0);
+
+
+        var objekat = {startTime:dateandtimeS.getTime(),endTime:dateandtimeE.getTime(),id:appointment.id,date: appointment.date,
+        examTypeName: appointment.examTypeName,name:appointment.name,doctorid:appointment.doctorid,
+        doctorEmail:appointment.doctorEmail,start:appointment.start};
+
         console.log(appointment);
-        axios.post("http://localhost:8081/api/appointmentrequest/check",appointment, options).then(
+        axios.post("http://localhost:8081/api/appointmentrequest/check",objekat, options).then(
             (resp) => this.onSuccessHandlerRoom(resp),
             (resp) => this.onErrorHandler(resp)
         );
@@ -42,53 +52,46 @@ class AppointmentReqTable extends React.Component {
     onSuccessHandlerRoom(resp) {
 
         var temprooms = [];
-      
+
         console.log(resp.data);
-      
+
         for (var i = 0; i < resp.data.length; i++) {
             temprooms.push(resp.data[i]);
         }
-      
+
         this.setState({
             rooms : temprooms,
         });
-      
+
         console.log(this.state.rooms);
-      
+
     }
 
-    
+
 
     onErrorHandler(response) {
         alert("Error response: Uncovered case");
     }
 
 
-    
 
-   
+
+
 
 
     renderTableData() {
         console.log(this.props.content);
-        
+
       return this.props.content.map((r, index) => {
           console.log(r);
-          var dateandtimeS = new Date(parseInt(r.date.substring(0,4)),parseInt(r.date.substring(6,8))-1,parseInt(r.date.substring(9,11)),parseInt(r.startTime.substring(0,2)),parseInt(r.startTime.substring(3,5)),0);
-          var dateandtimeE = new Date(parseInt(r.date.substring(0,4)),parseInt(r.date.substring(6,8))-1,parseInt(r.date.substring(9,11)),parseInt(r.endTime.substring(0,2)),parseInt(r.endTime.substring(3,5)),0);
 
-          var s = dateandtimeS.getTime();
-          var e = dateandtimeE.getTime();
-
-          r.startTime = s;
-          r.endTime = e;
           return (
               <Card key={r.doctorEmail} className="cardAppReq" >
               <Card.Title className="cardTitleKlinikaSve"></Card.Title>
-  
-                
+
+
                   <Card.Body className = "cardBodyKlinikaSve">
-  
+
                       <Card.Text className='cardTextKlinikaSve'>
                             <label><b>Exam type: </b></label> &nbsp;
                             <label style={{'text-transform':'capitalize'}} >{r.examTypeName}</label>
@@ -102,14 +105,14 @@ class AppointmentReqTable extends React.Component {
                             <label><b> Duration: </b></label> &nbsp;
                             <label>{r.startTime + "-" + r.endTime}</label>
                             <br/>
-  
+
 
                       </Card.Text>
                       <AssignRoom app = {r}/>
-                     <Button id="checkbtn"onClick={ () => this.checkAvailableRooms(r) }>Check for available rooms</Button>
-                     <br/>                                                                                    
-  
-  
+                     <Button id="checkbtn" style={{top:'30px'}} onClick={ () => this.checkAvailableRooms(r) }>Check for available rooms</Button>
+                     <br/>
+
+
                   </Card.Body>
               </Card>
               )
