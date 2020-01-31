@@ -146,9 +146,13 @@ class  ClinicProfile extends React.Component{
                 hours.forEach(function (term) {
 
 
-                  if(appointment.date == self.props.match.params.date && appointment.startTime == term && (appointment.status == 'SHEDULED'|| appointment.classification =='HAPPENING')){
+                  if(appointment.date == self.props.match.params.date && appointment.startTime == term &&
+                    (appointment.status == 'SHEDULED'|| appointment.status =='HAPPENING' || appointment.classification == 'PREDIFINED')){
 
-                    console.log(hours.indexOf(term));
+                      console.log(appointment);
+                    console.log(appointment.status);
+                    console.log(appointment.time);
+
                     events.push(term);
                     hours.splice( hours.indexOf(term), 1 );
 
@@ -363,8 +367,12 @@ handleChangeDate = date => {
             doctor.appointments.forEach(function (appointment) {
               hours.forEach(function (term) {
 
-              if(appointment.date == self.state.dateString && appointment.startTime == term){
+              if(appointment.date == self.state.dateString && appointment.startTime == term &&
+                (appointment.status == 'SHEDULED'|| appointment.status =='HAPPENING' || appointment.classification == 'PREDIFINED')){
 
+                console.log(appointment);
+                console.log(appointment.status);
+                console.log(appointment.classification);
                 hours.splice( hours.indexOf(term), 1 );
                 events.push(term);
                 console.log("thinks they are same");
