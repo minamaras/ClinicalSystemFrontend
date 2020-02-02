@@ -18,6 +18,7 @@ import matchSorter from "match-sorter";
 import ClinicDoctorsTable from './ClinicDoctorsTable';
 import AllDoctorsFromClinicTable from './AllDoctorsFromClinicTable.js';
 import moment from 'moment';
+import ShowPredef from './ShowPredef';
 
 const ErrorSearch = withReactContent(Swal)
 
@@ -31,8 +32,7 @@ class  ClinicProfile extends React.Component{
       this.FilterDocs = this.FilterDocs.bind(this);
       this.handleSelectChange = this.handleSelectChange.bind(this);
       this.renderExams = this.renderExams.bind(this);
-      this.renderExams = this.renderExams.bind(this);
-      this.ShowPredef = this.ShowPredef.bind(this);
+
 
       this.state =  {
           clinicname: '',
@@ -55,6 +55,8 @@ class  ClinicProfile extends React.Component{
           select:undefined,
           startDate: new Date(),
           dateString:'',
+          tempPredef:[],
+          typesthathavepredef:[],
         }
 
 
@@ -80,6 +82,7 @@ class  ClinicProfile extends React.Component{
               console.log(resp.data);
 
               resp.data.map((doctor, index) => {
+
 
               if(doctor.examType.name.toLowerCase().includes(this.props.match.params.exam.toLowerCase())){
 
@@ -140,45 +143,99 @@ class  ClinicProfile extends React.Component{
               var self = this;
               var actualhours=[];
 
+              var brojac = 0;
+              var godisnji = 0;
+
               doctor.appointments.forEach(function (appointment) {
 
-                console.log(appointment.startTime);
                 hours.forEach(function (term) {
 
+                  if(appointment.date == self.props.match.params.date && appointment.startTime == term){
 
-                  if(appointment.date == self.props.match.params.date && appointment.startTime == term &&
-                    (appointment.status == 'SHEDULED'|| appointment.status =='HAPPENING' || appointment.classification == 'PREDIFINED')){
-
-                      console.log(appointment);
+                    console.log("in if");
+                    console.log(appointment);
                     console.log(appointment.status);
                     console.log(appointment.time);
+                    brojac = brojac+1;
 
                     events.push(term);
                     hours.splice( hours.indexOf(term), 1 );
 
+
                   }
 
                 });
-
-
               });
 
+              if(doctor.holidays.lenght !== 0){
 
-                doctorstemp.push({events:events,gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+                  doctor.holidays.forEach(function (holiday) {
+
+
+                    var stringdate =  holiday.fromto.split("-");
+                    var wanteddate = self.props.match.params.date.split("-");
+                    console.log(wanteddate);
+
+                    var holidayEnd = new Date(stringdate[0],stringdate[1]-1,parseInt(stringdate[2].substring(0,2)),0,0,0);
+                    var holidayStart = new Date(stringdate[3],stringdate[4]-1,parseInt(stringdate[5].substring(0,2)),0,0,0);
+                    var wantedDate = new Date(wanteddate[0],wanteddate[1]-1,wanteddate[2],0,0,0);
+                    //console.log(holidayStart);
+
+                        console.log(holidayEnd)
+                        console.log(holidayStart);
+                        console.log(wantedDate);
+
+                      if((wantedDate == holidayStart) || (wantedDate == holidayEnd) || (holidayStart < wantedDate < holidayEnd)){
+                        godisnji= godisnji+1;
+                      }
+
+                  });
+
+                }
+
+                if(brojac == 0 && godisnji == 0)
+                {
+
+                  doctorstemp.push({holidays:doctor.holidays,events:events,gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
               }
+            }
 
             });
 
             this.setState({
               doctors: doctorstemp,
               startingdoctors: doctorstemp,
+              tempPredef : tempPredef,
             });
             console.log(this.state.doctors);
           }else{
 
+            console.log(resp.data);
             var tempexams = [];
+            var tempPredef =[];
+            var actualtypes=[];
+            var id =1;
             resp.data.map((doctor, index) => {
 
+              var thisdoctorspredefs=[];
+
+              doctor.appointments.map((a,index) => {
+
+                if(a.classification == 'PREDEFINED' &&
+
+                a.status !== 'HAS_HAPPEND' && a.status == 'SHEDULED'){
+
+                  tempPredef.push(a.date+"|"+a.startTime+"|"+a.endTime+"|"+a.type.duration+"|"+a.type.name);
+
+                  thisdoctorspredefs.push({id:a.id,startTime:a.startTime,endTime:a.endTime,date:a.date,room:a.roomNumber,
+                  doctorfirstname:doctor.name,doctorlastname:doctor.lastname,type:a.type,doctorEmail:doctor.email,
+                  start:a.start,status:a.status,classification:a.classification});
+
+                }
+
+              });
+
+              console.log(thisdoctorspredefs);
 
             if(tempexams.indexOf(doctor.examType.name) == -1){
               tempexams.push(doctor.examType.name)
@@ -194,7 +251,7 @@ class  ClinicProfile extends React.Component{
 
 
 
-              doctorstemp.push({gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
+              doctorstemp.push({predefs:thisdoctorspredefs,holidays:doctor.holidays,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
 
             });
 
@@ -202,9 +259,11 @@ class  ClinicProfile extends React.Component{
             doctors: doctorstemp,
             startingdoctors: doctorstemp,
             exams:tempexams,
+            tempPredef: tempPredef,
+            typesthathavepredef : actualtypes,
           });
 
-          console.log(this.state);
+          console.log(this.state.tempPredef);
 
           }
         },
@@ -308,10 +367,13 @@ handleChangeDate = date => {
 
       console.log(this.state.dateString);
 
+
       this.state.startingdoctors.forEach(function (doctor) {
 
-        if(doctor.exam.name == self.state.select){
+        var tempPredef =[];
+        var thisdoctorspredefs=[];
 
+        if(doctor.exam.name == self.state.select){
           console.log("same exam");
 
           var strint = doctor.start.toString().substring(0,2);
@@ -362,29 +424,63 @@ handleChangeDate = date => {
 
             console.log("paased making terms");
 
+            console.log(doctor);
+            console.log(self.state.dateString);
 
 
             doctor.appointments.forEach(function (appointment) {
               hours.forEach(function (term) {
 
-              if(appointment.date == self.state.dateString && appointment.startTime == term &&
-                (appointment.status == 'SHEDULED'|| appointment.status =='HAPPENING' || appointment.classification == 'PREDIFINED')){
 
-                console.log(appointment);
-                console.log(appointment.status);
-                console.log(appointment.classification);
+              if(appointment.date == self.state.dateString && appointment.startTime == term &&
+                (appointment.status == 'SHEDULED'|| appointment.status =='HAPPENING' || appointment.classification == 'PREDEFINED')){
+
+
                 hours.splice( hours.indexOf(term), 1 );
                 events.push(term);
                 console.log("thinks they are same");
 
+
               }
-            });
 
             });
 
-        returnDoctors.push({exam:doctor.exam,id:doctor.id,
+            });
+
+            var godisnji = 0;
+            console.log(doctor);
+            if(doctor.holidays.lenght !== 0){
+
+                doctor.holidays.forEach(function (holiday) {
+
+
+                  var stringdate =  holiday.fromto.split("-");
+                  var wanteddate = self.state.dateString.split("-");
+                  console.log(wanteddate);
+
+                  var holidayEnd = new Date(stringdate[0],stringdate[1]-1,parseInt(stringdate[2].substring(0,2)),0,0,0);
+                  var holidayStart = new Date(stringdate[3],stringdate[4]-1,parseInt(stringdate[5].substring(0,2)),0,0,0);
+                  var wantedDate = new Date(wanteddate[0],wanteddate[1]-1,wanteddate[2],0,0,0);
+                  //console.log(holidayStart);
+
+                      console.log(holidayEnd)
+                      console.log(holidayStart);
+                      console.log(wantedDate);
+
+                    if((wantedDate == holidayStart) || (wantedDate == holidayEnd) || (holidayStart < wantedDate < holidayEnd)){
+                      godisnji= godisnji+1;
+                    }
+
+                });
+
+              }
+
+
+            if(godisnji == 0){
+          returnDoctors.push({godisnji:godisnji,exam:doctor.exam,id:doctor.id,
           name:doctor.name,lastname:doctor.lastname,
           rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours,events:events});
+        }
 
         }
 
@@ -393,6 +489,7 @@ handleChangeDate = date => {
 
       this.setState({
         doctors: returnDoctors
+
       });
 
     }
@@ -507,30 +604,48 @@ handleChangeDate = date => {
 
        }
 
+
        renderExams(){
 
-         return this.state.exams.map((exam, index) => {
-           console.log(exam.name);
-             return (
 
-                 <Button className="dugmadi"style={{height:'auto'}} variant="light" onClick={() => {
+          return this.state.exams.map((exam, indexexam) => {
 
-                   alert("Print some text")
+           var thistypepredfs = [];
+           var brojac=0;
+           var info;
 
-                  }}>
-                 {exam}
-                 </Button>
+           this.state.startingdoctors.map((doc,indexpredef)=>{
+             console.log(doc);
+             if(doc.predefs !== undefined){
+               console.log(doc.predefs);
 
+            doc.predefs.map((predef,indexpredef)=>{
 
-                 )
+             if(predef.type.name == exam){
 
-           })
+               thistypepredfs.push(predef);
+               brojac=brojac+1;
+             }
+
+           });
+
+         }
+        });
+
+           console.log(thistypepredfs);
+
+           if(brojac == 0){
+             return (<div></div>);
+           }else{
+
+             console.log(info);
+             return (<ShowPredef exam={exam} exams={thistypepredfs}/>)
+           }
+           });
+
          }
 
-         ShowPredef(){
-           alert('jsnjs');
-         }
-
+//return (<ShowPredef exam={exam} exams={thistypepredfs}/>);
 
       render() {
         console.log(this.props.match.params.date);
@@ -559,7 +674,7 @@ handleChangeDate = date => {
             <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
 
             <div className="parametri">
-            <h1 className="nazivklinike1"><u>{this.state.clinicname}</u></h1>
+            <h1 className="nazivklinike1">{this.state.clinicname}</h1>
             <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
             <br/>
