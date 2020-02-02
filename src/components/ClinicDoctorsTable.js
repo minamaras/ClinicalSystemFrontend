@@ -17,14 +17,8 @@ class ClinicDoctorTable extends React.Component{
 
 
         this.renderTableData = this.renderTableData.bind(this);
-        this.renderTerms = this.renderTerms.bind(this);
-    }
-
-
-    renderTerms(data){
 
     }
-
 
 
     renderTableData() {
@@ -39,6 +33,7 @@ class ClinicDoctorTable extends React.Component{
 
         return (
           <div>
+          
             <Card key={doctor.name} name={doctor.id} className="cardContainerDoktor" style={{height:'auto',left:'50px'}}>
             <Card.Title className="cardTitleDoktor" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
@@ -77,6 +72,7 @@ class ClinicDoctorTable extends React.Component{
       console.log(this.props);
         return (
             <div className="containerRenderCardsClinic">
+
                 {this.renderTableData()}
             </div>
         );

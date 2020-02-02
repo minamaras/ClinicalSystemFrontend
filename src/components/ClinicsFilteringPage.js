@@ -369,7 +369,6 @@ handleChangeDate = date => {
 
 render() {
   console.log(this.state);
-
   if(this.state.clinics.lenght === 0){
     return(
 

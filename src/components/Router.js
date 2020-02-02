@@ -37,6 +37,7 @@ import BeginAppointMedicalRecord from './BeginAppointMedicalRecord'
 import ScheduleAppointment from './ScheduleAppointment';
 import EndAppointmentRecord from './EndAppointmentRecord';
 import AssignRoom from './AssignRoom';
+import Exams from './Exams';
 
 import { createBrowserHistory } from 'history';
 import AppointmentRequests from './AppointmentRequests';
@@ -75,6 +76,7 @@ class Routes extends React.Component {
         <Route exact path="/clinic/:name" render={(props) => <ClinicProfile user={this.props.user} parameter='0'/>} />
 
         <Route exact path="/appointment/:id/:exam/:examprice/:date/:term" render={(props) => <ScheduleAppointment user={this.props.user}/>} />
+        <Route exact path="/exams" render={(props) => <Exams user={this.props.user}/>} />
 
 
         <Route exact path="/doctorprofile" render={(props) => <DoctroProfile user={this.props.user}/>} />

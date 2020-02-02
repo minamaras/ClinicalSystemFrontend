@@ -144,7 +144,7 @@ class DoctorsTerms extends React.Component {
               onSelectEvent={event =>
 
                 ErrorSearch.fire({
-                    title: "This term is already taken.Please choose antoher one.",
+                    title: "Not avaliable.",
                     text: '',
                     type: "error",
                     button: true,
@@ -196,7 +196,7 @@ class DoctorsTerms extends React.Component {
             console.log(typeof(begin)== typeof(end));
 
     doctorsevents.push({
-    title: 'Appointment'+index+1,
+    title: 'Appointment'+' '+index+1,
     startDate: new Date(parseInt(this.props.date.substring(0,4)), parseInt(this.props.date.substring(5,7))-1, parseInt(this.props.date.substring(8,11)), parseInt(term.toString().substring(0,2)),parseInt(term.toString().substring(3,5)), 0),
     endDate: end,
     allDay: false,

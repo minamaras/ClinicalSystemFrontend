@@ -1,0 +1,125 @@
+.cardContainerPregled{
+
+    margin: 30px 0px 10px 150px;
+    width: 75%;
+    height: auto;
+    padding-top: 10px;
+    box-shadow: 3px 4px 5px #d8d8d8;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(65, 76, 90);
+
+    /*background-image: url("../icons/talas.png");
+
+    /* Center and scale the image nicely */
+    /*background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    background-color: rgba(245, 245, 245, 0.9)!important;
+
+}
+
+.naslovpregleda{
+  margin: 0px 0px 10px 190px;
+}
+
+.nekiprostor{
+  margin: 40px;
+}
+
+.cardBodyPregled{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  color: rgb(0, 0, 0);
+  margin-top: 6px;
+}
+
+.cardTitlePregled{
+    text-align: center;
+    color: rgb(34, 21, 21);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    color: rgb(65, 76, 90);
+
+}
+
+.cardBodyPregled{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(65, 76, 90);
+
+}
+
+.addKlinikaPregled{
+    float: left;
+    margin-left: 14%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(65, 76, 90);
+}
+
+.upcoming{
+  font-size: 30px;
+}
+
+.old{
+  font-size: 30px;
+}
+
+.velikak{
+  margin: 250px 0px 0px 250px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: auto;
+  display: block;
+  padding: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(65, 76, 90);
+  background-color: rgba(182, 218, 250, 1)!important;
+  /*background-image: url("../icons/19366.jpg");
+
+  /* Center and scale the image nicely
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+
+
+
+}
+
+.drugak{
+  margin: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  display: none;
+  height: auto;
+  padding: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(65, 76, 90);
+  background-color: rgba(182, 218, 250, 1)!important;
+  
+
+
+}
+
+.trecak{
+  margin: 0px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  display: none;
+  height: auto;
+  padding: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(65, 76, 90);
+  background-color: rgba(182, 218, 250, 1)!important;
+  /*background-image: url("../icons/19366.jpg");
+
+  /* Center and scale the image nicely
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+
+
+
+}

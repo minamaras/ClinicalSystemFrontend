@@ -8,7 +8,10 @@ import { Nav, Navbar, NavItem, Button, Carousel} from 'react-bootstrap';
 import RoutedLinkContainer from './components/RoutedLinkContainer'
 import PhotoSlider from './components/PhotoSlider'
 import icon from './icons/myprofile.svg'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const LoggedOut = withReactContent(Swal)
 
 export default class App extends React.Component {
 
@@ -52,7 +55,28 @@ export default class App extends React.Component {
 
       axios.get('http://localhost:8081/auth/user', options).then(
                 (response) => { self.changeState(response) },
-                (response) => { console.log(response)}
+                (response) => {
+
+                
+                  if(window.location.href !== 'http://localhost:3000/login' &&
+                  window.location.href !== 'http://localhost:3000/')
+                  {
+                    LoggedOut.fire({
+                      title: "Logged out",
+                      text: 'Sorry your token expired.Please log in again.',
+                      type: "error",
+                      button: false,
+                      icon: "error"
+                    }).then((isOk) => {
+
+                      if(isOk){window.location.href='http://localhost:3000/login';}
+                    });
+
+
+                  }
+
+
+                }
             );
 
     }
