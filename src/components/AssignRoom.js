@@ -6,8 +6,13 @@ import axios from 'axios'
 import Select from 'react-select';
 import { Route, withRouter, Switch, Link } from "react-router-dom";
 import DatePicker from 'react-datepicker';
-
+import "react-datepicker/dist/react-datepicker.css";
+import ShowRoomCalendar from './ShowRoomCalendar';
+import RenderRooms from './RenderRooms';
+import '../css/AsingRoom.css';
 const moment = require('moment');
+
+
 
 const Alert = withReactContent(Swal)
 const ErrorSearch = withReactContent(Swal)
@@ -17,407 +22,237 @@ class AssignRoom extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleSelectChange = this.handleSelectChange.bind(this);
-        //this.handleChange = this.handleChange.bind(this);
-        this.handleChangeDate = this.handleChangeDate.bind(this);
-        this.handleChangeResultFiltering = this.handleChangeResultFiltering.bind(this);
-        this.filterRooms = this.filterRooms.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.FindRoom = this.FindRoom.bind(this);
+
+
+
 
         this.state = {
-            rooms: [],
-            filtered: [],
-            select: undefined,
-            startDate: new Date(),
-            filter: '',
-            startingrooms: [],
-            exams: [],
-            dateString: ''
+                apRequest:'',
+                inputparam:'',
+                inputdate :  new Date(),
+                dateString: '',
+                rooms:[],
+                currentRooms:[],
+
         }
 
+        var normaldate = this.state.inputdate.toISOString().substring(0,10);
+
+        this.setState({ 
+            dateString : normaldate,
+        });
+    
+    }
+
+    componentDidMount(){
 
         let token = localStorage.getItem('token');
         const options = {
-            headers: { 'Authorization': 'Bearer ' + token }
+             headers: { 'Authorization': 'Bearer ' + token}
         };
 
-        var exams = [];
-        var roomsTemp = [];
 
-        axios.get("http://localhost:8081/api/rooms/allrooms", options).then(
+      axios.get(`http://localhost:8081/api/appointmentrequest/getone/${this.props.match.params.id}`,options).then(
+          (resp) => { 
+            console.log(resp.data);
 
-            (resp) => {
-                resp.data.map((room, index) => {
-
-                    if (room.examTypeName.toLowerCase().includes(this.props.match.params.exam.toLowerCase())) {
-
-                        var strint = room.start.toString().substring(0, 2);
-                        var time = parseInt(strint);
-
-                        var strinte = room.end.toString().substring(0, 2);
-                        var minutesend = room.end.toString().substring(3, 5);
-                        var minutesendnumber = parseInt(minutesend);
+              this.setState({
+                  apRequest : resp.data,
+              });
+          },
+          (resp) =>{alert('greska')},
+        );
 
 
-                        console.log(minutesend);
-                        var timeend = parseInt(strinte);
-                        var dur = parseInt(room.examType.duration);
-
-
-
-                        const hours = [];
-                        const events = [];
-
-
-                        var duration = 0;
-
-
-                        for (let hour = time; hour <= timeend; hour++) {
-
-                            if (hour == timeend && duration == parseInt(minutesendnumber)) {
-
-                                hours.push(
-                                    moment({
-                                        hour,
-                                        minute: duration
-                                    }).format('HH:mm:ss')
-                                );
-                                break;
-                            }
-
-                            hours.push(
-                                moment({
-                                    hour,
-                                    minute: duration
-                                }).format('HH:mm:ss')
-                            );
-
-                            duration = duration + dur;
-
-                            if (duration >= 60) {
-                                duration = duration % 60;
-                            } else {
-                                hour = hour - 1;
-                            }
-
-
-                        }
-
-
-
-                        var self = this;
-                        var actualhours = [];
-
-                        room.appointments.forEach(function (appointment) {
-
-                            console.log(appointment.startTime);
-                            hours.forEach(function (term) {
-
-
-                                if (appointment.date == self.props.match.params.date && appointment.startTime == term &&
-                                    (appointment.status == 'SHEDULED' || appointment.status == 'HAPPENING' || appointment.classification == 'PREDIFINED')) {
-
-                                    console.log(appointment);
-                                    console.log(appointment.status);
-                                    console.log(appointment.time);
-
-                                    events.push(term);
-                                    hours.splice(hours.indexOf(term), 1);
-
-                                }
-
-                            });
-
-
-                        });
-
-
-                        roomsTemp.push({ events: events, exam: room.examType, id: room.number, name: room.name, appointments: room.appointments, start: room.start, end: room.end, hours: hours });
-                    }
-
-                });
-
+        axios.get(`http://localhost:8081/api/rooms/clinicsrooms/${this.props.user.clinic}`,options).then(
+            (resp) => { 
+            
+              console.log(resp.data);
+  
                 this.setState({
-                    rooms: roomsTemp,
-                    startingrooms: roomsTemp,
+                    rooms: resp.data,
                 });
-                console.log(this.state.rooms);
-
+                this.someFunction();
             },
-            (resp) => this.onErrorHandler(resp));
-
+            (resp) =>{alert('greska sobe')},
+          );
+               
+        
     }
 
-    handleChangeResultFiltering(e) {
-
-        this.setState({ ...this.state, [e.target.name]: e.target.value });
-
-        if (e.target != undefined) {
-            console.log(e.target.value);
-        }
-
-        console.log(this.state.select);
+    someFunction(){
         console.log(this.state.rooms);
+        
 
-        if (document.getElementsByName("filter")[0].value == '') {
-            if (this.state.select == undefined || this.state.dateString == '') {
-                console.log("thinks hes here");
-                this.setState({
-                    rooms: this.state.startingrooms,
-                });
-                return;
-            } else {
-                console.log("in gere");
-                if (this.state.select != undefined && this.state.dateString != '') {
-                    this.filterRooms();
-                    return;
-                }
-            }
-        }
+        var self =this;
+       
+       var returnRooms = [];
 
-        var resultingrooms = [];
-        var roomName = [];
-        var roomNumber = [];
+       this.state.rooms.forEach(function (room) {
+                  
+               const hours = [];
+               const events =[];
 
 
-        this.state.rooms.forEach(function (arrayItem) {
-
-            if (arrayItem.name.toLowerCase().includes(e.target.value.toLowerCase())) {
-                roomName.push(arrayItem);
-            }
-
-            if (arrayItem.number.toString().startsWith(e.target.value)) {
-                roomNumber.push(arrayItem);
-            }
+               var duration=0;
+               var dur = parseInt(room.examType.duration);
 
 
-        });
+               for(let hour = 8; hour <= 20; hour++) {
+
+                 if(hour == 20 && duration == 0){
+
+                   hours.push(
+                       moment({
+                           hour,
+                           minute: duration
+                       }).format('HH:mm:ss')
+                   );
+                   break;
+                 }
+
+                 hours.push(
+                     moment({
+                         hour,
+                         minute: duration
+                     }).format('HH:mm:ss')
+                 );
+
+                   duration = duration+dur;
+
+                   if(duration >= 60){
+                     duration = duration%60;
+                   }else {
+                     hour=hour-1;
+                   }
 
 
-        resultingrooms = roomNumber;
+               }
 
-        roomName.forEach(function (arrayItem) {
+               
+               returnRooms.push({appointments:room.appointments,events:events,hours:hours,name:room.name,number:room.number,type:room.examType});
 
-            if (resultingrooms.some(x => x.id == arrayItem.id)) {
-                return;
-            } else {
-                resultingrooms.push(arrayItem);
-            }
+         });
 
-        });
-
-
-        roomNumber.forEach(function (arrayItem) {
-
-            if (resultingrooms.some(x => x.id == arrayItem.id)) {
-                return;
-            } else {
-                resultingrooms.push(arrayItem);
-            }
-
-        });
-
-
-        this.setState({
-
-            rooms: resultingrooms,
-
-        });
-
+         this.setState({
+           rooms : returnRooms,
+       })
 
     }
 
+    handleChange(e) {
+        this.setState({...this.state, [e.target.name]: e.target.value});
+    
 
-    filterRooms() {
+    }
 
-        if (this.state.select == undefined || this.state.dateString == '') {
+    FindRoom(){
 
-            ErrorSearch.fire({
-                title: "You didnt enter date or you didn't select exam type so we can't filter.Please try again.",
-                text: '',
-                type: "error",
-                button: true,
-                icon: "error"
-            });
-
-            return;
-
-        }
-
+        console.log(this.state);
+        
 
         var self = this;
+        var returnrooms = [];
 
-        var returnRooms = [];
+        if( self.state.dateString !== '' && self.state.inputparam !== '')
 
-        console.log(this.state.dateString);
+       { 
+           this.state.rooms.forEach(function (room) {
+               console.log(room);
+               
+            
+            var roomevents = [];
+                  
+           if(room.name == self.state.inputparam || room.number == self.state.inputparam){
 
-        this.state.startingrooms.forEach(function (room) {
+            {
+                console.log("same number or name");
+                
+                if(room.type.name == self.state.apRequest.examTypeName)
 
-            if (room.examTypeName == self.state.select) {
-
+            {
                 console.log("same exam");
+                if(room.appointments !==  undefined)
 
-                var strint = room.start.toString().substring(0, 2);
-                var time = parseInt(strint);
+               { room.appointments.forEach(function (appointment) {
+                    console.log("has appointments");
+                    
 
-                var strinte = room.end.toString().substring(0, 2);
-                var timeend = parseInt(strinte);
+                  if(appointment.date == self.state.dateString){
 
-                var minutesend = room.end.toString().substring(3, 5);
-                var minutesendnumber = parseInt(minutesend);
+                    console.log("has appointments that day");
+                    
+                    roomevents.push(appointment.startTime);
+                     
+                  }
 
-                var timeend = parseInt(strinte);
-                var dur = parseInt(room.exam.duration);
-                const hours = [];
-                var duration = 0;
-                var events = [];
+                
+              });}
 
-                for (let hour = time; hour <= timeend; hour++) {
+              returnrooms.push({events:roomevents,hours:room.hours,name:room.name,number:room.number,type:room.type});
+                
+             }
+           }
+        }
+      });
 
-                    if (hour == timeend && duration == parseInt(minutesendnumber)) {
-
-                        hours.push(
-                            moment({
-                                hour,
-                                minute: duration
-                            }).format('HH:mm:ss')
-                        );
-                        break;
-                    }
-
-                    hours.push(
-                        moment({
-                            hour,
-                            minute: duration
-                        }).format('HH:mm:ss')
-                    );
-
-                    duration = duration + dur;
-
-                    if (duration >= 60) {
-                        duration = duration % 60;
-                    } else {
-                        hour = hour - 1;
-                    }
-
-
-                }
-
-                console.log("paased making terms");
-
-
-
-                room.appointments.forEach(function (appointment) {
-                    hours.forEach(function (term) {
-
-                        if (appointment.date == self.state.dateString && appointment.startTime == term &&
-                            (appointment.status == 'SHEDULED' || appointment.status == 'HAPPENING' || appointment.classification == 'PREDIFINED')) {
-
-                            console.log(appointment);
-                            console.log(appointment.status);
-                            console.log(appointment.classification);
-                            hours.splice(hours.indexOf(term), 1);
-                            events.push(term);
-                            console.log("thinks they are same");
-
-                        }
-                    });
-
-                });
-
-                returnRooms.push({ events: events, exam: room.examType, id: room.number, name: room.name, appointments: room.appointments, start: room.start, end: room.end, hours: hours });
-
-            }
-
-        });
-
-
-        this.setState({
-            rooms: returnRooms
-        });
-
+    
     }
 
-    onErrorHandler(response) {
-        alert("Error response: Uncovered case");
-    }
+    this.setState({
+
+        rooms: returnrooms,
+    });
+}
 
     handleChangeDate = date => {
 
 
-        var dateString = date.toISOString().substring(0, 10);
+        var dateString =date.toISOString().substring(0,10);
         console.log(dateString);
 
-        this.setState({
-            startDate: date,
-            dateString: dateString,
+         this.setState({
+            inputdate: date,
+           dateString:dateString,
 
-        });
-
-
-    }
-
-    handleSelectChange = entry => {
-
-        var self = this;
+         });
 
 
-        if (entry == null) {
-            this.setState({
-                select: undefined,
-            });
-        }
+     }
 
-        else {
 
-            this.setState({ select: entry.value });
-        }
-    }
 
 
     render() {
+        var self = this;
         return (
-            <Card className="assignCard" style={{ margin: "100px 0px 0px 300px", height: "500px", width: "600px" }}>
-                <Card.Body>
-                    <InputGroup size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-sm" onClick={this.handleChangeResultFiltering}>Name or number</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                    </InputGroup>
-                    <br></br>
-                    <DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChangeDate}
-                        value={this.state.inputValue}
-                        name="startDate"
-                        className="datepickerClinicProfile"
-                        minDate={moment().toDate()}
+            <div className="pozadinica" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+                <div style={{margin:'100px 0px 0px 300px'}}>
+               <input placeholder="enter room name or number" onChange={this.handleChange} name="inputparam" style={{margin:'20px 0px 0px 20px',width:'200px',height:'30px'}}></input>
 
+               <DatePicker
+                 selected={ this.state.inputdate}
+                 onChange={this.handleChangeDate}
+                 value= {this.state.inputValue}
+                 name="datepicker"
+                 className="datepicker"
+                 minDate={moment().toDate()}
+                style={{margin:'20px 0px 0px -10px'}}
 
-                    />
+               />
 
-                    <br></br>
+               <Button variant="outline-info" onClick={this.FindRoom} style={{width:'200px',height:'30px',margin:'20px 0px 0px 35px'}}>Find room</Button>
+              
+                </div>
 
-                    <Select
-                        options={
-                            this.state.exams.map((type, i) => {
-                                return { id: i, value: type, label: type };
-                            })
-                        }
-                        onChange={this.handleSelectChange}
-                        value={this.state.select}
-                        className="type"
-                        required
-                        placeholder="Select exam type"
-                    />
+            <div className="sobice" style={{width:'auto',height:'auto'}}>
+                <RenderRooms rooms={self.state.rooms} date={self.state.dateString} request={self.state.apRequest}/>
+                </div>
 
-                    <Button className="buttonForFiltering" variant="light" onClick={this.filterRooms}>Filter</Button>
-                    <br />
-                </Card.Body>
-
-
-
-            </Card>
+            </div>
+            
         )
     }
 

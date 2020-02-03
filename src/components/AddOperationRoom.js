@@ -24,7 +24,7 @@ class AddOperationRoom extends React.Component {
             show: false,
             name: '',
             number: '',
-            examTypeName: '',
+            examType: '',
             examTypes: []
         };
     }
@@ -161,22 +161,19 @@ class AddOperationRoom extends React.Component {
                                 <br/>
                                 <label htmlFor="exam">Exam type</label>
                                 <Select
-                                    className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "8px",marginTop:'7px' }}
-                                    onChange={entry => {
-                                        this.setState({
-                                          examTypeName: entry.label,
-                                          type: entry.value,
-                                        });
-                                    }
-                                    }
-                                    value={this.state.examTypeName.label}
-                                    options={
+                                className="selectoptions"
+                                  onChange={entry => {
+                                      this.setState({ examType: entry.value });
+                                      console.log(entry);
+                                  }}
+                                  value={this.state.examType.name}
 
-                                        this.state.examTypes.map((type, i) => {
-                                            return { value: type, label: type.name };
-                                        })
-                                    }
+                                  options={
+                                    this.state.examTypes.map((type, i) => {
+                                    return {id: i,value:type, label: type.name};
+                                  })
+                                }
+
                                 />
                             </div>
                             <hr/>
