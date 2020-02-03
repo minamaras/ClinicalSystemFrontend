@@ -194,3 +194,10 @@
     margin: 3.5% 0 0 36%;
 }
 
+
+.examTypeTitle{
+    margin-bottom: 40px;
+    text-align: center;
+vertical-align: middle;
+    color: rgb(83, 103, 122);
+}

@@ -27,6 +27,8 @@ class BeginAppointMedicalRecord extends React.Component{
         this.handleEditButton = this.handleEditButton.bind(this);
         this.handleCloseEdit = this.handleCloseEdit.bind(this);
         this.editReport = this.editReport.bind(this);
+        this.getAllInfo = this.getAllInfo.bind(this);
+        this.endAppointment = this.endAppointment.bind(this);
 
         this.state = {
             
@@ -37,6 +39,8 @@ class BeginAppointMedicalRecord extends React.Component{
             eyes: '',
             patientemail: '',
             patientName: '',
+
+            appointment: {},
 
             reports: [],
             recipes: [],
@@ -51,12 +55,37 @@ class BeginAppointMedicalRecord extends React.Component{
 
 
         }
-        this.state.patientemail = 'marko@gmail.com';
 
 
     }
 
     componentDidMount(){
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+
+        axios.get(`http://localhost:8081/api/appointments/startappoint/${this.props.match.params.id}`, options).then(    
+            (resp) => this.onSuccessHandlerApponit(resp),                
+            (resp) => this.onErrorHandler(resp)
+        );    
+
+    }
+
+    onSuccessHandlerApponit(resp){
+        console.log(resp.data)
+        this.setState({
+            appointment : resp.data,
+            patientemail : resp.data.patientemail,
+        });
+
+        //console.log(this.state.appointment),
+        //console.log(this.state.patientemail)
+        this.getAllInfo();
+    }
+
+    getAllInfo(){
         let token = localStorage.getItem('token');
         const options = {
           headers: { 
@@ -119,7 +148,7 @@ class BeginAppointMedicalRecord extends React.Component{
             editValues: [].fill.call({ length: resp.data.length }, false)
         })
 
-        console.log(this.state.editValues);
+        //console.log(this.state.editValues);
     }
 
     onSuccessHandlerRecipes(resp){
@@ -182,7 +211,7 @@ class BeginAppointMedicalRecord extends React.Component{
             text: this.state.editedText,
             diagnosisName: this.state.selectedReport,
         }   
-        console.log(reportInfo)
+       // console.log(reportInfo)
         axios.post(`http://localhost:8081/api/reports/editreport`, reportInfo, options).then(    
             (resp) => this.onSuccessHandlerEditR(resp),                
             (resp) => this.onErrorHandler(resp)
@@ -200,13 +229,40 @@ class BeginAppointMedicalRecord extends React.Component{
           window.location.reload();
     }
 
+    endAppointment(e){
+        e.preventDefault();
+        let token = localStorage.getItem('token');
+        const options = {
+          headers: { 
+              'Authorization': 'Bearer ' + token,
+            }
+              };
+
+        axios.get(`http://localhost:8081/api/appointments/endappoint/${this.props.match.params.id}`, options).then(    
+                (resp) => this.onSuccessHandlerEnd(resp),                
+                (resp) => this.onErrorHandler(resp)
+            );
+    }
+
+    onSuccessHandlerEnd(resp){
+        MedRecAlert.fire({
+            title: "Appointment is successfully ended!",
+            text: '',
+            type: "success",
+            icon: 'success',
+            button: true
+          });
+          window.location.href = ("/");
+    }
+
+
     renderReport(){
         return(
                     this.state.reports.map( (report, i) => {
                 return(
                     <div className="divAllR">
                     <div className="divReport">
-                        <div class="basicTitle">
+                        <div className="basicTitle">
                             <h4>Report</h4>
                            {report.editable && <img src={editicon} onClick={() => this.handleEditButton(i, report.diagnosisName, report.text)} title="Update report" className="editReport" style={{height:'27px', width: 'auto'}} alt='Unavailable icon' />}
                         </div>
@@ -259,7 +315,7 @@ class BeginAppointMedicalRecord extends React.Component{
 
 
     renderRecipes(){
-        console.log(this.state.recipes)
+        //console.log(this.state.recipes)
         return(
             this.state.recipes.map(recipe => {
         return(
@@ -351,7 +407,7 @@ class BeginAppointMedicalRecord extends React.Component{
                 </div>
                 <div className="upButtons">
                 <AddRecipe content={this.state.patientemail}/>
-                <button className="endAppBtn">End appointment</button>
+                <button className="endAppBtn" onClick={this.endAppointment}>End appointment</button>
                 <button className="anotherAppBtn">Make another appointment</button>
                 </div>
                 <div className="medicalRecContainer">
@@ -401,6 +457,7 @@ class BeginAppointMedicalRecord extends React.Component{
 
                 
                 <div className="appReport">
+                <h3 className="examTypeTitle">Exam type: {this.state.appointment.examTypeName}</h3>
                     <h2>Medical history</h2>
                     <div className="appReportAndRec">
                    <div className="levoReport">

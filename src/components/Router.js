@@ -95,8 +95,8 @@ class Routes extends React.Component {
         <Route exact path="/examrequests" render={(props) => <AppointmentRequests user={this.props.user}/>} />
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
-        <Route exact path="/startappointment/medicalrecord" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
-        <Route exact path="/endappointment/medicalrecord" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />
+        <Route exact path="/startappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
+        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />
 
       </Switch>
         );
