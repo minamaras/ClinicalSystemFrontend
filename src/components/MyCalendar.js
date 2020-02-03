@@ -110,7 +110,7 @@ class MyCalendar extends React.Component {
 
 
     appointEvents.push({
-      title: app.examTypeName,
+      title: app.examTypeName + " (" + app.patientName + " " + app.patientLastname + ") " ,
       startDate: beginApp,
       endDate: endApp,
       allDay: false,

@@ -96,7 +96,7 @@ class MyCalendarNurse extends React.Component {
 
 
     appointEvents.push({
-      title: app.examTypeName,
+      title: app.examTypeName + " (" + app.patientName + " " + app.patientLastname + ") " ,
       startDate: beginApp,
       endDate: endApp,
       allDay: false,
@@ -188,8 +188,8 @@ class MyCalendarNurse extends React.Component {
             views={['month', 'week', 'day']}
             startAccessor="startDate"
             endAccessor="endDate"
-            // min={this.state.startShift}
-            //max={this.state.endShift}
+             min={new Date(0, 0, 0, 7, 0, 0)}
+            max={new Date(0, 0, 0, 20, 0, 0)}
             eventPropGetter={this.customEventPropGetter}
             // onSelectEvent={this.onSelectEvent}
           />

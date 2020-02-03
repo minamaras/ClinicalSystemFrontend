@@ -9,16 +9,6 @@
 }
 
 
-table{
-    border: 1px solid rgb(160, 160, 160);
-    margin-top: 3%
-}
-
-
-.tableRecipes{
-    box-shadow: 3px 2px 1px rgb(214, 214, 214);
-}
-
 .contentTr{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-decoration: none;
@@ -31,4 +21,53 @@ table{
     text-decoration: none;
     font-size: 23px;
     color: rgb(95, 134, 160);
+}
+
+.rowOne{
+    display: flex;
+    border-bottom: 1px solid rgb(197, 197, 197);
+    margin: 10px 0 0 0;
+
+}
+
+.recipeCard{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    background-color: rgb(245, 245, 247);
+    margin: 20px;
+}
+
+.leftRow{
+    width: 140px;
+}
+
+.medName{
+    margin-left: 5px;
+    background-color: rgb(245, 244, 244);
+    padding: 0 2px;
+
+}
+
+.recipeCard{
+    max-width: 420px;
+}
+
+.btnRecipe{
+    margin: 15px 20px 0 20px;
+    width: 85%;
+
+}
+
+
+.containerRecipes{
+    display: flex;
+    flex-direction: row;
+    margin-right: -200px;
+    margin-left: -150px;
+    flex-wrap: wrap;
+}
+
+.divMed{
+    display: flex;
+    flex-wrap: wrap;
 }

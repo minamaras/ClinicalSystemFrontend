@@ -406,7 +406,7 @@ class BeginAppointMedicalRecord extends React.Component{
                     <h1 className="medicalRecTitle">{this.state.patientName}'s Medical record</h1>
                 </div>
                 <div className="upButtons">
-                <AddRecipe content={this.state.patientemail}/>
+                <AddRecipe content={this.props.match.params.id}/>
                 <button className="endAppBtn" onClick={this.endAppointment}>End appointment</button>
                 <button className="anotherAppBtn">Make another appointment</button>
                 </div>

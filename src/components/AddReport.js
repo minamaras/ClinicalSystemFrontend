@@ -14,9 +14,7 @@ class AddReport extends React.Component{
 
     constructor(props){
         super(props);
-
-
-        
+       
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -62,8 +60,8 @@ class AddReport extends React.Component{
             patientemail : resp.data.patientemail,
         });
 
-        console.log(this.state.appointment)
-        console.log(this.state.patientemail)
+       // console.log(this.state.appointment)
+       // console.log(this.state.patientemail)
         this.getAllInfo();
     }
 
