@@ -26,13 +26,17 @@ class AddRecipe extends React.Component{
 
             content: '',
             doctoremail:'',
+            patientemail: '',
 
             medicationList: [],
             medicationName: [],
 
-            patientemail: this.props.content,
+            
             
         }
+        //patientemail: this.props.content,
+        console.log(this.props.content)
+
 
     }
 
@@ -44,6 +48,12 @@ class AddRecipe extends React.Component{
 
             }
               };
+
+        axios.get(`http://localhost:8081/api/appointments/startappoint/${this.props.content}`, options).then(    
+            (resp) => this.onSuccessHandlerApponit(resp),                
+            (resp) => this.onErrorHandler(resp)
+        );    
+
 
 
         axios.get(`http://localhost:8081/api/medication/allmedicationsnames`,options).then(    
@@ -62,7 +72,18 @@ class AddRecipe extends React.Component{
           });
       
       }
-           
+
+      onSuccessHandlerApponit(resp){
+        console.log(resp.data)
+        this.setState({
+            //appointment : resp.data,
+            patientemail : resp.data.patientemail,
+        });
+
+       // console.log(this.state.appointment)
+        console.log(this.state.patientemail)
+       // this.getAllInfo();
+    }  
       
       onSuccessHandlerMedication(resp) {
       //console.log(resp.data)

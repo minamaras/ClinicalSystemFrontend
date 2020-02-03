@@ -52,7 +52,7 @@ class BeginAppointMedicalRecord extends React.Component{
 
 
         }
-        //this.state.patientemail = 'marko@gmail.com';
+
         console.log(this.props.match.params.id)
 
 
@@ -386,8 +386,8 @@ class BeginAppointMedicalRecord extends React.Component{
                     
                 </div>
                 <div className="upButtons">
-                <AddRecipe content={this.state.patientemail} />
-                <AddReport content={this.state.patientemail} />                
+                <AddRecipe content={this.props.match.params.id}/>
+                <AddReport />                
                 </div>
                 <div className="medicalRecContainer">
                     
