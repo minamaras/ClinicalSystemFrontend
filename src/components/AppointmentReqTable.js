@@ -62,7 +62,7 @@ class AppointmentReqTable extends React.Component {
                      
                      <br/>
 
-                     <Link to={{pathname:`/room/${r.id}/${r.examTypeName}/${formatDate}`, state :{data : r} } }>Assign a room to this appointment</Link>
+                     <Link to={{pathname:`/room/${r.id}`, state :{data : r} } }>Assign a room to this appointment</Link>
                   </Card.Body>
                   
               </Card>
