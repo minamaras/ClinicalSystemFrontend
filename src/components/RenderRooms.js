@@ -26,6 +26,7 @@ class RenderRooms extends React.Component{
 
     tryRenderingCalendar(room){
         
+        console.log(room);
         
 
        if(room  !== undefined && this.props.date !== ''){

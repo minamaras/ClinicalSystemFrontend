@@ -46,20 +46,6 @@ class ShowRoomCalendar extends React.Component {
     }
 
 
-    handleSlotSelect(slotInfo) {
-        var dateString = slotInfo.start.toISOString().substring(0, 10);
-
-        var datetext = slotInfo.start.toTimeString().split(' ')[0]
-        var h = slotInfo.start.getHours();
-        var m = slotInfo.start.getMinutes();
-        var time = h + ":" + m;
-
-
-        window.location.href = `http://localhost:3000/appointment/${this.props.doctor.id}/${this.props.doctor.exam.name}/${this.props.doctor.exam.price}/${dateString}/${datetext}/`;
-
-    }
-
-
     renderTermsOtherVersion() {
 
         var events = [];
@@ -131,22 +117,35 @@ class ShowRoomCalendar extends React.Component {
              headers: { 'Authorization': 'Bearer ' + token}
         };
 
-        var dateString = slotInfo.start.toISOString().substring(0,10);
+    var dateString = slotInfo.start.toISOString().substring(0,10);
 
       var datetext = slotInfo.start.toTimeString().split(' ')[0]
       var h = slotInfo.start.getHours();
       var m = slotInfo.start.getMinutes();
       var time = h + ":" + m;
+      var endtime = slotInfo.end.getHours() + ":" + slotInfo.end.getMinutes() + ":00";
 
-        axios.post(`http://localhost:8081/api/appointment/createappointmentfromrequest/${this.props.room.id}/${dateString}/${datetext}`, this.props.request, options).then(
+      console.log(endtime);
+      console.log(datetext);
+      console.log(dateString);
+
+      console.log(slotInfo);
+
+      console.log(this.props.room.id);
+
+        axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
             (resp) => {
 
                 console.log(resp.data);
 
+                window.location.href=`http://localhost:3000/roomrequest/${this.props.request.doctorEmail}/${dateString}/${datetext}/${endtime}/${this.props.request.id}`;
+
                 this.setState({
                     rooms: resp.data,
                 });
-                this.someFunction();
+
+                console.log(this.state.rooms)
+                //this.someFunction();
             },
             (resp) => { alert('greska sobe') }
 

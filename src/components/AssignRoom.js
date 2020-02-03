@@ -54,6 +54,8 @@ class AssignRoom extends React.Component {
         };
 
 
+
+
       axios.get(`http://localhost:8081/api/appointmentrequest/getone/${this.props.match.params.id}`,options).then(
           (resp) => { 
             console.log(resp.data);
@@ -132,7 +134,7 @@ class AssignRoom extends React.Component {
                }
 
                
-               returnRooms.push({appointments:room.appointments,events:events,hours:hours,name:room.name,number:room.number,type:room.examType});
+               returnRooms.push({id:room.id,appointments:room.appointments,events:events,hours:hours,name:room.name,number:room.number,type:room.examType});
 
          });
 
@@ -191,7 +193,7 @@ class AssignRoom extends React.Component {
                 
               });}
 
-              returnrooms.push({events:roomevents,hours:room.hours,name:room.name,number:room.number,type:room.type});
+              returnrooms.push({id: room.id, events:roomevents,hours:room.hours,name:room.name,number:room.number,type:room.type});
                 
              }
            }
