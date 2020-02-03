@@ -41,6 +41,7 @@ import Exams from './Exams';
 
 import { createBrowserHistory } from 'history';
 import AppointmentRequests from './AppointmentRequests';
+import MyCalendarNurse from './MyCalendarNurse';
 
 class Routes extends React.Component {
 
@@ -87,6 +88,7 @@ class Routes extends React.Component {
         <Route exact path="/changepass" render={(props) => <ChangePassword user={this.props.user}/>} />
         <Route exact path="/holiday" render={(props) => <NurseHoliday user={this.props.user}/>} />
         <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
+        <Route exact path="/nurse/calendar" render={(props) => <MyCalendarNurse user={this.props.user}/>} />
         <Route exact path="/prescription" render={(props) => <RecipesPage user={this.props.user}/>} />
         <Route exact path="/examrooms" render={(props) => <ExaminationRoom user={this.props.user}/>} />
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />

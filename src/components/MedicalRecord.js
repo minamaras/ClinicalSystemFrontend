@@ -31,7 +31,7 @@ class MedicalRecord extends React.Component{
 
 
       }
-
+      
 
       }
 
