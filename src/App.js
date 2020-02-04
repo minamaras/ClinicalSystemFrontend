@@ -303,7 +303,8 @@ export default class App extends React.Component {
                       <RoutedLinkContainer link="/nurses" displayText="Nurses" />
                       <RoutedLinkContainer link="/rooms" displayText="ORs" />
                       <RoutedLinkContainer link="/manageclinic" displayText="Clinic Info" />
-                      <RoutedLinkContainer link="/examrequests" displayText="Exam requests"></RoutedLinkContainer>
+                      <RoutedLinkContainer link="/examrequests" displayText="Exam Requests"></RoutedLinkContainer>
+                      <RoutedLinkContainer link="/operationrequests" displayText="Operation Requests" />
                       <RoutedLinkContainer link="/examtypes" displayText="Exam Types" />
                       <RoutedLinkContainer link="/holidayrequests" displayText="Holiday Requests" />
 
