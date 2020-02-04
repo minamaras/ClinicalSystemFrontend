@@ -1,46 +1,41 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import  BigCalendar, {momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
 import 'moment/locale/en-gb';
 import axios from 'axios';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment';
+import 'moment/locale/en-gb';
 import { withRouter } from 'react-router-dom';
+import  BigCalendar, {momentLocalizer } from 'react-big-calendar';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../css/MyCalendar.css'
 import tipicon from '../icons/lamp.svg'
+import React from 'react';
 
 const PatientAlert = withReactContent(Swal);
 const localizer = momentLocalizer(moment);
 
-class MyCalendar extends React.Component {
+class MyCalendarNurse extends React.Component {
 
   
 
   constructor() {
     
     super();
-
-    this.createEvents = this.createEvents.bind(this);
-    this.createHolidays = this.createHolidays.bind(this);
-    this.customEventPropGetter = this.customEventPropGetter.bind(this);
-    this.onSelectEvent = this.onSelectEvent.bind(this);
-    
-    const now = new Date();
+  
+  const now = new Date();
 
     this.state = {
       name: 'React',
-      startShift: new Date(),
-      endShift: new Date(),
-      doctor: {},
+      clinicName : '',
+      nurseemail: '',
       events: [],
       appointments: [],
       holidays: [],
     };
     
   }
+
 
   componentDidMount(){
     
@@ -49,7 +44,7 @@ class MyCalendar extends React.Component {
       headers: { 'Authorization': 'Bearer ' + token}
           };
 
-    axios.get('http://localhost:8081/api/doctors/getdates',options).then(
+    axios.get('http://localhost:8081/api/nurses/getdates',options).then(
               (resp) => this.onSuccessHandler(resp),
               (resp) => this.onErrorHandler(resp)
               );
@@ -66,34 +61,25 @@ class MyCalendar extends React.Component {
       });
   
   }
-   
-  
-  onSuccessHandler(resp) {
-    console.log(resp.data)
-  
 
-    var splitedstart = resp.data.start.split(':');
-    var splitedend = resp.data.end.split(':');
-
-    var begin = new Date(0,0,0,splitedstart[0],splitedstart[1],splitedstart[2]);
-    var end = new Date(0,0,0,splitedend[0],splitedend[1],splitedend[2]);
+  onSuccessHandler(resp){
+    console.log(resp);
 
     this.setState({
-  
-      startShift : begin,
-      endShift : end,
-      appointments : resp.data.appointments,
-      holidays : resp.data.holidays,
-
-    })
+        clinicName : resp.data.clinicName,
+        nurseemail : resp.data.nurseemail,
+        appointments : resp.data.appointments,
+        holidays : resp.data.holidays
+    });
 
     this.createEvents();
     this.createHolidays();
+
   }
 
 
-  createEvents(){
 
+  createEvents(){
     var appointEvents = []
 
     this.state.appointments.map((app, index) => {
@@ -124,88 +110,64 @@ class MyCalendar extends React.Component {
     events: this.state.events.concat(appointEvents)
 })
 
-console.log(this.state.appointments);
-
-}
-
-
-
-
-
-createHolidays(){
-  var holidayEvents = []
-
-  this.state.holidays.map((holiday, index) => {
-
-    if(holiday.holidayRequestStatus !== "ACCEPTED"){
-      return;
   }
 
-    var starth = holiday.startHoliday.split('-');
-    var endh = holiday.endHoliday.split('-');
-    //var numapp = index + 1;
-
-    var beginH = new Date(starth[0],starth[1]-1,starth[2]);
-    var endH = new Date(endh[0],endh[1]-1,endh[2]);
 
 
-  holidayEvents.push({
-    title: 'Holiday',
-    startDate: beginH,
-    endDate: endH,
-    allDay: true,
+  createHolidays(){
+    var holidayEvents = []
+  
+    this.state.holidays.map((holiday, index) => {
+  
+        if(holiday.holidayRequestStatus !== "ACCEPTED"){
+            return;
+        }
 
-  });
-})
+      var starth = holiday.startHoliday.split('-');
+      var endh = holiday.endHoliday.split('-');
+      //var numapp = index + 1;
+  
+      var beginH = new Date(starth[0],starth[1]-1,starth[2]);
+      var endH = new Date(endh[0],endh[1]-1,endh[2]);
+  
+  
+    holidayEvents.push({
+      title: 'Holiday',
+      startDate: beginH,
+      endDate: endH,
+      allDay: true,
+  
+    });
+  })
+  
+  
+  this.setState({
+    events: this.state.events.concat(holidayEvents)
+  })
+  
+  }
 
 
-this.setState({
-  events: this.state.events.concat(holidayEvents)
-})
-
-}
-
-customEventPropGetter(event){
-  //console.log(event)
-
-  if(event.title.includes('Holiday')){
-    return {
-      style: {
-        backgroundColor: '#4f4f4f',
-      },
-    }
-  } else {
+  customEventPropGetter(event){
+    //console.log(event)
+  
+    if(event.title.includes('Holiday')){
       return {
         style: {
-          backgroundColor: '#82c2e0',
-          color: 'black',
+          backgroundColor: '#4f4f4f',
+        },
+      }
+    } else {
+        return {
+          style: {
+            backgroundColor: '#82c2e0',
+            color: 'black',
+          }
         }
-      }
-  
-    } 
-}
-
-onSelectEvent(event){
-
-  this.state.appointments.forEach(element => {
-    if(element.id === event.resource){
-      if(!element.status.includes('HAS_HAPPEND')){
-        window.location.href=`http://localhost:3000/startappointment/medicalrecord/${event.resource}`
-      }
-     else if (element.status.includes('HAS_HAPPEND')) {
-      PatientAlert.fire({
-        title: "This appointment has already happened.",
-        text: '',
-        type: "error",
-        icon: 'error',
-        button: true
-      });
-    }
+    
+      } 
   }
 
-  }); 
-
-}
 
 
   render() {
@@ -226,15 +188,17 @@ onSelectEvent(event){
             views={['month', 'week', 'day']}
             startAccessor="startDate"
             endAccessor="endDate"
-            min={this.state.startShift}
-            max={this.state.endShift}
+             min={new Date(0, 0, 0, 7, 0, 0)}
+            max={new Date(0, 0, 0, 20, 0, 0)}
             eventPropGetter={this.customEventPropGetter}
-            onSelectEvent={this.onSelectEvent}
+            // onSelectEvent={this.onSelectEvent}
           />
         </div>
       </div>
     );
   }
+
 }
 
-export default withRouter(MyCalendar);
+
+export default withRouter(MyCalendarNurse)

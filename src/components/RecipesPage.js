@@ -26,6 +26,7 @@ class RecipesPage extends React.Component{
     }
 
     onSuccessHandler(resp) {
+        
         var tempRec = [];
 
         for (var i = 0; i < resp.data.length; i++) {
@@ -34,6 +35,8 @@ class RecipesPage extends React.Component{
         this.setState({
             recipes: tempRec
         });
+
+        console.log(this.state.recipes)
     }
 
     onErrorHandler(resp) {

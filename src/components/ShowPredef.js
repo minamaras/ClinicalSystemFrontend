@@ -13,6 +13,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Navigate, Views } from 'react-big-calendar'
 import {  momentLocalizer } from 'react-big-calendar'
 import PhotoSlider from './PhotoSlider';
+import 'moment/locale/en-gb';
 const localizer = momentLocalizer(moment)
 
 

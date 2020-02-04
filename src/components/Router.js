@@ -36,10 +36,14 @@ import AllClinics from './AllClinics';
 import BeginAppointMedicalRecord from './BeginAppointMedicalRecord'
 import ScheduleAppointment from './ScheduleAppointment';
 import EndAppointmentRecord from './EndAppointmentRecord';
+import AssignRoom from './AssignRoom';
 import Exams from './Exams';
 
 import { createBrowserHistory } from 'history';
 import AppointmentRequests from './AppointmentRequests';
+import MyCalendarNurse from './MyCalendarNurse';
+import SendEmailToPatient from './SendEmailToPatient';
+import ManageAppointmentRequest from './ManageAppointmentRequest';
 
 class Routes extends React.Component {
 
@@ -86,6 +90,7 @@ class Routes extends React.Component {
         <Route exact path="/changepass" render={(props) => <ChangePassword user={this.props.user}/>} />
         <Route exact path="/holiday" render={(props) => <NurseHoliday user={this.props.user}/>} />
         <Route exact path="/calendar" render={(props) => <MyCalendar user={this.props.user}/>} />
+        <Route exact path="/nurse/calendar" render={(props) => <MyCalendarNurse user={this.props.user}/>} />
         <Route exact path="/prescription" render={(props) => <RecipesPage user={this.props.user}/>} />
         <Route exact path="/examrooms" render={(props) => <ExaminationRoom user={this.props.user}/>} />
         <Route exact path="/patients" render={(props) => <MyPatients user={this.props.user}/>} />
@@ -95,9 +100,13 @@ class Routes extends React.Component {
         <Route exact path="/examrequests" render={(props) => <AppointmentRequests user={this.props.user}/>} />
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
-        <Route exact path="/startappointment/medicalrecord" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
-        <Route exact path="/endappointment/medicalrecord" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />
+        <Route exact path="/startappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
+        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />       
+        
+        <Route exact path="/room/:id" history={createBrowserHistory} render={(props)  => <AssignRoom user={this.props.user} />} />
 
+        <Route exact path="/roomrequest/:doctoremail/:date/:startime/:endtime/:id" render={(props) => <SendEmailToPatient user={this.props.user}/>} />
+        <Route exact path="/patientrequeststatus" render={(props) => <ManageAppointmentRequest user={this.props.user}/>} />
       </Switch>
         );
 

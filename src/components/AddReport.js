@@ -14,9 +14,7 @@ class AddReport extends React.Component{
 
     constructor(props){
         super(props);
-
-
-        
+       
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -24,6 +22,7 @@ class AddReport extends React.Component{
         this.renderDiagnosisNames = this.renderDiagnosisNames.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.addReport = this.addReport.bind(this);
+        this.getAllInfo = this.getAllInfo.bind(this);
 
         this.state = {
             show: false,
@@ -31,11 +30,39 @@ class AddReport extends React.Component{
             text: '',
             diagnosisNames: [],
             diagnosisName: '',
+            appointment: {},
             
-            patientemail: this.props.content,
+            patientemail: '',
 
         } 
 
+    }
+
+
+    componentDidMount(){
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+
+        axios.get(`http://localhost:8081/api/appointments/startappoint/${this.props.match.params.id}`, options).then(    
+            (resp) => this.onSuccessHandlerApponit(resp),                
+            (resp) => this.onErrorHandler(resp)
+        );    
+
+    }
+
+    onSuccessHandlerApponit(resp){
+        console.log(resp.data)
+        this.setState({
+            appointment : resp.data,
+            patientemail : resp.data.patientemail,
+        });
+
+       // console.log(this.state.appointment)
+       // console.log(this.state.patientemail)
+        this.getAllInfo();
     }
 
 
@@ -56,7 +83,7 @@ class AddReport extends React.Component{
 
 
 
-    componentDidMount(){
+    getAllInfo(){
         let token = localStorage.getItem('token');
         const options = {
           headers: { 
@@ -66,7 +93,7 @@ class AddReport extends React.Component{
               };
 
 
-        axios.get(`http://localhost:8081/api/diagnosis/alldiagnosisnames`,options).then(    
+        axios.get(`http://localhost:8081/api/diagnosis/alldiagnosisnames/`,options).then(    
             (resp) => this.onSuccessHandlerMedication(resp),                
             (resp) => this.onErrorHandler(resp)
         );
@@ -140,7 +167,7 @@ class AddReport extends React.Component{
             button: true
           });
           //window.location.reload();
-          this.props.history.push('/endappointment/medicalrecord');
+          window.location.href=(`/endappointment/medicalrecord/${this.props.match.params.id}`);
           
     }
 

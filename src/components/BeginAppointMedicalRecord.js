@@ -26,6 +26,7 @@ class BeginAppointMedicalRecord extends React.Component{
         this.handleEditButton = this.handleEditButton.bind(this);
         this.handleCloseEdit = this.handleCloseEdit.bind(this);
         this.editReport = this.editReport.bind(this);
+        this.getAllInfo = this.getAllInfo.bind(this);
 
         this.state = {
             
@@ -36,6 +37,7 @@ class BeginAppointMedicalRecord extends React.Component{
             eyes: '',
             patientemail: '',
             patientName: '',
+            appointment: {},
 
             reports: [],
             recipes: [],
@@ -50,12 +52,33 @@ class BeginAppointMedicalRecord extends React.Component{
 
 
         }
-        this.state.patientemail = 'marko@gmail.com';
 
+        console.log(this.props.match.params.id)
+
+
+        
 
     }
 
     componentDidMount(){
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+
+        axios.get(`http://localhost:8081/api/appointments/startappoint/${this.props.match.params.id}`, options).then(    
+            (resp) => this.onSuccessHandlerApponit(resp),                
+            (resp) => this.onErrorHandler(resp)
+        );    
+
+    }
+
+
+
+
+
+    getAllInfo(){
         let token = localStorage.getItem('token');
         const options = {
           headers: { 
@@ -63,6 +86,7 @@ class BeginAppointMedicalRecord extends React.Component{
               'Content-type' : 'text/plain'
             }
               };
+    
 
         axios.post(`http://localhost:8081/api/medicalrecord/info`, this.state.patientemail, options).then(    
                     (resp) => this.onSuccessHandler(resp),                
@@ -96,6 +120,18 @@ class BeginAppointMedicalRecord extends React.Component{
           });
       
       }
+
+      onSuccessHandlerApponit(resp){
+          console.log(resp.data)
+          this.setState({
+              appointment : resp.data,
+              patientemail : resp.data.patientemail,
+          });
+
+          //console.log(this.state.appointment),
+          //console.log(this.state.patientemail)
+          this.getAllInfo();
+      }
            
       
       onSuccessHandler(resp) {
@@ -118,11 +154,11 @@ class BeginAppointMedicalRecord extends React.Component{
             editValues: [].fill.call({ length: resp.data.length }, false)
         })
 
-        console.log(this.state.editValues);
+        //console.log(this.state.editValues);
     }
 
     onSuccessHandlerRecipes(resp){
-        console.log(resp.data)
+        //console.log(resp.data)
         this.setState({
             recipes: resp.data
         })
@@ -258,7 +294,7 @@ class BeginAppointMedicalRecord extends React.Component{
 
 
     renderRecipes(){
-        console.log(this.state.recipes)
+        //console.log(this.state.recipes)
         return(
             this.state.recipes.map(recipe => {
         return(
@@ -347,15 +383,18 @@ class BeginAppointMedicalRecord extends React.Component{
             <div>
                 <div className="topTitle">
                     <h1 className="medicalRecTitle">{this.state.patientName}'s Medical record</h1>
+                    
                 </div>
                 <div className="upButtons">
-                <AddRecipe content={this.state.patientemail} />
-                <AddReport content={this.state.patientemail} />                
+                <AddRecipe content={this.props.match.params.id}/>
+                <AddReport />                
                 </div>
                 <div className="medicalRecContainer">
                     
                     <div className="basicInfoRecord">
+                    
                     <div className="basicTitle">
+                        
                         <h1>Basic information</h1>
                         <img src={editicon} onClick={()=> this.setState({ editMode: true })} title="Update info" className="editBasic" style={{height:'27px', width: 'auto'}} alt='Unavailable icon' />
                     </div>
@@ -397,8 +436,10 @@ class BeginAppointMedicalRecord extends React.Component{
                     </Form>
                  </div>
 
+
                 
                 <div className="appReport">
+                <h3 className="examTypeTitle">Exam type: {this.state.appointment.examTypeName}</h3>
                     <h2>Medical history</h2>
                     <div className="appReportAndRec">
                    <div className="levoReport">
