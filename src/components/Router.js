@@ -43,6 +43,7 @@ import { createBrowserHistory } from 'history';
 import AppointmentRequests from './AppointmentRequests';
 import MyCalendarNurse from './MyCalendarNurse';
 import SendEmailToPatient from './SendEmailToPatient';
+import ManageAppointmentRequest from './ManageAppointmentRequest';
 
 class Routes extends React.Component {
 
@@ -105,7 +106,7 @@ class Routes extends React.Component {
         <Route exact path="/room/:id" history={createBrowserHistory} render={(props)  => <AssignRoom user={this.props.user} />} />
 
         <Route exact path="/roomrequest/:doctoremail/:date/:startime/:endtime/:id" render={(props) => <SendEmailToPatient user={this.props.user}/>} />
-
+        <Route exact path="/patientrequeststatus" render={(props) => <ManageAppointmentRequest user={this.props.user}/>} />
       </Switch>
         );
 
