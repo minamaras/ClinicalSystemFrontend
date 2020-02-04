@@ -49,10 +49,10 @@ componentDidMount () {
                               (resp) => this.onErrorHandler(resp)
                             );
 
-                  axios.post(`http://localhost:8081/api/reports/info`, this.state.patientemail, options).then(
-                      (resp) => this.onSuccessHandlerReport(resp),
-                      (resp) => this.onErrorHandler(resp)
-                  );
+                            axios.post(`http://localhost:8081/api/reports/info`, this.state.patientemail, options).then(
+                                (resp) => this.onSuccessHandlerReport(resp),
+                                (resp) => this.onErrorHandler(resp)
+                            );
 
                     }
 
@@ -130,7 +130,6 @@ renderReport(){
 
 render() {
     return (
-
 
       <div>
           <div className="topTitle">

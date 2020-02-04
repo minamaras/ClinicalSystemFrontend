@@ -51,7 +51,8 @@ class RenderClinic extends React.Component{
                           <label><b>Address </b></label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
-                          <label><b> Rating </b></label>&nbsp;
+                          <label><b> Rating </b></label>
+                          <br/>
                           <StarRatings
                             rating={c.rating}
                             starRatedColor="blue"

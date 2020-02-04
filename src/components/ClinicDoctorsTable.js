@@ -44,7 +44,8 @@ class ClinicDoctorTable extends React.Component{
                     <Card.Text className='cardTextDoktor'>
                           <label><b>Doctor does exam type:</b>{doctor.exam.name}</label>
                           <br/>
-                          <label><b>Doctors rating: </b></label> &nbsp;
+                          <label><b>Doctors rating: </b></label>
+                          <br/>
 
                           <StarRatings
                             rating={doctor.rating}
