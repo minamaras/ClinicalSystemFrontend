@@ -137,8 +137,10 @@ class ShowRoomCalendar extends React.Component {
             (resp) => {
 
                 console.log(resp.data);
+                let doctor = this.props.request.doctorEmail;
+                let patient = this.props.request.id;
 
-                window.location.href=`http://localhost:3000/roomrequest/${this.props.request.doctorEmail}/${dateString}/${datetext}/${endtime}/${this.props.request.id}`;
+                window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
 
                 this.setState({
                     rooms: resp.data,

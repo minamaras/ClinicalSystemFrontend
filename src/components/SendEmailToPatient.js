@@ -20,7 +20,8 @@ class SendEmailToPatinet extends React.Component{
           date:'',
           starttime:'',
           endtime: '',
-          doctorEmail:''
+          doctorEmail:'',
+          patient: ''
         }
 
     }
@@ -31,9 +32,10 @@ class SendEmailToPatinet extends React.Component{
       this.setState({
 
         date: this.props.match.params.date,
-        startTime : this.props.match.params.startime,
-        doctorEmail : this.props.match.params.id,
+        starttime : this.props.match.params.startime,
+        doctorEmail : this.props.match.params.doctoremail,
         endtime : this.props.match.params.endtime,
+        patient : this.props.match.params.id,
       });
 
 
@@ -50,8 +52,8 @@ class SendEmailToPatinet extends React.Component{
        };
 
 
-         if(this.props.match.params.date == '' || this.props.match.params.term == undefined || this.props.match.params.id == undefined
-       || this.props.match.params.exam == undefined){
+         if(this.props.match.params.date == '' || this.props.match.params.startime == undefined || this.props.match.params.id == undefined
+       || this.props.match.params.endtime == undefined || this.props.match.params.doctoremail == undefined){
 
 
 
@@ -69,13 +71,15 @@ class SendEmailToPatinet extends React.Component{
        var obj ={
 
           date: this.props.match.params.date,
-          startime : this.props.match.params.startTime,
-          doctorEmail: this.props.match.params.id,
+          startime : this.props.match.params.startime,
+          doctorEmail: this.props.match.params.doctoremail,
+          patient: this.props.match.params.id,
+          endtime: this.props.match.params.endtime
 
 
        }
 
-        axios.post('http://localhost:8081/api/appointmentrequest/sendrequest',obj,options).then(
+        axios.post(`http://localhost:8081/api/appointmentrequest/sendrequest/${this.state.doctorEmail}/${this.state.date}/${this.state.starttime}/${this.state.endtime}/${this.state.patient}`,obj,options).then(
           (resp) => {
 
             RequestSent.fire({
