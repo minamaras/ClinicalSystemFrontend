@@ -19,6 +19,7 @@ import ClinicDoctorsTable from './ClinicDoctorsTable';
 import AllDoctorsFromClinicTable from './AllDoctorsFromClinicTable.js';
 import moment from 'moment';
 import ShowPredef from './ShowPredef';
+import StarRatings from 'react-star-ratings';
 
 const ErrorSearch = withReactContent(Swal)
 
@@ -70,7 +71,8 @@ class  ClinicProfile extends React.Component{
       };
 
       axios.get(`http://localhost:8081/api/clinics/clinicabout/${this.props.match.params.name}`,options).then(
-          (resp) => { this.changeState(resp)},
+          (resp) => {
+            this.changeState(resp)},
           (resp) => this.onErrorHandler(resp),
         );
 
@@ -145,6 +147,7 @@ class  ClinicProfile extends React.Component{
 
               var brojac = 0;
               var godisnji = 0;
+
 
               doctor.appointments.forEach(function (appointment) {
 
@@ -251,7 +254,7 @@ class  ClinicProfile extends React.Component{
 
 
 
-              doctorstemp.push({predefs:thisdoctorspredefs,holidays:doctor.holidays,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
+              doctorstemp.push({patients:doctor.patients,predefs:thisdoctorspredefs,holidays:doctor.holidays,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end});
 
             });
 
@@ -292,7 +295,7 @@ class  ClinicProfile extends React.Component{
 
         });
 
-        console.log(this.clinicname);
+        console.log(this.state);
 
 
 
@@ -667,6 +670,7 @@ handleChangeDate = date => {
         }else if (this.props.match.params.date == undefined && this.props.match.params.time == undefined && this.props.match.params.exam == undefined && this.props.match.params.name !== undefined){
 
           console.log(this.state.dateString);
+          console.log(this.state.rating);
 
           return(
 
@@ -674,7 +678,29 @@ handleChangeDate = date => {
             <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
 
             <div className="parametri">
-            <h1 className="nazivklinike1">{this.state.clinicname}</h1>
+
+            <h1 className="nazivklinike1">{this.state.clinicname}
+
+            <h1>
+            <StarRatings
+              rating={this.state.clinic.rating}
+              starRatedColor="blue"
+              numberOfStars={5}
+              name='rating'
+              starHoverColor ='rgb(52, 174, 235)'
+              isAggregateRating= 'true'
+              starRatedColor= 'rgb(55, 146, 191)'
+              starDimension='25px'
+              svgIconPath="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
+              svgIconViewBox="0 0 32 29.6"
+            />
+            </h1>
+
+
+            </h1>
+
+
             <input className="filter1" name="filter" placeholder="Enter name,lastname or doctors rating." onChange={this.handleChangeResultFiltering}></input>
 
             <br/>

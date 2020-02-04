@@ -8,6 +8,7 @@ import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
+import StarRatings from 'react-star-ratings';
 
 const PatientAlert = withReactContent(Swal)
 
@@ -68,7 +69,16 @@ class ClinicsFilteringTable extends React.Component{
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
                           <label><b> Rating </b></label>&nbsp;
-                          <label>{c.rating}</label>
+                            <StarRatings
+                              rating={c.rating}
+                              starRatedColor="blue"
+                              numberOfStars={5}
+                              name='rating'
+                              starHoverColor ='rgb(52, 174, 235)'
+                              isAggregateRating= 'true'
+                              starRatedColor= 'rgb(55, 146, 191)'
+                              starDimension='30px'
+                            />
                           <br/>
                           <label><b> Exam price: </b></label> &nbsp;
                           <label>{c.examprice}</label>

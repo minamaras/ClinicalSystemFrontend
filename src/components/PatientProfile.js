@@ -6,6 +6,7 @@ import '../css/PatientProfile.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
+import PatientChangePassword from './PatientChangePassword';
 
 const PatientAlert = withReactContent(Swal)
 
@@ -111,6 +112,20 @@ handleChange(e) {
 render() {
     return (
       <div className="pozadinaPacijentProfila">
+      <Card className="karticaInfo" style={{margin:'-100px 0px 0px -180px',width:'400px',height:'auto'}}>
+      <Card.Body>
+
+            <div>
+           <label className="pacijentEmail"><b>Email </b> &nbsp;</label>
+           <br/>
+           <label>{this.props.user.email}</label>
+           </div>
+           <br/>
+           <label className="pacijentSSN"><b>Social security number </b> &nbsp; </label>
+           <br/>
+           <label> {this.props.user.socialSecurityNumber}</label>
+      </Card.Body>
+      </Card>
       <Card className="kartica">
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
 
@@ -121,23 +136,6 @@ render() {
       <b className="usernamePacijentProfil"><label style={{'text-transform':'capitalize'}}>{this.props.user.name}</label>'s info</b>
       </Form.Group>
       </Form.Row>
-
-       <Form.Row>
-            <Form.Group as={Col}>
-            <Form.Label className="pacijentEmail"><b>Email:</b> {this.props.user.email}</Form.Label>
-            <Form.Label>  </Form.Label>
-            </Form.Group>
-
-
-            <Form.Group as={Col}>
-            <Form.Label className="pacijentSSN"><b>Social security number:</b>  {this.props.user.socialSecurityNumber}</Form.Label>
-            </Form.Group>
-
-
-        </Form.Row>
-
-
-
 
 
           <Form.Row>
@@ -182,9 +180,9 @@ render() {
           <Form.Control type="text" id="phone"  name="phone" defaultValue={this.props.user.phone} onChange={this.handleChange} />
           </Form.Group>
           </Form.Row>
+          <PatientChangePassword patient={this.props.user}/>
 
-
-          <Button variant="outline-primary" type="submit" className="updateDugme">
+          <Button style={{margin:'0px 0px 0px 390px'}} variant="outline-primary" type="submit" className="updateDugme">
           Update
           </Button>
 

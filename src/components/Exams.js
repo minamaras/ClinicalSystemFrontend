@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import '../css/Exams.css';
 import kalendar from '../icons/kalendar.svg';
 import old from '../icons/old.svg';
+import StarRatings from 'react-star-ratings';
+import RateClinic from './RateClinic';
 
 const PatientAlert = withReactContent(Swal)
 
@@ -16,8 +18,9 @@ class Exams extends React.Component{
   constructor(props) {
       super(props);
 
-      this.renderUpcomin = this.renderUpcoming.bind(this);
-      this.showUpcoming = this.showUpcoming.bind(this);
+      this.renderUpcoming = this.renderUpcoming.bind(this);
+      this.renderOld = this.renderOld.bind(this);
+      this.checkRating = this.checkRating.bind(this);
 
 
 
@@ -44,17 +47,15 @@ componentDidMount () {
                           });},
                       (resp) => alert('greska'),);
 
+
             axios.get('http://localhost:8081/api/appointments/allold',options).then(
                     (resp) => {
-                      console.log(resp.data);
                       this.setState({
-                      old:resp.data,
-                    });
+                        old : resp.data,
+                      })
                   },
                   (resp) => alert('greska'),
                   );
-
-
         }
 
 
@@ -65,7 +66,6 @@ renderUpcoming(){
     return (
 
       <Card className="cardContainerPregled" >
-      <Card.Title className="cardTitlePregled"><b>{ap.name}</b></Card.Title>
 
 
           <Card.Body className = "cardBodyPregled">
@@ -86,6 +86,7 @@ renderUpcoming(){
                     <label><b> Appointment room : </b></label>&nbsp;
                     <label>{ap.roomNumber}</label>
                     <br/>
+
               </Card.Text>
               <div className="addKlinikaPregled">
               </div>
@@ -99,11 +100,13 @@ renderUpcoming(){
 }
 
 renderOld(){
+  console.log(this.state.old);
+  var self = this;
 
-  return this.state.old.map((ap,index) => {
-    console.log(ap);
+  return self.state.old.map((ap,index) => {
+
+
     return (
-
       <Card className="cardContainerPregled" >
       <Card.Title className="cardTitlePregled"><b>{ap.name}</b></Card.Title>
 
@@ -115,7 +118,7 @@ renderOld(){
                     <label style={{'text-transform':'capitalize'}} >{ap.type.name}</label>
                     <br/>
                     <label><b> Appointment date : </b></label>&nbsp;
-                    <label>{ap.date.toString()}</label>
+                    <label>{ap.date}</label>
                     <br/>
                     <label><b> Appointment time : </b></label>&nbsp;
                     <label>{ap.startTime}</label>
@@ -123,9 +126,20 @@ renderOld(){
                     <label><b> Appointment end time : </b></label>&nbsp;
                     <label>{ap.endTime}</label>
                     <br/>
+
+                    <label><b> Clinic : </b></label>&nbsp;
+                    {ap.clinic.name}
+                    {this.checkRatingClinic(ap.clinic)}
+                    <br/>
                     <label><b> Appointment room : </b></label>&nbsp;
                     <label>{ap.roomNumber}</label>
                     <br/>
+
+                    <label><b> Doctor that did appointment : </b></label>&nbsp;
+                    <label>{ap.doctor.name} {ap.doctor.lastname}</label>
+                    <br/>
+
+                    {this.checkRating(ap)}
               </Card.Text>
               <div className="addKlinikaPregled">
               </div>
@@ -139,69 +153,134 @@ renderOld(){
 }
 
 
-showUpcoming(){
+checkRatingClinic(clinic){
 
-document.getElementById("druga").style.display ='block';
-document.getElementById("velika").style.display ='none'
-document.getElementById("treca").style.display ='none'
-document.getElementById("druga").style.margin="100px 0px 0px 0px";
-//this.renderUpcoming();
+  if(clinic.rating !== undefined){
+if(clinic.patients != undefined && this.props.user.ratedClinics != undefined)
+{
+  if(clinic.patients.some(x => x == this.props.user.email) == true &&
+  (this.props.user.ratedClinics.find(x => x.name === clinic.name) == undefined)){
+
+  return (<RateClinic clinic={clinic}/>);
+}else{
+  return (<div>
+    Thank you for rating this clinic!
+    </div>);
 }
 
-showOld(){
 
-document.getElementById("treca").style.display ='block';
-document.getElementById("velika").style.display ='none'
-document.getElementById("druga").style.display ='none'
-document.getElementById("treca").style.margin="100px 0px 0px 0px";
-//this.renderUpcoming();
+}
+}
 }
 
-Back(){
 
-document.getElementById("druga").style.display ='none'
-document.getElementById("velika").style.display ='block'
-document.getElementById("velika").style.margin="250px 0px 0px 250px";
-//this.renderUpcoming();
+
+
+checkRating(ap){
+
+  console.log(ap.doctor);
+
+  var doctor='';
+
+  let token = localStorage.getItem('token');
+  const options = {
+      headers: { 'Authorization': 'Bearer ' + token}
+  };
+
+        if(ap.doctor.rating !== undefined){
+      if(ap.doctor.patients != undefined && this.props.user.ratedDoctors != undefined)
+      {
+        if(ap.doctor.patients.some(x => x == this.props.user.email) == true &&
+        (this.props.user.ratedDoctors.find(x => x.email === ap.doctor.email) == undefined)){
+
+        return (
+          <div>
+          Rate this doctor
+          <br/>
+          <StarRatings
+            rating={ap.doctor.rating}
+            starRatedColor="blue"
+            numberOfStars={5}
+            name='rating'
+            svgIconPath="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
+            svgIconViewBox="0 0 32 29.6"
+            changeRating={entry => {
+
+              axios.get(`http://localhost:8081/api/doctors/updaterating/${ap.doctor.email}/${entry}`,options).then(
+                  (resp) => {
+
+                    this.setState({ redirect: this.state.redirect === false });
+                    window.location.reload();
+
+                   },
+                  (resp) => alert('greska'),
+                );
+
+            }
+            }
+            starHoverColor ='rgb(52, 174, 235)'
+            isAggregateRating= 'true'
+            starRatedColor= 'rgb(55, 146, 191)'
+            starDimension='30px'
+          />
+          </div>
+        );
+      } else {
+
+
+        return (
+          <div>
+          Thank you for rating this doctor! <br/>
+          This is doctor's current rating
+          <StarRatings
+            rating={ap.doctor.rating}
+            starRatedColor="blue"
+            numberOfStars={5}
+            name='rating'
+            starHoverColor ='rgb(52, 174, 235)'
+            isAggregateRating= 'true'
+            starRatedColor= 'rgb(55, 146, 191)'
+            starDimension='25px'
+            svgIconPath="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
+            svgIconViewBox="0 0 32 29.6"
+          />
+          </div>
+        );
+      }
+
+  }
+}
 }
 
-BackTo(){
 
-document.getElementById("druga").style.display ='none';
-document.getElementById("treca").style.display ='none';
-document.getElementById("velika").style.display ='block'
-document.getElementById("velika").style.margin="250px 0px 0px 250px";
-//this.renderUpcoming();
-}
 
 render() {
+  console.log(this.state.old);
 
     return (
 
 
 
-        <div>
-        <Card className="velikak" id="velika" style={{display:'block'}}>
-
-        <div className="nekiprostor"></div>
-        <div>
-        <Button variant="light" onClick={this.showUpcoming} className="upcoming" style={{margin:'-50px 0px 0px 50px',width:'200px',height:'100px'}}>
-        See upcoming exams</Button>
-        <Button variant="light"onClick={this.showOld} className="old" style={{margin:'-50px 0px 0px 50px',width:'200px',height:'100px'}}>
-        See previous exams</Button>
-        </div>
-        </Card>
-        <Card id="druga"className="drugak" style={{display:'none'}}>
-        <Button variant="light" onClick={this.Back} style={{width:'100px',height:'40px',margin:'0px 0px 0px 0px'}}>Back</Button>
-        <Card.Img src={kalendar} style={{heigh:'150px',width:'150px',margin:'0px 0px 0px 0px'}}></Card.Img>
+        <Card className="velikakarticapozadina" >
+        <Card className="upcomingexams" style={{margin:'20px 0px 0px 0px',width:'100%',height:'auto'}}>
+        <Card.Header style={{ textAlign: 'center' }}>
+        <Card.Title>Upcoming exams</Card.Title>
+        <Card.Img src = {kalendar} style={{width:'70px',height:'70px'}}></Card.Img>
+        </Card.Header>
         {this.renderUpcoming()}
         </Card>
-        <Card id="treca" className="trecak" style={{display:'none'}}>
-        <Button variant="light" onClick={this.BackTo} style={{width:'100px',height:'40px',margin:'0px 0px 0px 0px'}}>Back</Button>
-        <Card.Img src={old} style={{heigh:'150px',width:'150px',margin:'0px 0px 0px 0px'}}></Card.Img>
+
+        <Card className="oldexams" style={{margin:'20px 0px 0px 150px',width:'100%',height:'auto'}}>
+        <Card.Header style={{ textAlign: 'center' }}>
+        <Card.Title>Previous exams</Card.Title>
+        <Card.Img src = {old} style={{width:'50px',height:'50px'}}></Card.Img>
+        </Card.Header>
         {this.renderOld()}
         </Card>
-        </div>
+
+        </Card>
 
 
 

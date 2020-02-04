@@ -37,7 +37,9 @@ export default class App extends React.Component {
         socialSecurityNumber:'',
         specialization: '',
         rating: '',
-        clinic: ''
+        clinic: '',
+        ratedDoctors:[],
+        ratedClinics:[],
 
       }
     } else {
@@ -57,7 +59,7 @@ export default class App extends React.Component {
                 (response) => { self.changeState(response) },
                 (response) => {
 
-                
+
                   if(window.location.href !== 'http://localhost:3000/login' &&
                   window.location.href !== 'http://localhost:3000/')
                   {
@@ -102,7 +104,9 @@ export default class App extends React.Component {
                 country:resp.data.country,
                 phone:resp.data.phone,
                 socialSecurityNumber: resp.data.socialSecurityNumber,
-                role:resp.data.role
+                role:resp.data.role,
+                ratedDoctors:resp.data.ratedDoctors,
+                ratedClinics : resp.data.ratedClinics,
 
 
     });
