@@ -48,17 +48,17 @@ class RenderRooms extends React.Component{
 
 
         return (
-            <Card key={r.name} className="cardContainerRoom" style={{margin:'100px 0px 0px 0px'}}>
+            <Card key={r.name} className="cardContainerRoom" style={{margin:'0px 32px 0px 0px'}}>
             <Card.Title style={{textAlign:'center'}}>{r.name}</Card.Title>
 
 
                 <Card.Body >
 
                     <Card.Text >
-                          <label>Room number :</label> &nbsp;
+                          <label>Room number:</label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{r.number}</label>
                           <br/>
-                          <label> Exam type : </label>
+                          <label> Exam type: </label>
                           <br/>
                           <label>{r.type.name}</label>
                           {this.tryRenderingCalendar(r)}
@@ -80,7 +80,7 @@ class RenderRooms extends React.Component{
     render() {
       console.log(this.props);
         return (
-            <div className="containerRenderCardsClinic">
+            <div className="containerRenderCardsClinic" style={{margin:'-50px -90px 0px -90px'}}>
                 {this.renderTableData()}
             </div>
         );

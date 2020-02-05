@@ -9,7 +9,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import ShowRoomCalendar from './ShowRoomCalendar';
 import RenderRooms from './RenderRooms';
-import '../css/AsingRoom.css';
+import '../css/AssignRoom.css';
 const moment = require('moment');
 
 
@@ -242,7 +242,7 @@ class AssignRoom extends React.Component {
         var self = this;
 
           return (
-            <div className="pozadinica" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+            <div className="pozadinica" >
                 <div className="containerForFilters">
                <input placeholder="Enter room name or number" onChange={this.handleChange} name="inputparam" className="inputfiled"></input>
 
