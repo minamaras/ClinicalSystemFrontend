@@ -13,7 +13,7 @@ color: rgb(65, 76, 90);
 }
 
 .velikapozadinakartica{
-  margin: 100px 0px 0px 60px;
+  margin: 100px 0px 0px 30px;
   display: flex;
   flex-direction: column;
   width: 95%;
@@ -22,13 +22,9 @@ color: rgb(65, 76, 90);
   font-size: 19px;
   color: rgb(65, 76, 90);
   background-color: aliceblue;
-
-
-
-
 }
 .prazanprostor{
-  margin:  200px 0px 0px 0px;
+  margin:  120px 0px 0px 0px;
 }
 
 .pozadinaSveKlinike{

@@ -126,36 +126,53 @@ class ShowRoomCalendar extends React.Component {
       var datetext = slotInfo.start.toTimeString().split(' ')[0]
       var h = slotInfo.start.getHours();
       var m = slotInfo.start.getMinutes();
-      var time = h + ":" + m;
+      var time = h + ":" + m+ ":"+"00";
       var endtime = slotInfo.end.getHours() + ":" + slotInfo.end.getMinutes() + ":00";
 
       console.log(endtime);
       console.log(datetext);
       console.log(dateString);
 
-      console.log(slotInfo);
+      console.log(time);
 
-      console.log(this.props.room.id);
+      console.log(this.props.room);
+      let roomnumber = this.props.room.number;
+      let startime = slotInfo.start;
+      let roomid = this.props.room.id;
 
-        axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
-            (resp) => {
+      ErrorSearch.fire({
+          title: "Are you sure you want assign room"+roomnumber+"at time"+time+"?",
+          text: '',
+          type: "error",
+          button: true,
+          icon: "success",
+          confirmButtonText:"Yes!"
+      }).then((isOk) => {
 
-                console.log(resp.data);
-                let doctor = this.props.request.doctorEmail;
-                let patient = this.props.request.id;
+        if(isOk){
 
-                window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
+          axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
+              (resp) => {
+                  //window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
 
-                this.setState({
-                    rooms: resp.data,
-                });
+                  this.setState({
+                      rooms: resp.data,
+                  });
 
-                console.log(this.state.rooms)
-                //this.someFunction();
-            },
-            (resp) => { alert('greska sobe') }
+                  console.log(this.state.rooms)
+                  //this.someFunction();
+              },
+              (resp) => { alert('greska sobe') }
 
-        )
+          )
+
+
+
+        }else{
+
+        }
+
+      });
 
     }
 

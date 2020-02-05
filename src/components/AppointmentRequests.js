@@ -58,7 +58,7 @@ class AppointmentRequests extends React.Component {
     }
 
     render() {
-      if(this.state.requests)
+      if(this.state.requests != undefined)
       {
         return (
             <div>

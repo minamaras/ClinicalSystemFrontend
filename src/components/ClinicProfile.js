@@ -10,6 +10,7 @@ import icon from '../icons/klinika.svg';
 import clinicprofileimage from '../icons/polymesh.jpg';
 import doctors from '../icons/Career_3-01.jpg';
 import clinicsicon from '../icons/doctor.svg';
+import abstract from '../icons/abstract.svg';
 import Select from 'react-select';
 import "react-select/dist/react-select.css";
 import DatePicker from 'react-datepicker';
@@ -675,13 +676,15 @@ handleChangeDate = date => {
           return(
 
 
-            <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+            <div className="back1" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute',
+          }}>
 
-            <div className="parametri">
-
-            <h1 className="nazivklinike1">{this.state.clinicname}
+            <div className="parametri" style={{borderStyle:'solid',borderColor:'aliceblue',margin:'80px 0px 0px 30px',height:'auto'}}>
+            <img src={abstract} style={{height:'40px',width:'40px',margin:'20px 0px 0px 20px'}}></img>
+            <h1 className="nazivklinike1" style={{color:'black'}}>{this.state.clinicname}
 
             <h1>
+
             <StarRatings
               rating={this.state.clinic.rating}
               starRatedColor="blue"
@@ -691,9 +694,8 @@ handleChangeDate = date => {
               isAggregateRating= 'true'
               starRatedColor= 'rgb(55, 146, 191)'
               starDimension='25px'
-              svgIconPath="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
-	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
-              svgIconViewBox="0 0 32 29.6"
+              svgIconPath="M16.85,7.275l-3.967-0.577l-1.773-3.593c-0.208-0.423-0.639-0.69-1.11-0.69s-0.902,0.267-1.11,0.69L7.116,6.699L3.148,7.275c-0.466,0.068-0.854,0.394-1,0.842c-0.145,0.448-0.023,0.941,0.314,1.27l2.871,2.799l-0.677,3.951c-0.08,0.464,0.112,0.934,0.493,1.211c0.217,0.156,0.472,0.236,0.728,0.236c0.197,0,0.396-0.048,0.577-0.143l3.547-1.864l3.548,1.864c0.18,0.095,0.381,0.143,0.576,0.143c0.256,0,0.512-0.08,0.729-0.236c0.381-0.277,0.572-0.747,0.492-1.211l-0.678-3.951l2.871-2.799c0.338-0.329,0.459-0.821,0.314-1.27C17.705,7.669,17.316,7.343,16.85,7.275z M13.336,11.754l0.787,4.591l-4.124-2.167l-4.124,2.167l0.788-4.591L3.326,8.5l4.612-0.67l2.062-4.177l2.062,4.177l4.613,0.67L13.336,11.754z"
+              svgIconViewBox="0 0 20 20"
             />
             </h1>
 
@@ -730,18 +732,18 @@ handleChangeDate = date => {
               />
 
               </div>
-              <Button className="buttonForFiltering" variant="light" onClick={this.FilterDocs}>Filter</Button>
+              <Button className="buttonForFiltering" variant="light" style={{backgroundColor:'aliceblue'}} onClick={this.FilterDocs}>Filter</Button>
               <br/>
               <label className="explanation"> Pick a date and exam type and see avaliable terms.
               </label>
               <br/>
-              <div className="tipovipredef">
+              <div className="tipovipredef" style={{marginBottom:'20px',marginRight:'70px',backgroundColor:'aliceblue',border:'none',outline:'none'}}>
               <h4 className="naslovtipovapred">See this clinic's predefined appointments</h4>
               <label></label>
               {this.renderExams()}
               </div>
               </div>
-            <Card className="karticadoktora">
+            <Card className="karticadoktora" style={{backgroundColor:'aliceblue',border:'none',outline:'none'}}>
 
               <div className="prostorneki"></div>
                         <br />

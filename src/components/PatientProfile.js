@@ -113,7 +113,7 @@ render() {
     return (
       <div className="pozadinaPacijentProfila">
       <Card className="karticaInfo" style={{margin:'-100px 0px 0px -180px',width:'400px',height:'auto',
-      outline: 'none',border: 'none'}}>
+      outline: 'none',border: 'none',backgroundColor:'aliceblue',textAlign:'center',width:'250px'}}>
       <Card.Body>
 
             <div>

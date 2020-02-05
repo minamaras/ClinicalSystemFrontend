@@ -5,8 +5,7 @@
     padding: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(65, 76, 90);
-    background-color: rgba(245, 245, 245, 0.3)!important;
-
+    outline: none;
 }
 
 .cardBodyDoktoraProfila{
