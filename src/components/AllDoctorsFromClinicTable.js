@@ -37,6 +37,8 @@ class AllDoctorsFromClinicTable extends React.Component{
         if(this.props.date != ''){
           if(doctor.godisnji == 0){
 
+            console.log(doctor);
+
       return(<DoctorsTerms doctor={doctor} date={this.props.date} user={this.props.user} exam={doctor.exam}/>);
     }
   }

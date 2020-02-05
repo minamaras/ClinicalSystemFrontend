@@ -17,6 +17,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import TimePicker from "react-time-picker";
+import search from '../icons/search.svg'
+
 
 const PatientAlert = withReactContent(Swal)
 
@@ -452,8 +454,10 @@ render() {
 
                     <br />
                     <Card className="velikakartica">
+
                     <div className="prostor"></div>
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>
+                    
                     </Card>
                     <br />
 

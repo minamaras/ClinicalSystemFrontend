@@ -45,6 +45,8 @@ import MyCalendarNurse from './MyCalendarNurse';
 import SendEmailToPatient from './SendEmailToPatient';
 import ManageAppointmentRequest from './ManageAppointmentRequest';
 import MakeAnotherAppointment from './MakeAnotherAppointment';
+import ConfirmedAppointmetRequest from './ConfirmedAppointmetRequest';
+import DeclinedAppointmetRequest from './DeclinedAppointmetRequest';
 
 class Routes extends React.Component {
 
@@ -102,15 +104,18 @@ class Routes extends React.Component {
 
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
         <Route exact path="/startappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
-        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />       
-        
+        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />
+
         <Route exact path="/room/:id" history={createBrowserHistory} render={(props)  => <AssignRoom user={this.props.user} />} />
 
         <Route exact path="/roomrequest/:doctoremail/:date/:startime/:endtime/:id" render={(props) => <SendEmailToPatient user={this.props.user}/>} />
         <Route exact path="/patientrequeststatus" render={(props) => <ManageAppointmentRequest user={this.props.user}/>} />
         <Route exact path="/makeanotherappointment/:patientmail" render={(props) => <MakeAnotherAppointment user={this.props.user}/>} />
-        
+
         <Route exact path="/operationrequests" render={(props) => <OperationRequests user={this.props.user}/>} />
+
+        <Route exact path="/confirmedappreq" render={(props) => <ConfirmedAppointmetRequest user={this.props.user}/>} />
+        <Route exact path="/declinedappreq" render={(props) => <DeclinedAppointmetRequest user={this.props.user}/>} />
 
       </Switch>
         );

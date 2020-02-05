@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
-import usericon from '../icons/man.png'
+import user from '../icons/employees.svg'
 import '../css/PatientProfile.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -113,10 +113,13 @@ render() {
     return (
       <div className="pozadinaPacijentProfila">
       <Card className="karticaInfo" style={{margin:'-100px 0px 0px -180px',width:'400px',height:'auto',
-      outline: 'none',border: 'none',backgroundColor:'aliceblue',textAlign:'center',width:'250px'}}>
-      <Card.Body>
+      outline: 'none',border: 'none',backgroundColor:'aliceblue',width:'250px'}}>
+      <Card.Body style={{textAlign:'center'}}>
+      <div>
+      <Card.Img src={user} style={{width:'100px',height:'100px',padding:'10px'}}></Card.Img>
+      </div>
 
-            <div>
+            <div style={{topMargin:'px',padding:'10px'}}>
            <label className="pacijentEmail"><b>Email </b> &nbsp;</label>
            <br/>
            <label>{this.props.user.email}</label>
@@ -127,6 +130,7 @@ render() {
            <label> {this.props.user.socialSecurityNumber}</label>
       </Card.Body>
       </Card>
+
       <Card className="kartica" >
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
 

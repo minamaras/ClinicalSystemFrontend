@@ -74,8 +74,11 @@ renderUpcoming(){
                     <label><b>Appointment type:</b></label> &nbsp;
                     <label style={{'text-transform':'capitalize'}} >{ap.type.name}</label>
                     <br/>
+                    <label><b> Doctor : </b></label>&nbsp;
+                    <label>{ap.doctor.name} {ap.doctor.lastname}</label>
+                    <br/>
                     <label><b> Appointment date : </b></label>&nbsp;
-                    <label>{ap.date.toString()}</label>
+                    <label>{ap.date}</label>
                     <br/>
                     <label><b> Appointment time : </b></label>&nbsp;
                     <label>{ap.startTime}</label>
@@ -117,15 +120,13 @@ renderOld(){
                     <label><b>Appointment type:</b></label> &nbsp;
                     <label style={{'text-transform':'capitalize'}} >{ap.type.name}</label>
                     <br/>
+                    <label><b> Doctor that did appointment : </b></label>&nbsp;
+                    <label>{ap.doctor.name} {ap.doctor.lastname}</label>
+                    <br/>
                     <label><b> Appointment date : </b></label>&nbsp;
                     <label>{ap.date}</label>
                     <br/>
-                    <label><b> Appointment time : </b></label>&nbsp;
-                    <label>{ap.startTime}</label>
-                    <br/>
-                    <label><b> Appointment end time : </b></label>&nbsp;
-                    <label>{ap.endTime}</label>
-                    <br/>
+                    
 
                     <label><b> Clinic : </b></label>&nbsp;
                     {ap.clinic.name}
@@ -135,9 +136,7 @@ renderOld(){
                     <label>{ap.roomNumber}</label>
                     <br/>
 
-                    <label><b> Doctor that did appointment : </b></label>&nbsp;
-                    <label>{ap.doctor.name} {ap.doctor.lastname}</label>
-                    <br/>
+
 
                     {this.checkRating(ap)}
               </Card.Text>

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Form, Button, FormGroup, Card, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import usericon from '../icons/user.svg';
 import '../css/RegistrationTable.css';
 import EMailRejection from './EmailRejection';
 import DeclineHolidayRequest from './DeclineHolidayRequest';
-import sad from '../icons/sad.svg';
 
 
 import '../css/HolidayRequests.css'
@@ -26,6 +26,7 @@ class PatientAppointmentRequestsTable extends React.Component{
 
 
     renderTableData() {
+      
     return this.props.content.map((request, index) => {
         console.log(request);
         var examStart = request.startTime.substring(0,5);
@@ -80,7 +81,6 @@ declineRequest = (request) => {
             icon: "success",
           })
 
-          this.setState({ redirect: this.state.redirect === false });
           window.location.reload();
 
       },
@@ -119,9 +119,6 @@ acceptRequest = (request) => {
             icon: "success",
           })
 
-          window.location.reload();
-
-
       },
       (resp) => {
 
@@ -158,4 +155,4 @@ acceptRequest = (request) => {
 
 }
 
-export default PatientAppointmentRequestsTable
+export default withRouter(PatientAppointmentRequestsTable)

@@ -40,6 +40,7 @@ export default class App extends React.Component {
         clinic: '',
         ratedDoctors:[],
         ratedClinics:[],
+        adminsCliniRating:'',
 
       }
     } else {
@@ -160,7 +161,8 @@ export default class App extends React.Component {
                               clinic: resp.data.clinic.name,
                               clinicdes: resp.data.clinic.description,
                               clinicadress: resp.data.clinic.adress,
-                              firstLogin: resp.data.firstLogin
+                              firstLogin: resp.data.firstLogin,
+                              adminsCliniRating : resp.data.clinicRating,
 
 
                             });
