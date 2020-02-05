@@ -19,8 +19,10 @@ class MyPatients extends React.Component {
             };
 
         axios.get('http://localhost:8081/api/patients/allfromclinic', options).then(
+            
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
+            
         );
     }
 

@@ -26,6 +26,7 @@
     "react-table-v6": "^6.8.6",
     "react-time-picker": "^3.8.0",
     "reactstrap": "^8.1.1",
+    "star-ratings": "^1.0.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^9.3.16",
     "sweetalert2-react-content": "^2.0.2",
