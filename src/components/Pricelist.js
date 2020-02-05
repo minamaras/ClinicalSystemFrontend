@@ -38,18 +38,18 @@ class Pricelist extends React.Component{
     onSuccessHandlerExam(resp) {
 
         var tempexams = [];
-      
+
         console.log(resp.data);
-      
+
         for (var i = 0; i < resp.data.length; i++) {
             tempexams.push(resp.data[i]);
         }
-      
+
         this.setState({
             examtypes : tempexams,
         });
-      
-      
+
+
     }
 
     onErrorHandlerExam(response) {
@@ -58,7 +58,7 @@ class Pricelist extends React.Component{
 
 
     render() {
-       
+
 
         const columns = [
 

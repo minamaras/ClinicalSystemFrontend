@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import AddNurse from './AddNurse'
-import NurseTable from './NurseTable'
-import '../css/NursePage.css'
+import NurseTable from './NurseTable';
+import '../css/NursePage.css';
 
 class NursePage extends React.Component{
     constructor(props) {
@@ -52,12 +52,14 @@ class NursePage extends React.Component{
 
     render(){
         return(
-            <div className="containernurse">
+            <div className="nursebackground">
                 <h1 id="manage">Manage nurses</h1>
                 <div className="row">
+
                     <div className="col-md-2">
                         <AddNurse />
                     </div>
+                    
                     <div className="col-md-10-nursecards">
                         <br />
                         <NurseTable content={this.state.nurses} />

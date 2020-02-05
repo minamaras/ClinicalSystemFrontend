@@ -2,5 +2,9 @@
 .col-md-10-drcards{
     display: flex;
     flex-direction: row;
-   margin: 60px 0px 0px -25px;
+   margin: 70px 0px 0px -170px;
+}
+
+.container{
+  margin: 70px 0px 0px 0px;
 }

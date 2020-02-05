@@ -5,6 +5,8 @@ import { Form, DropdownButton, Button, ControlLabel, Dropdown,Card } from "react
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import AppointmentReqTable from "./AppointmentReqTable";
+import sad from '../icons/sad.svg';
+
 
 class AppointmentRequests extends React.Component {
 
@@ -56,6 +58,8 @@ class AppointmentRequests extends React.Component {
     }
 
     render() {
+      if(this.state.requests.lenght == 0)
+      {
         return (
             <div>
                 <div className="col-md-10-drcards">
@@ -64,6 +68,22 @@ class AppointmentRequests extends React.Component {
                     </div>
             </div>
         )
+      }else {
+
+        return (
+          <div style={{margin:'200px 0px 0px 200px',width:'60%'}}>
+          <Card>
+          <Card.Body style={{textAlign:'center'}}>
+          Currently no requests to manage.
+          <br/>
+          <Card.Img src={sad} style={{height:'50px',width:'50px',margin:'20px 0px 0px 0px'}}></Card.Img>
+
+          </Card.Body>
+          </Card>
+          </div>
+
+        );
+      }
     }
 
 } export default withRouter(AppointmentRequests);

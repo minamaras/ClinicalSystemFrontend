@@ -23,14 +23,17 @@ class ShowRoomCalendar extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-
         this.createEvents = this.createEvents.bind(this);
         this.renderTermsOtherVersion = this.renderTermsOtherVersion.bind(this);
         this.handleSlotSelect = this.handleSlotSelect.bind(this);
+        this.customEventPropGetter = this.customEventPropGetter.bind(this);
+        this.createAppointmentRequestEvents = this.createAppointmentRequestEvents.bind(this);
+
 
 
         this.state = {
             show: false,
+            events : [],
 
         };
 
@@ -49,10 +52,6 @@ class ShowRoomCalendar extends React.Component {
     renderTermsOtherVersion() {
 
         var events = [];
-        if (this.props.room.events !== undefined) { events = this.createEvents(); }
-        else {
-            return;
-        }
         var step;
         if (this.props.room.type !== undefined) {
             step = this.props.room.type.duration;
@@ -60,9 +59,13 @@ class ShowRoomCalendar extends React.Component {
             step = 30;
         }
 
+        console.log(this.state.events);
+
+        var events = this.createEvents();
+        var apreqs = this.createAppointmentRequestEvents();
+
+
         if (this.props.date != '' || this.props.date != undefined) {
-
-
 
             var min = new Date(parseInt(this.props.date.substring(0, 4)), parseInt(this.props.date.substring(5, 7)) - 1, parseInt(this.props.date.substring(8, 11)), 8, 0, 0);
             var max = new Date(parseInt(this.props.date.substring(0, 4)), parseInt(this.props.date.substring(5, 7)) - 1, parseInt(this.props.date.substring(8, 11)), 20, 0, 0);
@@ -71,19 +74,20 @@ class ShowRoomCalendar extends React.Component {
                 <div>
                     <BigCalendar
                         localizer={localizer}
-                        events={events}
+                        events={apreqs.concat(events)}
                         timeslots={1}
                         step={this.props.room.type.duration}
                         view='day'
                         views={['day']}
                         defaultView='day'
                         defaultDate={min}
-                        toolbar={true}
+                        toolbar={false}
                         selectable={true}
                         min={min}
                         max={max}
                         startAccessor="startDate"
                         endAccessor="endDate"
+                        eventPropGetter= {this.customEventPropGetter}
                         onSelectEvent={event =>
 
                             ErrorSearch.fire({
@@ -98,7 +102,7 @@ class ShowRoomCalendar extends React.Component {
                         onSelectSlot={(slotInfo) =>
                             this.handleSlotSelect(slotInfo)
                         }
-          
+
                       />
             </div>
 
@@ -111,7 +115,7 @@ class ShowRoomCalendar extends React.Component {
 
     handleSlotSelect(slotInfo) {
 
-        
+
         let token = localStorage.getItem('token');
         const options = {
              headers: { 'Authorization': 'Bearer ' + token}
@@ -183,8 +187,60 @@ class ShowRoomCalendar extends React.Component {
 
         });
 
-        return roomevents;
 
+        return roomevents;
+    }
+
+
+
+createAppointmentRequestEvents(){
+
+var roomapreqs = [];
+
+  if(this.props.room.appointmentRequests !== undefined)
+  {
+    this.props.room.appointmentRequests.map((apreq, index) => {
+
+      var startsplit = apreq.startTime.toString().split(':');
+      var endsplit = apreq.endTime.toString().split(':');
+
+      var begin = new Date(parseInt(this.props.date.substring(0, 4)), parseInt(this.props.date.substring(5, 7)) - 1, parseInt(this.props.date.substring(8, 11)),parseInt(startsplit[0]),parseInt(startsplit[1]),0);
+      var end = new Date(parseInt(this.props.date.substring(0, 4)), parseInt(this.props.date.substring(5, 7)) - 1, parseInt(this.props.date.substring(8, 11)),parseInt(endsplit[0]),parseInt(endsplit[1]),0);
+
+
+      roomapreqs.push({
+          title: 'Appointment request',
+          startDate: begin,
+          endDate: end,
+          allDay: false,
+      });
+
+
+  });
+}
+
+
+return roomapreqs;
+}
+
+    customEventPropGetter(event){
+      //console.log(event)
+
+      if(event.title.includes('Appointment request')){
+        return {
+          style: {
+            backgroundColor: '#4f4f4f',
+          },
+        }
+      } else {
+          return {
+            style: {
+              backgroundColor: '#82c2e0',
+              color: 'black',
+            }
+          }
+
+        }
     }
 
 

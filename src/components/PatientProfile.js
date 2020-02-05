@@ -112,7 +112,8 @@ handleChange(e) {
 render() {
     return (
       <div className="pozadinaPacijentProfila">
-      <Card className="karticaInfo" style={{margin:'-100px 0px 0px -180px',width:'400px',height:'auto'}}>
+      <Card className="karticaInfo" style={{margin:'-100px 0px 0px -180px',width:'400px',height:'auto',
+      outline: 'none',border: 'none'}}>
       <Card.Body>
 
             <div>
@@ -126,7 +127,7 @@ render() {
            <label> {this.props.user.socialSecurityNumber}</label>
       </Card.Body>
       </Card>
-      <Card className="kartica">
+      <Card className="kartica" >
   <Form className="profileForm" onSubmit={this.SendUpdateRequest}>
 
   <Card.Body >
