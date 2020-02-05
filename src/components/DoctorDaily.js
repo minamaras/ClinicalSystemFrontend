@@ -107,7 +107,7 @@ class DoctorDaily extends React.Component {
     
             console.log(this.props)
     
-            axios.post(`http://localhost:8081/api/operationrequest/scheduleanother/${doctor}/${dateString}/${patient}/${datetext}/${endtime}`, odj, options).then(
+            axios.post(`http://localhost:8081/api/operationrequests/schedule/${doctor}/${dateString}/${patient}/${datetext}/${endtime}`, odj, options).then(
                 (resp) => {
     
                     console.log("yay operationnnn")
