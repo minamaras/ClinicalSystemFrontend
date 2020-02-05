@@ -141,17 +141,21 @@ class ShowRoomCalendar extends React.Component {
       let roomid = this.props.room.id;
 
       ErrorSearch.fire({
-          title: "Are you sure you want assign room"+roomnumber+"at time"+time+"?",
+          title: "Are you sure you want to assign the room "+roomnumber+" from "+datetext+ " till " + endtime + " on " + dateString +" ?",
           text: '',
-          type: "error",
+          type: "info",
           button: true,
-          icon: "success",
+          icon: "info",
           confirmButtonText:"Yes!"
       }).then((isOk) => {
 
         if(isOk){
-          alert(this.props.room.id)
-          axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
+
+        let req = this.props.request;
+        console.log(req);
+
+        if(req.appointmentRequestStatus === 'DOCTORSENT') {
+            axios.post(`http://localhost:8081/api/appointments/createappointment/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
               (resp) => {
                   //window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
 
@@ -165,6 +169,26 @@ class ShowRoomCalendar extends React.Component {
               (resp) => { alert('greska sobe') }
 
           )
+
+        } else if(req.appointmentRequestStatus === 'PATIENTSENT') {
+            axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
+              (resp) => {
+                  //window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
+
+                  this.setState({
+                      rooms: resp.data,
+                  });
+
+                  console.log(this.state.rooms)
+                  //this.someFunction();
+              },
+              (resp) => { alert('greska sobe') }
+
+          )
+
+        }
+
+          
 
 
 
