@@ -1,16 +1,5 @@
 .col-md-10-nursecards{
     display: flex;
     flex-direction: row;
-   margin: 60px 0px 0px -25px;
-
-}
-
-.nursebackground{
-
-  margin: 100px 0px 0px -100px;
-
-}
-
-.col-md-2{
-  margin: 0px 0px 0px 70px;
+   margin: 160px 0px 0px -25px;
 }

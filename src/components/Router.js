@@ -38,7 +38,7 @@ import ScheduleAppointment from './ScheduleAppointment';
 import EndAppointmentRecord from './EndAppointmentRecord';
 import AssignRoom from './AssignRoom';
 import Exams from './Exams';
-
+import OperationRequests from './OperationRequests'
 import { createBrowserHistory } from 'history';
 import AppointmentRequests from './AppointmentRequests';
 import MyCalendarNurse from './MyCalendarNurse';
@@ -107,6 +107,8 @@ class Routes extends React.Component {
 
         <Route exact path="/roomrequest/:doctoremail/:date/:startime/:endtime/:id" render={(props) => <SendEmailToPatient user={this.props.user}/>} />
         <Route exact path="/patientrequeststatus" render={(props) => <ManageAppointmentRequest user={this.props.user}/>} />
+        <Route exact path="/operationrequests" render={(props) => <OperationRequests user={this.props.user}/>} />
+
       </Switch>
         );
 
