@@ -1,0 +1,15 @@
+#newApp {
+    margin-top: 10%;
+    height: 300px;
+    width: 500px;
+    align-self: stretch;
+}
+
+#examButton {
+    margin-top: 30%;
+    margin-left: 50%;
+}
+
+#opButton {
+    margin-top: 30%;
+}

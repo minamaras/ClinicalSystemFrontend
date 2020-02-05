@@ -72,9 +72,8 @@ class PatientInfo extends React.Component {
                     </Card.Body>
                 </Form>
 
-                <Link id="startExam" to ={{pathname:`/startexam/${this.state.socialSecurityNumber}`}} >Start Exam</Link>
+                <Link id="startExam" to ={{pathname:`/startexam/${this.state.socialSecurityNumber}`}} >View medical record or start exam</Link>
                 <br/>
-                <Button id="viewMR">View medical record</Button>
             </Card>
         );
     }

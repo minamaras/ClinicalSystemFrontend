@@ -29,6 +29,7 @@ class BeginAppointMedicalRecord extends React.Component{
         this.editReport = this.editReport.bind(this);
         this.getAllInfo = this.getAllInfo.bind(this);
         this.endAppointment = this.endAppointment.bind(this);
+        this.makeAnother = this.makeAnother.bind(this);
 
         this.state = {
             
@@ -397,6 +398,22 @@ class BeginAppointMedicalRecord extends React.Component{
         window.location.reload();
     }
 
+    makeAnother(e) {
+
+        e.preventDefault();
+        let token = localStorage.getItem('token');
+        const options = {
+          headers: { 
+              'Authorization': 'Bearer ' + token,
+            }
+              };
+
+        window.location.href=`http://localhost:3000/makeanotherappointment/${this.state.patientemail}`;
+        
+        
+
+    }
+
 
 
     render() {
@@ -408,7 +425,7 @@ class BeginAppointMedicalRecord extends React.Component{
                 <div className="upButtons">
                 <AddRecipe content={this.props.match.params.id}/>
                 <button className="endAppBtn" onClick={this.endAppointment}>End appointment</button>
-                <button className="anotherAppBtn">Make another appointment</button>
+                <button onClick={this.makeAnother} className="anotherAppBtn">Make another appointment</button>
                 </div>
                 <div className="medicalRecContainer">
                     
