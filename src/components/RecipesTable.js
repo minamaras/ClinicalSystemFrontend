@@ -21,16 +21,7 @@ class RecipesTable extends React.Component{
         return this.props.content.map((recipe, index) => {
             const { content, doctoremail, patientemail, medicationName } = recipe
             return (
-                /*
-                <tr className="contentTr" key={content}>
-                    <th>{content}</th>
 
-                    <th>{this.renderMedications(medicationName)}</th>
-                    <th>{doctoremail}</th>
-                    <th>{patientemail}</th>
-                    <th><Button variant="outline-info" onClick={this.verify.bind(this, recipe)}>Verify</Button></th>
-                </tr>
-                */
                 <div>
                     <Card className="recipeCard">
                         <Card.Body>
