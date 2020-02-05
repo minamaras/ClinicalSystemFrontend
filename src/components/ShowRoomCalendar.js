@@ -150,7 +150,7 @@ class ShowRoomCalendar extends React.Component {
       }).then((isOk) => {
 
         if(isOk){
-
+          alert(this.props.room.id)
           axios.post(`http://localhost:8081/api/appointmentrequest/updateappointmentrequest/${this.props.room.id}/${dateString}/${datetext}/${endtime}`, this.props.request, options).then(
               (resp) => {
                   //window.location.href=`http://localhost:3000/roomrequest/${doctor}/${dateString}/${datetext}/${endtime}/${patient}`;
