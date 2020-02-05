@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Dropdown } from 'react-bootstrap';
 import '../css/MakeAnotherAppointment.css'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import DoctorsTerms from './DoctorsTerms'
 import { UncontrolledDropdown } from 'reactstrap';
+import DoctorDaily from './DoctorDaily';
+import Select from 'react-select';
+import "react-select/dist/react-select.css";
 const moment = require('moment');
 
 class MakeAnotherAppointment extends React.Component {
@@ -19,6 +22,7 @@ class MakeAnotherAppointment extends React.Component {
         this.renderTerms = this.renderTerms.bind(this);
         this.calculateTerms = this.calculateTerms.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
 
 
         this.state = {
@@ -27,8 +31,16 @@ class MakeAnotherAppointment extends React.Component {
             dateString: '',
             startingdoctors: [],
             isClicked: false,
+            opapp: '',
+            select: undefined,
+            options: [
+                { value: 'operation', label: 'Operation' },
+                { value: 'exam', label: 'Exam' },
+              ]
 
         }
+
+        
 
         let token = localStorage.getItem('token');
         const options = {
@@ -41,97 +53,95 @@ class MakeAnotherAppointment extends React.Component {
         axios.get("http://localhost:8081/api/appointments/getcurrent", options).then(
             (resp) => {
 
-              var self = this;
-              var doctorstemp = []
-              var exams = [];
+                var self = this;
+                var doctorstemp = []
+                var exams = [];
 
-                  var strint = resp.data.start.toString().substring(0, 2);
-                  var time = parseInt(strint);
+                var strint = resp.data.start.toString().substring(0, 2);
+                var time = parseInt(strint);
 
-                  var strinte = resp.data.end.toString().substring(0, 2);
-                  var minutesend = resp.data.end.toString().substring(3, 5);
-                  var minutesendnumber = parseInt(minutesend);
-
-
-                  console.log(minutesend);
-                  var timeend = parseInt(strinte);
-                  var dur = parseInt(resp.data.examType.duration);
+                var strinte = resp.data.end.toString().substring(0, 2);
+                var minutesend = resp.data.end.toString().substring(3, 5);
+                var minutesendnumber = parseInt(minutesend);
 
 
-
-                  const hours = [];
-                  const events = [];
-
-
-                  var duration = 0;
+                console.log(minutesend);
+                var timeend = parseInt(strinte);
+                var dur = parseInt(resp.data.examType.duration);
 
 
-                  for (let hour = time; hour <= timeend; hour++) {
 
-                      if (hour == timeend && duration == parseInt(minutesendnumber)) {
-
-                          hours.push(
-                              moment({
-                                  hour,
-                                  minute: duration
-                              }).format('HH:mm:ss')
-                          );
-                          break;
-                      }
-
-                      hours.push(
-                          moment({
-                              hour,
-                              minute: duration
-                          }).format('HH:mm:ss')
-                      );
-
-                      duration = duration + dur;
-
-                      if (duration >= 60) {
-                          duration = duration % 60;
-                      } else {
-                          hour = hour - 1;
-                      }
-                  }
-
-                  var godisnji = 0;
-
-                  if (resp.data.holidays.lenght !== 0) {
-
-                      resp.data.holidays.forEach(function (holiday) {
+                const hours = [];
+                const events = [];
 
 
-                          var stringdate = holiday.fromto.split("-");
-                          var wanteddate = self.state.dateString.split("-");
-                          console.log(wanteddate);
-
-                          var holidayEnd = new Date(stringdate[0], stringdate[1] - 1, parseInt(stringdate[2].substring(0, 2)), 0, 0, 0);
-                          var holidayStart = new Date(stringdate[3], stringdate[4] - 1, parseInt(stringdate[5].substring(0, 2)), 0, 0, 0);
-                          var wantedDate = new Date(wanteddate[0], wanteddate[1] - 1, wanteddate[2], 0, 0, 0);
-                          //console.log(holidayStart);
-
-                          console.log(holidayEnd)
-                          console.log(holidayStart);
-                          console.log(wantedDate);
-
-                          if ((wantedDate == holidayStart) || (wantedDate == holidayEnd) || (holidayStart < wantedDate < holidayEnd)) {
-                              godisnji = godisnji + 1;
-                          }
-
-                      });
-
-                  }
+                var duration = 0;
 
 
-                  if(godisnji == 0)
+                for (let hour = time; hour <= timeend; hour++) {
 
-              {
-                doctorstemp.push({godisnji:godisnji,appointments:resp.data.appointments, holidays: resp.data.holidays, events: events,exam: resp.data.examType, id: resp.data.id, name: resp.data.name, lastname: resp.data.lastname, rating: resp.data.rating, start: resp.data.start, end: resp.data.end, hours: hours});
-            }
+                    if (hour == timeend && duration == parseInt(minutesendnumber)) {
 
-              this.setState({
-                  doctor: doctorstemp[0],
+                        hours.push(
+                            moment({
+                                hour,
+                                minute: duration
+                            }).format('HH:mm:ss')
+                        );
+                        break;
+                    }
+
+                    hours.push(
+                        moment({
+                            hour,
+                            minute: duration
+                        }).format('HH:mm:ss')
+                    );
+
+                    duration = duration + dur;
+
+                    if (duration >= 60) {
+                        duration = duration % 60;
+                    } else {
+                        hour = hour - 1;
+                    }
+                }
+
+                var godisnji = 0;
+
+                if (resp.data.holidays.lenght !== 0) {
+
+                    resp.data.holidays.forEach(function (holiday) {
+
+
+                        var stringdate = holiday.fromto.split("-");
+                        var wanteddate = self.state.dateString.split("-");
+                        console.log(wanteddate);
+
+                        var holidayEnd = new Date(stringdate[0], stringdate[1] - 1, parseInt(stringdate[2].substring(0, 2)), 0, 0, 0);
+                        var holidayStart = new Date(stringdate[3], stringdate[4] - 1, parseInt(stringdate[5].substring(0, 2)), 0, 0, 0);
+                        var wantedDate = new Date(wanteddate[0], wanteddate[1] - 1, wanteddate[2], 0, 0, 0);
+                        //console.log(holidayStart);
+
+                        console.log(holidayEnd)
+                        console.log(holidayStart);
+                        console.log(wantedDate);
+
+                        if ((wantedDate == holidayStart) || (wantedDate == holidayEnd) || (holidayStart < wantedDate < holidayEnd)) {
+                            godisnji = godisnji + 1;
+                        }
+
+                    });
+
+                }
+
+
+                if (godisnji == 0) {
+                    doctorstemp.push({ godisnji: godisnji, appointments: resp.data.appointments, holidays: resp.data.holidays, events: events, exam: resp.data.examType, id: resp.data.id, name: resp.data.name, lastname: resp.data.lastname, rating: resp.data.rating, start: resp.data.start, end: resp.data.end, hours: hours });
+                }
+
+                this.setState({
+                    doctor: doctorstemp[0],
                 });
                 console.log(doctorstemp);
 
@@ -174,11 +184,28 @@ class MakeAnotherAppointment extends React.Component {
 
     }
 
+    handleSelectChange = entry => {
+
+        var self = this;
+  
+  
+          if(entry== null){
+            this.setState({
+              select: undefined,
+          });
+        }
+  
+        else{
+  
+          this.setState({ select: entry.value});
+      }
+    }
+
     calculateTerms() {
 
-      this.setState({
-        isClicked: true,
-      })
+        this.setState({
+            isClicked: true,
+        })
 
         var self = this;
         var doctorstemp = []
@@ -250,7 +277,7 @@ class MakeAnotherAppointment extends React.Component {
 
             self.state.doctor.appointments.forEach(function (appointment) {
 
-              console.log(appointment.date);
+                console.log(appointment.date);
                 /*let datum = moment(appointment.start);
                 let formatDate =datum.format().toString().substring(0,10);
                 appointment.start = formatDate;*/
@@ -259,7 +286,7 @@ class MakeAnotherAppointment extends React.Component {
                 hours.forEach(function (term) {
 
                     if (appointment.date == self.state.dateString && appointment.startTime == term
-                    && appointment.status !== 'HAS_HAPPEND') {
+                        && appointment.status !== 'HAS_HAPPEND') {
 
                         console.log("in if");
                         console.log(appointment);
@@ -309,21 +336,20 @@ class MakeAnotherAppointment extends React.Component {
 
             this.setState({
                 doctor: doctorstemp[0],
-              });
-              console.log(doctorstemp);
+            });
+            console.log(doctorstemp);
 
         }
 
-}
+    }
 
 
-componentDidMount()
-{
-  this.setState({
+    componentDidMount() {
+        this.setState({
 
-    isClicked : false,
-  });
-}
+            isClicked: false,
+        });
+    }
 
     renderTerms() {
         console.log(this.state);
@@ -335,7 +361,7 @@ componentDidMount()
 
                 if (this.state.doctor.godisnji == 0) {
 
-                    return (<DoctorsTerms doctor={this.state.doctor} date={this.state.dateString} user={this.props.user} />);
+                    return (<DoctorDaily doctor={this.state.doctor} date={this.state.dateString} user={this.props.user} patient={this.props.match.params.patientmail} selected={this.state.select} />);
                 }
             }
         } else if (this.state.doctor === undefined) {
@@ -352,8 +378,17 @@ componentDidMount()
         console.log(this.state);
         return (
             <Card id="newApp">
-                <Card.Title>New appointment or operation</Card.Title>
+                <Card.Title style={{ textAlign: 'center' }}>New appointment or operation</Card.Title>
                 <Card.Body>
+                <Select
+                        className="selectoptions"
+                        style={{ width: "70%", marginBottom: "10px" }}
+                        onChange={this.handleSelectChange}
+                        value={this.state.opapp.label}
+                        options={this.state.options}
+                    />
+
+                    <br/>
                     <label htmlFor="start">Date</label>
                     <br />
                     <DatePicker
@@ -367,13 +402,11 @@ componentDidMount()
                     />
 
                     <br />
-                    <Button onClick={this.calculateTerms}>Show Terms</Button>
+                    <Button id="termId" onClick={this.calculateTerms}>Show Terms</Button>
+
+                    
 
                     {this.renderTerms()}
-
-
-                    <Button id="opButton">Operation</Button>
-                    <Button id="examButton">Exam</Button>
                 </Card.Body>
             </Card>
         )
