@@ -1,11 +1,28 @@
-#assignCard {
-    margin: 500px;
+
+
+.sobice{
+    margin: 100px 0px 0px 70px;
 }
 
-.selectType {
-    margin-bottom: -500%;
+.containerForFilters{
+  margin: 30px 70px 0px 70px;
+  background-color: rgba(182, 218, 250,0.5);
+  width: 80%;
+  height: 80px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
 }
 
-.filterRooms {
-    margin-top: -500%;
+.findroombutton{
+  width:200px;
+  height: 38px;
+  margin: 0px 0px 0px 35px;
+  padding: 2.5px;
+  font-size: large;
+}
+
+.inputfiled{
+  margin:23px 0px 0px 80px;
+  width:270px;
+  height:33px;
 }
