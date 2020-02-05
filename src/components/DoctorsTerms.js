@@ -180,6 +180,7 @@ class DoctorsTerms extends React.Component {
       doctor.events.map((term, index) => {
         //12:40
         console.log(term);
+        console.log(doctor);
         console.log(parseInt(doctor.exam.duration));
 
        var end = moment(term, "HH:mm:ss")
