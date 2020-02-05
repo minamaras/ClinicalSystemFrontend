@@ -73,8 +73,12 @@ render() {
 
 
 
-        <Card className="velikapozadinakartica">
-        <div className="prazanprostor">
+        <Card className="velikapozadinakartica" style={{outline:
+      'none'}}>
+      <Card.Header style={{textAlign:'center',backgroundColor:'white'}}>
+      <Card.Title><h1 style={{opacity:'0.9'}}>Clinics in our system</h1></Card.Title>
+      </Card.Header>
+        <div className="prazanprostor" style={{height:'30px'}}>
         </div>
                     <br />
                     <RenderClinic content={this.state.clinics}/>
