@@ -29,7 +29,7 @@ class ExamTypePage extends React.Component {
         );
 
         console.log(this.state.examtypes)
-        
+
     }
 
     addExamType(examtype) {
@@ -60,16 +60,16 @@ class ExamTypePage extends React.Component {
             <div className="container">
                 <h1 id="manage">Manage types of exams</h1>
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="addexamtypebutton">
                     <AddExamType/>
                     </div>
-                    <div className="col-md-2">
+                    <div className="addpredfinedbutton">
                     <AddPredefinedAppointment/>
                     </div>
                     <div className="col-md-10-drcards">
                         <br />
                         <ExamTypeTable content={this.state.examtypes} />
-                    
+
                     </div>
                 </div>
             </div>

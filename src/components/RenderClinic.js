@@ -41,7 +41,7 @@ class RenderClinic extends React.Component{
 
 
         return (
-            <Card key={c.name} className="cardContainerKlinikaSve" >
+            <Card  style={{outline: 'none',border: 'none'}} key={c.name} className="cardContainerKlinikaSve">
             <Card.Title className="cardTitleKlinikaSve"><b>{c.name}</b></Card.Title>
 
 

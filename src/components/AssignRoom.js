@@ -40,10 +40,10 @@ class AssignRoom extends React.Component {
 
         var normaldate = this.state.inputdate.toISOString().substring(0,10);
 
-        this.setState({ 
+        this.setState({
             dateString : normaldate,
         });
-    
+
     }
 
     componentDidMount(){
@@ -57,7 +57,7 @@ class AssignRoom extends React.Component {
 
 
       axios.get(`http://localhost:8081/api/appointmentrequest/getone/${this.props.match.params.id}`,options).then(
-          (resp) => { 
+          (resp) => {
             console.log(resp.data);
 
               this.setState({
@@ -69,31 +69,25 @@ class AssignRoom extends React.Component {
 
 
         axios.get(`http://localhost:8081/api/rooms/clinicsrooms/${this.props.user.clinic}`,options).then(
-            (resp) => { 
-            
-              console.log(resp.data);
-  
-                this.setState({
-                    rooms: resp.data,
-                });
-                this.someFunction();
+            (resp) => {
+                this.someFunction(resp);
             },
             (resp) =>{alert('greska sobe')},
           );
-               
-        
+
+
     }
 
-    someFunction(){
+    someFunction(resp){
         console.log(this.state.rooms);
-        
+
 
         var self =this;
-       
+
        var returnRooms = [];
 
-       this.state.rooms.forEach(function (room) {
-                  
+       resp.data.forEach(function (room) {
+
                const hours = [];
                const events =[];
 
@@ -133,10 +127,12 @@ class AssignRoom extends React.Component {
 
                }
 
-               
-               returnRooms.push({id:room.id,appointments:room.appointments,events:events,hours:hours,name:room.name,number:room.number,type:room.examType});
+
+
+               returnRooms.push({appointmentRequests:room.appointmentRequests,id:room.id,appointments:room.appointments,events:events,hours:hours,name:room.name,number:room.number,type:room.examType});
 
          });
+
 
          this.setState({
            rooms : returnRooms,
@@ -146,61 +142,75 @@ class AssignRoom extends React.Component {
 
     handleChange(e) {
         this.setState({...this.state, [e.target.name]: e.target.value});
-    
+
 
     }
 
     FindRoom(){
 
         console.log(this.state);
-        
+
 
         var self = this;
         var returnrooms = [];
 
         if( self.state.dateString !== '' && self.state.inputparam !== '')
 
-       { 
+       {
            this.state.rooms.forEach(function (room) {
                console.log(room);
-               
-            
+
+
             var roomevents = [];
-                  
+
            if(room.name == self.state.inputparam || room.number == self.state.inputparam){
 
             {
                 console.log("same number or name");
-                
+
                 if(room.type.name == self.state.apRequest.examTypeName)
 
             {
                 console.log("same exam");
-                if(room.appointments !==  undefined)
-
-               { room.appointments.forEach(function (appointment) {
+                if(room.appointments !==  undefined){
+                  room.appointments.forEach(function (appointment) {
                     console.log("has appointments");
-                    
+
 
                   if(appointment.date == self.state.dateString){
 
                     console.log("has appointments that day");
-                    
+
                     roomevents.push(appointment.startTime);
-                     
+
                   }
 
-                
-              });}
 
-              returnrooms.push({id: room.id, events:roomevents,hours:room.hours,name:room.name,number:room.number,type:room.type});
-                
+              });
+            }
+
+            var appointmentRequests = [];
+
+            if(room.appointmentRequests !==  undefined){
+              room.appointmentRequests.forEach(function (appointmentR) {
+
+              if(appointmentR.date == self.state.dateString){
+
+                appointmentRequests.push({startTime:appointmentR.startTime,endTime:appointmentR.endTime});
+
+              }
+
+          });
+        }
+
+              returnrooms.push({appointmentRequests:appointmentRequests,id: room.id, events:roomevents,hours:room.hours,name:room.name,number:room.number,type:room.type});
+
              }
            }
         }
       });
 
-    
+
     }
 
     this.setState({
@@ -228,11 +238,14 @@ class AssignRoom extends React.Component {
 
 
     render() {
+
         var self = this;
-        return (
+
+          alert("in here");
+          return (
             <div className="pozadinica" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-                <div style={{margin:'100px 0px 0px 300px'}}>
-               <input placeholder="enter room name or number" onChange={this.handleChange} name="inputparam" style={{margin:'20px 0px 0px 20px',width:'200px',height:'30px'}}></input>
+                <div className="containerForFilters">
+               <input placeholder="Enter room name or number" onChange={this.handleChange} name="inputparam" className="inputfiled"></input>
 
                <DatePicker
                  selected={ this.state.inputdate}
@@ -245,8 +258,8 @@ class AssignRoom extends React.Component {
 
                />
 
-               <Button variant="outline-info" onClick={this.FindRoom} style={{width:'200px',height:'30px',margin:'20px 0px 0px 35px'}}>Find room</Button>
-              
+               <Button variant="light" onClick={this.FindRoom} className="findroombutton">Find room</Button>
+
                 </div>
 
             <div className="sobice" style={{width:'auto',height:'auto'}}>
@@ -254,8 +267,9 @@ class AssignRoom extends React.Component {
                 </div>
 
             </div>
-            
+
         )
+      
     }
 
 

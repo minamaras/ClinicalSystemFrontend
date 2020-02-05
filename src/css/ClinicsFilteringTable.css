@@ -4,9 +4,8 @@
     width: 67%;
     height: auto;
     padding-top: 10px;
-    box-shadow: 3px 4px 5px #d8d8d8;
-    border-style: solid;
-    border-color: black;
+    outline: none;
+    border: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /*background-image: url("../icons/pozadina.jpg");*/
 

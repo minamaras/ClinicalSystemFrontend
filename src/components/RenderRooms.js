@@ -25,9 +25,9 @@ class RenderRooms extends React.Component{
     }
 
     tryRenderingCalendar(room){
-        
+
         console.log(room);
-        
+
 
        if(room  !== undefined && this.props.date !== ''){
 
@@ -49,20 +49,21 @@ class RenderRooms extends React.Component{
 
         return (
             <Card key={r.name} className="cardContainerRoom" style={{margin:'100px 0px 0px 0px'}}>
-            <Card.Title ><b>{r.name}</b></Card.Title>
+            <Card.Title style={{textAlign:'center'}}>{r.name}</Card.Title>
 
 
                 <Card.Body >
 
                     <Card.Text >
-                          <label><b>Number </b></label> &nbsp;
+                          <label>Room number :</label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{r.number}</label>
                           <br/>
-                          <label><b> Exam type </b></label>&nbsp;
+                          <label> Exam type : </label>
                           <br/>
+                          <label>{r.type.name}</label>
                           {this.tryRenderingCalendar(r)}
                           <br/>
-                    
+
                     </Card.Text>
                     <div>
                     </div>

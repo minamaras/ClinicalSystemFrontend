@@ -52,12 +52,12 @@ class OperationRoom extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1 id="manage">Manage operation rooms</h1>
+                <h1 id="manage"style={{margin:'0px 0px 0px -80px'}} >Manage operation rooms</h1>
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="col-md-2" style={{margin:'10px 0px 0px 87px'}}>
                     <AddOperationRoom/>
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-10" style={{margin:'5px 0px 0px 0px'}}>
                         <br />
                         <OperationRoomTable content={this.state.rooms} />
                     </div>

@@ -20,6 +20,8 @@ class AddPredefinedAppointment extends React.Component {
         date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
         this.handleShow = this.handleShow.bind(this);
+        this.renderTerms = this.renderTerms.bind(this);
+
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -27,6 +29,8 @@ class AddPredefinedAppointment extends React.Component {
         this.handleSelect = this.handleSelect.bind(this);
 
         this.addPredefinedAppointment = this.addPredefinedAppointment.bind(this);
+        this.showDoctorsTerms = this.showDoctorsTerms.bind(this);
+
 
         this.state = {
             show: false,
@@ -41,7 +45,10 @@ class AddPredefinedAppointment extends React.Component {
             endTime: undefined,
             date:'',
             today: new Date(),
-            type:''
+            type:'',
+            selectedTime:'',
+            options: [],
+            isClicked: false,
         };
 
     }
@@ -66,30 +73,62 @@ class AddPredefinedAppointment extends React.Component {
 
 
     onSuccessHandlerDoctor(resp) {
+      console.log(resp.data);
+      var doctorstemp = [];
 
-        var tempdoctors = [];
-        var tempexams = [];
+      resp.data.forEach(function (doctor) {
 
-        console.log(resp.data);
+        var hours = [];
+        var timestart = doctor.start.toString().split(":");
+        var timeend = doctor.end.toString().split(":");
+        var duration = 0;
+        var dur = parseInt(doctor.examType.duration);
 
-        for (var i = 0; i < resp.data.length; i++) {
 
-            tempdoctors.push(resp.data[i]);
 
-                if (tempexams.some(x=> x.name == resp.data[i].examType.name) == false){
-                  tempexams.push(resp.data[i].examType);
-                }
+        for(let hour = parseInt(timestart[0]); hour <= parseInt(timeend[0]); hour++) {
+
+          if(hour == parseInt(timeend[0]) && duration == parseInt(timeend[1])){
+
+            hours.push(
+                moment({
+                    hour,
+                    minute: duration
+                }).format('HH:mm:ss')
+            );
+            break;
           }
 
+          hours.push(
+              moment({
+                  hour,
+                  minute: duration
+              }).format('HH:mm:ss')
+          );
+
+            duration = duration+dur;
+
+            if(duration >= 60){
+              duration = duration%60;
+            }else {
+              hour=hour-1;
+            }
+        }
 
 
-        this.setState({
-            doctors : tempdoctors,
-            examtypes: tempexams,
-        });
+        doctorstemp.push({examType:doctor.examType,email:doctor.email,id:doctor.id,name:doctor.name,lastname:doctor.lastname,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
 
+
+      });
+
+      this.setState({
+        doctors: doctorstemp,
+      });
+
+      console.log(doctorstemp);
 
     }
+
 
 
     onSuccessHandlerRoom(resp) {
@@ -131,19 +170,41 @@ class AddPredefinedAppointment extends React.Component {
 
         console.log(this.state);
 
+        if(this.state.doctorEmail == '' || this.state.name == '' || this.state.date == '' ||
+      this.state.date == undefined || this.state.selectedTime == '' || this.state.roomNumber == ''){
+
+        RoomCreatedAlert.fire({
+            title: "You didn't enter all the values! ",
+            text: '',
+            type: "error",
+            icon: 'error',
+            button: true
+          });
+
+      }else
+        {
+
         let token = localStorage.getItem('token');
         const options = {
             headers: { 'Authorization': 'Bearer ' + token}
         };
+        var doctor = this.state.doctors.find(x => x.email == this.state.doctorEmail);
 
-        var dateandtimeS = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(this.state.startTime.substring(0,2)),parseInt(this.state.startTime.substring(3,5)),0);
-        var dateandtimeE = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(this.state.endTime.substring(0,2)),parseInt(this.state.endTime.substring(3,5)),0);
+        var end = moment(this.state.selectedTime, "HH:mm:ss")
+             .add(parseInt(doctor.examType.duration), 'minutes').format("HH:mm:ss");
+        var stringend = end.toString().split(':');
+
+        var dateandtimeS = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(this.state.selectedTime.substring(0,2)),parseInt(this.state.selectedTime.substring(3,5)),0);
+        var dateandtimeE = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),parseInt(stringend[0]),parseInt(stringend[1]),0);
 
         console.log(dateandtimeS.getTime());
         console.log(dateandtimeE.getTime());
-        var objekat = {examTypeName:this.state.examTypeName,doctorEmail:this.state.doctorEmail,
+        alert(this.state.date);
+
+
+        var objekat = {examTypeName:doctor.examType.name,doctorEmail:this.state.doctorEmail,
           roomNumber:this.state.roomNumber,name:this.state.name,date:this.state.date,
-          type:this.state.type,startTime:dateandtimeS.getTime(),endTime:dateandtimeE.getTime()};
+          type:doctor.type,startTime:dateandtimeS.getTime(),endTime:dateandtimeE.getTime()};
 
           console.log(objekat);
 
@@ -152,6 +213,7 @@ class AddPredefinedAppointment extends React.Component {
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
+       }
     }
 
     onErrorHandler(resp) {
@@ -215,6 +277,102 @@ class AddPredefinedAppointment extends React.Component {
         this.setState({ room: this.state.rooms[eventKey] });
     }
 
+    showDoctorsTerms(){
+
+      this.setState({
+        isClicked: true,
+      });
+
+      if((this.state.selectedTime == '' || this.state.selectedTime ==  undefined)
+        && (this.state.date == '' || this.state.date == undefined)){
+
+          RoomCreatedAlert.fire({
+              title: "You didn't select doctor or date! ",
+              text: '',
+              type: "error",
+              icon: 'error',
+              button: true
+            });
+        }else {
+
+
+            var selctedDoctor = this.state.doctors.find(x => x.email == this.state.doctorEmail);
+
+            if(selctedDoctor !== undefined){
+
+            if(selctedDoctor.appointments.lenght !== 0){
+
+
+
+            selctedDoctor.hours.forEach((term, i) => {
+
+            selctedDoctor.appointments.forEach((appointment, i) => {
+
+              if(appointment.status == 'SHEDULED'){
+
+                if(appointment.date == this.state.date &&
+                  (appointment.startTime) == term){
+
+
+
+                selctedDoctor.hours.splice( selctedDoctor.hours.indexOf(term), 1 );
+
+            }
+          }
+
+        });
+
+        });
+
+        this.setState({
+
+          options : selctedDoctor.hours,
+
+        });
+
+
+                }
+
+            }
+
+        }
+
+    }
+
+    componentWillMount(){
+      this.setState({
+        isClicked : false,
+      });
+    }
+
+renderTerms(){
+
+if (this.state.isClicked == true){
+
+  return(
+    <Select
+      className="selectTerm"
+      style={{ width: "25%",margin:'20px 0px 0px 0px'}}
+      onChange={entry => {
+
+            this.setState({ selectedTime: entry.value });
+
+      }
+      }
+      value={this.state.selectedTime}
+      id="selectterms"
+      options={
+
+          this.state.options.map((term, i) => {
+              return { value: term, label: term };
+          })
+      }
+      />
+);
+}
+}
+
+
     render() {
         return (
             <div>
@@ -241,20 +399,22 @@ class AddPredefinedAppointment extends React.Component {
                                     className="form-control form-control-sm"
                                     id="name"
                                     name="name"
+                                    style={{width:'400px'}}
                                     onChange={this.handleChange}
                                     placeholder="Enter name"
                                     required
                                 />
                                 <br/>
                                 <label htmlFor="doctor">Doctor</label>
+
                                 <Select
                                     className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "10px" }}
+                                    style={{ width: "70%", marginBottom: "10px" }}
                                     onChange={entry => {
-                                        this.setState({ doctorEmail: entry.value });
+                                        this.setState({ doctorEmail: entry.label});
                                     }
                                     }
-                                    value={this.state.doctorEmail.value}
+                                    value={this.state.doctorEmail.label}
                                     options={
 
                                         this.state.doctors.map((type, i) => {
@@ -276,14 +436,12 @@ class AddPredefinedAppointment extends React.Component {
 
                                 />
 
+                                <Button onClick={this.showDoctorsTerms} style={{margin:'0px 0px 0px 30px',height:'30px',padding:'3px',backgroundColor:'lightpink',borderColor:'lightpink'}}>
+                                See doctor's free terms for the day you chose.</Button>
 
-                                <TimePicker
-                                   onChange={this.onChangeTime}
-                                   value={this.state.starttime}
-                                   locale="sv-sv"
-                                   className="timepicker"
 
-                                 />
+                                {this.renderTerms()}
+
 
                                 <br/>
 
@@ -305,37 +463,13 @@ class AddPredefinedAppointment extends React.Component {
                                     }
                                 />
                                 <br />
-                                Select exam type :{" "}
-                                <Select
-                                    className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "8px",marginTop:'7px' }}
-                                    onChange={entry => {
-                                        this.setState({
-                                          examTypeName: entry.label,
-                                          type: entry.value,
-                                        });
-                                        var date = moment(this.state.startTime,"HH:mm")
-                                            .add(entry.value.duration,'minutes')
-                                            .format('HH:mm');
 
-                                            this.setState({
-                                              endTime:date
-                                            });
 
-                                    }
-                                    }
-                                    value={this.state.examTypeName.label}
-                                    options={
-
-                                        this.state.examtypes.map((type, i) => {
-                                            return { value: type, label: type.name };
-                                        })
-                                    }
-                                />
                             </div>
                             <hr />
-                            <Button className="roomDugme" variant="secondary" style={{ float: "right" }} onClick={this.handleClose}>Close</Button>
-                            <Button type="submit" variant="success" style={{ float: "right", margin: "0px 10px 0px 0px" }} className="roomDugme">Add</Button>
+                            <Button className="roomDugme" variant="primary" style={{
+                              float: "right"}} onClick={this.handleClose}>Close</Button>
+                            <Button type="submit" variant="success" style={{backgroundColor:'lightpink',borderColor:'lightpink', float: "right", margin: "0px 10px 0px 0px" }} className="roomDugme">Add</Button>
                         </form>
                     </Modal.Body>
                 </Modal>
