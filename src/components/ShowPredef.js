@@ -14,6 +14,7 @@ import { Navigate, Views } from 'react-big-calendar'
 import {  momentLocalizer } from 'react-big-calendar'
 import PhotoSlider from './PhotoSlider';
 import 'moment/locale/en-gb';
+import e from '../icons/explanation.svg';
 const localizer = momentLocalizer(moment)
 
 
@@ -117,10 +118,10 @@ class ShowPredef extends React.Component {
         ErrorSearch.fire({
             title: "",
             text: 'Exam done by doctor : '+exam.doctorfirstname+' '+exam.doctorlastname+
-            ' for date : '+exam.date+' from '+exam.startTime+' till '+exam.endTime+' , exam price: '+exam.type.price+' , room '+exam.room,
+            ' for date : '+exam.date+' from '+exam.startTime+' till '+exam.endTime+' , exam price: '+exam.type.price+' , room '+exam.room+".By clicking on button below, this appointment will be scheduled for you and you will recive and email.",
             type: "success",
             button: true,
-            icon: "success",
+            icon: "info",
             confirmButtonText:"Yes i wanna schedule this appointment!"
           }).then((isOk) => {
 
@@ -261,7 +262,8 @@ return predefevents;
                     </Modal.Header>
                     <Modal.Body>
                     <div className="Info">
-                    <label>Click on blue marked "Predefiend" on calendar to see more information about appointment.</label>
+                    <img src={e} style={{height:'40px',width:'40px',marginTop:'20px',marginBottom:'20px'}}></img>
+                    <label style={{marginLeft:'20px'}}>Click on blue marked "Predefiend" on calendar to see more information about appointment.</label>
 
                     </div>
                     <div className="avaliableTerms">

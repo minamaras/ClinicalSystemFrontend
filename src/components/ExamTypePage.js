@@ -16,6 +16,7 @@ class ExamTypePage extends React.Component {
         }
 
         this.addExamType = this.addExamType.bind(this);
+        this.handler = this.handler.bind(this);
 
 
         let token = localStorage.getItem('token');
@@ -54,6 +55,10 @@ class ExamTypePage extends React.Component {
         alert("Error response: Uncovered case");
     }
 
+    handler() {
+        window.loaction.reload();
+    }
+
 
     render() {
         return (
@@ -64,7 +69,7 @@ class ExamTypePage extends React.Component {
                     <AddExamType/>
                     </div>
                     <div className="addpredfinedbutton">
-                    <AddPredefinedAppointment/>
+                    <AddPredefinedAppointment user={this.props.user} action={this.handler}/>
                     </div>
                     <div className="col-md-10-drcards">
                         <br />

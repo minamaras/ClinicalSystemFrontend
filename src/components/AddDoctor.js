@@ -86,6 +86,29 @@ Success(resp) {
             headers: { 'Authorization': 'Bearer ' + token}
         };
 
+        var s = this.state.start.toString().split(':');
+        var e = this.state.start.toString().split(':');
+
+        var dateforStart = new Date(2020,12,1,parseInt(s[0]),parseInt(s[1]),0);
+        var dateforEnd = new Date(2020,12,1,parseInt(e[0]),parseInt(e[1]),0);
+
+        var granicapocetka = new Date(2020,12,1,8,0,0);
+        var granicakraja= new Date(2020,12,1,20,0,0);
+
+        if((dateforStart.getTime() < granicapocetka.getTime()) ||
+          (dateforEnd.getTime() > granicakraja.getTime()) || (dateforEnd.getTime() < granicapocetka.getTime())){
+
+            DoctorCreatedAlert.fire({
+                title: "Doctor's working time can only be between 8:00 and 20:00!",
+                text: '',
+                type: "error",
+                button: true
+              });
+
+              return;
+          }
+
+
         if(this.state.password === this.state.repeat){
 
          axios.post("http://localhost:8081/api/doctors/savedoctor", this.state,options).then(
