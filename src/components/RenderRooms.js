@@ -62,7 +62,7 @@ class RenderRooms extends React.Component{
                           <br/>
                           <label>{r.type.name}</label>
                           {this.tryRenderingCalendar(r)}
-                          <br/>
+                          
 
                     </Card.Text>
                     <div>

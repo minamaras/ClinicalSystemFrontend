@@ -56,10 +56,6 @@ class RecipesTable extends React.Component{
     }
 
     renderMedications(medicationName){
-       //console.log(this.props.content)
-        //if(this.props.content.medicationName != null){
-            //const medicationName = med.medicationName
-           // console.log(med.medicationName)
 
         return medicationName.map(element => {
                //console.log(element)

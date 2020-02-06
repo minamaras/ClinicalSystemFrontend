@@ -45,6 +45,8 @@ import MyCalendarNurse from './MyCalendarNurse';
 import SendEmailToPatient from './SendEmailToPatient';
 import ManageAppointmentRequest from './ManageAppointmentRequest';
 import MakeAnotherAppointment from './MakeAnotherAppointment';
+import AssignRoomOperation from './AssignRoomOperation';
+import OperationDoctors from './OperationDoctors';
 
 class Routes extends React.Component {
 
@@ -99,18 +101,16 @@ class Routes extends React.Component {
         <Route exact path="/allclinics" render={(props) => <ClinicsFilteringPage user={this.props.user}/>} />
         <Route exact path="/holidayrequests" render={(props) => <HolidayRequests user={this.props.user}/>} />
         <Route exact path="/examrequests" render={(props) => <AppointmentRequests user={this.props.user}/>} />
-
         <Route exact path="/patient/:id" render={(props) => <PatientInfo user={this.props.user}/>} />
         <Route exact path="/startappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <BeginAppointMedicalRecord user={this.props.user}/>} />
-        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />       
-        
+        <Route exact path="/endappointment/medicalrecord/:id" history={createBrowserHistory} render={(props) => <EndAppointmentRecord user={this.props.user}/>} />         
         <Route exact path="/room/:id" history={createBrowserHistory} render={(props)  => <AssignRoom user={this.props.user} />} />
-
         <Route exact path="/roomrequest/:doctoremail/:date/:startime/:endtime/:id" render={(props) => <SendEmailToPatient user={this.props.user}/>} />
         <Route exact path="/patientrequeststatus" render={(props) => <ManageAppointmentRequest user={this.props.user}/>} />
-        <Route exact path="/makeanotherappointment/:patientmail" render={(props) => <MakeAnotherAppointment user={this.props.user}/>} />
-        
+        <Route exact path="/makeanotherappointment/:patientmail" render={(props) => <MakeAnotherAppointment user={this.props.user}/>} />       
         <Route exact path="/operationrequests" render={(props) => <OperationRequests user={this.props.user}/>} />
+        <Route exact path="/operation/rooms/:id" render={(props) => <AssignRoomOperation user={this.props.user}/>} />  
+        <Route exact path="/operation/doctors/:id/:date/:time/:room" render={(props) => <OperationDoctors user={this.props.user}/>} />  
 
       </Switch>
         );

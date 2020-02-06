@@ -56,9 +56,14 @@ class OperationRequests  extends React.Component{
       }
 
 
+      findRoom(reqid){
+        window.location.href = `/operation/rooms/${reqid}`;
+    }
+
+
+
+
     renderRequests(){
-
-
 
         return(
             this.state.requests.map((request,i) => {
@@ -88,7 +93,7 @@ class OperationRequests  extends React.Component{
                                     <p className="leftOR">End time: </p>
                                     <p className="rightOR">{request.endTime}</p>
                                 </div>
-                            <Button variant="outline-info" className="ORBtn">Find a room</Button>
+                            <Button variant="outline-info" className="ORBtn" onClick={this.findRoom.bind(this,request.id)}>Find a room</Button>
                             </Card.Body>
                             
 
