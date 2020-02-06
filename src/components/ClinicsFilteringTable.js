@@ -9,6 +9,8 @@ import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
 import StarRatings from 'react-star-ratings';
+import dna from '../icons/dna.svg'
+
 
 const PatientAlert = withReactContent(Swal)
 
@@ -59,12 +61,12 @@ class ClinicsFilteringTable extends React.Component{
 
         return (
             <Card key={c.name} className="cardContainerKlinika"
-            style={{ backgroundColor:'aliceblue',border:'none'}}>
-            <Card.Title className="cardTitleKlinika"><b>{c.name}</b></Card.Title>
-
+            style={{ backgroundColor:'aliceblue',border:'none',textAlign:'center'}}>
 
                 <Card.Body className = "cardBodyKlinika">
-
+                <Card.Img src={dna} style={{height:'28px',width:'28px',marginTop:'-50px'}}></Card.Img>
+                <br/>
+                  <label className="cardTitleKlinika"><b>{c.name}</b></label>
                     <Card.Text className='cardTextKlinika'>
                           <label><b>Address </b></label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>

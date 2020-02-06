@@ -8,6 +8,10 @@ import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import '../css/RenderClinic.css';
 import StarRatings from 'react-star-ratings';
+import icon from '../icons/dna.svg';
+import link from '../icons/link.svg';
+
+
 
 const PatientAlert = withReactContent(Swal)
 
@@ -41,12 +45,12 @@ class RenderClinic extends React.Component{
 
 
         return (
-            <Card  style={{outline: 'none',border:'none',backgroundColor:'aliceblue'}} key={c.name} className="cardContainerKlinikaSve">
-            <Card.Title className="cardTitleKlinikaSve" style={{color:'black',opacity:'0.7'}}><b>{c.name}</b></Card.Title>
+            <Card  style={{outline: 'none',border:'none',backgroundColor:'aliceblue',textAlign:'center'}} key={c.name} className="cardContainerKlinikaSve">
 
 
                 <Card.Body className = "cardBodyKlinikaSve">
-
+                <Card.Img src={icon} style={{height:'35px',width:'35px',marginBottom:'20px'}}></Card.Img> <br/>
+                    <label className="cardTitleKlinikaSve" style={{color:'black',opacity:'0.7'}}><b>{c.name}</b></label>
                     <Card.Text className='cardTextKlinikaSve'>
                           <label><b>Address </b></label> &nbsp;
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
@@ -68,7 +72,11 @@ class RenderClinic extends React.Component{
                           <br/>
 
                           <br/>
+                          <div>
                           {this.RednderLink(c)}
+                          <br/>
+                          <img src ={link} style={{height:'28px',width:'28px',marginTop:'2px'}}></img>
+                          </div>
 
 
                     </Card.Text>
