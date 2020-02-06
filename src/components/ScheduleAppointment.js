@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../css/ScheduleAppointment.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import idea from '../icons/idea.svg';
+
 
 const RequestSent = withReactContent(Swal)
 
@@ -86,12 +88,12 @@ class ScheduleAppointment extends React.Component{
                 icon: 'success'
               });
 
-              document.getElementById("requestbutton").style.visibility = "hidden";
+              document.getElementById("requestbutton").style.display="none";
               document.getElementById("time").remove();
               document.getElementById("date").remove();
               document.getElementById("price").remove();
-              document.getElementById("labelftersending").style.visibility = "visible";
-              document.getElementById("labelftersending").style.margin = "-150px 0px 0px 0px";
+              document.getElementById("labelftersending").style.display = "block";
+              document.getElementById("labelftersending").style.margin = "0px 0px 0px 0px";
 
         },
           (resp) =>{
@@ -116,29 +118,34 @@ class ScheduleAppointment extends React.Component{
 
         return(
 
-              <div className="behind"style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
-              <Card className="pregledCardContainer" style={{width:'370px',height:'330px',left:'100px',top:'50px',backgroundcolor: 'rgba(245, 245, 245, 0.4)!important'}}>
-              <Card.Title className="pregledcardTitle"></Card.Title>
-
-
-                  <Card.Body className = "pregledcardBody">
-                  <Card.Text className='pregledcardText'>
-                      <label className="appointmentdate" id="date"><b>Appointment date </b> {this.props.match.params.date}</label>
+              <div>
+              <Card style={{width:'500px',height:'330px',margin:'200px 0px 0px 0%',outline:'none',
+                border:'none',backgroundColor:'aliceblue'}}>
+              <Card.Body>
+              <Card.Img src={idea} style={{height:'40px',width:'40px'}}></Card.Img>
+              <br/>
+              <label style={{marginTop:'20px'}}>
+              You found a term that works for you and works for our clinic staff. Great!
+              Now all that it's left to do is to send a request for this appointment. By clicking
+              on the button "Make a request for this appointment" your request will be sent to admin of this clinic.
+              After admin has reviewed your request, you will get an email.
+              </label>
+              </Card.Body>
+              </Card>
+              <Card  style={{textAling:'center',width:'500px',textAling:'center',height:'330px',margin:'-330px 0px 0px 50%'}}>
+              <Card.Title ></Card.Title>
+                  <Card.Body  style={{textAling:'center',marginLeft:'22%',marginTop:'30px'}}>
+                      <label  id="date">Appointment date {this.props.match.params.date}</label>
                       <br/>
-                      <label className="appointmenttime" id="time"><b>Appointment time </b> {this.props.match.params.term}</label>
+                      <label  id="time">Appointment time {this.props.match.params.term}</label>
                       <br/>
-                      <label className="appointmentprice" id="price"><b>Appointment price </b>{this.props.match.params.examprice}</label>
+                      <label  id="price">Appointment price {this.props.match.params.examprice}</label>
                       <br/>
-                      <Button className="sendrequestbutton" variant="secondary" id="requestbutton" onClick={this.sendRequest}>Make a request for this appointment</Button>
-                      <label id="labelftersending" style={{visibility:'hidden'}}>
-                      Great! Your request for this appointment is sent to admin of the clinic. Soon you will get an email regarding your request.
+                      <Button style={{marginTop:'30px'}} variant="outline-primary" id="requestbutton" onClick={this.sendRequest}>Make a request for this appointment</Button>
+                      <label id="labelftersending" style={{display:'none'}}>
+                      Great! Your request has been sent.
                       </label>
-                      </Card.Text>
-                      <div className="pregledCardAdd">
-                      </div>
-
-
-                  </Card.Body>
+                </Card.Body>
               </Card>
               </div>
 

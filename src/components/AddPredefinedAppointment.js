@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Modal, Button,  DropdownButton,Dropdown} from "react-bootstrap";
+import { Modal, Button,  DropdownButton,Dropdown,Card} from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios'
@@ -8,6 +8,8 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import moment from 'moment';
 import Select from 'react-select';
+import e from '../icons/explanation.svg';
+
 
 const RoomCreatedAlert = withReactContent(Swal)
 
@@ -49,6 +51,7 @@ class AddPredefinedAppointment extends React.Component {
             selectedTime:'',
             options: [],
             isClicked: false,
+            roomOptions : []
         };
 
     }
@@ -60,7 +63,7 @@ class AddPredefinedAppointment extends React.Component {
             };
 
 
-        axios.get('http://localhost:8081/api/rooms/all', options).then(
+        axios.get(`http://localhost:8081/api/rooms/clinicsrooms/${this.props.user.clinic}`, options).then(
             (resp) => this.onSuccessHandlerRoom(resp),
             (resp) => this.onErrorHandlerRoom(resp),
         );
@@ -83,7 +86,6 @@ class AddPredefinedAppointment extends React.Component {
         var timeend = doctor.end.toString().split(":");
         var duration = 0;
         var dur = parseInt(doctor.examType.duration);
-
 
 
         for(let hour = parseInt(timestart[0]); hour <= parseInt(timeend[0]); hour++) {
@@ -115,8 +117,8 @@ class AddPredefinedAppointment extends React.Component {
             }
         }
 
-
-        doctorstemp.push({examType:doctor.examType,email:doctor.email,id:doctor.id,name:doctor.name,lastname:doctor.lastname,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
+        var godisnji = 0;
+        doctorstemp.push({godisnji:godisnji,holidays:doctor.holidays,examType:doctor.examType,email:doctor.email,id:doctor.id,name:doctor.name,lastname:doctor.lastname,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
 
 
       });
@@ -133,19 +135,11 @@ class AddPredefinedAppointment extends React.Component {
 
     onSuccessHandlerRoom(resp) {
 
-        var temprooms = [];
-
-        console.log(resp.data);
-
-        for (var i = 0; i < resp.data.length; i++) {
-            temprooms.push(resp.data[i]);
-        }
 
         this.setState({
-            rooms : temprooms,
+          rooms: resp.data,
         });
 
-        console.log(this.state.rooms);
 
     }
 
@@ -169,9 +163,10 @@ class AddPredefinedAppointment extends React.Component {
         event.preventDefault();
 
         console.log(this.state);
+        var self = this;
 
         if(this.state.doctorEmail == '' || this.state.name == '' || this.state.date == '' ||
-      this.state.date == undefined || this.state.selectedTime == '' || this.state.roomNumber == ''){
+      this.state.date == undefined || this.state.selectedTime == ''){
 
         RoomCreatedAlert.fire({
             title: "You didn't enter all the values! ",
@@ -199,11 +194,48 @@ class AddPredefinedAppointment extends React.Component {
 
         console.log(dateandtimeS.getTime());
         console.log(dateandtimeE.getTime());
-        alert(this.state.date);
 
+        this.state.rooms.forEach((room, i) => {
 
-        var objekat = {examTypeName:doctor.examType.name,doctorEmail:this.state.doctorEmail,
-          roomNumber:this.state.roomNumber,name:this.state.name,date:this.state.date,
+        if(room.examType.name == doctor.examType.name){
+
+          if(room.appointments.lenght !== 0){
+
+            room.appointments.forEach((appointment, i) => {
+
+                if(appointment.date == this.state.date && appointment.startTime == this.state.selectedTime){
+
+                  console.log(appointment);
+                  this.state.rooms.splice( this.state.rooms.indexOf(room), 1 );
+                }
+
+          });
+        }
+
+        }
+
+        });
+
+        var index =  Math.floor(Math.random() * this.state.rooms.lenght);
+        var radnomroomnumber = this.state.rooms.lenght;
+        console.log(this.state.rooms[0]);
+        console.log(doctor);
+        var start = new Date(parseInt(this.state.date.substring(0,4)),parseInt(this.state.date.substring(6,8))-1,parseInt(this.state.date.substring(9,11)),0,0,0);
+
+        if(this.state.rooms.lenght == 0){
+
+          RoomCreatedAlert.fire({
+              title: "Currently no avalible rooms for chosen date and time!",
+              text: '',
+              type: "error",
+              icon: 'error',
+              button: true
+            });
+
+        }
+
+        var objekat = {start:start,examTypeName:doctor.examType.name,doctorEmail:this.state.doctorEmail,
+          roomNumber:this.state.rooms[0].number,name:this.state.name,date:this.state.date,
           type:doctor.type,startTime:dateandtimeS.getTime(),endTime:dateandtimeE.getTime()};
 
           console.log(objekat);
@@ -239,7 +271,8 @@ class AddPredefinedAppointment extends React.Component {
             title: "Predefined appointment added successfully",
             text: "",
             type: "success",
-            icon: 'success'
+            icon: 'success',
+            button: 'false'
           });
 
         this.setState({ redirect: this.state.redirect === false });
@@ -283,8 +316,7 @@ class AddPredefinedAppointment extends React.Component {
         isClicked: true,
       });
 
-      if((this.state.selectedTime == '' || this.state.selectedTime ==  undefined)
-        && (this.state.date == '' || this.state.date == undefined)){
+      if((this.state.date == '' || this.state.date == undefined)){
 
           RoomCreatedAlert.fire({
               title: "You didn't select doctor or date! ",
@@ -297,12 +329,37 @@ class AddPredefinedAppointment extends React.Component {
 
 
             var selctedDoctor = this.state.doctors.find(x => x.email == this.state.doctorEmail);
-
+            console.log(selctedDoctor);
             if(selctedDoctor !== undefined){
 
+              var godisnji = 0;
+              var self = this;
+
+              if(selctedDoctor.holidays.lenght !== 0){
+
+                  selctedDoctor.holidays.forEach(function (holiday) {
+
+
+                    var stringdate =  holiday.fromto.split("-");
+                    var wanteddate = self.state.date.split("-");
+                    console.log(wanteddate);
+
+                    var holidayEnd = new Date(stringdate[0],stringdate[1]-1,parseInt(stringdate[2].substring(0,2)),0,0,0);
+                    var holidayStart = new Date(stringdate[3],stringdate[4]-1,parseInt(stringdate[5].substring(0,2)),0,0,0);
+                    var wantedDate = new Date(wanteddate[0],wanteddate[1]-1,wanteddate[2],0,0,0);
+
+
+                      if((wantedDate == holidayStart) || (wantedDate == holidayEnd) || (holidayStart < wantedDate < holidayEnd)){
+                        godisnji= godisnji+1;
+                      }
+
+                  });
+                }
+
+                selctedDoctor.godisnji = godisnji;
+
+
             if(selctedDoctor.appointments.lenght !== 0){
-
-
 
             selctedDoctor.hours.forEach((term, i) => {
 
@@ -324,16 +381,15 @@ class AddPredefinedAppointment extends React.Component {
 
         });
 
-        this.setState({
+        }
 
-          options : selctedDoctor.hours,
+  this.setState({
 
-        });
+    options : selctedDoctor.hours,
+    selctedDoctor : selctedDoctor,
+  });
 
-
-                }
-
-            }
+        }
 
         }
 
@@ -349,7 +405,14 @@ renderTerms(){
 
 if (this.state.isClicked == true){
 
-  return(
+console.log(this.state.selctedDoctor);
+
+if(this.state.selctedDoctor !== undefined ){
+
+if(this.state.selctedDoctor.godisnji == 0 )
+
+{  return(
+
     <Select
       className="selectTerm"
       style={{ width: "25%",margin:'20px 0px 0px 0px'}}
@@ -368,10 +431,10 @@ if (this.state.isClicked == true){
           })
       }
       />
-);
+      );}
+    }
+  }
 }
-}
-
 
     render() {
         return (
@@ -432,37 +495,23 @@ if (this.state.isClicked == true){
                                     name="date"
                                     onChange={this.handleChange}
                                     required
-                                    style={{marginTop:'2px'}}
+                                    style={{marginTop:'2px',marginBottom:'10px'}}
 
                                 />
 
-                                <Button onClick={this.showDoctorsTerms} style={{margin:'0px 0px 0px 30px',height:'30px',padding:'3px',backgroundColor:'lightpink',borderColor:'lightpink'}}>
-                                See doctor's free terms for the day you chose.</Button>
-
+                                <Button onClick={this.showDoctorsTerms} style={{margin:'0px 0px 10px 30px',height:'30px',padding:'3px',backgroundColor:'lightpink',borderColor:'lightpink'}}>
+                                Click here to see doctor's avalible terms for the chosen date.</Button>
 
                                 {this.renderTerms()}
 
 
                                 <br/>
 
-                                <label htmlFor="roomNumber">Room</label>
-                                <br/>
-                                <Select
-                                    className="selectoptions"
-                                    style={{ width: "25%", marginBottom: "5px",marginTop:'7px' }}
-                                    onChange={entry => {
-                                        this.setState({ roomNumber: entry.value });
-                                    }
-                                    }
-                                    value={this.state.roomNumber.value}
-                                    options={
-
-                                        this.state.rooms.map((type, i) => {
-                                            return { value: type.number, label: type.number };
-                                        })
-                                    }
-                                />
-                                <br />
+                                <Card style={{topMargin:'30px',marginBottom:'20px',height:'150px',width:'300px',
+                                padding:'10px',border:'none',outline:'none',backgroundColor:'aliceblue'}}>
+                                <Card.Img src={e} style={{width:'40px',height:'40px',marginTop:'20px'}}></Card.Img>
+                                <label style={{marginLeft:'10px'}}>System will automatically find you a free room for this exam.</label>
+                                </Card>
 
 
                             </div>

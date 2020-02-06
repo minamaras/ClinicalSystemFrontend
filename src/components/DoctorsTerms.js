@@ -12,6 +12,7 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Navigate, Views } from 'react-big-calendar'
 import {  momentLocalizer } from 'react-big-calendar'
+import e from '../icons/explanation.svg';
 const localizer = momentLocalizer(moment)
 
 const ErrorSearch = withReactContent(Swal)
@@ -231,9 +232,11 @@ return doctorsevents;
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <div className="avaliableTerms">
-                    <p>Found a term that works for you? Clicking on it leads you  to a page for scheduling an appointment with doctor <u style={{'text-transform':'capitalize'}}>{this.props.doctor.name} {this.props.doctor.lastname}</u> at choosen time</p>
-                    &nbsp;
+                    <div>
+                    <img src={e} style={{width:'40px',height:'40px',marginTop:'20px',marginBottom:'20px'}}></img>
+                    <label style={{marginLeft:'20px'}}>
+                    Found a term that works for you? Click on it !
+                    </label>
                     {this.renderTermsOtherVersion()}
                     </div>
                     <br/>

@@ -45,7 +45,7 @@ class AppointmentReqTable extends React.Component {
 
                       <Card.Text className='cardTextKlinikaSve'>
                             <label><b>Exam type: </b></label> &nbsp;
-                            <label style={{'text-transform':'capitalize'}} >{r.examTypeName}</label>
+                            <label style={{'textTransform':'capitalize'}} >{r.examTypeName}</label>
                             <br/>
                             <label><b> Date: </b></label>&nbsp;
                             <label>{formatDate}</label>
