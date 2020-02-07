@@ -49,6 +49,7 @@ import AssignRoomOperation from './AssignRoomOperation';
 import OperationDoctors from './OperationDoctors';
 import ConfirmedAppointmetRequest from './ConfirmedAppointmetRequest';
 import DeclinedAppointmetRequest from './DeclinedAppointmetRequest';
+import NurseMedRecord from './NurseMedRecord';
 
 class Routes extends React.Component {
 
@@ -116,6 +117,7 @@ class Routes extends React.Component {
 
         <Route exact path="/confirmedappreq" render={(props) => <ConfirmedAppointmetRequest user={this.props.user}/>} />
         <Route exact path="/declinedappreq" render={(props) => <DeclinedAppointmetRequest user={this.props.user}/>} />
+        <Route exact path="/nurse/medicalrecord/:id" render={(props) => <MedicalRecord user={this.props.user}/>} />
 
       </Switch>
         );
