@@ -124,26 +124,16 @@ class CalendarOperationRooms extends React.Component {
 
 
     handleSlotSelect(slotInfo) {
-/*
 
-        let token = localStorage.getItem('token');
-        const options = {
-             headers: { 'Authorization': 'Bearer ' + token}
-        };
-*/
         var finalDate = new Date(parseInt(slotInfo.start.toISOString().substring(0, 4)), parseInt(slotInfo.start.toISOString().substring(5, 7))-1, parseInt(slotInfo.start.toISOString().substring(8, 11))+1,0,0,0);
-        //finalDate.setMinutes( finalDate.getMinutes() + finalDate.getTimezoneOffset() );
-        //console.log(finalDate)
-        
-        //var dateString = slotInfo.start.getTimezoneOffset().toISOString().substring(0,10);
+
         var dateString = finalDate.toISOString().substring(0,10);
       var timeStart = slotInfo.start.toTimeString().split(' ')[0]
 
-      //console.log(dateString);
+
       console.log(slotInfo.start.toTimeString().split(' ')[0]);
 
 
-      //console.log(this.props);
       let roomnumber = this.props.number;
 
       ErrorSearch.fire({
@@ -199,7 +189,7 @@ class CalendarOperationRooms extends React.Component {
     
           var splitedstart = operation.startTime.split(':');
           var splitedend = operation.endTime.split(':');
-          var spliteddate = operation.start.split('-')
+          var spliteddate = operation.date.split('-')
          // var numapp = index + 1;
           var beginApp = new Date(spliteddate[0],spliteddate[1]-1,spliteddate[2],splitedstart[0],splitedstart[1],splitedstart[2]);
           var endApp = new Date(spliteddate[0],spliteddate[1]-1,spliteddate[2],splitedend[0],splitedend[1],splitedend[2]);
