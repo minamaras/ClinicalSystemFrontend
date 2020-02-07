@@ -10,6 +10,8 @@ import icon from '../icons/srce.svg';
 import price from '../icons/money1.svg';
 import doctor from '../icons/doctor.svg';
 import StarRatings from 'react-star-ratings';
+import MapClinic from './MapClinic';
+
 
 
 class ClinicPage extends React.Component {
@@ -151,6 +153,8 @@ class ClinicPage extends React.Component {
           <Pricelist/>
         </Card>
         </div>
+
+        <MapClinic></MapClinic>
 
       </div>
     )

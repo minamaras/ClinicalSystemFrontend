@@ -25,6 +25,7 @@ class MyCalendar extends React.Component {
 
     this.createEvents = this.createEvents.bind(this);
     this.createHolidays = this.createHolidays.bind(this);
+    this.createOperations = this.createOperations.bind(this);
     this.customEventPropGetter = this.customEventPropGetter.bind(this);
     this.onSelectEvent = this.onSelectEvent.bind(this);
     
@@ -38,6 +39,7 @@ class MyCalendar extends React.Component {
       events: [],
       appointments: [],
       holidays: [],
+      operations: [],
     };
     
   }
@@ -84,11 +86,13 @@ class MyCalendar extends React.Component {
       endShift : end,
       appointments : resp.data.appointments,
       holidays : resp.data.holidays,
+      operations : resp.data.operations,
 
     })
 
     this.createEvents();
     this.createHolidays();
+    this.createOperations();
   }
 
 
@@ -165,25 +169,59 @@ this.setState({
 
 }
 
-customEventPropGetter(event){
-  //console.log(event)
 
-  if(event.title.includes('Holiday')){
-    return {
-      style: {
-        backgroundColor: '#4f4f4f',
-      },
-    }
-  } else {
+
+createOperations(){
+  var operationEvents = []
+
+  this.state.operations.map((operation, index) => {
+
+      var splitedstart = operation.startTime.split(':');
+      var splitedend = operation.endTime.split(':');
+      var spliteddate = operation.date.split('-')
+    // var numapp = index + 1;
+      var beginApp = new Date(spliteddate[0],spliteddate[1]-1,spliteddate[2],splitedstart[0],splitedstart[1],splitedstart[2]);
+      var endApp = new Date(spliteddate[0],spliteddate[1]-1,spliteddate[2],splitedend[0],splitedend[1],splitedend[2]);
+
+
+    operationEvents.push({
+      title: operation.name + " (" + operation.patientName + " " + operation.patientLastname + ") " ,
+      startDate: beginApp,
+      endDate: endApp,
+      allDay: false,
+      resource: operation.id, 
+
+    });
+
+  })
+
+  this.setState({
+    events: this.state.events.concat(operationEvents)
+  })
+
+  console.log(this.state.operations);
+  }
+
+  customEventPropGetter(event){
+    //console.log(event)
+
+    if(event.title.includes('Holiday')){
       return {
         style: {
-          backgroundColor: '#82c2e0',
-          color: 'black',
-        }
+          backgroundColor: '#4f4f4f',
+        },
       }
-  
-    } 
+    } else {
+        return {
+          style: {
+            backgroundColor: '#82c2e0',
+            color: 'black',
+          }
+        }
+    
+      } 
 }
+
 
 onSelectEvent(event){
 
@@ -203,7 +241,20 @@ onSelectEvent(event){
     }
   }
 
-  }); 
+  });
+  
+  
+  this.state.operations.forEach(element => {
+    if(element.id === event.resource){
+    PatientAlert.fire({
+      title: element.name,
+      text: "Doktori: " + element.doctorNames, 
+      type: "info",
+      icon: 'info',
+      button: true
+    });
+  }
+  })
 
 }
 
@@ -215,7 +266,7 @@ onSelectEvent(event){
           <br />
           <div className="calendarInfo">
             <img style={{height:'55px', width: 'auto'}} src={tipicon} className="tipIcon" />
-          <p>You can start the appointment by clicking on it.</p>
+          <p>You can start the appointment or view information about operation by clicking on it.</p>
           </div>
 
         <div  style={{ height: '470pt', margin: '40px 0 0 0'}} >

@@ -116,6 +116,7 @@ class Routes extends React.Component {
 
         <Route exact path="/confirmedappreq" render={(props) => <ConfirmedAppointmetRequest user={this.props.user}/>} />
         <Route exact path="/declinedappreq" render={(props) => <DeclinedAppointmetRequest user={this.props.user}/>} />
+        <Route exact path="/nurse/medicalrecord/:id" render={(props) => <MedicalRecord user={this.props.user}/>} />
 
       </Switch>
         );

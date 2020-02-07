@@ -23,6 +23,7 @@ class MakeAnotherAppointment extends React.Component {
         this.calculateTerms = this.calculateTerms.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.handleChange= this.handleChange.bind(this);
 
 
         this.state = {
@@ -33,14 +34,15 @@ class MakeAnotherAppointment extends React.Component {
             isClicked: false,
             opapp: '',
             select: undefined,
+            name: '',
             options: [
                 { value: 'operation', label: 'Operation' },
                 { value: 'exam', label: 'Exam' },
-              ]
+            ]
 
         }
 
-        
+
 
         let token = localStorage.getItem('token');
         const options = {
@@ -52,6 +54,7 @@ class MakeAnotherAppointment extends React.Component {
 
         axios.get("http://localhost:8081/api/appointments/getcurrent", options).then(
             (resp) => {
+                console.log(resp.data)
 
                 var self = this;
                 var doctorstemp = []
@@ -187,18 +190,18 @@ class MakeAnotherAppointment extends React.Component {
     handleSelectChange = entry => {
 
         var self = this;
-  
-  
-          if(entry== null){
+
+
+        if (entry == null) {
             this.setState({
-              select: undefined,
-          });
+                select: undefined,
+            });
         }
-  
-        else{
-  
-          this.setState({ select: entry.value});
-      }
+
+        else {
+
+            this.setState({ select: entry.value });
+        }
     }
 
     calculateTerms() {
@@ -361,7 +364,7 @@ class MakeAnotherAppointment extends React.Component {
 
                 if (this.state.doctor.godisnji == 0) {
 
-                    return (<DoctorDaily doctor={this.state.doctor} date={this.state.dateString} user={this.props.user} patient={this.props.match.params.patientmail} selected={this.state.select} />);
+                    return (<DoctorDaily doctor={this.state.doctor} date={this.state.dateString} user={this.props.user} patient={this.props.match.params.patientmail} selected={this.state.select} name={this.state.name} />);
                 }
             }
         } else if (this.state.doctor === undefined) {
@@ -373,6 +376,10 @@ class MakeAnotherAppointment extends React.Component {
 
     }
 
+    handleChange(e) {
+        this.setState({...this.state, [e.target.name]: e.target.value});
+    }
+
 
     render() {
         console.log(this.state);
@@ -380,7 +387,7 @@ class MakeAnotherAppointment extends React.Component {
             <Card id="newApp">
                 <Card.Title style={{ textAlign: 'center' }}>New appointment or operation</Card.Title>
                 <Card.Body>
-                <Select
+                    <Select
                         className="selectoptions"
                         style={{ width: "70%", marginBottom: "10px" }}
                         onChange={this.handleSelectChange}
@@ -388,7 +395,17 @@ class MakeAnotherAppointment extends React.Component {
                         options={this.state.options}
                     />
 
-                    <br/>
+                    <label htmlFor="name">Name</label>
+                    <input type="text"
+                        className="form-control form-control-sm"
+                        id="name"
+                        name="name"
+                        onChange={this.handleChange}
+                        placeholder="Enter operation name"
+                        required
+                    />
+
+                    <br />
                     <label htmlFor="start">Date</label>
                     <br />
                     <DatePicker
@@ -404,7 +421,7 @@ class MakeAnotherAppointment extends React.Component {
                     <br />
                     <Button id="termId" onClick={this.calculateTerms}>Show Terms</Button>
 
-                    
+
 
                     {this.renderTerms()}
                 </Card.Body>

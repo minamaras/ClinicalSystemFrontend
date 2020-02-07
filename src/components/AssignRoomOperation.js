@@ -67,7 +67,7 @@ class AssignRoomOperation extends React.Component{
 
           axios.get(`http://localhost:8081/api/operationrequests/one/${this.props.match.params.id}`,options).then(
             (resp) => {
-                var dateDay = new Date(parseInt(resp.data.start.substring(0, 4)), parseInt(resp.data.start.substring(5, 7))-1, parseInt(resp.data.start.substring(8, 11)),0,0,0);
+                var dateDay = new Date(parseInt(resp.data.start.substring(0, 4)), parseInt(resp.data.start.substring(5, 7))-1, parseInt(resp.data.start.substring(8, 11))+1,0,0,0);
                 dateDay.setMinutes( dateDay.getMinutes() + dateDay.getTimezoneOffset() );
                 console.log(dateDay)
                 this.setState({
