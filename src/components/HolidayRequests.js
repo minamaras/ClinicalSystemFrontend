@@ -45,7 +45,7 @@ class HolidayRequests extends React.Component {
                 <h1 id="manage">Requests for holiday</h1>
                 <div className="row">
 
-                    <div className="col-md-10">
+                    <div className="col-md-10"style={{marginTop:'10px'}}>
                         <br />
                         <HolidayRequestsTable content={this.state.requests} />
                     </div>

@@ -7,6 +7,8 @@ import withReactContent from 'sweetalert2-react-content';
 import '../css/ScheduleAppointment.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import idea from '../icons/idea.svg';
+import office from '../icons/doctoroffice.gif';
+
 
 
 const RequestSent = withReactContent(Swal)
@@ -119,7 +121,10 @@ class ScheduleAppointment extends React.Component{
         return(
 
               <div>
-              <Card style={{width:'500px',height:'330px',margin:'200px 0px 0px 0%',outline:'none',
+              <Card style={{width:'55%',marginLeft:'0%'}}>
+              <Card.Img src={office} style={{height:'330px',width:'auto'}}></Card.Img>
+              </Card>
+              <Card style={{width:'103%',height:'230px',marginLeft:'0%',marginTop:'3%',outline:'none',
                 border:'none',backgroundColor:'aliceblue'}}>
               <Card.Body>
               <Card.Img src={idea} style={{height:'40px',width:'40px'}}></Card.Img>
@@ -132,9 +137,9 @@ class ScheduleAppointment extends React.Component{
               </label>
               </Card.Body>
               </Card>
-              <Card  style={{textAling:'center',width:'500px',textAling:'center',height:'330px',margin:'-330px 0px 0px 50%'}}>
+              <Card  style={{textAling:'center',width:'500px',textAling:'center',height:'330px',margin:'-595px 0px 0px 57%'}}>
               <Card.Title ></Card.Title>
-                  <Card.Body  style={{textAling:'center',marginLeft:'22%',marginTop:'30px'}}>
+                  <Card.Body  style={{textAling:'center',marginLeft:'20%',marginTop:'30px'}}>
                       <label  id="date">Appointment date {this.props.match.params.date}</label>
                       <br/>
                       <label  id="time">Appointment time {this.props.match.params.term}</label>
@@ -147,6 +152,7 @@ class ScheduleAppointment extends React.Component{
                       </label>
                 </Card.Body>
               </Card>
+
               </div>
 
 
