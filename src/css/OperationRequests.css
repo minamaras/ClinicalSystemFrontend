@@ -9,6 +9,7 @@
 
 .opRequestsContainer{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cardHOR{

@@ -49,7 +49,6 @@ import AssignRoomOperation from './AssignRoomOperation';
 import OperationDoctors from './OperationDoctors';
 import ConfirmedAppointmetRequest from './ConfirmedAppointmetRequest';
 import DeclinedAppointmetRequest from './DeclinedAppointmetRequest';
-import NurseMedRecord from './NurseMedRecord';
 
 class Routes extends React.Component {
 

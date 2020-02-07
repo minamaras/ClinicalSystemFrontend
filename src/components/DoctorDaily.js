@@ -33,6 +33,7 @@ class DoctorDaily extends React.Component {
             show: false,
             terms:[],
             doctorsevents:'',
+            name: ''
         };
 
 
@@ -101,11 +102,14 @@ class DoctorDaily extends React.Component {
         } else if(sel === 'operation') {
             var odj = {
                 date: dateString,
-                doctor: this.props.doctor.id
+                doctor: this.props.doctor.id,
+                name: this.props.name
             }
     
     
             console.log(this.props)
+            console.log(this.state)
+            console.log(odj);
     
             axios.post(`http://localhost:8081/api/operationrequests/schedule/${doctor}/${dateString}/${patient}/${datetext}/${endtime}`, odj, options).then(
                 (resp) => {
