@@ -62,9 +62,11 @@ class AppointmentRequests extends React.Component {
       {
         return (
             <div>
-                <div className="col-md-10-drcards">
+                <div style={{display:'flex',flexDirection:'row'}}>
                         <br />
-                        <AppointmentReqTable content={this.state.requests} />
+                        <div style={{height:'100px'}}>
+                        </div>
+                        <AppointmentReqTable content={this.state.requests}/>
                     </div>
             </div>
         )

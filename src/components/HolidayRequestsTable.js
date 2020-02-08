@@ -8,6 +8,9 @@ import '../css/RegistrationTable.css';
 import EMailRejection from './EmailRejection';
 import DeclineHolidayRequest from './DeclineHolidayRequest';
 import '../css/HolidayRequests.css'
+import airplane from '../icons/airplane.gif';
+import moment from 'moment';
+
 
 class HolidayRequestsTable extends React.Component{
 
@@ -23,20 +26,29 @@ class HolidayRequestsTable extends React.Component{
     return this.props.content.map((request, index) => {
         const { start, end, email, password } = request
 
+        let datumStart = moment(request.start);
+          let formatDateS =datumStart.format().toString().substring(0,10);
+
+        let datumEnd = moment(request.end);
+          let formatDateE =datumEnd.format().toString().substring(0,10);
+
         return (
-            <Card key={email.toString()} className="cardContainerHoliday" >
-            
+            <Card key={email.toString()} className="cardContainerHoliday"
+            style={{height:'auto',width:'300px',topMargin:'-10px',backgroundColor:'Lavender'}} >
+            <Card.Img src={airplane}></Card.Img>
                 <Card.Body className = "cardBody">
                     <Card.Title className="cardTitle" >{email}</Card.Title>
                     <Card.Text className='cardText'>
 
-                           Start date: {start}
+                           Start date: {formatDateS}
                            <br/>
-                            End date: {end}
+                            End date: {formatDateE}
 
                     </Card.Text>
-                    <Button id="acceptBtnH" onClick={this.acceptRequest.bind(this, request)} >Accept</Button>
-                    <Button id="declineH" onClick={this.sendEmail.bind(this, request)} >Decline</Button>
+                    <div style={{textAlign:'center'}}>
+                    <Button  variant="outline-info" onClick={this.acceptRequest.bind(this, request)} >Accept</Button>
+                    <Button style={{marginLeft:'30px'}} variant="outline-info" onClick={this.sendEmail.bind(this, request)} >Decline</Button>
+                    </div>
                     {/*<div className="declineBtn">
                         <DeclineHolidayRequest id={email} />
         </div>*/}
@@ -79,7 +91,7 @@ class HolidayRequestsTable extends React.Component{
         //console.log(doctor.email);
 
          axios.post("http://localhost:8081/api/holiday/decline", holiday, options).then(
-           
+
              (resp) => this.onSuccessHandler(resp),
              (resp) => this.onErrorHandler(resp)
          );
@@ -96,7 +108,7 @@ class HolidayRequestsTable extends React.Component{
         axios.post("http://localhost:8081/api/holiday/decline", request, options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
-            
+
           );
     }
 

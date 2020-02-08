@@ -5,8 +5,10 @@ import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '../css/Exams.css';
-import kalendar from '../icons/kalendar.svg';
-import old from '../icons/old.svg';
+import kalendar from '../icons/calendar.svg';
+import old from '../icons/clock.svg';
+import less from '../icons/showless.svg';
+import more from '../icons/more.svg';
 import StarRatings from 'react-star-ratings';
 import RateClinic from './RateClinic';
 
@@ -59,16 +61,29 @@ componentDidMount () {
         }
 
 
+showOneUpcomingExam = (ap) => {
+
+  console.log(document.getElementById(ap.id));
+  document.getElementById(ap.id).style.display = "block"
+}
+
+hideOneUpcomingExam = (ap) => {
+
+  console.log(document.getElementById(ap.id));
+  document.getElementById(ap.id).style.display = "none"
+}
+
+
+
 renderUpcoming(){
 
   return this.state.upcoming.map((ap,index) => {
-    console.log(ap);
+
     return (
-
-      <Card className="cardContainerPregled" >
-
-
-          <Card.Body className = "cardBodyPregled">
+      <div style={{textAlign:'center'}}>
+      <Card id={ap.id} className="cardContainerPregled" style={{display:'none',backgroundColor:'aliceblue',textAlign:'center'}}>
+        <Button variant="outline-light" onClick={this.hideOneUpcomingExam.bind(this, ap)} style={{marginLeft:'80%'}}><img src={less} style={{height:'23px',width:'23px',backgroundColor:'transparent'}}></img></Button>
+          <Card.Body className = "cardBodyPregled" style={{backgroundColor:'aliceblue'}}>
 
               <Card.Text className='cardTextPregled'>
                     <label><b>Appointment type:</b></label> &nbsp;
@@ -90,6 +105,7 @@ renderUpcoming(){
                     <label>{ap.roomNumber}</label>
                     <br/>
 
+
               </Card.Text>
               <div className="addKlinikaPregled">
               </div>
@@ -97,6 +113,9 @@ renderUpcoming(){
 
           </Card.Body>
       </Card>
+      <Button variant="outline-primary" onClick={this.showOneUpcomingExam.bind(this, ap)} style={{width:'400px',marginTop:'10px',marginBottom:'10px'}}> {ap.date} {ap.type.name} <img src={more} style={{width:'23px',height:'23px',marginLeft:'6px'}}></img> </Button>
+
+      </div>
     );
 
   });
@@ -110,11 +129,11 @@ renderOld(){
 
 
     return (
-      <Card className="cardContainerPregled" >
-      <Card.Title className="cardTitlePregled"><b>{ap.name}</b></Card.Title>
-
-
-          <Card.Body className = "cardBodyPregled">
+      <div>
+      <Card  id={ap.id}  className="cardContainerPregled" style={{backgroundColor:'aliceblue',display:'none'}} >
+      <Button variant="outline-light" onClick={this.hideOneUpcomingExam.bind(this, ap)} style={{marginLeft:'80%'}}><img src={less} style={{height:'23px',width:'23px',backgroundColor:'transparent'}}></img></Button>
+      <Card.Title  style={{backgroundColor:'aliceblue'}}><b>{ap.name}</b></Card.Title>
+          <Card.Body className = "cardBodyPregled" style={{backgroundColor:'aliceblue'}}>
 
               <Card.Text className='cardTextPregled'>
                     <label><b>Appointment type:</b></label> &nbsp;
@@ -126,7 +145,7 @@ renderOld(){
                     <label><b> Appointment date : </b></label>&nbsp;
                     <label>{ap.date}</label>
                     <br/>
-                    
+
 
                     <label><b> Clinic : </b></label>&nbsp;
                     {ap.clinic.name}
@@ -146,6 +165,8 @@ renderOld(){
 
           </Card.Body>
       </Card>
+      <Button variant="outline-secondary" onClick={this.showOneUpcomingExam.bind(this, ap)} style={{width:'400px',marginTop:'10px',marginBottom:'10px',marginLeft:'15%'}}> {ap.date} {ap.type.name} <img src={more} style={{width:'23px',height:'23px',marginLeft:'6px'}}></img> </Button>
+      </div>
     );
 
   });
@@ -260,24 +281,28 @@ render() {
 
 
 
-        <Card className="velikakarticapozadina" >
-        <Card className="upcomingexams" style={{margin:'20px 0px 0px 0px',width:'100%',height:'auto'}}>
-        <Card.Header style={{ textAlign: 'center' }}>
+        <div className="velikakarticapozadina" style={{top:'0', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
+        <Card className="upcomingexams" style={{margin:'20px 0px 0px 130px',width:'35%',height:'auto'}}>
+        <Card.Header style={{ textAlign: 'center',backgroundColor:'aliceblue' }}>
         <Card.Title>Upcoming exams</Card.Title>
-        <Card.Img src = {kalendar} style={{width:'70px',height:'70px'}}></Card.Img>
+        <Card.Img src = {kalendar} style={{width:'50px',height:'50px'}}></Card.Img>
         </Card.Header>
+        <div style={{height:'50px'}}>
+        </div>
         {this.renderUpcoming()}
         </Card>
 
-        <Card className="oldexams" style={{margin:'20px 0px 0px 150px',width:'100%',height:'auto'}}>
-        <Card.Header style={{ textAlign: 'center' }}>
+        <Card className="oldexams" style={{margin:'20px 0px 0px 150px',width:'35%',height:'auto'}}>
+        <Card.Header style={{ textAlign: 'center',backgroundColor:'aliceblue'  }}>
         <Card.Title>Previous exams</Card.Title>
         <Card.Img src = {old} style={{width:'50px',height:'50px'}}></Card.Img>
         </Card.Header>
+        <div style={{height:'50px'}}>
+        </div>
         {this.renderOld()}
         </Card>
 
-        </Card>
+        </div>
 
 
 

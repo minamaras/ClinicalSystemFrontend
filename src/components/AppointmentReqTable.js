@@ -20,13 +20,13 @@ class AppointmentReqTable extends React.Component {
         }
 
         this.renderTableData = this.renderTableData.bind(this);
-        
+
 
 
 
     }
 
-   
+
     renderTableData() {
         console.log(this.props.content);
 
@@ -37,7 +37,7 @@ class AppointmentReqTable extends React.Component {
           let formatDate =datum.format().toString().substring(0,10);
 
           return (
-              <Card key={r.doctorEmail} className="cardAppReq" >
+              <Card key={r.id} className="cardAppReq" >
               <Card.Title className="cardTitleKlinikaSve"></Card.Title>
 
 
@@ -59,12 +59,12 @@ class AppointmentReqTable extends React.Component {
 
 
                       </Card.Text>
-                     
+
                      <br/>
 
                      <Link to={{pathname:`/room/${r.id}`, state :{data : r} } }>Assign a room to this appointment</Link>
                   </Card.Body>
-                  
+
               </Card>
               )
           })
@@ -72,7 +72,7 @@ class AppointmentReqTable extends React.Component {
 
     render() {
         return (
-            <div className="containerRenderCards">
+            <div className="containerRenderCards" style={{display:'flex',flexDirection:'row'}}>
                 {this.renderTableData()}
             </div>
         )

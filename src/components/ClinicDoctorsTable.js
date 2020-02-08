@@ -36,7 +36,6 @@ class ClinicDoctorTable extends React.Component{
 
         return (
           <div>
-
             <Card key={doctor.name} name={doctor.id} className="cardContainerDoktor" style={{height:'auto',left:'50px',padding:'30px'}}>
             <Card.Title className="cardTitleDoktor" style={{'text-transform':'capitalize'}}><b>{doctor.name} {doctor.lastname}</b></Card.Title>
 
@@ -44,7 +43,10 @@ class ClinicDoctorTable extends React.Component{
                 <Card.Body className = "cardBodyDoktor" style={{textAlign:'center'}}>
                   <Card.Img src={uniform} style={{width:'50px',height:'50px'}}></Card.Img>
                     <Card.Text className='cardTextDoktor'>
-                          <label><b>Doctor does exam type:</b>{doctor.exam.name}</label>
+                          <br/>
+                          <label><b>Exam type:</b></label>
+                          <br/>
+                          <label style={{marginTop:'10px'}}>{doctor.exam.name}</label>
                           <br/>
                           <label><b>Doctors rating: </b></label>
                           <br/>
@@ -86,10 +88,12 @@ class ClinicDoctorTable extends React.Component{
     render() {
       console.log(this.props);
         return (
-            <div className="containerRenderCardsClinic">
 
+
+            <div className="containerRenderCardsClinic">
                 {this.renderTableData()}
             </div>
+
         );
 
     }
