@@ -230,31 +230,10 @@ class BeginAppointMedicalRecord extends React.Component{
           window.location.reload();
     }
 
-    endAppointment(e){
-        e.preventDefault();
-        let token = localStorage.getItem('token');
-        const options = {
-          headers: { 
-              'Authorization': 'Bearer ' + token,
-            }
-              };
-
-        axios.get(`http://localhost:8081/api/appointments/endappoint/${this.props.match.params.id}`, options).then(    
-                (resp) => this.onSuccessHandlerEnd(resp),                
-                (resp) => this.onErrorHandler(resp)
-            );
+    endAppointment(){
+            window.location.href = ("/");
     }
 
-    onSuccessHandlerEnd(resp){
-        MedRecAlert.fire({
-            title: "Appointment is successfully ended!",
-            text: '',
-            type: "success",
-            icon: 'success',
-            button: true
-          });
-          window.location.href = ("/");
-    }
 
 
     renderReport(){

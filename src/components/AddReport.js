@@ -149,7 +149,13 @@ class AddReport extends React.Component{
                 text: this.state.text,
                 diagnosisName: this.state.diagnosisName,
                 patientemail: this.state.patientemail 
-            }   
+            }  
+            
+    
+    axios.get(`http://localhost:8081/api/appointments/endappoint/${this.props.match.params.id}`, options).then(    
+            (resp) => {},                
+            (resp) => {}
+                );
 
         axios.post(`http://localhost:8081/api/reports/addreport`, reportInfo, options).then(    
             (resp) => this.onSuccessHandlerReport(resp),                

@@ -263,7 +263,6 @@ onSelectEvent(event){
     
     return (
       <div>
-          <br />
           <div className="calendarInfo">
             <img style={{height:'55px', width: 'auto'}} src={tipicon} className="tipIcon" />
           <p>You can start the appointment or view information about operation by clicking on it.</p>

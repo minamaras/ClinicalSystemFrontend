@@ -48,7 +48,7 @@ class RenderRooms extends React.Component{
 
 
         return (
-            <Card key={r.name} className="cardContainerRoom" style={{margin:'0px 32px 0px 0px'}}>
+            <Card key={r.name} className="cardContainerRoom" style={{margin:'0px 32px 20px 0px'}}>
             <Card.Title style={{textAlign:'center'}}>{r.name}</Card.Title>
 
 
