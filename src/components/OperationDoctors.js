@@ -95,6 +95,20 @@ class OperationDoctors extends React.Component{
         }  
         console.log(finalInfo)
 
+        if(finalInfo.doctorNames.length === 0){
+            
+            PatientAlert.fire({
+                title: "Operation cannot be scheduled without any doctor!",
+                text: "If there is no doctor available, please choose different term.",
+                type: "error",
+                icon: "error",
+                button: true
+              })
+
+        } else {
+
+       
+
         axios.post(`http://localhost:8081/api/operationrequests/schedule`, finalInfo, options).then(
             (resp) => {
                 PatientAlert.fire({
@@ -115,15 +129,15 @@ class OperationDoctors extends React.Component{
             },
             (resp) =>{
                 PatientAlert.fire({
-                    title: "Error occured in operation scheduling",
-                    text: '',
+                    title: "Something went wrong while scheduling!",
+                    text: 'There is a possibility that someone else has taken your chosen doctor or room, or handled this request before you.',
                     type: "error",
                     button: true
                   });
               
                 });
 
-
+        }
     }
 
 

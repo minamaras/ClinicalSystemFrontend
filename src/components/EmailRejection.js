@@ -83,7 +83,7 @@ class EmailRejection extends React.Component{
     }
 
     sendEmail(){
-        const {emailText} = this.state;
+        //const {emailText} = this.state.emailText;
 
         let token = localStorage.getItem('token');
         const options = {
@@ -93,7 +93,7 @@ class EmailRejection extends React.Component{
             }
         };
 
-        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, emailText, options).then(
+        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, this.state.emailText, options).then(
             (resp) => this.onSuccessHandler(resp),
             (resp) => this.onErrorHandler(resp),
             
@@ -101,7 +101,8 @@ class EmailRejection extends React.Component{
     }
 
     onErrorHandler(resp) {
-        alert("Error response: Uncovered case");
+        //alert("Error response: Uncovered case");
+        window.location.reload();
     }
 
     onSuccessHandler(resp){

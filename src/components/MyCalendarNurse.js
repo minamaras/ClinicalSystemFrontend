@@ -174,11 +174,6 @@ class MyCalendarNurse extends React.Component {
     
     return (
       <div>
-          <br />
-          <div className="calendarInfo">
-            <img style={{height:'55px', width: 'auto'}} src={tipicon} className="tipIcon" />
-          <p>You can start the appointment by clicking on it.</p>
-          </div>
 
         <div  style={{ height: '470pt', margin: '40px 0 0 0'}} >
           

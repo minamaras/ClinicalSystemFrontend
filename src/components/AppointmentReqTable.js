@@ -37,7 +37,7 @@ class AppointmentReqTable extends React.Component {
           let formatDate =datum.format().toString().substring(0,10);
 
           return (
-              <Card key={r.doctorEmail} className="cardAppReq" >
+              <Card key={r.id} className="cardAppReq" >
               <Card.Title className="cardTitleKlinikaSve"></Card.Title>
 
 

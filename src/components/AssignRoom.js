@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ShowRoomCalendar from './ShowRoomCalendar';
 import RenderRooms from './RenderRooms';
 import '../css/AssignRoom.css';
+import tipicon from '../icons/lamp.svg'
 const moment = require('moment');
 
 
@@ -243,6 +244,10 @@ class AssignRoom extends React.Component {
 
           return (
             <div className="pozadinica" >
+              <div className="assignInfo">
+            <img style={{height:'55px', width: 'auto'}} src={tipicon} className="tipIcon" />
+          <p>Enter room name or number, select the wanted date and click on the find button to view all avaliable rooms for the provided date.</p>
+          </div>
                 <div className="containerForFilters">
                <input placeholder="Enter room name or number" onChange={this.handleChange} name="inputparam" className="inputfiled"></input>
 
