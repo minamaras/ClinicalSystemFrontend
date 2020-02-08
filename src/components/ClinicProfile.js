@@ -724,8 +724,11 @@ handleChangeDate = date => {
              <Select
              options={
               this.state.exams.map((type, i) => {
-              return {id: i,value:type, label: type};
-               })
+                if(type !== 'Operation'){
+                  
+                  return {id: i,value:type, label: type};
+               }
+             })
              }
              onChange ={this.handleSelectChange}
              value={this.state.select}

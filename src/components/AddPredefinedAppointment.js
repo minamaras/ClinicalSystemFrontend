@@ -81,6 +81,8 @@ class AddPredefinedAppointment extends React.Component {
 
       resp.data.forEach(function (doctor) {
 
+        if(doctor.examType !== 'Operation'){
+
         var hours = [];
         var timestart = doctor.start.toString().split(":");
         var timeend = doctor.end.toString().split(":");
@@ -121,6 +123,7 @@ class AddPredefinedAppointment extends React.Component {
         doctorstemp.push({godisnji:godisnji,holidays:doctor.holidays,examType:doctor.examType,email:doctor.email,id:doctor.id,name:doctor.name,lastname:doctor.lastname,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
 
 
+    }
       });
 
       this.setState({
