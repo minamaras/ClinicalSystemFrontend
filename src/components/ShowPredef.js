@@ -144,14 +144,37 @@ class ShowPredef extends React.Component {
                             endTime:exam.endTime,type:exam.type,status:exam.status,classification:exam.classification};
 
               axios.post(`http://localhost:8081/api/appointments/save`,objekat,options).then(
-                  (resp) => {console.log('uspeh');
+                  (resp) => {
 
-                  this.setState({ redirect: this.state.redirect === false });
+                    ErrorSearch.fire({
+                        title: "",
+                        text: 'You successfully scheduled this appointment.',
+                        type: "error",
+                        button: true,
+                        icon: "info",
+                      }).then((isOk) => {
+                  if(isOk)
+                  {
+                    this.setState({ redirect: this.state.redirect === false });
                   window.location.reload();
                   this.handleClose();
+                }
+              });;
 
                     },
-                  (resp) => {console.log('neuspeh');}
+                  (resp) => {
+
+                    ErrorSearch.fire({
+                        title: "",
+                        text: 'Oops this term is no longer available.',
+                        type: "error",
+                        button: true,
+                        icon: "info",
+
+                      })
+
+
+                  }
                 );
             }
           });

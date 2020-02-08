@@ -457,7 +457,7 @@ render() {
 
                     <div className="prostor"></div>
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>
-                    
+
                     </Card>
                     <br />
 

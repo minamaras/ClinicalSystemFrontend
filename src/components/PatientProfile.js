@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Modal, Button, Card, ListGroup,Form,Col } from "react-bootstrap";
-import user from '../icons/employees.svg'
+import user from '../icons/team.svg'
 import '../css/PatientProfile.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';

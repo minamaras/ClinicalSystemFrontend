@@ -22,10 +22,11 @@ render() {
 
           this.props.history.push('/changepass');
         }
-      }  
+      }
 
-      return ( <div>
+      return (
 
+        <div>
 
         <Carousel style={{ height:'50px', width: 'auto',top:'60px', bottom:'0', left:'0', right:'0', position: 'absolute'}}>
             <Carousel.Item>
@@ -137,7 +138,7 @@ render() {
                     This system is designed for doctors, nurses and patients.
                     We're here to help you!
                     </p>
-                    
+
 
                   </Carousel.Caption>
 
@@ -149,7 +150,7 @@ render() {
     )
 
     }
-    
+
 
 }
 
