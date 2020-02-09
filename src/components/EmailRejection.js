@@ -21,9 +21,11 @@ class EmailRejection extends React.Component{
 
         this.state = {
             show: false,
-            emailText: ''
+            request: { },
+            emailText: '',
             
         };
+        this.state.request = this.props;
     }
 
 
@@ -35,8 +37,65 @@ class EmailRejection extends React.Component{
         this.setState({ show: true });
     }
 
-    handleChange(e) {
-        this.setState({...this.state, [e.target.name]: e.target.value});
+    handleChange(e) {      
+        this.setState({...this.state, [e.target.name]: e.target.value})
+    }
+
+
+    sendEmail(emailText){
+        //const {emailText} = this.state.emailText;
+
+
+        console.log(this.props.content)
+
+        let token = localStorage.getItem('token');
+        const options = {
+            headers: { 'Authorization': 'Bearer ' + token}
+        };
+
+        let rejection = {
+            name : this.props.content.name,
+            lastname : this.props.content.lastname,
+            id : this.props.content.id,
+            email : this.props.content.email,
+            password : this.props.content.password,
+            role : this.props.content.role,
+            declineReason : this.state.emailText
+        }
+
+        
+        console.log(rejection)
+        axios.post(`http://localhost:8081/api/requests/declinerequest`, rejection, options).then(
+            (resp) => this.onSuccessHandler(resp),
+            (resp) => this.onErrorHandler(resp),
+            
+          );
+    }
+
+    onErrorHandler(resp) {
+        CCAdminCreatedAlert.fire({
+            title: "Error occured!",
+            text: 'Maybe someone has already handled this request.',
+            type: "error",
+            button: true,
+            icon: 'error'
+          });
+    }
+
+    onSuccessHandler(resp){
+        CCAdminCreatedAlert.fire({
+            title: "Request has been handled successfully!",
+            text: '',
+            type: "success",
+            button: true,
+            icon: 'success'
+          }).then((isOk) => {
+
+            if(isOk){
+                window.location.reload();
+    
+            }
+        })
     }
 
 
@@ -82,32 +141,7 @@ class EmailRejection extends React.Component{
         );
     }
 
-    sendEmail(){
-        //const {emailText} = this.state.emailText;
 
-        let token = localStorage.getItem('token');
-        const options = {
-            headers: { 
-                'Authorization': 'Bearer ' + token,
-                'Content-type' : 'text/plain'
-            }
-        };
-
-        axios.post(`http://localhost:8081/api/requests/declinerequest/${this.props.id}`, this.state.emailText, options).then(
-            (resp) => this.onSuccessHandler(resp),
-            (resp) => this.onErrorHandler(resp),
-            
-          );
-    }
-
-    onErrorHandler(resp) {
-        //alert("Error response: Uncovered case");
-        window.location.reload();
-    }
-
-    onSuccessHandler(resp){
-        window.location.reload();
-    }
 
 
 }
