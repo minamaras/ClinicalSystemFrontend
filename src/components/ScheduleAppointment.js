@@ -91,9 +91,10 @@ class ScheduleAppointment extends React.Component{
               });
 
               document.getElementById("requestbutton").style.display="none";
-              document.getElementById("time").remove();
-              document.getElementById("date").remove();
-              document.getElementById("price").remove();
+              //document.getElementById("time").remove();
+              //document.getElementById("date").remove();
+              //document.getElementById("price").remove();
+              document.getElementById("list").style.display = "none"
               document.getElementById("labelftersending").style.display = "block";
               document.getElementById("labelftersending").style.margin = "0px 0px 0px 0px";
 
@@ -140,7 +141,7 @@ class ScheduleAppointment extends React.Component{
               <Card  style={{width:'400px',textAling:'center',height:'330px',margin:'-595px 0px 0px 57%',textAling:'center'}}>
                   <Card.Body  style={{marginTop:'30px'}}>
 
-                  <ListGroup variant="flush">
+                  <ListGroup variant="flush" style={{display:'block'}} id="list">
 
                       <ListGroup.Item id="date">Appointment date {this.props.match.params.date}</ListGroup.Item>
 

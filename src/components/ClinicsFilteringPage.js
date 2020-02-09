@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter,Link } from "react-router-dom";
-import { Modal, Button, Card, ListGroup,Form,Col} from "react-bootstrap";
+import { Modal, Button, Card, ListGroup,Form,Col, Pagination} from "react-bootstrap";
 import icon from '../icons/16534.jpg'
 import info from '../icons/information.svg'
 import clear from '../icons/close.svg'
@@ -18,6 +18,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import TimePicker from "react-time-picker";
 import search from '../icons/search.svg'
+import PropTypes from 'prop-types';
+
+
+//Pagination.propTypes = {
+  //totalRecords: PropTypes.number.isRequired,
+  //pageLimit: PropTypes.number,
+  //pageNeighbours: PropTypes.number,
+  //onPageChanged: PropTypes.func
+//};
 
 
 const PatientAlert = withReactContent(Swal)
@@ -50,7 +59,8 @@ class ClinicsFilteringPage extends React.Component{
         selecetedexam:undefined,
         dateString:'',
         paramexam:'',
-        resultfilter:''
+        resultfilter:'',
+        pages : [],
       }
 
       var time =  moment(this.state.time, 'HH:mm:ss');
@@ -61,8 +71,6 @@ class ClinicsFilteringPage extends React.Component{
 
         console.log("uspeh");
       }
-
-
 
 
       }
@@ -79,9 +87,12 @@ componentDidMount () {
             axios.get('http://localhost:8081/api/clinics/allclinicsdto',options).then(
                       (resp) => {this.onSuccessHandler(resp)
 
-                          this.setState({
-                            alltheclinics:resp.data,
-                          });
+
+
+                            this.setState({
+                              alltheclinics: resp.data,
+                            });
+
                       }
                       ,
                       (resp) => this.onErrorHandler(resp)
@@ -113,7 +124,8 @@ componentDidMount () {
                           );
 
 
-                  }
+
+  }
 
 
 
@@ -265,6 +277,8 @@ handleChange(e) {
         //}
       //}
             //}
+
+
           this.setState({
 
             clinics: resultingClinics,
@@ -468,7 +482,9 @@ render() {
                     <Card className="velikakartica">
 
                     <div className="prostor"></div>
+
                     <ClinicsFilteringTable content={this.state.clinics} exam={this.state.paramexam} time={this.state.time} date={this.state.dateString}/>
+
 
                     </Card>
                     <br />

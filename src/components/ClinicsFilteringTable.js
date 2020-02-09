@@ -2,7 +2,7 @@ import React from 'react'
 import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Modal, Button, Card , ListGroup} from "react-bootstrap";
+import { Modal, Button, Card , ListGroup, Pagination} from "react-bootstrap";
 import '../css/ClinicsFilteringTable.css';
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
@@ -23,7 +23,7 @@ class ClinicsFilteringTable extends React.Component{
         this.renderTableData = this.renderTableData.bind(this);
         this.RednderLink = this.RednderLink.bind(this);
 
-
+      
     }
 
 
@@ -58,8 +58,8 @@ class ClinicsFilteringTable extends React.Component{
         //const { name, adress, description, clinicAdmin} = clinic
         //console.log(clinic)
 
-
         return (
+
             <Card key={c.name} className="cardContainerKlinika"
             style={{ backgroundColor:'aliceblue',border:'none',textAlign:'center'}}>
 
@@ -116,7 +116,9 @@ class ClinicsFilteringTable extends React.Component{
       console.log(this.props);
         return (
             <div className="containerRenderCardsKlinika">
+
                 {this.renderTableData()}
+
             </div>
         );
 

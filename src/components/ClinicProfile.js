@@ -150,6 +150,16 @@ class  ClinicProfile extends React.Component{
 
               var brojac = 0;
               var godisnji = 0;
+              var radnovreme = 0;
+
+              var startime =  moment(doctor.start, 'HH:mm:ss');
+              var endtime =  moment(doctor.end, 'HH:mm:ss');
+              var wantedtime =  moment(self.props.match.params.time, 'HH:mm:ss');
+
+
+              if((wantedtime < startime) || (wantedtime > endtime) || (wantedtime == endtime)){
+                radnovreme = radnovreme + 1;
+              }
 
 
               doctor.appointments.forEach(function (appointment) {
@@ -199,7 +209,7 @@ class  ClinicProfile extends React.Component{
 
                 }
 
-                if(brojac == 0 && godisnji == 0)
+                if(brojac == 0 && godisnji == 0 && radnovreme == 0)
                 {
 
                   doctorstemp.push({holidays:doctor.holidays,events:events,gender:doctor.gender,exam:doctor.examType,id:doctor.id,name:doctor.name,lastname:doctor.lastname,rating:doctor.rating,appointments:doctor.appointments,start:doctor.start,end:doctor.end,hours:hours});
