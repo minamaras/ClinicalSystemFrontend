@@ -10,7 +10,7 @@ import icon from '../icons/klinika.svg';
 import clinicprofileimage from '../icons/polymesh.jpg';
 import doctors from '../icons/Career_3-01.jpg';
 import clinicsicon from '../icons/doctor.svg';
-import abstract from '../icons/molecule.svg';
+import abstract from '../icons/dna.svg';
 import tips from '../icons/sijalica.svg';
 import clinicgif from '../icons/clinic.gif';
 import Select from 'react-select';
@@ -725,7 +725,7 @@ handleChangeDate = date => {
              options={
               this.state.exams.map((type, i) => {
                 if(type !== 'Operation'){
-                  
+
                   return {id: i,value:type, label: type};
                }
              })

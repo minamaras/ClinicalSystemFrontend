@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, withRouter, Switch } from "react-router-dom";
 import axios from 'axios';
-import { Form, DropdownButton, Button, ControlLabel, Dropdown,Card } from "react-bootstrap";
+import { Form, DropdownButton, Button, ControlLabel, Dropdown,Card ,ListGroup} from "react-bootstrap";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../css/ScheduleAppointment.css';
@@ -124,7 +124,7 @@ class ScheduleAppointment extends React.Component{
               <Card style={{width:'55%',marginLeft:'0%'}}>
               <Card.Img src={office} style={{height:'330px',width:'auto'}}></Card.Img>
               </Card>
-              <Card style={{width:'103%',height:'230px',marginLeft:'0%',marginTop:'3%',outline:'none',
+              <Card style={{width:'93%',height:'230px',marginLeft:'0%',marginTop:'3%',outline:'none',
                 border:'none',backgroundColor:'aliceblue'}}>
               <Card.Body>
               <Card.Img src={idea} style={{height:'40px',width:'40px'}}></Card.Img>
@@ -137,19 +137,26 @@ class ScheduleAppointment extends React.Component{
               </label>
               </Card.Body>
               </Card>
-              <Card  style={{textAling:'center',width:'500px',textAling:'center',height:'330px',margin:'-595px 0px 0px 57%'}}>
-              <Card.Title ></Card.Title>
-                  <Card.Body  style={{textAling:'center',marginLeft:'20%',marginTop:'30px'}}>
-                      <label  id="date">Appointment date {this.props.match.params.date}</label>
-                      <br/>
-                      <label  id="time">Appointment time {this.props.match.params.term}</label>
-                      <br/>
-                      <label  id="price">Appointment price {this.props.match.params.examprice}</label>
-                      <br/>
-                      <Button style={{marginTop:'30px'}} variant="outline-primary" id="requestbutton" onClick={this.sendRequest}>Make a request for this appointment</Button>
+              <Card  style={{width:'400px',textAling:'center',height:'330px',margin:'-595px 0px 0px 57%',textAling:'center'}}>
+                  <Card.Body  style={{marginTop:'30px'}}>
+
+                  <ListGroup variant="flush">
+
+                      <ListGroup.Item id="date">Appointment date {this.props.match.params.date}</ListGroup.Item>
+
+                      <ListGroup.Item id="time">Appointment time {this.props.match.params.term}</ListGroup.Item>
+
+                      <ListGroup.Item id="price">Appointment price {this.props.match.params.examprice}</ListGroup.Item>
+
+
+                      <Button style={{marginTop:'30px',width:'350px'}} variant="outline-primary" id="requestbutton" onClick={this.sendRequest}>Make a request for this appointment</Button>
+
                       <label id="labelftersending" style={{display:'none'}}>
                       Great! Your request has been sent.
                       </label>
+
+                  </ListGroup>
+
                 </Card.Body>
               </Card>
 

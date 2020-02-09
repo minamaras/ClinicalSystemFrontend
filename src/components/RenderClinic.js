@@ -2,13 +2,13 @@ import React from 'react'
 import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Modal, Button, Card } from "react-bootstrap";
+import { Modal, Button, Card, ListGroup } from "react-bootstrap";
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import '../css/RenderClinic.css';
 import StarRatings from 'react-star-ratings';
-import icon from '../icons/dna.svg';
+import icon from '../icons/clinicbuilding.svg';
 import link from '../icons/link.svg';
 
 
@@ -50,9 +50,11 @@ class RenderClinic extends React.Component{
 
                 <Card.Body className = "cardBodyKlinikaSve">
                 <Card.Img src={icon} style={{height:'35px',width:'35px',marginBottom:'20px'}}></Card.Img> <br/>
-                    <label className="cardTitleKlinikaSve" style={{color:'black',opacity:'0.7'}}><b>{c.name}</b></label>
-                    <Card.Text className='cardTextKlinikaSve'>
-                          <label><b>Address </b></label> &nbsp;
+                <ListGroup variant="flush">
+                    <ListGroup.Item style={{backgroundColor:'aliceblue'}}>{c.name}</ListGroup.Item>
+                    </ListGroup>
+                    <Card.Text className='cardTextKlinikaSve' style={{marginTop:'5px'}}>
+                          <label><b>Address </b></label> &nbsp; <br/>
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
                           <label><b> Rating </b></label>

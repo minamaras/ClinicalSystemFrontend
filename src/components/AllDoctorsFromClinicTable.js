@@ -2,7 +2,7 @@ import React from 'react'
 import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Modal, Button, Card } from "react-bootstrap";
+import { Modal, Button, Card , ListGroup} from "react-bootstrap";
 import '../css/AllDoctorsFromAClinicTable.css';
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
@@ -84,15 +84,14 @@ class AllDoctorsFromClinicTable extends React.Component{
                 <Card.Body className = "cardBodyDoktoraProfila">
 
                     <Card.Text className='cardTextDoktoraProfila'>
-                          <label><b>Doctor does exam type: </b>{doctor.exam.name}</label>
-                          <br/>
-                          <label><b>Doctors rating: </b></label> &nbsp;
-                          <br/>
-                          {this.showRating(doctor)}
-
+                    <ListGroup variant="flush">
+                          <ListGroup.Item style={{backgroundColor:'aliceblue'}}>Exam type: {doctor.exam.name}</ListGroup.Item>
+                          <ListGroup.Item style={{backgroundColor:'aliceblue'}}>Doctors rating:
+                          <div>{this.showRating(doctor)}</div>
+                          </ListGroup.Item>
                           <br/>
                           {this.renderTerms(doctor)}
-
+                        </ListGroup>
                     </Card.Text>
                     <div className="addDoktoraProfila">
                     </div>
