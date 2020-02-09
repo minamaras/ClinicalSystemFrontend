@@ -91,9 +91,20 @@ componentDidMount () {
                       axios.get('http://localhost:8081/api/examtypes/all',options).then(
                             (resp) => {
 
+                              var temps = [];
+                              resp.data.forEach((exam, i) => {
+
+                                if(exam.name !== 'Operation'){
+
+                                  temps.push(exam);
+                                }
+
+                              });
+
+
                               this.setState({
 
-                                exams:resp.data
+                                exams:temps,
 
                               });
 
@@ -418,6 +429,7 @@ render() {
                placeholder="Select appointment type"
                options={
                 this.state.exams.map((type, i) => {
+
                 return {id: i,value:type.name, label: type.name};
                  })
                }

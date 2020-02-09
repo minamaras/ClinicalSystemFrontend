@@ -2,14 +2,14 @@ import React from 'react'
 import ClinicForm from './ClinicAdminForm'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Modal, Button, Card } from "react-bootstrap";
+import { Modal, Button, Card , ListGroup} from "react-bootstrap";
 import '../css/ClinicsFilteringTable.css';
 import clinic from '../icons/klinika.svg'
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Link,Switch,useParams,withRouter } from "react-router-dom";
 import ClinicProfile from './ClinicProfile';
 import StarRatings from 'react-star-ratings';
-import dna from '../icons/dna.svg'
+import dna from '../icons/clinicbuilding.svg'
 
 
 const PatientAlert = withReactContent(Swal)
@@ -66,9 +66,13 @@ class ClinicsFilteringTable extends React.Component{
                 <Card.Body className = "cardBodyKlinika">
                 <Card.Img src={dna} style={{height:'28px',width:'28px',marginTop:'-50px'}}></Card.Img>
                 <br/>
-                  <label className="cardTitleKlinika"><b>{c.name}</b></label>
-                    <Card.Text className='cardTextKlinika'>
+                <ListGroup variant="flush">
+                  <ListGroup.Item className="cardTitleKlinika" style={{backgroundColor:'aliceblue'}}>{c.name}</ListGroup.Item>
+
+
+                    <Card.Text className='cardTextKlinika' style={{marginTop:'5px'}}>
                           <label><b>Address </b></label> &nbsp;
+                          <br/>
                           <label style={{'text-transform':'capitalize'}} >{c.adress}</label>
                           <br/>
                           <label><b> Rating </b></label>
@@ -94,6 +98,8 @@ class ClinicsFilteringTable extends React.Component{
 
 
                     </Card.Text>
+
+                      </ListGroup>
                     <div className="addKlinika">
                     </div>
 

@@ -159,7 +159,7 @@ class ShowPredef extends React.Component {
                   window.location.reload();
                   this.handleClose();
                 }
-              });;
+              });
 
                     },
                   (resp) => {
