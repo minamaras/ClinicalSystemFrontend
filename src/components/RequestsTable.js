@@ -35,7 +35,7 @@ class RequestsTable extends React.Component{
                     </Card.Text>
                     <Button className="acceptBtn" onClick={this.acceptRequest.bind(this, request)} variant="success">Accept</Button>
                     <div className="declineBtn">
-                         <EMailRejection id={email} />
+                         <EMailRejection content={request} />
                     </div>
 
                 </Card.Body>
